@@ -86,7 +86,7 @@ spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     password: ghksrka3849!
-    url: jdbc:mariadb://localhost:3306/ibio?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mariadb://127.0.0.1:3306/ibio?useUnicode=true&characterEncoding=utf8
     username: root
     hikari:
       connectionTimeout: 30000
