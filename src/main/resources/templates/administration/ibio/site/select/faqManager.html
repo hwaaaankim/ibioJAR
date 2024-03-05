@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="ko" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none"
+	data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: headSrc">
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: headerMenu">
+
+		</header>
+
+		<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true"
+			th:replace="fragments/administration/common :: removeModal">
+		</div>
+
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: navMenu">
+		</div>
+
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                <h4 class="mb-sm-0">FAQs</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">SITEs</a></li>
+                                        <li class="breadcrumb-item active">자주 묻는 질문 관리</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-auto ms-auto">
+                                    <div class="d-flex hastck gap-2 flex-wrap">
+                                        <button data-bs-toggle="modal" data-bs-target="#adddeals" class="btn btn-success">
+											<i class="ri-add-fill align-bottom me-1"></i>FAQ등록하기</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-cols-xxl-5 row-cols-lg-3 row-cols-md-2 row-cols-1">
+                        <div class="col">
+                            <div class="card">
+                                <a class="card-body bg-danger-subtle" data-bs-toggle="collapse" href="#leadDiscovered" role="button" aria-expanded="false" aria-controls="leadDiscovered">
+                                    <h5 class="card-title text-uppercase fw-bold mb-1 fs-16">카테고리01</h5>
+                                    <p class="text-muted mb-0">조회수 :<span class="fw-medium">1,000회</span></p>
+                                </a>
+                            </div>
+                            <!--end card-->
+                            <div class="collapse show" id="leadDiscovered">
+                                <div class="card mb-1">
+                                    <div class="card-body">
+                                        <a class="d-flex align-items-center" data-bs-toggle="collapse" href="#leadDiscovered1" role="button" aria-expanded="false" aria-controls="leadDiscovered1">
+                                            <div class="flex-grow-1 ms-3">
+                                                <h6 class="fs-15 mb-1">FAQ 제목</h6>
+                                                <p class="text-muted mb-0">2024.01.01</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="collapse border-top border-top-dashed" id="leadDiscovered1">
+                                        <div class="card-body">
+                                            <h6 class="fs-15 mb-1">FAQ 제목<small class="badge bg-danger-subtle text-danger">1,000회</small></h6>
+                                            <p class="text-muted">FAQ에 대한 답변</p>
+                                            <ul class="list-unstyled vstack gap-2 mb-0">
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 avatar-xxs text-muted">
+                                                            <i class="ri-question-answer-line"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h6 class="mb-0"># 참고사항</h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 avatar-xxs text-muted">
+                                                            <i class="ri-mac-line"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h6 class="mb-0"># 대표번호</h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 avatar-xxs text-muted">
+                                                            <i class="ri-earth-line"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h6 class="mb-0"># 대표이메일</h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-footer hstack gap-2">
+                                            <button class="btn btn-info btn-sm w-100"><i class="ri-question-answer-line align-bottom me-1"></i> 삭제하기</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="collapse show" id="leadDiscovered">
+                                <div class="card mb-1">
+                                    <div class="card-body">
+                                        <a class="d-flex align-items-center" data-bs-toggle="collapse" href="#leadDiscovered2" role="button" aria-expanded="false" aria-controls="leadDiscovered1">
+                                            <div class="flex-grow-1 ms-3">
+                                                <h6 class="fs-15 mb-1">FAQ 제목</h6>
+                                                <p class="text-muted mb-0">2024.01.01</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="collapse border-top border-top-dashed" id="leadDiscovered2">
+                                        <div class="card-body">
+                                            <h6 class="fs-15 mb-1">FAQ 제목<small class="badge bg-danger-subtle text-danger">1,000회</small></h6>
+                                            <p class="text-muted">FAQ에 대한 답변</p>
+                                            <ul class="list-unstyled vstack gap-2 mb-0">
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 avatar-xxs text-muted">
+                                                            <i class="ri-question-answer-line"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h6 class="mb-0"># 참고사항</h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 avatar-xxs text-muted">
+                                                            <i class="ri-mac-line"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h6 class="mb-0"># 대표번호</h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 avatar-xxs text-muted">
+                                                            <i class="ri-earth-line"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h6 class="mb-0"># 대표이메일</h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-footer hstack gap-2">
+                                            <button class="btn btn-info btn-sm w-100"><i class="ri-question-answer-line align-bottom me-1"></i> 삭제하기</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end col-->
+
+                        <div class="col">
+                            <div class="card">
+                                <a class="card-body bg-success-subtle" data-bs-toggle="collapse" href="#contactInitiated" role="button" aria-expanded="false" aria-controls="contactInitiated">
+                                    <h5 class="card-title text-uppercase fw-bold mb-1 fs-16">카테고리02</h5>
+                                    <p class="text-muted mb-0">조회수 :<span class="fw-medium">1,000회</span></p>
+                                </a>
+                            </div>
+                            <!--end card-->
+                            <div class="collapse show" id="contactInitiated">
+                                <div class="card mb-1 ribbon-box ribbon-fill ribbon-sm">
+                                    <div class="ribbon ribbon-info"><i class="ri-flashlight-fill"></i></div>
+                                    <div class="card-body">
+                                        <a class="d-flex align-items-center" data-bs-toggle="collapse" href="#contactInitiated1" role="button" aria-expanded="false" aria-controls="contactInitiated1">
+                                            <div class="flex-grow-1 ms-3">
+                                                <h6 class="fs-15 mb-1">FAQ 제목</h6>
+                                                <p class="text-muted mb-0">2024.01.01</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="collapse border-top border-top-dashed" id="contactInitiated1">
+                                        <div class="card-body">
+                                            <h6 class="fs-15 mb-1">FAQ 제목<small class="badge bg-danger-subtle text-danger">1,000회</small></h6>
+                                            <p class="text-muted">FAQ에 대한 답변</p>
+                                            <ul class="list-unstyled vstack gap-2 mb-0">
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 avatar-xxs text-muted">
+                                                            <i class="ri-question-answer-line"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h6 class="mb-0"># 참고사항</h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 avatar-xxs text-muted">
+                                                            <i class="ri-mac-line"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h6 class="mb-0"># 대표번호</h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 avatar-xxs text-muted">
+                                                            <i class="ri-earth-line"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h6 class="mb-0"># 대표이메일</h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-footer hstack gap-2">
+                                            <button class="btn btn-info btn-sm w-100"><i class="ri-question-answer-line align-bottom me-1"></i> 삭제하기</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="collapse show" id="contactInitiated">
+                                <div class="card mb-1 ribbon-box ribbon-fill ribbon-sm">
+                                    <div class="ribbon ribbon-info"><i class="ri-flashlight-fill"></i></div>
+                                    <div class="card-body">
+                                        <a class="d-flex align-items-center" data-bs-toggle="collapse" href="#contactInitiated2" role="button" aria-expanded="false" aria-controls="contactInitiated1">
+                                            <div class="flex-grow-1 ms-3">
+                                                <h6 class="fs-15 mb-1">FAQ 제목</h6>
+                                                <p class="text-muted mb-0">2024.01.01</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="collapse border-top border-top-dashed" id="contactInitiated2">
+                                        <div class="card-body">
+                                            <h6 class="fs-15 mb-1">FAQ 제목<small class="badge bg-danger-subtle text-danger">1,000회</small></h6>
+                                            <p class="text-muted">FAQ에 대한 답변</p>
+                                            <ul class="list-unstyled vstack gap-2 mb-0">
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 avatar-xxs text-muted">
+                                                            <i class="ri-question-answer-line"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h6 class="mb-0"># 참고사항</h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 avatar-xxs text-muted">
+                                                            <i class="ri-mac-line"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h6 class="mb-0"># 대표번호</h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 avatar-xxs text-muted">
+                                                            <i class="ri-earth-line"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h6 class="mb-0"># 대표이메일</h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-footer hstack gap-2">
+                                            <button class="btn btn-info btn-sm w-100"><i class="ri-question-answer-line align-bottom me-1"></i> 삭제하기</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="adddeals" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-light p-3">
+                                    <h5 class="modal-title" id="exampleModalLabel">FAQ 등록</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form class="needs-validation" novalidate id="deals-form" onsubmit="return false">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="deatType" class="form-label">카테고리</label>
+                                            <select class="form-select" id="deatType" required>
+                                                <option value="">카테고리를 선택 해 주세요.</option>
+                                                <option value="Lead Disovered">제품관련</option>
+                                                <option value="Contact Initiated">가격관련</option>
+                                                <option value="Need Identified">결제관련</option>
+                                                <option value="Meeting Arranged">회원가입관련</option>
+                                                <option value="Offer Accepted">기타</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="dealTitle" class="form-label">FAQ 제목</label>
+                                            <input type="text" class="form-control" id="dealTitle" placeholder="FAQ 제목을 입력 해 주세요." required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="dealOwner" class="form-label">참고사항</label>
+                                            <input type="text" class="form-control" id="dealOwner" required placeholder="# 참고사항을 입력 해 주세요.">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="dealEmail" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="dealEmail" placeholder="contact@contact.com" required>
+                                            <div class="invalid-feedback">
+                                                Please write a email.
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="contactNumber" class="form-label">Contact</label>
+                                            <input type="text" class="form-control" id="contactNumber" placeholder="010-1234-1234" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="contactDescription" class="form-label">Description</label>
+                                            <textarea class="form-control" id="contactDescription" rows="3" placeholder="답변을 입력 해 주세요" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" id="close-modal" data-bs-dismiss="modal"> 닫기</button>
+                                        <button type="submit" class="btn btn-success"><i class="ri-save-line align-bottom me-1"></i> 등록하기</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end modal-->
+
+                </div>
+                <!-- container-fluid -->
+            </div>
+
+		</div>
+
+
+		<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
+
+		<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+		<!-- cleave.js -->
+	    <script src="/administration/assets/libs/cleave.js/cleave.min.js"></script>
+	
+	    <script src="/administration/assets/js/pages/crm-deals.init.js"></script>
+	
+	    <!-- Sweet Alerts js -->
+	    <script src="/administration/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+</body>
+
+</html>

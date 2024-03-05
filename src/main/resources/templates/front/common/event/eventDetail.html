@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/front/common :: headSrc">
+</head>
+
+<body class="res layout-1 layout-subpage">
+
+	<div id="wrapper" class="wrapper-fluid banners-effect-5">
+		<header id="header" class=" typeheader-1" th:replace="fragments/front/common :: headerMenu"></header>
+
+		<div class="main-container container">
+			<ul class="breadcrumb">
+				<li><a href="#"><i class="fa fa-home"></i></a></li>
+				<li><a href="#">이벤트</a></li>
+				<li><a href="#">이벤트 상세</a></li>
+			</ul>
+
+			<div class="row" style="display:flex; justify-content:center;margin-bottom:50px;">
+				<!--Left Part Start -->
+				<div id="content" class="col-md-10 col-sm-10 site">
+					<div class="article-info">
+						<div class="blog-header">
+							<h3>이벤트 제목</h3>
+						</div>
+						<div class="article-sub-title">
+							<span class="article-author">업로드 : <a href="#"> ADMIN</a></span>
+							<span class="article-date">이벤트 시작일 : 2024.01.01</span>
+							<span class="article-date">이벤트 종료일 : 2024.02.01</span>
+							<span class="article-comment">조회수 : 11</span>
+						</div>
+						<div class="form-group" style="display:flex; justify-content: center;">
+							<a href="/front/image/catalog/blog/4.jpg" class="image-popup"><img
+									src="/front/image/catalog/blog/4.jpg" alt="Kire tuma demonstraverunt lector"></a>
+						</div>
+
+						<div class="article-description">
+							<p>=== 이벤트 정보 ===</p>
+							<p>=== 이벤트 정보 ===</p>
+							<p>=== 이벤트 정보 ===</p>
+							<p>=== 이벤트 정보 ===</p>
+							<p>=== 이벤트 정보 ===</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer class="footer-container typefooter-1" th:replace="fragments/front/common :: ibioFooter"></footer>
+	</div>
+
+	<th:block th:replace="fragments/front/common :: scriptSrc"></th:block>
+
+</body>
+
+</html>

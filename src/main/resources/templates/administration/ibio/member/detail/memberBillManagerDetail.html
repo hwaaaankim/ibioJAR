@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ko" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none"
+	data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: headSrc">
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: headerMenu">
+
+		</header>
+
+		<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true"
+			th:replace="fragments/administration/common :: removeModal">
+		</div>
+
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: navMenu">
+		</div>
+
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+								<h4 class="mb-sm-0">영수증 상세</h4>
+
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a href="javascript: void(0);">Invoices</a></li>
+										<li class="breadcrumb-item active">영수증 상세</li>
+									</ol>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!-- end page title -->
+
+					<div class="row justify-content-center">
+						<div class="col-xxl-9">
+							<div class="card" id="demo">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="card-header border-bottom-dashed p-4">
+											<div class="d-flex">
+												<div class="flex-grow-1">
+													<img src="/front/image/catalog/logo.png"
+														class="card-logo card-logo-dark user-profile-image img-fluid"
+														alt="logo dark">
+													<img src="/front/image/catalog/logo.png"
+														class="card-logo card-logo-light user-profile-image img-fluid"
+														alt="logo light">
+													<div class="mt-sm-5 mt-4">
+														<h6 class="text-muted text-uppercase fw-semibold">발행자 주소</h6>
+														<p class="text-muted mb-1" id="address-details">주소</p>
+														<p class="text-muted mb-0" id="zip-code"><span>우편번호:</span>
+															77777</p>
+													</div>
+												</div>
+												<div class="flex-shrink-0 mt-sm-0 mt-3">
+													<h6><span class="text-muted fw-normal">사업자 등록번호
+															:</span><span id="legal-register-no">123123</span></h6>
+													<h6><span class="text-muted fw-normal">이메일:</span><span
+															id="email">contact@contact.com</span></h6>
+													<h6 class="mb-0"><span class="text-muted fw-normal">연락처:
+														</span><span id="contact-no"> 010-1234-1234</span></h6>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-12">
+										<div class="card-body p-4">
+											<div class="row g-3">
+												<div class="col-lg-3 col-6">
+													<p class="text-muted mb-2 text-uppercase fw-semibold fs-13">영수증번호</p>
+													<h5 class="fs-15 mb-0">#VL<span id="invoice-no">25000355</span></h5>
+												</div>
+												<!--end col-->
+												<div class="col-lg-3 col-6">
+													<p class="text-muted mb-2 text-uppercase fw-semibold fs-13">영수일</p>
+													<h5 class="fs-15 mb-0"><span id="invoice-date">2024.01.01</span></h5>
+												</div>
+
+												<div class="col-lg-3 col-6">
+													<p class="text-muted mb-2 text-uppercase fw-semibold fs-13">거래상태</p>
+													<span class="badge bg-success-subtle text-success fs-12"
+														id="payment-status">거래완료</span>
+												</div>
+												<!--end col-->
+												<div class="col-lg-3 col-6">
+													<p class="text-muted mb-2 text-uppercase fw-semibold fs-13">총 금액</p>
+													<h5 class="fs-15 mb-0">$<span id="total-amount">-,---,---원</span></h5>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-12">
+										<div class="card-body p-4 border-top border-top-dashed">
+											<div class="row g-3">
+												<div class="col-6">
+													<h6 class="text-muted text-uppercase fw-semibold mb-3 fs-13">청구 주소</h6>
+													<p class="fw-medium mb-2" id="billing-name"><a href="/admin/memberManagerDetail">고객명</a></p>
+													<p class="text-muted mb-1" id="billing-address-line-1">주소 : </p>
+													<p class="text-muted mb-1"><span>연락처 : </span><span
+															id="billing-phone-no">010-1234-1234</span></p>
+												</div>
+												<div class="col-6">
+													<h6 class="text-muted text-uppercase fw-semibold mb-3 fs-13">배송 주소</h6>
+													<p class="fw-medium mb-2" id="billing-name">고객명</p>
+													<p class="text-muted mb-1" id="billing-address-line-1">주소 : </p>
+													<p class="text-muted mb-1"><span>연락처 : </span><span
+															id="billing-phone-no">010-1234-1234</span></p>
+												</div>
+											</div>
+										</div>
+									</div><!--end col-->
+									<div class="col-lg-12">
+										<div class="card-body p-4">
+											<div class="table-responsive">
+												<table
+													class="table table-borderless text-center table-nowrap align-middle mb-0">
+													<thead>
+														<tr class="table-active">
+															<th scope="col" style="width: 50px;">#</th>
+															<th scope="col">
+																구매제품 상세
+															</th>
+															<th scope="col" style="width: 120px;">
+																할인율
+															</th>
+															<th scope="col" style="width: 120px;">수량</th>
+															<th scope="col" style="width: 265px;">최종금액
+															</th>
+														</tr>
+													</thead>
+													<tbody id="products-list">
+														<tr>
+															<th scope="row">01</th>
+															<td class="text-start">
+																<span class="fw-medium"><a href="/admin/ibioProductManagerDetail">제품명(Pink)</a></span>
+																<p class="text-muted mb-0">대분류|중분류|소분류|브랜드</p>
+															</td>
+															<td>---,---원</td>
+															<td>2</td>
+															<td class="text-end">---,---원</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="border-top border-top-dashed mt-2">
+												<table
+													class="table table-borderless table-nowrap align-middle mb-0 ms-auto"
+													style="width:250px">
+													<tbody>
+														<tr>
+															<td>합계</td>
+															<td class="text-end">---,---원</td>
+														</tr>
+														<tr>
+															<td>부가세 (10%)</td>
+															<td class="text-end">---,---원</td>
+														</tr>
+														<tr>
+															<td>할인 <small class="text-muted">(딜러할인)</small>
+															</td>
+															<td class="text-end">---,---원</td>
+														</tr>
+														<tr>
+															<td>배송비</td>
+															<td class="text-end">--,---</td>
+														</tr>
+														<tr class="border-top border-top-dashed fs-15">
+															<th scope="row">영수금액</th>
+															<th class="text-end">---,---</th>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="mt-3">
+												<h6 class="text-muted text-uppercase fw-semibold mb-3 fs-13">거래상세</h6>
+												<p class="text-muted mb-1">결제방식: <span class="fw-medium"
+														id="payment-method">신용카드결제</span></p>
+											</div>
+											<div class="hstack gap-2 justify-content-end d-print-none mt-4">
+												<a href="javascript:window.print()" class="btn btn-success"><i
+														class="ri-printer-line align-bottom me-1"></i> 프린트</a>
+												<a href="javascript:void(0);" class="btn btn-primary"><i
+														class="ri-download-2-line align-bottom me-1"></i> 다운로드</a>
+											</div>
+										</div>
+									</div><!--end col-->
+								</div><!--end row-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<th:block th:replace="fragments/administration/common :: footerSrc"></th:block>
+		</div>
+
+	</div>
+
+
+	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
+
+	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+
+	<script src="/administration/assets/libs/apexcharts/apexcharts.min.js"></script>
+	<script src="/administration/assets/libs/gridjs/gridjs.umd.js"></script>
+	<script src="https://unpkg.com/gridjs/plugins/selection/dist/selection.umd.js"></script>
+	<script src="/administration/assets/libs/swiper/swiper-bundle.min.js"></script>
+	<script src="/administration/assets/js/pages/seller-details.init.js"></script>
+
+
+</body>
+
+</html>

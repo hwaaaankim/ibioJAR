@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="ko" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none"
+	data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: headSrc">
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: headerMenu">
+
+		</header>
+
+		<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true"
+			th:replace="fragments/administration/common :: removeModal">
+		</div>
+
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: navMenu">
+		</div>
+
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+								<h4 class="mb-sm-0">구매자 상세페이지</h4>
+
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
+										<li class="breadcrumb-item active">구매자 상세페이지</li>
+									</ol>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!-- end page title -->
+
+					<div class="row">
+						<div class="col-xxl-3">
+							<div class="card">
+								<div class="card-body p-4">
+									<div>
+										<div class="flex-shrink-0 avatar-md mx-auto">
+											<div class="avatar-title bg-light rounded">
+												<img src="/administration/assets/images/companies/img-2.png" alt=""
+													height="50" />
+											</div>
+										</div>
+										<div class="mt-4 text-center">
+											<h5 class="mb-1">고객명</h5>
+											<p class="text-muted">회원가입일 : 2024.01.01</p>
+										</div>
+										<div class="table-responsive">
+											<table class="table mb-0 table-borderless">
+												<tbody>
+													<tr>
+														<th><span class="fw-medium">구매자명</span></th>
+														<td>김고객</td>
+													</tr>
+													<tr>
+														<th><span class="fw-medium">사업체명</span></th>
+														<td>일반회원</td>
+													</tr>
+													<tr>
+														<th><span class="fw-medium">이메일</span></th>
+														<td>contact@contact.co.kr</td>
+													</tr>
+													<tr>
+														<th><span class="fw-medium">연락처</span></th>
+														<td><a href="TEL : 010-0123-4567">010-0123-4567</a></td>
+													</tr>
+													<tr>
+														<th><span class="fw-medium">팩스</span></th>
+														<td>02-4455-6677</td>
+													</tr>
+													<tr>
+														<th><span class="fw-medium">주소</span></th>
+														<td>강남구 역삼동</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<!--end card-body-->
+								<div class="card-body border-top border-top-dashed p-4">
+									<div>
+										<h6 class="text-muted text-uppercase fw-semibold mb-4">고객 평균 별점</h6>
+										<div>
+											<div>
+												<div class="bg-light px-3 py-2 rounded-2 mb-2">
+													<div class="d-flex align-items-center">
+														<div class="flex-grow-1">
+															<div class="fs-16 align-middle text-warning">
+																<i class="ri-star-fill"></i>
+																<i class="ri-star-fill"></i>
+																<i class="ri-star-fill"></i>
+																<i class="ri-star-fill"></i>
+																<i class="ri-star-half-fill"></i>
+															</div>
+														</div>
+														<div class="flex-shrink-0">
+															<h6 class="mb-0">평균 4.5 별점부여</h6>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card-body p-4 border-top border-top-dashed">
+									<h6 class="text-muted text-uppercase fw-semibold mb-4">고객에게 메시지 전송</h6>
+									<form action="#">
+										<div class="mb-3">
+											<textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
+												placeholder="Enter your messages..."></textarea>
+										</div>
+										<div class="text-end">
+											<button type="submit" class="btn btn-primary"><i
+													class="ri-mail-send-line align-bottom me-1"></i> 이메일 / 문자
+												전송</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xxl-9">
+							<div class="card">
+                                <div class="card-body">
+                                    <div class="text-muted">
+                                        <h6 class="mb-3 fw-bold text-uppercase">Summary</h6>
+                                        <p>고객 문의사항</p>
+
+                                        <h6 class="mb-3 fw-bold text-uppercase">첨부내용</h6>
+                                        <ul class=" ps-3 list-unstyled vstack gap-2">
+                                            <li>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="productTask">
+                                                    <label class="form-check-label" for="productTask">
+                                                        첨부파일 등
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <div class="pt-3 border-top border-top-dashed mt-4">
+                                            <h6 class="mb-3 fw-bold text-uppercase">문의 카테고리</h6>
+                                            <div class="hstack flex-wrap gap-2 fs-16">
+                                                <div class="badge fw-medium bg-info-subtle text-info"># 제품 가격</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							<div class="card">
+								<div class="card-header">
+									<div>
+										<ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0"
+											role="tablist">
+											<li class="nav-item">
+												<a class="nav-link active" data-bs-toggle="tab" href="#home-1"
+													role="tab">
+													고객문의 답변내역 (5)
+												</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" data-bs-toggle="tab" href="#messages-1" role="tab">
+													고객 전송 파일 (4)
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="card-body">
+									<div class="tab-content">
+										<div class="tab-pane active" id="home-1" role="tabpanel">
+											<h5 class="card-title mb-4">Comments</h5>
+											<div data-simplebar style="height: 508px;" class="px-3 mx-n3 mb-2">
+												<div class="d-flex mb-4">
+													<div class="flex-grow-1 ms-3">
+														<h5 class="fs-15"><a href="/admin/memberManagerDetail">고객 이름</a>
+															<small class="text-muted">문의 시간</small></h5>
+														<p class="text-muted">고객 문의 내용</p>
+														<a href="javascript: void(0);"
+															class="badge text-muted bg-light"><i
+																class="mdi mdi-reply"></i> 관리자 답변 사항</a>
+														<div class="d-flex mt-4">
+															<div class="flex-grow-1 ms-3">
+																<h5 class="fs-15">관리자<small class="text-muted">답변 시간</small></h5>
+																<p class="text-muted">관리자 답변 내용</p>
+																<a href="javascript: void(0);"
+																	class="badge text-muted bg-light"><i
+																		class="mdi mdi-reply"></i> Reply</a>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="d-flex mb-4">
+													<div class="flex-grow-1 ms-3">
+														<h5 class="fs-15"><a href="/admin/memberManagerDetail">고객 이름</a>
+															<small class="text-muted">문의 시간</small></h5>
+														<p class="text-muted">고객 문의 내용</p>
+														<a href="javascript: void(0);"
+															class="badge text-muted bg-light"><i
+																class="mdi mdi-reply"></i> 관리자 답변 사항</a>
+														<div class="d-flex mt-4">
+															<div class="flex-grow-1 ms-3">
+																<h5 class="fs-15">관리자<small class="text-muted">답변 시간</small></h5>
+																<p class="text-muted">관리자 답변 내용</p>
+																<a href="javascript: void(0);"
+																	class="badge text-muted bg-light"><i
+																		class="mdi mdi-reply"></i> Reply</a>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="d-flex mb-4">
+													<div class="flex-grow-1 ms-3">
+														<h5 class="fs-15"><a href="/admin/memberManagerDetail">고객 이름</a>
+															<small class="text-muted">문의 시간</small></h5>
+														<p class="text-muted">고객 문의 내용</p>
+														<a href="javascript: void(0);"
+															class="badge text-muted bg-light"><i
+																class="mdi mdi-reply"></i> 관리자 답변 사항</a>
+														<div class="d-flex mt-4">
+															<div class="flex-grow-1 ms-3">
+																<h5 class="fs-15">관리자<small class="text-muted">답변 시간</small></h5>
+																<p class="text-muted">관리자 답변 내용</p>
+																<a href="javascript: void(0);"
+																	class="badge text-muted bg-light"><i
+																		class="mdi mdi-reply"></i> Reply</a>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<form class="mt-4">
+												<div class="row g-3">
+													<div class="col-lg-12">
+														<label for="exampleFormControlTextarea1"
+															class="form-label">고객 답변</label>
+														<textarea class="form-control bg-light border-light"
+															id="exampleFormControlTextarea1" rows="3"
+															placeholder="Enter comments"></textarea>
+													</div>
+													<div class="col-12 text-end">
+														<button type="button"
+															class="btn btn-ghost-secondary btn-icon waves-effect me-1"><i
+																class="ri-attachment-line fs-16"></i></button>
+														<a href="javascript:void(0);" class="btn btn-success">답변 보내기</a>
+													</div>
+												</div>
+											</form>
+										</div>
+										<!--end tab-pane-->
+										<div class="tab-pane" id="messages-1" role="tabpanel">
+											<div class="table-responsive table-card">
+												<table class="table table-borderless align-middle mb-0">
+													<thead class="table-light text-muted">
+														<tr>
+															<th scope="col">파일명</th>
+															<th scope="col">확장자</th>
+															<th scope="col">용량</th>
+															<th scope="col">업로드일</th>
+															<th scope="col">Action</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																<div class="d-flex align-items-center">
+																	<div class="avatar-sm">
+																		<div
+																			class="avatar-title bg-primary-subtle text-primary rounded fs-20">
+																			<i class="ri-file-zip-fill"></i>
+																		</div>
+																	</div>
+																	<div class="ms-3 flex-grow-1">
+																		<h6 class="fs-15 mb-0"><a
+																				href="javascript:void(0)"
+																				class="link-secondary">App pages.zip</a>
+																		</h6>
+																	</div>
+																</div>
+															</td>
+															<td>Zip File</td>
+															<td>2.22 MB</td>
+															<td>21 Dec, 2021</td>
+															<td>
+																<div class="dropdown">
+																	<a href="javascript:void(0);"
+																		class="btn btn-light btn-icon"
+																		id="dropdownMenuLink1" data-bs-toggle="dropdown"
+																		aria-expanded="true">
+																		<i class="ri-equalizer-fill"></i>
+																	</a>
+																	<ul class="dropdown-menu dropdown-menu-end"
+																		aria-labelledby="dropdownMenuLink1"
+																		data-popper-placement="bottom-end"
+																		style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 23px);">
+																		<li><a class="dropdown-item"
+																				href="javascript:void(0);"><i
+																					class="ri-eye-fill me-2 align-middle text-muted"></i>View</a>
+																		</li>
+																		<li><a class="dropdown-item"
+																				href="javascript:void(0);"><i
+																					class="ri-download-2-fill me-2 align-middle text-muted"></i>Download</a>
+																		</li>
+																		<li class="dropdown-divider"></li>
+																		<li><a class="dropdown-item"
+																				href="javascript:void(0);"><i
+																					class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a>
+																		</li>
+																	</ul>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div class="d-flex align-items-center">
+																	<div class="avatar-sm">
+																		<div
+																			class="avatar-title bg-danger-subtle text-danger rounded fs-20">
+																			<i class="ri-file-pdf-fill"></i>
+																		</div>
+																	</div>
+																	<div class="ms-3 flex-grow-1">
+																		<h6 class="fs-15 mb-0"><a
+																				href="javascript:void(0);"
+																				class="link-secondary">Velzon
+																				admin.ppt</a></h6>
+																	</div>
+																</div>
+															</td>
+															<td>PPT File</td>
+															<td>2.24 MB</td>
+															<td>25 Dec, 2021</td>
+															<td>
+																<div class="dropdown">
+																	<a href="javascript:void(0);"
+																		class="btn btn-light btn-icon"
+																		id="dropdownMenuLink2" data-bs-toggle="dropdown"
+																		aria-expanded="true">
+																		<i class="ri-equalizer-fill"></i>
+																	</a>
+																	<ul class="dropdown-menu dropdown-menu-end"
+																		aria-labelledby="dropdownMenuLink2"
+																		data-popper-placement="bottom-end"
+																		style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 23px);">
+																		<li><a class="dropdown-item"
+																				href="javascript:void(0);"><i
+																					class="ri-download-2-fill me-2 align-middle text-muted"></i>Download</a>
+																		</li>
+																		<li class="dropdown-divider"></li>
+																		<li><a class="dropdown-item"
+																				href="javascript:void(0);"><i
+																					class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a>
+																		</li>
+																	</ul>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div class="d-flex align-items-center">
+																	<div class="avatar-sm">
+																		<div
+																			class="avatar-title bg-info-subtle text-info rounded fs-20">
+																			<i class="ri-folder-line"></i>
+																		</div>
+																	</div>
+																	<div class="ms-3 flex-grow-1">
+																		<h6 class="fs-15 mb-0"><a
+																				href="javascript:void(0);"
+																				class="link-secondary">Images.zip</a>
+																		</h6>
+																	</div>
+																</div>
+															</td>
+															<td>ZIP File</td>
+															<td>1.02 MB</td>
+															<td>28 Dec, 2021</td>
+															<td>
+																<div class="dropdown">
+																	<a href="javascript:void(0);"
+																		class="btn btn-light btn-icon"
+																		id="dropdownMenuLink3" data-bs-toggle="dropdown"
+																		aria-expanded="true">
+																		<i class="ri-equalizer-fill"></i>
+																	</a>
+																	<ul class="dropdown-menu dropdown-menu-end"
+																		aria-labelledby="dropdownMenuLink3"
+																		data-popper-placement="bottom-end"
+																		style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 23px);">
+																		<li><a class="dropdown-item"
+																				href="javascript:void(0);"><i
+																					class="ri-eye-fill me-2 align-middle"></i>View</a>
+																		</li>
+																		<li><a class="dropdown-item"
+																				href="javascript:void(0);"><i
+																					class="ri-download-2-fill me-2 align-middle"></i>Download</a>
+																		</li>
+																		<li><a class="dropdown-item"
+																				href="javascript:void(0);"><i
+																					class="ri-delete-bin-5-line me-2 align-middle"></i>Delete</a>
+																		</li>
+																	</ul>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div class="d-flex align-items-center">
+																	<div class="avatar-sm">
+																		<div
+																			class="avatar-title bg-danger-subtle text-danger rounded fs-20">
+																			<i class="ri-image-2-fill"></i>
+																		</div>
+																	</div>
+																	<div class="ms-3 flex-grow-1">
+																		<h6 class="fs-15 mb-0"><a
+																				href="javascript:void(0);"
+																				class="link-secondary">Bg-pattern.png</a>
+																		</h6>
+																	</div>
+																</div>
+															</td>
+															<td>PNG File</td>
+															<td>879 KB</td>
+															<td>02 Nov 2021</td>
+															<td>
+																<div class="dropdown">
+																	<a href="javascript:void(0);"
+																		class="btn btn-light btn-icon"
+																		id="dropdownMenuLink4" data-bs-toggle="dropdown"
+																		aria-expanded="true">
+																		<i class="ri-equalizer-fill"></i>
+																	</a>
+																	<ul class="dropdown-menu dropdown-menu-end"
+																		aria-labelledby="dropdownMenuLink4"
+																		data-popper-placement="bottom-end"
+																		style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 23px);">
+																		<li><a class="dropdown-item"
+																				href="javascript:void(0);"><i
+																					class="ri-eye-fill me-2 align-middle"></i>View</a>
+																		</li>
+																		<li><a class="dropdown-item"
+																				href="javascript:void(0);"><i
+																					class="ri-download-2-fill me-2 align-middle"></i>Download</a>
+																		</li>
+																		<li><a class="dropdown-item"
+																				href="javascript:void(0);"><i
+																					class="ri-delete-bin-5-line me-2 align-middle"></i>Delete</a>
+																		</li>
+																	</ul>
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<th:block th:replace="fragments/administration/common :: footerSrc"></th:block>
+		</div>
+
+	</div>
+
+
+	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
+
+	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+
+	<script src="/administration/assets/libs/apexcharts/apexcharts.min.js"></script>
+	<script src="/administration/assets/libs/gridjs/gridjs.umd.js"></script>
+	<script src="https://unpkg.com/gridjs/plugins/selection/dist/selection.umd.js"></script>
+	<script src="/administration/assets/libs/swiper/swiper-bundle.min.js"></script>
+	<script src="/administration/assets/js/pages/seller-details.init.js"></script>
+
+
+</body>
+
+</html>

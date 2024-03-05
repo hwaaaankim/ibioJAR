@@ -1,0 +1,1063 @@
+<!doctype html>
+<html lang="ko" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none"
+	data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: headSrc">
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: headerMenu">
+
+		</header>
+
+		<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true"
+			th:replace="fragments/administration/common :: removeModal">
+		</div>
+
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: navMenu">
+		</div>
+
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+
+					<div class="row">
+						<div class="col">
+
+							<div class="h-100">
+								<div class="row mb-3 pb-1">
+									<div class="col-12">
+										<div class="d-flex align-items-lg-center flex-lg-row flex-column">
+											<div class="flex-grow-1">
+												<h4 class="fs-16 mb-1">MANAGERs PAGE</h4>
+											</div>
+											<div class="mt-3 mt-lg-0">
+												<form action="javascript:void(0);">
+													<div class="row g-3 mb-0 align-items-center">
+														<div class="col-sm-auto">
+															<div class="input-group">
+																<input type="text"
+																	class="form-control border-0 dash-filter-picker shadow"
+																	data-provider="flatpickr" data-range-date="true"
+																	data-date-format="d M, Y"
+																	data-deafult-date="01 Jan 2022 to 31 Jan 2022">
+																<div
+																	class="input-group-text bg-primary border-primary text-white">
+																	<i class="ri-calendar-2-line"></i>
+																</div>
+															</div>
+														</div>
+														<div class="col-auto">
+															<button type="button" class="btn btn-soft-secondary"><i
+																	class="ri-add-circle-line align-middle me-1"></i>
+																Add Product</button>
+														</div>
+														<div class="col-auto">
+															<button type="button"
+																class="btn btn-soft-info btn-icon waves-effect waves-light layout-rightside-btn"><i
+																	class="ri-pulse-line"></i></button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xl-3 col-md-6">
+										<div class="card card-animate bg-primary">
+											<div class="card-body">
+												<div class="d-flex align-items-center">
+													<div class="flex-grow-1 overflow-hidden">
+														<p
+															class="text-uppercase fw-bold text-white-50 text-truncate mb-0">
+															IBIO 총매출</p>
+													</div>
+												</div>
+												<div class="d-flex align-items-end justify-content-between mt-4">
+													<div>
+														<h4 class="fs-22 fw-bold ff-secondary text-white mb-4">$<span
+																class="counter-value" data-target="559.25">0</span>k
+														</h4>
+														<a href="/admin/memberCalculationManager"
+															class="text-decoration-underline text-white-50">일반 매출
+															관리하기</a>
+													</div>
+													<div class="avatar-sm flex-shrink-0">
+														<span class="avatar-title bg-white bg-opacity-10 rounded fs-3">
+															<i class="bx bx-dollar-circle text-white"></i>
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xl-3 col-md-6">
+										<div class="card card-animate bg-secondary">
+											<div class="card-body">
+												<div class="d-flex align-items-center">
+													<div class="flex-grow-1 overflow-hidden">
+														<p
+															class="text-uppercase fw-bold text-white-50 text-truncate mb-0">
+															IBIO 총주문</p>
+													</div>
+												</div>
+												<div class="d-flex align-items-end justify-content-between mt-4">
+													<div>
+														<h4 class="fs-22 fw-bold ff-secondary text-white mb-4"><span
+																class="counter-value" data-target="36894">0</span></h4>
+														<a href="/admin/memberSellingManager"
+															class="text-decoration-underline text-white-50">일반주문
+															관리하기</a>
+													</div>
+													<div class="avatar-sm flex-shrink-0">
+														<span class="avatar-title bg-white bg-opacity-10 rounded fs-3">
+															<i class="bx bx-shopping-bag text-white"></i>
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xl-3 col-md-6">
+										<div class="card card-animate bg-success">
+											<div class="card-body">
+												<div class="d-flex align-items-center">
+													<div class="flex-grow-1 overflow-hidden">
+														<p
+															class="text-uppercase fw-bold text-white-50 text-truncate mb-0">
+															딜러 총 매출</p>
+													</div>
+												</div>
+												<div class="d-flex align-items-end justify-content-between mt-4">
+													<div>
+														<h4 class="fs-22 fw-bold ff-secondary text-white mb-4"><span
+																class="counter-value" data-target="183.35">0</span>M
+														</h4>
+														<a href="/admin/dealerCalculationManager"
+															class="text-decoration-underline text-white-50">딜러매출
+															관리하기</a>
+													</div>
+													<div class="avatar-sm flex-shrink-0">
+														<span class="avatar-title bg-white bg-opacity-10 rounded fs-3">
+															<i class="bx bx-user-circle text-white"></i>
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xl-3 col-md-6">
+										<div class="card card-animate bg-info">
+											<div class="card-body">
+												<div class="d-flex align-items-center">
+													<div class="flex-grow-1 overflow-hidden">
+														<p
+															class="text-uppercase fw-bold text-white-50 text-truncate mb-0">
+															사이트 접속자</p>
+													</div>
+												</div>
+												<div class="d-flex align-items-end justify-content-between mt-4">
+													<div>
+														<h4 class="fs-22 fw-bold ff-secondary text-white mb-4">$<span
+																class="counter-value" data-target="165.89">0</span>k
+														</h4>
+														<a href="/admin/accessManager"
+															class="text-decoration-underline text-white-50">사이트 접속자
+															관리하기</a>
+													</div>
+													<div class="avatar-sm flex-shrink-0">
+														<span class="avatar-title bg-white bg-opacity-10 rounded fs-3">
+															<i class="bx bx-wallet text-white"></i>
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="card">
+											<div class="card-header align-items-center d-flex">
+												<h4 class="card-title mb-0 flex-grow-1">제품 주문 순위</h4>
+												<div class="flex-shrink-0">
+													<div class="dropdown card-header-dropdown">
+														<a class="text-reset dropdown-btn" href="#"
+															data-bs-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false">
+															<span class="fw-bold text-uppercase fs-12">Sort by: </span>
+															<span class="text-muted">IBIO 제품 <i
+																	class="mdi mdi-chevron-down ms-1"></i></span>
+														</a>
+														<div class="dropdown-menu dropdown-menu-end">
+															<a class="dropdown-item" href="#">IBIO 제품</a>
+															<a class="dropdown-item" href="#">딜러 제품</a>
+															<a class="dropdown-item" href="#">기타 제품 분류</a>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="card-body">
+												<div class="table-responsive table-card">
+													<table
+														class="table table-hover table-centered align-middle table-nowrap mb-0">
+														<tbody>
+															<tr>
+																<td>
+																	<div class="d-flex align-items-center">
+																		<div
+																			class="avatar-sm bg-light rounded p-1 me-2">
+																			<img src="/administration/assets/images/products/img-1.png"
+																				alt="" class="img-fluid d-block" />
+																		</div>
+																		<div>
+																			<h5 class="fs-14 my-1"><a
+																					href="apps-ecommerce-product-details.html"
+																					class="text-reset">Branded
+																					T-Shirts</a></h5>
+																			<span class="text-muted">24 Apr 2021</span>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">$29.00</h5>
+																	<span class="text-muted">Price</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">62</h5>
+																	<span class="text-muted">Orders</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">510</h5>
+																	<span class="text-muted">Stock</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">$1,798</h5>
+																	<span class="text-muted">Amount</span>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<div class="d-flex align-items-center">
+																		<div
+																			class="avatar-sm bg-light rounded p-1 me-2">
+																			<img src="/administration/assets/images/products/img-2.png"
+																				alt="" class="img-fluid d-block" />
+																		</div>
+																		<div>
+																			<h5 class="fs-14 my-1"><a
+																					href="apps-ecommerce-product-details.html"
+																					class="text-reset">Bentwood
+																					Chair</a></h5>
+																			<span class="text-muted">19 Mar 2021</span>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">$85.20</h5>
+																	<span class="text-muted">Price</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">35</h5>
+																	<span class="text-muted">Orders</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal"><span
+																			class="badge bg-danger-subtle text-danger">Out
+																			of stock</span> </h5>
+																	<span class="text-muted">Stock</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">$2982</h5>
+																	<span class="text-muted">Amount</span>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<div class="d-flex align-items-center">
+																		<div
+																			class="avatar-sm bg-light rounded p-1 me-2">
+																			<img src="/administration/assets/images/products/img-3.png"
+																				alt="" class="img-fluid d-block" />
+																		</div>
+																		<div>
+																			<h5 class="fs-14 my-1"><a
+																					href="apps-ecommerce-product-details.html"
+																					class="text-reset">Borosil Paper
+																					Cup</a></h5>
+																			<span class="text-muted">01 Mar 2021</span>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">$14.00</h5>
+																	<span class="text-muted">Price</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">80</h5>
+																	<span class="text-muted">Orders</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">749</h5>
+																	<span class="text-muted">Stock</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">$1120</h5>
+																	<span class="text-muted">Amount</span>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<div class="d-flex align-items-center">
+																		<div
+																			class="avatar-sm bg-light rounded p-1 me-2">
+																			<img src="/administration/assets/images/products/img-4.png"
+																				alt="" class="img-fluid d-block" />
+																		</div>
+																		<div>
+																			<h5 class="fs-14 my-1"><a
+																					href="apps-ecommerce-product-details.html"
+																					class="text-reset">One Seater
+																					Sofa</a></h5>
+																			<span class="text-muted">11 Feb 2021</span>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">$127.50</h5>
+																	<span class="text-muted">Price</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">56</h5>
+																	<span class="text-muted">Orders</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal"><span
+																			class="badge bg-danger-subtle text-danger">Out
+																			of stock</span></h5>
+																	<span class="text-muted">Stock</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">$7140</h5>
+																	<span class="text-muted">Amount</span>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<div class="d-flex align-items-center">
+																		<div
+																			class="avatar-sm bg-light rounded p-1 me-2">
+																			<img src="/administration/assets/images/products/img-5.png"
+																				alt="" class="img-fluid d-block" />
+																		</div>
+																		<div>
+																			<h5 class="fs-14 my-1"><a
+																					href="apps-ecommerce-product-details.html"
+																					class="text-reset">Stillbird
+																					Helmet</a></h5>
+																			<span class="text-muted">17 Jan 2021</span>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">$54</h5>
+																	<span class="text-muted">Price</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">74</h5>
+																	<span class="text-muted">Orders</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">805</h5>
+																	<span class="text-muted">Stock</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 my-1 fw-normal">$3996</h5>
+																	<span class="text-muted">Amount</span>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+
+												<div
+													class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
+													<div class="col-sm">
+														<div class="text-muted">
+															<a href="/admin/ibioProductManager"
+																class="text-decoration-underline text-black-50">제품
+																관리하기</a>
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="card card-height-100">
+											<div class="card-header align-items-center d-flex">
+												<h4 class="card-title mb-0 flex-grow-1">딜러 매출 순위</h4>
+												<div class="flex-shrink-0">
+													<div class="dropdown card-header-dropdown">
+														<a class="text-reset dropdown-btn" href="#"
+															data-bs-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false">
+															<span class="text-muted">Report<i
+																	class="mdi mdi-chevron-down ms-1"></i></span>
+														</a>
+														<div class="dropdown-menu dropdown-menu-end">
+															<a class="dropdown-item" href="#">Download Report</a>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="card-body">
+												<div class="table-responsive table-card">
+													<table
+														class="table table-centered table-hover align-middle table-nowrap mb-0">
+														<tbody>
+															<tr>
+																<td>
+																	<div class="d-flex align-items-center">
+																		<div class="flex-shrink-0 me-2">
+																			<img src="/administration/assets/images/companies/img-1.png"
+																				alt="" class="avatar-sm p-2" />
+																		</div>
+																		<div>
+																			<h5 class="fs-14 my-1 fw-medium">
+																				<a href="apps-ecommerce-seller-details.html"
+																					class="text-reset">iTest Factory</a>
+																			</h5>
+																			<span class="text-muted">Oliver Tyler</span>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<span class="text-muted">Bags and Wallets</span>
+																</td>
+																<td>
+																	<p class="mb-0">8547</p>
+																	<span class="text-muted">Stock</span>
+																</td>
+																<td>
+																	<span class="text-muted">$541200</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 mb-0">32%<i
+																			class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
+																	</h5>
+																</td>
+															</tr><!-- end -->
+															<tr>
+																<td>
+																	<div class="d-flex align-items-center">
+																		<div class="flex-shrink-0 me-2">
+																			<img src="/administration/assets/images/companies/img-2.png"
+																				alt="" class="avatar-sm p-2" />
+																		</div>
+																		<div class="flex-grow-1">
+																			<h5 class="fs-14 my-1 fw-medium"><a
+																					href="apps-ecommerce-seller-details.html"
+																					class="text-reset">Digitech
+																					Galaxy</a></h5>
+																			<span class="text-muted">John Roberts</span>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<span class="text-muted">Watches</span>
+																</td>
+																<td>
+																	<p class="mb-0">895</p>
+																	<span class="text-muted">Stock</span>
+																</td>
+																<td>
+																	<span class="text-muted">$75030</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 mb-0">79%<i
+																			class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
+																	</h5>
+																</td>
+															</tr><!-- end -->
+															<tr>
+																<td>
+																	<div class="d-flex align-items-center">
+																		<div class="flex-shrink-0 me-2">
+																			<img src="/administration/assets/images/companies/img-3.png"
+																				alt="" class="avatar-sm p-2" />
+																		</div>
+																		<div class="flex-gow-1">
+																			<h5 class="fs-14 my-1 fw-medium"><a
+																					href="apps-ecommerce-seller-details.html"
+																					class="text-reset">Nesta
+																					Technologies</a></h5>
+																			<span class="text-muted">Harley
+																				Fuller</span>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<span class="text-muted">Bike Accessories</span>
+																</td>
+																<td>
+																	<p class="mb-0">3470</p>
+																	<span class="text-muted">Stock</span>
+																</td>
+																<td>
+																	<span class="text-muted">$45600</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 mb-0">90%<i
+																			class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
+																	</h5>
+																</td>
+															</tr><!-- end -->
+															<tr>
+																<td>
+																	<div class="d-flex align-items-center">
+																		<div class="flex-shrink-0 me-2">
+																			<img src="/administration/assets/images/companies/img-8.png"
+																				alt="" class="avatar-sm p-2" />
+																		</div>
+																		<div class="flex-grow-1">
+																			<h5 class="fs-14 my-1 fw-medium"><a
+																					href="apps-ecommerce-seller-details.html"
+																					class="text-reset">Zoetic
+																					Fashion</a></h5>
+																			<span class="text-muted">James Bowen</span>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<span class="text-muted">Clothes</span>
+																</td>
+																<td>
+																	<p class="mb-0">5488</p>
+																	<span class="text-muted">Stock</span>
+																</td>
+																<td>
+																	<span class="text-muted">$29456</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 mb-0">40%<i
+																			class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
+																	</h5>
+																</td>
+															</tr><!-- end -->
+															<tr>
+																<td>
+																	<div class="d-flex align-items-center">
+																		<div class="flex-shrink-0 me-2">
+																			<img src="/administration/assets/images/companies/img-5.png"
+																				alt="" class="avatar-sm p-2" />
+																		</div>
+																		<div class="flex-grow-1">
+																			<h5 class="fs-14 my-1 fw-medium">
+																				<a href="apps-ecommerce-seller-details.html"
+																					class="text-reset">Meta4Systems</a>
+																			</h5>
+																			<span class="text-muted">Zoe Dennis</span>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<span class="text-muted">Furniture</span>
+																</td>
+																<td>
+																	<p class="mb-0">4100</p>
+																	<span class="text-muted">Stock</span>
+																</td>
+																<td>
+																	<span class="text-muted">$11260</span>
+																</td>
+																<td>
+																	<h5 class="fs-14 mb-0">57%<i
+																			class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
+																	</h5>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+
+												<div
+													class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
+													<div class="col-sm">
+														<div class="text-muted">
+															<a href="/admin/ibioProductManager"
+																class="text-decoration-underline text-black-50">딜러 매출
+																관리하기</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="card card-height-100">
+											<div class="card-header align-items-center d-flex">
+												<h4 class="card-title mb-0 flex-grow-1">사이트 접속 기기 분석</h4>
+												<div class="flex-shrink-0">
+													<div class="dropdown card-header-dropdown">
+														<a class="text-reset dropdown-btn" href="#"
+															data-bs-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false">
+															<span class="text-muted fs-16"><i
+																	class="mdi mdi-dots-vertical align-middle"></i></span>
+														</a>
+														<div class="dropdown-menu dropdown-menu-end">
+															<a class="dropdown-item" href="#">Today</a>
+															<a class="dropdown-item" href="#">Last Week</a>
+															<a class="dropdown-item" href="#">Last Month</a>
+															<a class="dropdown-item" href="#">Current Year</a>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="card-body">
+												<div id="user_device_pie_charts"
+													data-colors='["--vz-primary", "--vz-warning", "--vz-info"]'
+													class="apex-charts" dir="ltr"></div>
+
+												<div class="table-responsive mt-3">
+													<table
+														class="table table-borderless table-sm table-centered align-middle table-nowrap mb-0">
+														<tbody class="border-0">
+															<tr>
+																<td>
+																	<h4 class="text-truncate fs-14 mb-0"><i
+																			class="ri-stop-fill align-middle fs-18 text-primary me-2"></i>Desktop
+																		Users</h4>
+																</td>
+																<td>
+																	<p class="text-muted mb-0"><i data-feather="users"
+																			class="me-2 icon-sm"></i>78.56k</p>
+																</td>
+																<td class="text-end">
+																	<p class="text-success fw-medium fs-13 mb-0"><i
+																			class="ri-arrow-up-s-fill fs-5 align-middle"></i>2.08%
+																	</p>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<h4 class="text-truncate fs-14 fs-medium mb-0"><i
+																			class="ri-stop-fill align-middle fs-18 text-warning me-2"></i>Mobile
+																		Users</h4>
+																</td>
+																<td>
+																	<p class="text-muted mb-0"><i data-feather="users"
+																			class="me-2 icon-sm"></i>105.02k</p>
+																</td>
+																<td class="text-end">
+																	<p class="text-danger fw-medium fs-13 mb-0"><i
+																			class="ri-arrow-down-s-fill fs-5 align-middle"></i>10.52%
+																	</p>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<h4 class="text-truncate fs-14 fs-medium mb-0"><i
+																			class="ri-stop-fill align-middle fs-18 text-info me-2"></i>Tablet
+																		Users</h4>
+																</td>
+																<td>
+																	<p class="text-muted mb-0"><i data-feather="users"
+																			class="me-2 icon-sm"></i>42.89k</p>
+																</td>
+																<td class="text-end">
+																	<p class="text-danger fw-medium fs-13 mb-0"><i
+																			class="ri-arrow-down-s-fill fs-5 align-middle"></i>7.36%
+																	</p>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xl-6 col-md-6">
+										<div class="card card-height-100">
+											<div class="card-header align-items-center d-flex">
+												<h4 class="card-title mb-0 flex-grow-1">사이트 접속 경로분석</h4>
+												<div class="flex-shrink-0">
+													<button type="button" class="btn btn-soft-primary btn-sm">
+														Export Report
+													</button>
+												</div>
+											</div>
+
+											<div class="card-body">
+
+												<div class="row align-items-center">
+													<div class="col-6">
+														<h6
+															class="text-muted text-uppercase fw-bold text-truncate fs-13 mb-3">
+															Total Referrals Page</h6>
+														<h4 class="mb-0">725,800</h4>
+														<p class="mb-0 mt-2 text-muted"><span
+																class="badge bg-success-subtle text-success mb-0"> <i
+																	class="ri-arrow-up-line align-middle"></i> 15.72 %
+															</span> vs. previous month</p>
+													</div>
+													<div class="col-6">
+														<div class="text-center">
+															<img src="assets/images/illustrator-1.png" class="img-fluid"
+																alt="">
+														</div>
+													</div>
+												</div>
+												<div class="mt-3 pt-2">
+													<div class="progress progress-lg rounded-pill">
+														<div class="progress-bar bg-primary" role="progressbar"
+															style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+															aria-valuemax="100"></div>
+														<div class="progress-bar bg-info" role="progressbar"
+															style="width: 18%" aria-valuenow="18" aria-valuemin="0"
+															aria-valuemax="100"></div>
+														<div class="progress-bar bg-success" role="progressbar"
+															style="width: 22%" aria-valuenow="22" aria-valuemin="0"
+															aria-valuemax="100"></div>
+														<div class="progress-bar bg-warning" role="progressbar"
+															style="width: 16%" aria-valuenow="16" aria-valuemin="0"
+															aria-valuemax="100"></div>
+														<div class="progress-bar bg-danger" role="progressbar"
+															style="width: 19%" aria-valuenow="19" aria-valuemin="0"
+															aria-valuemax="100"></div>
+													</div>
+												</div>
+
+												<div class="mt-3 pt-2">
+													<div class="d-flex mb-2">
+														<div class="flex-grow-1">
+															<p class="text-truncate text-muted fs-15 mb-0"><i
+																	class="mdi mdi-circle align-middle text-primary me-2"></i>www.google.com
+															</p>
+														</div>
+														<div class="flex-shrink-0">
+															<p class="mb-0">24.58%</p>
+														</div>
+													</div><!-- end -->
+													<div class="d-flex mb-2">
+														<div class="flex-grow-1">
+															<p class="text-truncate text-muted fs-15 mb-0"><i
+																	class="mdi mdi-circle align-middle text-info me-2"></i>www.youtube.com
+															</p>
+														</div>
+														<div class="flex-shrink-0">
+															<p class="mb-0">17.51%</p>
+														</div>
+													</div><!-- end -->
+													<div class="d-flex mb-2">
+														<div class="flex-grow-1">
+															<p class="text-truncate text-muted fs-15 mb-0"><i
+																	class="mdi mdi-circle align-middle text-success me-2"></i>www.meta.com
+															</p>
+														</div>
+														<div class="flex-shrink-0">
+															<p class="mb-0">23.05%</p>
+														</div>
+													</div><!-- end -->
+													<div class="d-flex mb-2">
+														<div class="flex-grow-1">
+															<p class="text-truncate text-muted fs-15 mb-0"><i
+																	class="mdi mdi-circle align-middle text-warning me-2"></i>www.medium.com
+															</p>
+														</div>
+														<div class="flex-shrink-0">
+															<p class="mb-0">12.22%</p>
+														</div>
+													</div><!-- end -->
+													<div class="d-flex">
+														<div class="flex-grow-1">
+															<p class="text-truncate text-muted fs-15 mb-0"><i
+																	class="mdi mdi-circle align-middle text-danger me-2"></i>Other
+															</p>
+														</div>
+														<div class="flex-shrink-0">
+															<p class="mb-0">17.58%</p>
+														</div>
+													</div><!-- end -->
+												</div><!-- end -->
+
+												<div class="mt-2 text-center">
+													<a href="javascript:void(0);"
+														class="text-muted text-decoration-underline">사이트접속경로 관리하기</a>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-auto layout-rightside-col">
+							<div class="overlay"></div>
+							<div class="layout-rightside">
+								<div class="card h-100 rounded-0">
+									<div class="card-body p-0">
+										<div class="p-3">
+											<h6 class="text-muted mb-0 text-uppercase fw-bold fs-13">최근 사이트 관리 내역
+											</h6>
+										</div>
+										<div data-simplebar style="max-height: 410px;" class="p-3 pt-0">
+											<div class="acitivity-timeline acitivity-main">
+												<div class="acitivity-item d-flex">
+													<div class="flex-shrink-0 avatar-xs acitivity-avatar">
+														<div
+															class="avatar-title bg-success-subtle text-success rounded-circle">
+															<i class="ri-shopping-cart-2-line"></i>
+														</div>
+													</div>
+													<div class="flex-grow-1 ms-3">
+														<h6 class="mb-1 lh-base">Purchase by James Price</h6>
+														<p class="text-muted mb-1">Product noise evolve smartwatch </p>
+														<small class="mb-0 text-muted">02:14 PM Today</small>
+													</div>
+												</div>
+												<div class="acitivity-item py-3 d-flex">
+													<div class="flex-shrink-0 avatar-xs acitivity-avatar">
+														<div
+															class="avatar-title bg-danger-subtle text-danger rounded-circle">
+															<i class="ri-stack-fill"></i>
+														</div>
+													</div>
+													<div class="flex-grow-1 ms-3">
+														<h6 class="mb-1 lh-base">Added new <span
+																class="fw-semibold">style collection</span></h6>
+														<p class="text-muted mb-1">By Nesta Technologies</p>
+														<div class="d-inline-flex gap-2 border border-dashed p-2 mb-2">
+															<a href="apps-ecommerce-product-details.html"
+																class="bg-light rounded p-1">
+																<img src="/administration/assets/images/products/img-8.png"
+																	alt="" class="img-fluid d-block" />
+															</a>
+															<a href="apps-ecommerce-product-details.html"
+																class="bg-light rounded p-1">
+																<img src="/administration/assets/images/products/img-2.png"
+																	alt="" class="img-fluid d-block" />
+															</a>
+															<a href="apps-ecommerce-product-details.html"
+																class="bg-light rounded p-1">
+																<img src="/administration/assets/images/products/img-10.png"
+																	alt="" class="img-fluid d-block" />
+															</a>
+														</div>
+														<p class="mb-0 text-muted"><small>9:47 PM Yesterday</small></p>
+													</div>
+												</div>
+												<div class="acitivity-item py-3 d-flex">
+													<div class="flex-shrink-0">
+														<img src="/administration/assets/images/users/avatar-2.jpg"
+															alt="" class="avatar-xs rounded-circle acitivity-avatar">
+													</div>
+													<div class="flex-grow-1 ms-3">
+														<h6 class="mb-1 lh-base">Natasha Carey have liked the products
+														</h6>
+														<p class="text-muted mb-1">Allow users to like products in your
+															WooCommerce store.</p>
+														<small class="mb-0 text-muted">25 Dec, 2021</small>
+													</div>
+												</div>
+												<div class="acitivity-item py-3 d-flex">
+													<div class="flex-shrink-0">
+														<div class="avatar-xs acitivity-avatar">
+															<div class="avatar-title rounded-circle bg-secondary">
+																<i class="mdi mdi-sale fs-14"></i>
+															</div>
+														</div>
+													</div>
+													<div class="flex-grow-1 ms-3">
+														<h6 class="mb-1 lh-base">Today offers by <a
+																href="apps-ecommerce-seller-details.html"
+																class="link-secondary">Digitech Galaxy</a></h6>
+														<p class="text-muted mb-2">Offer is valid on orders of Rs.500 Or
+															above for selected products only.</p>
+														<small class="mb-0 text-muted">12 Dec, 2021</small>
+													</div>
+												</div>
+												<div class="acitivity-item py-3 d-flex">
+													<div class="flex-shrink-0">
+														<div class="avatar-xs acitivity-avatar">
+															<div
+																class="avatar-title rounded-circle bg-danger-subtle text-danger">
+																<i class="ri-bookmark-fill"></i>
+															</div>
+														</div>
+													</div>
+													<div class="flex-grow-1 ms-3">
+														<h6 class="mb-1 lh-base">Favoried Product</h6>
+														<p class="text-muted mb-2">Esther James have Favorite product.
+														</p>
+														<small class="mb-0 text-muted">25 Nov, 2021</small>
+													</div>
+												</div>
+												<div class="acitivity-item py-3 d-flex">
+													<div class="flex-shrink-0">
+														<div class="avatar-xs acitivity-avatar">
+															<div class="avatar-title rounded-circle bg-secondary">
+																<i class="mdi mdi-sale fs-14"></i>
+															</div>
+														</div>
+													</div>
+													<div class="flex-grow-1 ms-3">
+														<h6 class="mb-1 lh-base">Flash sale starting <span
+																class="text-primary">Tomorrow.</span></h6>
+														<p class="text-muted mb-0">Flash sale by <a
+																href="javascript:void(0);"
+																class="link-secondary fw-medium">Zoetic Fashion</a></p>
+														<small class="mb-0 text-muted">22 Oct, 2021</small>
+													</div>
+												</div>
+												<div class="acitivity-item py-3 d-flex">
+													<div class="flex-shrink-0">
+														<div class="avatar-xs acitivity-avatar">
+															<div
+																class="avatar-title rounded-circle bg-info-subtle text-info">
+																<i class="ri-line-chart-line"></i>
+															</div>
+														</div>
+													</div>
+													<div class="flex-grow-1 ms-3">
+														<h6 class="mb-1 lh-base">Monthly sales report</h6>
+														<p class="text-muted mb-2"><span class="text-danger">2 days
+																left</span> notification to submit the monthly sales
+															report. <a href="javascript:void(0);"
+																class="link-warning text-decoration-underline">Reports
+																Builder</a></p>
+														<small class="mb-0 text-muted">15 Oct</small>
+													</div>
+												</div>
+												<div class="acitivity-item d-flex">
+													<div class="flex-shrink-0">
+														<img src="/administration/assets/images/users/avatar-3.jpg"
+															alt="" class="avatar-xs rounded-circle acitivity-avatar" />
+													</div>
+													<div class="flex-grow-1 ms-3">
+														<h6 class="mb-1 lh-base">Frank Hook Commented</h6>
+														<p class="text-muted mb-2 fst-italic">" A product that has
+															reviews is more likable to be sold than a product. "</p>
+														<small class="mb-0 text-muted">26 Aug, 2021</small>
+													</div>
+												</div>
+											</div>
+											<div class="mt-3 text-center">
+												<a href="javascript:void(0);"
+													class="text-muted text-decoration-underline">View all Categories</a>
+											</div>
+										</div>
+
+										<div class="p-3 mt-2">
+											<h6 class="text-muted mb-3 text-uppercase fw-bold fs-13">Top 10 Categories
+											</h6>
+
+											<ol class="ps-3 text-muted">
+												<li class="py-1">
+													<a href="#" class="text-muted">Mobile & Accessories <span
+															class="float-end">(10,294)</span></a>
+												</li>
+												<li class="py-1">
+													<a href="#" class="text-muted">Desktop <span
+															class="float-end">(6,256)</span></a>
+												</li>
+												<li class="py-1">
+													<a href="#" class="text-muted">Electronics <span
+															class="float-end">(3,479)</span></a>
+												</li>
+												<li class="py-1">
+													<a href="#" class="text-muted">Home & Furniture <span
+															class="float-end">(2,275)</span></a>
+												</li>
+												<li class="py-1">
+													<a href="#" class="text-muted">Grocery <span
+															class="float-end">(1,950)</span></a>
+												</li>
+												<li class="py-1">
+													<a href="#" class="text-muted">Fashion <span
+															class="float-end">(1,582)</span></a>
+												</li>
+												<li class="py-1">
+													<a href="#" class="text-muted">Appliances <span
+															class="float-end">(1,037)</span></a>
+												</li>
+												<li class="py-1">
+													<a href="#" class="text-muted">Beauty, Toys & More <span
+															class="float-end">(924)</span></a>
+												</li>
+												<li class="py-1">
+													<a href="#" class="text-muted">Food & Drinks <span
+															class="float-end">(701)</span></a>
+												</li>
+												<li class="py-1">
+													<a href="#" class="text-muted">Toys & Games <span
+															class="float-end">(239)</span></a>
+												</li>
+											</ol>
+											<div class="mt-3 text-center">
+												<a href="javascript:void(0);"
+													class="text-muted text-decoration-underline">View all Categories</a>
+											</div>
+										</div>
+										<div class="card sidebar-alert bg-light border-0 text-center mx-4 mb-0 mt-3">
+											<div class="card-body">
+												<img src="/administration/assets/images/giftbox.png" alt="">
+												<div class="mt-4">
+													<h5>Invite New Seller</h5>
+													<p class="text-muted lh-base">Refer a new seller to us and earn $100
+														per refer.</p>
+													<button type="button"
+														class="btn btn-primary btn-label rounded-pill"><i
+															class="ri-mail-fill label-icon align-middle rounded-pill fs-16 me-2"></i>
+														Invite Now</button>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div> <!-- end card-->
+							</div> <!-- end .rightbar-->
+
+						</div> <!-- end col -->
+					</div>
+
+				</div>
+			</div>
+			<th:block th:replace="fragments/administration/common :: footerSrc"></th:block>
+		</div>
+
+	</div>
+
+
+	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
+
+	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+	<script src="/administration/assets/js/pages/dashboard-analytics.init.js"></script>
+	<script src="/administration/assets/libs/apexcharts/apexcharts.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/front/common :: headSrc">
+</head>
+
+<body class="res layout-1 layout-subpage">
+
+	<div id="wrapper" class="wrapper-fluid banners-effect-5">
+		<header id="header" class=" typeheader-1" th:replace="fragments/front/common :: headerMenu"></header>
+
+		<div class="main-container container">
+			<ul class="breadcrumb">
+				<li><a href="#"><i class="fa fa-home"></i></a></li>
+				<li><a href="#">Page</a></li>
+				<li><a href="#">문의하기</a></li>
+			</ul>
+
+			<div class="row" style="display:flex; justify-content:center;">
+				<div id="content" class="col-sm-10 site">
+					<div class="page-title">
+						<h2>문의하기</h2>
+					</div>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12648.962649823663!2d126.9793579!3d37.5729503!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2dbdba1ec53%3A0xe0c5032aab193332!2zKOyjvCnslYTsnbTrsJTsnbTsmKTsgqzsnbTslrjsiqQ!5e0!3m2!1sko!2skr!4v1707716983888!5m2!1sko!2skr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					<div class="info-contact clearfix">
+						<div class="col-lg-12 col-sm-12 col-xs-12 info-store">
+							<div class="row">
+								<div class="name-store">
+									<h3>(주) 아이바이오사이언스</h3>
+								</div>
+								<address>
+									<div class="address clearfix form-group">
+										<div class="icon">
+											<i class="fa fa-home"></i>
+										</div>
+										<div class="text">본사 주소 : 
+										</div>
+									</div>
+									<div class="address clearfix form-group">
+										<div class="icon">
+											<i class="fa fa-home"></i>
+										</div>
+										<div class="text">제품 환불 주소 : 
+										</div>
+									</div>
+									<div class="phone form-group">
+										<div class="icon">
+											<i class="fa fa-phone"></i>
+										</div>
+										<div class="text">대표번호 : </div>
+									</div>
+									<div class="phone form-group">
+										<div class="icon">
+											<i class="fa fa-envelope"></i>
+										</div>
+										<div class="text">이메일 : </div>
+									</div>
+									<div class="phone form-group">
+										<div class="icon">
+											<i class="fa fa-fax"></i>
+										</div>
+										<div class="text">FAX : </div>
+									</div>
+								</address>
+							</div>
+						</div>
+						<div class="col-lg-12 col-sm-12 col-xs-12 contact-form">
+							<form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+								<fieldset>
+									<legend>문의양식</legend>
+									<div class="form-group required">
+										<label class="col-sm-2 control-label" for="input-name">이름</label>
+										<div class="col-sm-10">
+											<input type="text" name="name" value="" id="input-name"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group required">
+										<label class="col-sm-2 control-label" for="input-email">이메일</label>
+										<div class="col-sm-10">
+											<input type="text" name="email" value="" id="input-email"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group required">
+										<label class="col-sm-2 control-label" for="input-email">연락처</label>
+										<div class="col-sm-10">
+											<input type="text" name="email" value="" 
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group required">
+										<label class="col-sm-2 control-label" for="input-email">문의 대상</label>
+										<div class="col-sm-10">
+											<input type="text" name="" value="" placeholder="자동으로 입력 됩니다."
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group required">
+										<label class="col-sm-2 control-label" for="input-email">문의주제</label>
+										<div class="col-sm-10">
+											<select class="form-control">
+												<option>== 문의 주제 ==</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group required">
+										<label class="col-sm-2 control-label" for="input-email">첨부파일</label>
+										<div class="col-sm-10">
+											<input type="file" name="file" value="" 
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group required">
+										<label class="col-sm-2 control-label" for="input-enquiry">문의사항</label>
+										<div class="col-sm-10">
+											<textarea name="enquiry" rows="10" id="input-enquiry"
+												class="form-control"></textarea>
+										</div>
+									</div>
+								</fieldset>
+								<div class="buttons">
+									<div class="pull-right">
+										<button class="btn btn-default buttonGray" type="submit">
+											<span>Submit</span>
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer class="footer-container typefooter-1" th:replace="fragments/front/common :: ibioFooter"></footer>
+	</div>
+
+	<th:block th:replace="fragments/front/common :: scriptSrc"></th:block>
+
+</body>
+
+</html>

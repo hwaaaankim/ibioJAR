@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/front/common :: headSrc">
+</head>
+
+<body class="res layout-1 layout-subpage">
+
+	<div id="wrapper" class="wrapper-fluid banners-effect-5">
+		<header id="header" class=" typeheader-1" th:replace="fragments/front/common :: headerMenu"></header>
+
+		<div class="main-container container">
+			<ul class="breadcrumb">
+				<li><a href="#"><i class="fa fa-home"></i></a></li>
+				<li><a href="#">ACCOUNT</a></li>
+				<li><a href="#">SIGN UP</a></li>
+			</ul>
+
+			<div class="row">
+				<div id="content" class="col-sm-12">
+					<h2 class="title">사용자 회원가입</h2>
+					<p># 만약 기존에 회원가입을 진행하신 분 이라면 <a href="#">로그인</a>을 진행 해 주세요.</p>
+					<p># 아이디 또는 비밀번호가 기억나지 않는 경우 <a href="#">아이디 찾기</a> 또는 <a href="#">비밀번호 찾기</a>를 진행 해 주세요.</p>
+					<form action="" method="post" enctype="multipart/form-data"
+						class="form-horizontal account-register clearfix">
+						<fieldset id="account">
+							<legend>개인정보</legend>
+							<div class="form-group required" style="display: none;">
+								<label class="col-sm-2 control-label">Customer Group</label>
+								<div class="col-sm-10">
+									<div class="radio">
+										<label>
+											<input type="radio" name="customer_group_id" value="1" checked="checked">
+											Default
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group required">
+								<label class="col-sm-2 control-label" for="input-firstname">First Name</label>
+								<div class="col-sm-10">
+									<input type="text" name="firstname" value="" placeholder="First Name"
+										id="input-firstname" class="form-control">
+								</div>
+							</div>
+							<div class="form-group required">
+								<label class="col-sm-2 control-label" for="input-lastname">Last Name</label>
+								<div class="col-sm-10">
+									<input type="text" name="lastname" value="" placeholder="Last Name"
+										id="input-lastname" class="form-control">
+								</div>
+							</div>
+							<div class="form-group required">
+								<label class="col-sm-2 control-label" for="input-lastname">Business Name</label>
+								<div class="col-sm-10">
+									<input type="text" name="lastname" value="" placeholder="Business Name"
+										id="input-lastname" class="form-control">
+								</div>
+							</div>
+							<div class="form-group required">
+								<label class="col-sm-2 control-label" for="input-email">E-Mail</label>
+								<div class="col-sm-10">
+									<input type="email" name="email" value="" placeholder="E-Mail" id="input-email"
+										class="form-control">
+								</div>
+							</div>
+							<div class="form-group required">
+								<label class="col-sm-2 control-label" for="input-telephone">Phone</label>
+								<div class="col-sm-10">
+									<input type="tel" name="telephone" value="" placeholder="Telephone"
+										id="input-telephone" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="input-fax">Fax</label>
+								<div class="col-sm-10">
+									<input type="text" name="fax" value="" placeholder="Fax" id="input-fax"
+										class="form-control">
+								</div>
+							</div>
+						</fieldset>
+						<fieldset id="address">
+							<legend>주소</legend>
+							<div class="form-group required">
+								<label class="col-sm-2 control-label" for="input-address-1">주소</label>
+								<div class="col-sm-10">
+									<input type="text" name="address_1" value="" placeholder="Address 1"
+										id="input-address-1" class="form-control">
+								</div>
+							</div>
+							<div class="form-group required">
+								<label class="col-sm-2 control-label" for="input-postcode">우편번호</label>
+								<div class="col-sm-10">
+									<input type="text" name="postcode" value="" placeholder="Post Code"
+										id="input-postcode" class="form-control">
+								</div>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>비밀번호</legend>
+							<div class="form-group required">
+								<label class="col-sm-2 control-label" for="input-password">Password</label>
+								<div class="col-sm-10">
+									<input type="password" name="password" value="" placeholder="Password"
+										id="input-password" class="form-control">
+								</div>
+							</div>
+							<div class="form-group required">
+								<label class="col-sm-2 control-label" for="input-confirm">Password Confirm</label>
+								<div class="col-sm-10">
+									<input type="password" name="confirm" value="" placeholder="Password Confirm"
+										id="input-confirm" class="form-control">
+								</div>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>Newsletter</legend>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Subscribe</label>
+								<div class="col-sm-10">
+									<label class="radio-inline">
+										<input type="radio" name="newsletter" value="1"> Yes
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="newsletter" value="0" checked="checked"> No
+									</label>
+								</div>
+							</div>
+						</fieldset>
+						<div class="buttons">
+							<div class="pull-right">체크시 IBIO의 <a href="#" class="agree"><b>개인정보처림방침</b></a> 및 <a href="#" class="agree"><b>사이트이용약관</b></a>에 동의합니다.
+								<input class="box-checkbox" type="checkbox" name="agree" value="1"> &nbsp;
+								<input type="submit" value="Continue" class="btn btn-primary">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<footer class="footer-container typefooter-1" th:replace="fragments/front/common :: ibioFooter"></footer>
+	</div>
+
+	<th:block th:replace="fragments/front/common :: scriptSrc"></th:block>
+
+</body>
+
+</html>

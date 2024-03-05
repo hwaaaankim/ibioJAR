@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="ko" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none"
+	data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: headSrc">
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: headerMenu">
+
+		</header>
+
+		<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true"
+			th:replace="fragments/administration/common :: removeModal">
+		</div>
+
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: navMenu">
+		</div>
+
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+								<h4 class="mb-sm-0">일반고객 리스트 페이지</h4>
+
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a href="javascript: void(0);">MEMBERs</a></li>
+										<li class="breadcrumb-item active">고객리스트</li>
+									</ol>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!-- end page title -->
+
+					<div class="row">
+						<div class="col-xxl-3 col-sm-6">
+							<div class="card card-animate">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<p class="fw-semibold text-muted mb-0">총 회원수</p>
+											<h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value"
+													data-target="234">0</span>k</h2>
+										</div>
+										<div>
+											<div class="avatar-sm flex-shrink-0">
+												<span class="avatar-title bg-info-subtle text-info rounded-circle fs-4">
+													<i class="ri-ticket-2-line"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+						</div>
+						<!--end col-->
+						<div class="col-xxl-3 col-sm-6">
+							<div class="card card-animate">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<p class="fw-semibold text-muted mb-0">구매 회원수</p>
+											<h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value"
+													data-target="64.5">0</span>k</h2>
+										</div>
+										<div>
+											<div class="avatar-sm flex-shrink-0">
+												<span
+													class="avatar-title bg-warning-subtle text-warning rounded-circle fs-4">
+													<i class="mdi mdi-timer-sand"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--end col-->
+						<div class="col-xxl-3 col-sm-6">
+							<div class="card card-animate">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<p class="fw-semibold text-muted mb-0">지속 방문 회원</p>
+											<h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value"
+													data-target="116.21">0</span>K</h2>
+										</div>
+										<div>
+											<div class="avatar-sm flex-shrink-0">
+												<span
+													class="avatar-title bg-success-subtle text-success rounded-circle fs-4">
+													<i class="ri-checkbox-circle-line"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--end col-->
+						<div class="col-xxl-3 col-sm-6">
+							<div class="card card-animate">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<p class="fw-semibold text-muted mb-0">탈퇴 회원수</p>
+											<h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value"
+													data-target="14.84">0</span>K</h2>
+										</div>
+										<div>
+											<div class="avatar-sm flex-shrink-0">
+												<span
+													class="avatar-title bg-danger-subtle text-danger rounded-circle fs-4">
+													<i class="ri-delete-bin-line"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card" id="tasksList">
+								<div class="card-header border-0">
+									<div class="d-flex align-items-center">
+										<h5 class="card-title mb-0 flex-grow-1">고객관리</h5>
+										<div class="flex-shrink-0">
+											<div class="d-flex flex-wrap gap-2">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card-body border border-dashed border-end-0 border-start-0">
+									<form>
+										<div class="row g-3">
+											<div class="col-xxl-5 col-sm-12">
+												<div class="search-box">
+													<input type="text" class="form-control search bg-light border-light"
+														placeholder="검색어를 입력 해 주세요.">
+													<i class="ri-search-line search-icon"></i>
+												</div>
+											</div>
+											<!--end col-->
+
+											<div class="col-xxl-3 col-sm-4">
+												<input type="text" class="form-control bg-light border-light"
+													id="demo-datepicker" data-provider="flatpickr"
+													data-date-format="d M, Y" data-range-date="true"
+													placeholder="조회를 원하는 기간을 선택 해 주세요.">
+											</div>
+											<!--end col-->
+
+											<div class="col-xxl-3 col-sm-4">
+												<div class="input-light">
+													<select class="form-control" data-choices data-choices-search-false
+														name="choices-single-default" id="idStatus">
+														<option value="">Status</option>
+														<option value="all" selected>ALL</option>
+														<option value="New">1회이상 구매회원</option>
+														<option value="Pending">비구매 회원</option>
+														<option value="Inprogress">탈퇴회원</option>
+													</select>
+												</div>
+											</div>
+											<!--end col-->
+											<div class="col-xxl-1 col-sm-4">
+												<button type="button" class="btn btn-primary w-100"
+													onclick="SearchData();"> <i
+														class="ri-equalizer-fill me-1 align-bottom"></i>
+													검색하기
+												</button>
+											</div>
+										</div>
+									</form>
+								</div>
+								<!--end card-body-->
+								<div class="card-body">
+									<div class="table-responsive table-card mb-4">
+										<table class="table align-middle table-nowrap mb-0" id="tasksTable">
+											<thead class="table-light text-muted">
+												<tr>
+													<th scope="col" style="width: 40px;">
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox"
+																id="checkAll" value="option">
+														</div>
+													</th>
+													<th class="sort" data-sort="id">ID</th>
+													<th class="sort" data-sort="project_name">고객분류</th>
+													<th class="sort" data-sort="tasks_name">고객최초 접속경로</th>
+													<th class="sort" data-sort="client_name">고객명</th>
+													<th class="sort" data-sort="assignedto">고객구매횟수</th>
+													<th class="sort" data-sort="due_date">가입일</th>
+													<th class="sort" data-sort="status">상태</th>
+													<th class="sort" data-sort="priority">고객우선순위</th>
+												</tr>
+											</thead>
+											<tbody class="list form-check-all">
+												<tr>
+													<th scope="row">
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox"
+																name="chk_child" value="option1">
+														</div>
+													</th>
+													<td class="id"><a href="apps-tasks-details.html"
+															class="fw-medium link-primary">#VLZ501</a></td>
+													<td class="project_name"><a href="#"
+															class="fw-medium link-primary">#</a></td>
+													<td>
+														<div class="d-flex">
+															<div class="flex-grow-1 tasks_name">#
+															</div>
+															<div class="flex-shrink-0 ms-4">
+																<ul class="list-inline tasks-list-menu mb-0">
+																	<li class="list-inline-item"><a
+																			href="/admin/memberManagerDetail"><i
+																				class="ri-eye-fill align-bottom me-2 text-muted"></i></a>
+																	</li>
+																	<li class="list-inline-item">
+																		<a class="remove-item-btn"
+																			data-bs-toggle="modal" href="#deleteOrder">
+																			<i
+																				class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+																		</a>
+																	</li>
+																</ul>
+															</div>
+														</div>
+													</td>
+													<td class="client_name">고객명</td>
+													<td class="assignedto">
+														<div class="avatar-group">
+															<a href="javascript: void(0);" class="avatar-group-item"
+																data-bs-toggle="tooltip" data-bs-trigger="hover"
+																data-bs-placement="top" title="Frank">
+																<img src="/administration/assets/images/users/avatar-3.jpg" alt=""
+																	class="rounded-circle avatar-xxs" />
+															</a>
+															<a href="javascript: void(0);" class="avatar-group-item"
+																data-bs-toggle="tooltip" data-bs-trigger="hover"
+																data-bs-placement="top" title="Anna">
+																<img src="/administration/assets/images/users/avatar-1.jpg" alt=""
+																	class="rounded-circle avatar-xxs" />
+															</a>
+														</div>
+													</td>
+													<td class="due_date">2024.01.01</td>
+													<td class="status"><span
+															class="badge bg-secondary-subtle text-secondary text-uppercase">Inprogress</span>
+													</td>
+													<td class="priority"><span
+															class="badge bg-danger text-uppercase">High</span></td>
+												</tr>
+											</tbody>
+										</table>
+										<!--end table-->
+										<div class="noresult" style="display: none">
+											<div class="text-center">
+												<lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+													colors="primary:#121331,secondary:#08a88a"
+													style="width:75px;height:75px"></lord-icon>
+												<h5 class="mt-2">조회 결과가 존재하지 않습니다.</h5>
+												<p class="text-muted mb-0">조회 결과가 존재하지 않습니다.</p>
+											</div>
+										</div>
+									</div>
+									<div class="d-flex justify-content-end mt-2">
+										<div class="pagination-wrap hstack gap-2">
+											<a class="page-item pagination-prev disabled" href="#">
+												PREV
+											</a>
+											<ul class="pagination listjs-pagination mb-0"></ul>
+											<a class="page-item pagination-next" href="#">
+												NEXT
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal fade flip" id="deleteOrder" tabindex="-1" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-body p-5 text-center">
+									<lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
+										colors="primary:#405189,secondary:#f06548"
+										style="width:90px;height:90px"></lord-icon>
+									<div class="mt-4 text-center">
+										<h4>해당 회원 정보를 삭제하시겠습니까?</h4>
+										<p class="text-muted fs-14 mb-4">1년간 휴면처리 후 삭제 됩닌다.</p>
+										<div class="hstack gap-2 justify-content-center remove">
+											<button
+												class="btn btn-link btn-ghost-success fw-medium text-decoration-none"
+												id="deleteRecord-close" data-bs-dismiss="modal"><i
+													class="ri-close-line me-1 align-middle"></i> CLOSE</button>
+											<button class="btn btn-danger" id="delete-record">삭제하기</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<th:block th:replace="fragments/administration/common :: footerSrc"></th:block>
+		</div>
+
+	</div>
+
+
+	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
+
+	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+
+    <script src="/administration/assets/libs/list.js/list.min.js"></script>
+    <script src="/administration/assets/libs/list.pagination.js/list.pagination.min.js"></script>
+    <script src="/administration/assets/js/pages/tasks-list.init.js"></script>
+    <script src="/administration/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+</body>
+
+</html>

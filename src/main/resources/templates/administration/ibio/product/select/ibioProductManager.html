@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="ko" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none"
+	data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: headSrc">
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: headerMenu">
+
+		</header>
+
+		<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true"
+			th:replace="fragments/administration/common :: removeModal">
+		</div>
+
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: navMenu">
+		</div>
+
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+								<h4 class="mb-sm-0">Products</h4>
+
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
+										<li class="breadcrumb-item active">본사제품관리페이지</li>
+									</ol>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xl-3 col-lg-3">
+							<div class="card">
+								<div class="card-header">
+									<div class="d-flex mb-3">
+										<div class="flex-grow-1">
+											<h5 class="fs-16">제품브랜드 검색</h5>
+										</div>
+										<div class="flex-shrink-0">
+											<a href="#" class="text-decoration-underline" id="clearall">ClearAll</a>
+										</div>
+									</div>
+
+									<div class="filter-choices-input">
+										<input class="form-control" data-choices data-choices-removeItem type="text"
+											id="filter-choices-input" value="나이키" />
+									</div>
+								</div>
+
+								<div class="accordion accordion-flush filter-accordion">
+
+									<div class="card-body border-bottom">
+										<div class="live-preview">
+											<div class="row">
+												<div class="col-lg-12">
+													<select class="form-select mb-3"
+														aria-label="Default select example">
+														<option selected>== 대분류를 선택해 주세요 == </option>
+														<option value="1">Declined Payment</option>
+														<option value="2">Delivery Error</option>
+														<option value="3">Wrong Amount</option>
+													</select>
+												</div>
+												<div class="col-lg-12">
+													<select class="form-select mb-3" aria-label="Disabled select example"
+														disabled>
+														<option selected>== 중분류를 선택해 주세요 ==</option>
+														<option value="1">One</option>
+														<option value="2">Two</option>
+														<option value="3">Three</option>
+													</select>
+												</div>
+												<div class="col-lg-12">
+													<select class="form-select mb-3" aria-label="Disabled select example"
+														disabled>
+														<option selected>== 소분류를 선택해 주세요 ==</option>
+														<option value="1">One</option>
+														<option value="2">Two</option>
+														<option value="3">Three</option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="card-body border-bottom">
+										<p class="text-muted text-uppercase fs-13 fw-medium mb-4">금액 범위 검색</p>
+
+										<div id="product-price-range"></div>
+										<div class="formCost d-flex gap-2 align-items-center mt-3">
+											<input class="form-control form-control-sm" type="text" id="minCost"
+												value="0" /> <span class="fw-semibold text-muted">to</span> <input
+												class="form-control form-control-sm" type="text" id="maxCost"
+												value="1000" />
+										</div>
+									</div>
+									
+									<div class="accordion-item">
+										<h2 class="accordion-header" id="flush-headingBrands">
+											<button class="accordion-button bg-transparent shadow-none" type="button"
+												data-bs-toggle="collapse" data-bs-target="#flush-collapseBrands"
+												aria-expanded="true" aria-controls="flush-collapseBrands">
+												<span class="text-muted text-uppercase fs-13 fw-medium">제품 상태 검색</span>
+												<span
+													class="badge bg-success rounded-pill align-middle ms-1 filter-badge"></span>
+											</button>
+										</h2>
+
+										<div id="flush-collapseBrands" class="accordion-collapse collapse show"
+											aria-labelledby="flush-headingBrands">
+											<div class="accordion-body text-body pt-0">
+												<div class="d-flex flex-column gap-2 mt-3 filter-check">
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" value="Boat"
+															id="productBrandRadio5" checked>
+														<label class="form-check-label"
+															for="productBrandRadio5">판매중</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" value="OnePlus"
+															id="productBrandRadio4">
+														<label class="form-check-label"
+															for="productBrandRadio4">판매중지</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" value="Realme"
+															id="productBrandRadio3">
+														<label class="form-check-label"
+															for="productBrandRadio3">재고없음</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" value="Sony"
+															id="productBrandRadio2">
+														<label class="form-check-label"
+															for="productBrandRadio2">이벤트제품</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- end accordion-item -->
+
+									<div class="accordion-item">
+										<h2 class="accordion-header" id="flush-headingDiscount">
+											<button class="accordion-button bg-transparent shadow-none collapsed"
+												type="button" data-bs-toggle="collapse"
+												data-bs-target="#flush-collapseDiscount" aria-expanded="true"
+												aria-controls="flush-collapseDiscount">
+												<span class="text-muted text-uppercase fs-13 fw-medium">Discount</span>
+												<span
+													class="badge bg-success rounded-pill align-middle ms-1 filter-badge"></span>
+											</button>
+										</h2>
+										<div id="flush-collapseDiscount" class="accordion-collapse collapse"
+											aria-labelledby="flush-headingDiscount">
+											<div class="accordion-body text-body pt-1">
+												<div class="d-flex flex-column gap-2 filter-check">
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox"
+															value="50% or more" id="productdiscountRadio6">
+														<label class="form-check-label" for="productdiscountRadio6">50%
+															or more</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox"
+															value="40% or more" id="productdiscountRadio5">
+														<label class="form-check-label" for="productdiscountRadio5">40%
+															or more</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox"
+															value="30% or more" id="productdiscountRadio4">
+														<label class="form-check-label" for="productdiscountRadio4">
+															30% or more
+														</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox"
+															value="20% or more" id="productdiscountRadio3" checked>
+														<label class="form-check-label" for="productdiscountRadio3">
+															20% or more
+														</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox"
+															value="10% or more" id="productdiscountRadio2">
+														<label class="form-check-label" for="productdiscountRadio2">
+															10% or more
+														</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox"
+															value="Less than 10%" id="productdiscountRadio1">
+														<label class="form-check-label" for="productdiscountRadio1">
+															Less than 10%
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="accordion-item">
+										<h2 class="accordion-header" id="flush-headingRating">
+											<button class="accordion-button bg-transparent shadow-none collapsed"
+												type="button" data-bs-toggle="collapse"
+												data-bs-target="#flush-collapseRating" aria-expanded="false"
+												aria-controls="flush-collapseRating">
+												<span class="text-muted text-uppercase fs-13 fw-medium">Rating</span>
+												<span
+													class="badge bg-success rounded-pill align-middle ms-1 filter-badge"></span>
+											</button>
+										</h2>
+
+										<div id="flush-collapseRating" class="accordion-collapse collapse"
+											aria-labelledby="flush-headingRating">
+											<div class="accordion-body text-body">
+												<div class="d-flex flex-column gap-2 filter-check">
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox"
+															value="4 & Above Star" id="productratingRadio4" checked>
+														<label class="form-check-label" for="productratingRadio4">
+															<span class="text-muted">
+																<i class="mdi mdi-star text-warning"></i>
+																<i class="mdi mdi-star text-warning"></i>
+																<i class="mdi mdi-star text-warning"></i>
+																<i class="mdi mdi-star text-warning"></i>
+																<i class="mdi mdi-star"></i>
+															</span> 4 & Above
+														</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox"
+															value="3 & Above Star" id="productratingRadio3">
+														<label class="form-check-label" for="productratingRadio3">
+															<span class="text-muted">
+																<i class="mdi mdi-star text-warning"></i>
+																<i class="mdi mdi-star text-warning"></i>
+																<i class="mdi mdi-star text-warning"></i>
+																<i class="mdi mdi-star"></i>
+																<i class="mdi mdi-star"></i>
+															</span> 3 & Above
+														</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox"
+															value="2 & Above Star" id="productratingRadio2">
+														<label class="form-check-label" for="productratingRadio2">
+															<span class="text-muted">
+																<i class="mdi mdi-star text-warning"></i>
+																<i class="mdi mdi-star text-warning"></i>
+																<i class="mdi mdi-star"></i>
+																<i class="mdi mdi-star"></i>
+																<i class="mdi mdi-star"></i>
+															</span> 2 & Above
+														</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" value="1 Star"
+															id="productratingRadio1">
+														<label class="form-check-label" for="productratingRadio1">
+															<span class="text-muted">
+																<i class="mdi mdi-star text-warning"></i>
+																<i class="mdi mdi-star"></i>
+																<i class="mdi mdi-star"></i>
+																<i class="mdi mdi-star"></i>
+																<i class="mdi mdi-star"></i>
+															</span> 1
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-9 col-lg-9">
+							<div class="row g-4 mb-3">
+								<div class="col-sm gap-2" style="padding-left:0px;display:flex;">
+									<div class="d-flex justify-content-sm-start gap-2">
+
+										<div class="search-box">
+											<input type="text" class="form-control" placeholder="제품명 검색">
+											<i class="ri-search-line search-icon"></i>
+										</div>
+										<select class="form-control w-md" data-choices data-choices-search-false>
+											<option value="Today">-- 30개씩 보기 --</option>
+											<option value="Yesterday">-- 50개씩 보기 --</option>
+											<option value="Last 7 Days">-- 100개씩 보기 --</option>
+										</select>
+									</div>
+									<div class="d-flex justify-content-sm-start gap-2">
+
+										<a href="/admin/ibioProductManagerInsert" class="btn btn-warning"><i class="bx bx-search-alt-2"></i> 제품검색</a>
+										<a href="/admin/ibioProductManagerInsert" class="btn btn-danger"><i class="bx bx-refresh"></i> 검색조건초기화</a>
+										<a href="/admin/ibioProductManagerInsert" class="btn btn-success"><i
+												class="ri-add-line align-bottom me-1"></i> 제품등록</a>
+									</div>
+								</div>
+								
+							</div>
+
+							<div class="row card">
+								<div class="table-responsive">
+									<table class="table align-middle mb-0">
+										<thead class="table-light">
+											<tr>
+												<th scope="col">제품코드</th>
+												<th scope="col">등록일</th>
+												<th scope="col">상태</th>
+												<th scope="col">대표이미지</th>
+												<th scope="col">판매량</th>
+												<th scope="col">조회수</th>
+												<th scope="col">소비자가격</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+											<tr>
+												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
+												<td>2024.01.01</td>
+												<td class="text-success"><i
+														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+												</td>
+												<td>
+													<div class="d-flex gap-2 align-items-center">
+														<div class="flex-shrink-0">
+															<img src="/administration/assets/images/users/avatar-3.jpg"
+																alt="" class="avatar-xs" />
+														</div>
+													</div>
+												</td>
+												<td>118회</td>
+												<td>1,117회</td>
+												<td>130,000원</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+
+
+							<div class="row g-0 text-center text-sm-start align-items-center mb-4">
+								<div class="col-sm-6">
+									<ul
+										class="pagination pagination-separated justify-content-center justify-content-sm-end mb-sm-0">
+										<li class="page-item disabled">
+											<a href="#" class="page-link">FIRST</a>
+										</li>
+										<li class="page-item disabled">
+											<a href="#" class="page-link">PREVIOUS</a>
+										</li>
+										<li class="page-item active">
+											<a href="#" class="page-link">1</a>
+										</li>
+										<li class="page-item ">
+											<a href="#" class="page-link">2</a>
+										</li>
+										<li class="page-item">
+											<a href="#" class="page-link">3</a>
+										</li>
+										<li class="page-item">
+											<a href="#" class="page-link">4</a>
+										</li>
+										<li class="page-item">
+											<a href="#" class="page-link">5</a>
+										</li>
+										<li class="page-item">
+											<a href="#" class="page-link">NEXT</a>
+										</li>
+										<li class="page-item">
+											<a href="#" class="page-link">LAST</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<th:block th:replace="fragments/administration/common :: footerSrc"></th:block>
+		</div>
+
+	</div>
+
+
+	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
+
+	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/front/common :: headSrc">
+</head>
+
+<body class="res layout-1 layout-subpage">
+
+	<div id="wrapper" class="wrapper-fluid banners-effect-5">
+		<header id="header" class=" typeheader-1" th:replace="fragments/front/common :: headerMenu"></header>
+
+		<div class="main-container container banners-demo-w">
+			<ul class="breadcrumb">
+				<li><a href="#"><i class="fa fa-home"></i></a></li>
+				<li><a href="#">Page</a></li>
+				<li><a href="#">이벤트</a></li>
+			</ul>
+
+			<div class="row">
+				<div id="content" class="col-sm-12">
+
+					<div class="banners-demo">
+						<h3>이벤트 리스트 페이지</h3>
+						<p># 이벤트 정보를 확인할 수 있습니다.</p>
+						<p># 클릭시 상세정보를 확인할 수 있습니다.</p>
+						<div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="module banners-effect-1">
+									<h3>진행중 이벤트</h3>
+									<div class="banners">
+										<div>
+											<a href="/eventDetail"><img src="/front/image/demo/cms/banner-01.png" alt=""></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6">
+								<div class="module banners-effect-2">
+									<h3>종료 이벤트</h3>
+									<div class="banners">
+										<div>
+											<a href="/eventDetail"><img src="/front/image/demo/cms/banner-01.png" alt=""></a>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="module banners-effect-1">
+									<h3>진행중 이벤트</h3>
+									<div class="banners">
+										<div>
+											<a href="/eventDetail"><img src="/front/image/demo/cms/banner-01.png" alt=""></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6">
+								<div class="module banners-effect-2">
+									<h3>종료 이벤트</h3>
+									<div class="banners">
+										<div>
+											<a href="/eventDetail"><img src="/front/image/demo/cms/banner-01.png" alt=""></a>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="module banners-effect-1">
+									<h3>진행중 이벤트</h3>
+									<div class="banners">
+										<div>
+											<a href="/eventDetail"><img src="/front/image/demo/cms/banner-01.png" alt=""></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6">
+								<div class="module banners-effect-2">
+									<h3>종료 이벤트</h3>
+									<div class="banners">
+										<div>
+											<a href="/eventDetail"><img src="/front/image/demo/cms/banner-01.png" alt=""></a>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+		<footer class="footer-container typefooter-1" th:replace="fragments/front/common :: ibioFooter"></footer>
+	</div>
+
+	<th:block th:replace="fragments/front/common :: scriptSrc"></th:block>
+
+</body>
+
+</html>

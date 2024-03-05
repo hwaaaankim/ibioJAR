@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none"
+	data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: headSrc">
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: headerMenu">
+
+		</header>
+
+		<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true"
+			th:replace="fragments/administration/common :: removeModal">
+		</div>
+
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: navMenu">
+		</div>
+
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+								<h4 class="mb-sm-0">본사제품 카테고리관리</h4>
+
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
+										<li class="breadcrumb-item active">본사제품 카테고리등록페이지</li>
+									</ol>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<form id="createproduct-form" autocomplete="off" class="needs-validation" novalidate>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-header">
+										<h5 class="card-title mb-2">브랜드 입력</h5>
+										<p class="text-muted mb-2"># 사용할 브랜드를 입력 해 주세요.</p>
+									</div>
+									<div class="row">
+										<div class="col-lg-8">
+											<div class="card-body" style="padding-right:0px;">
+												<p class="text-muted mb-3"># 브랜드 이미지 미 입력시 <code>컴퍼니 공용 아이콘으로 등록 됩니다.</code></p>
+												<div class="mb-3" style="display:flex;">
+													
+                                                    <input class="form-control" style="margin-right:10px;" type="text" value="브랜드01" />
+                                                     <input class="form-control" type="file" value="브랜드01" />
+                                                </div>
+                                                <div class="text-end">
+													<button type="submit" class="btn btn-success btn-sm">브랜드 등록</button>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-4">
+											<div class="card-body">
+												<div class="mb-3" style="padding-left:0px;">
+													<p class="text-muted mb-3"># 여러개의 브랜드를 <code>드래그를 통해 동시에 삭제할 수 있습니다.</code></p>
+													<select class="form-select" multiple aria-label="multiple select example">
+	                                                    <option selected>브랜드</option>
+	                                                    <option value="1">One</option>
+	                                                    <option value="2">Two</option>
+	                                                    <option value="3">Three</option>
+	                                                    <option value="1">One</option>
+	                                                    <option value="2">Two</option>
+	                                                    <option value="3">Three</option>
+	                                                </select>
+                                                </div>
+                                                <div class="text-end" style="margin-bottom:0px;">
+													<button type="submit" class="btn btn-success btn-sm">브랜드 삭제</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-header">
+										<h5 class="card-title mb-2">대분류 입력</h5>
+									</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="card-body" style="padding-right:0px;">
+												<div class="mb-3">
+                                                    <p class="text-muted mb-3"># 최대 10개의 대분류를 <code>동시에 입력할 수 있습니다.</code></p>
+                                                    <input class="form-control" data-choices data-choices-limit="10" data-choices-removeItem type="text" value="Task-1" />
+                                                </div>
+                                                <div class="text-end">
+													<button type="submit" class="btn btn-success btn-sm">대분류 등록</button>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="card-body">
+												<div class="mb-3" style="padding-left:0px;">
+													<p class="text-muted mb-3"># 여러개의 대분류를 <code>드래그를 통해 동시에 삭제할 수 있습니다.</code></p>
+													<select class="form-select" multiple aria-label="multiple select example">
+	                                                    <option selected>대분류</option>
+	                                                    <option value="1">One</option>
+	                                                    <option value="2">Two</option>
+	                                                    <option value="3">Three</option>
+	                                                    <option value="1">One</option>
+	                                                    <option value="2">Two</option>
+	                                                    <option value="3">Three</option>
+	                                                </select>
+                                                </div>
+                                                <div class="text-end" style="margin-bottom:0px;">
+													<button type="submit" class="btn btn-success btn-sm">브랜드 등록</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-header">
+										<h5 class="card-title mb-2">중분류 입력</h5>
+										<p class="text-muted mb-2"># 대분류는 반드시 선택 되어야 합니다.</p>
+									</div>
+									<div class="row">
+										<div class="col-lg-4">
+											<div class="card-body" style="padding-right:0px;">
+												<div class="mb-3">
+													<p class="text-muted mb-3"># 하나의 대분류를 먼저 선택 해 주세요.</p>
+													<select class="form-select mb-3" aria-label="Default select example">
+	                                                    <option selected>Select your Status </option>
+	                                                    <option value="1">Declined Payment</option>
+	                                                    <option value="2">Delivery Error</option>
+	                                                    <option value="3">Wrong Amount</option>
+	                                                </select>
+                                                </div>
+											</div>
+										</div>
+										<div class="col-lg-4">
+											<div class="card-body" style="padding-right:0px;padding-left:0px;">
+												<div class="mb-3">
+                                                    <p class="text-muted mb-3"># 최대 10개의 중분류를 <code>동시에 입력할 수 있습니다.</code></p>
+                                                    <input class="form-control" data-choices data-choices-limit="10" data-choices-removeItem type="text" value="Task-1" />
+                                                </div>
+                                                <div class="text-end">
+													<button type="submit" class="btn btn-success btn-sm">중분류 등록</button>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-4">
+											<div class="card-body" style="padding-left:0px;">
+												<div class="mb-3">
+													<p class="text-muted mb-3"># 여러개의 중분류를 <code>드래그를 통해 동시에 삭제할 수 있습니다.</code></p>
+													<select class="form-select" multiple aria-label="multiple select example">
+	                                                    <option selected>중분류</option>
+	                                                    <option value="1">One</option>
+	                                                    <option value="2">Two</option>
+	                                                    <option value="3">Three</option>
+	                                                    <option value="1">One</option>
+	                                                    <option value="2">Two</option>
+	                                                    <option value="3">Three</option>
+	                                                </select>
+                                                </div>
+                                                <div class="text-end" style="margin-bottom:0px;">
+													<button type="submit" class="btn btn-success btn-sm">중분류 등록</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-header">
+										<h5 class="card-title mb-2">소분류 입력</h5>
+										<p class="text-muted mb-2"># 대분류 및 중분류는 반드시 선택 되어야 합니다.</p>
+									</div>
+									<div class="row">
+										<div class="col-lg-3">
+											<div class="card-body" style="padding-right:0px;">
+												<div class="mb-3">
+													<select class="form-select mb-3" aria-label="Default select example">
+	                                                    <option selected>Select your 대분류 </option>
+	                                                    <option value="1">Declined Payment</option>
+	                                                    <option value="2">Delivery Error</option>
+	                                                    <option value="3">Wrong Amount</option>
+	                                                </select>
+                                                </div>
+											</div>
+										</div>
+										<div class="col-lg-3">
+											<div class="card-body" style="padding-right:0px;">
+												<div class="mb-3">
+													<select class="form-select mb-3" aria-label="Default select example">
+	                                                    <option selected>Select your 중분류 </option>
+	                                                    <option value="1">Declined Payment</option>
+	                                                    <option value="2">Delivery Error</option>
+	                                                    <option value="3">Wrong Amount</option>
+	                                                </select>
+                                                </div>
+											</div>
+										</div>
+										<div class="col-lg-3">
+											<div class="card-body" style="padding-right:0px;padding-left:0px;">
+												<div class="mb-3">
+                                                    <p class="text-muted mb-3"># 최대 10개의 소분류를 <code>동시에 입력할 수 있습니다.</code></p>
+                                                    <input class="form-control" data-choices data-choices-limit="10" data-choices-removeItem type="text" value="Task-1" />
+                                                </div>
+                                                <div class="text-end">
+													<button type="submit" class="btn btn-success btn-sm">소분류 등록</button>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-3">
+											<div class="card-body" style="padding-left:0px;">
+												<div class="mb-3">
+													<p class="text-muted mb-3"># 여러개의 소분류를 <code>드래그를 통해 동시에 삭제할 수 있습니다.</code></p>
+													<select class="form-select" multiple aria-label="multiple select example">
+	                                                    <option selected>소분류</option>
+	                                                    <option value="1">One</option>
+	                                                    <option value="2">Two</option>
+	                                                    <option value="3">Three</option>
+	                                                    <option value="1">One</option>
+	                                                    <option value="2">Two</option>
+	                                                    <option value="3">Three</option>
+	                                                </select>
+                                                </div>
+                                                <div class="text-end" style="margin-bottom:0px;">
+													<button type="submit" class="btn btn-success btn-sm">소분류 등록</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+
+				</div>
+			</div>
+			<th:block th:replace="fragments/administration/common :: footerSrc"></th:block>
+		</div>
+
+	</div>
+
+
+	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
+
+	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+</body>
+
+</html>

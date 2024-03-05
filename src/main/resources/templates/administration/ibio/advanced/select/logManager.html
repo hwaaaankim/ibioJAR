@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ko" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none"
+	data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: headSrc">
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: headerMenu">
+
+		</header>
+
+		<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true"
+			th:replace="fragments/administration/common :: removeModal">
+		</div>
+
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: navMenu">
+		</div>
+
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+								<h4 class="mb-sm-0">사이트 로그 매니저</h4>
+
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a href="javascript: void(0);">ADVANCEDs</a></li>
+										<li class="breadcrumb-item active">사이트 로그 매니저</li>
+									</ol>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card" id="tasksList">
+								<div class="card-header border-0">
+									<div class="d-flex align-items-center">
+										<h5 class="card-title mb-0 flex-grow-1">사이트 로그 매니저</h5>
+									</div>
+								</div>
+								<div class="card-body border border-dashed border-end-0 border-start-0">
+									<form>
+										<div class="row g-3">
+											<div class="col-xxl-5 col-sm-12">
+												<div class="search-box">
+													<input type="text" class="form-control search bg-light border-light"
+														placeholder="Search for tasks or something...">
+													<i class="ri-search-line search-icon"></i>
+												</div>
+											</div>
+
+											<div class="col-xxl-3 col-sm-4">
+												<input type="text" class="form-control bg-light border-light"
+													id="demo-datepicker" data-provider="flatpickr"
+													data-date-format="d M, Y" data-range-date="true"
+													placeholder="Select date range">
+											</div>
+
+											<div class="col-xxl-3 col-sm-4">
+												<div class="input-light">
+													<select class="form-control" data-choices data-choices-search-false
+														name="choices-single-default" id="idStatus">
+														<option value="">Status</option>
+														<option value="all" selected>All</option>
+														<option value="New">New</option>
+														<option value="Pending">Pending</option>
+														<option value="Inprogress">Inprogress</option>
+														<option value="Completed">Completed</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-xxl-1 col-sm-4">
+												<button type="button" class="btn btn-primary w-100"
+													onclick="SearchData();"> <i
+														class="ri-equalizer-fill me-1 align-bottom"></i>
+													검색하기
+												</button>
+											</div>
+										</div>
+									</form>
+								</div>
+								<!--end card-body-->
+								<div class="card-body">
+									<div class="table-responsive table-card mb-4">
+										<table class="table align-middle table-nowrap mb-0" id="tasksTable">
+											<thead class="table-light text-muted">
+												<tr>
+													<th class="sort" data-sort="id">ID</th>
+													<th class="sort" data-sort="project_name">로그분류</th>
+													<th class="sort" data-sort="tasks_name">로그 상세</th>
+													<th class="sort" data-sort="client_name">관리자 ID</th>
+													<th class="sort" data-sort="due_date">기록일자</th>
+													<th class="sort" data-sort="priority">중요도</th>
+												</tr>
+											</thead>
+											<tbody class="form-check-all">
+												<tr>
+													<td class="id">#IBIO</td>
+													<td class="project_name"><a href="#"
+															class="fw-medium link-primary">사이트관리</a></td>
+													<td>
+														<div class="d-flex">
+															<a href="#"
+															class="fw-medium link-primary">제품 등록 진행</a>
+														</div>
+													</td>
+													<td class="client_name">ADMIN</td>
+													<td class="due_date">25 Jan, 2022</td>
+													<td class="priority"><span
+															class="badge bg-danger text-uppercase">High</span></td>
+												</tr>
+												<tr>
+													<td class="id">#IBIO</td>
+													<td class="project_name"><a href="#"
+															class="fw-medium link-primary">사이트관리</a></td>
+													<td>
+														<div class="d-flex">
+															<a href="#"
+															class="fw-medium link-primary">제품 등록 진행</a>
+														</div>
+													</td>
+													<td class="client_name">ADMIN</td>
+													<td class="due_date">25 Jan, 2022</td>
+													<td class="priority"><span
+															class="badge bg-danger text-uppercase">High</span></td>
+												</tr>
+												<tr>
+													<td class="id">#IBIO</td>
+													<td class="project_name"><a href="#"
+															class="fw-medium link-primary">사이트관리</a></td>
+													<td>
+														<div class="d-flex">
+															<a href="#"
+															class="fw-medium link-primary">제품 등록 진행</a>
+														</div>
+													</td>
+													<td class="client_name">ADMIN</td>
+													<td class="due_date">25 Jan, 2022</td>
+													<td class="priority"><span
+															class="badge bg-danger text-uppercase">High</span></td>
+												</tr>
+												<tr>
+													<td class="id">#IBIO</td>
+													<td class="project_name"><a href="#"
+															class="fw-medium link-primary">사이트관리</a></td>
+													<td>
+														<div class="d-flex">
+															<a href="#"
+															class="fw-medium link-primary">제품 등록 진행</a>
+														</div>
+													</td>
+													<td class="client_name">ADMIN</td>
+													<td class="due_date">25 Jan, 2022</td>
+													<td class="priority"><span
+															class="badge bg-danger text-uppercase">High</span></td>
+												</tr>
+												<tr>
+													<td class="id">#IBIO</td>
+													<td class="project_name"><a href="#"
+															class="fw-medium link-primary">사이트관리</a></td>
+													<td>
+														<div class="d-flex">
+															<a href="#"
+															class="fw-medium link-primary">제품 등록 진행</a>
+														</div>
+													</td>
+													<td class="client_name">ADMIN</td>
+													<td class="due_date">25 Jan, 2022</td>
+													<td class="priority"><span
+															class="badge bg-danger text-uppercase">High</span></td>
+												</tr>
+											</tbody>
+										</table>
+										<!--end table-->
+										<div class="noresult" style="display: none">
+											<div class="text-center">
+												<lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+													colors="primary:#121331,secondary:#08a88a"
+													style="width:75px;height:75px"></lord-icon>
+												<h5 class="mt-2">결과가 존재하지 않습니다.</h5>
+												<p class="text-muted mb-0">다른 조건을 통해 검색을 진행 해 주시기 바랍니다.</p>
+											</div>
+										</div>
+									</div>
+									<div class="d-flex justify-content-end mt-2">
+										<div class="pagination-wrap hstack gap-2">
+											<a class="page-item pagination-prev disabled" href="#">
+												PREV
+											</a>
+											<ul class="pagination listjs-pagination mb-0"></ul>
+											<a class="page-item pagination-next" href="#">
+												NEXT
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<th:block th:replace="fragments/administration/common :: footerSrc"></th:block>
+		</div>
+
+	</div>
+	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
+	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+    <script src="/administraion/assets/libs/list.js/list.min.js"></script>
+    <script src="/administraion/assets/libs/list.pagination.js/list.pagination.min.js"></script>
+
+    <script src="/administraion/assets/js/accessLog.js"></script>
+    <script src="/administraion/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+</body>
+
+</html>

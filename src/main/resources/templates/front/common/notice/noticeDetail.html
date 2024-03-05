@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/front/common :: headSrc">
+</head>
+
+<body class="res layout-1 layout-subpage">
+
+	<div id="wrapper" class="wrapper-fluid banners-effect-5">
+		<header id="header" class=" typeheader-1" th:replace="fragments/front/common :: headerMenu"></header>
+
+		<div class="main-container container">
+			<ul class="breadcrumb">
+				<li><a href="#"><i class="fa fa-home"></i></a></li>
+				<li><a href="#">NOTICE</a></li>
+				<li><a href="#">공지사항 상세</a></li>
+			</ul>
+
+			<div class="row" style="display:flex; justify-content:center;margin-bottom:50px;">
+				<!--Left Part Start -->
+				<div id="content" class="col-md-10 col-sm-10 site">
+					<div class="article-info">
+						<div class="blog-header">
+							<h3>공지사항 제목</h3>
+						</div>
+						<div class="article-sub-title">
+							<span class="article-author">업로드 : <a href="#"> Admin</a></span>
+							<span class="article-date">업로드 일자 : 2024.01.01</span>
+							<span class="article-comment">조회수</span>
+						</div>
+						<div class="form-group" style="display:flex; justify-content: center;">
+							<a href="/front/image/catalog/blog/4.jpg" class="image-popup"><img
+									src="/front/image/catalog/blog/4.jpg" alt="Kire tuma demonstraverunt lector"></a>
+						</div>
+
+						<div class="article-description">
+							<p>Morbi tempus, non ullamcorper euismod, erat odio suscipit purus, nec ornare lacus turpis
+								ac purus. Mauris cursus in mi vel dignissim. Morbi mollis elit ipsum, a feugiat lectus
+								gravida non. Aenean molestie justo sed aliquam euismod. Maecenas laoreet bibendum
+								laoreet. Morbi tempor massa sit amet purus lobortis, non porta tellus dignissim. </p>
+							<p>Proin dictum justo a nisl pellentesque egestas.Nulla commodo euismod nisi ac bibendum.
+								Mauris in pellentesque tellus, in cursus magna. Sed volutpat dui bibendum mi molestie,
+								at volutpat nunc dictum. Fusce sagittis massa id eros scelerisque, eget accumsan magna
+								lacinia. Nullam posuere neque at neque dictum interdum</p>
+							<p> Mauris cursus in mi vel dignissim. Morbi mollis elit ipsum, a feugiat lectus gravida
+								non. Aenean molestie justo sed aliquam euismod. Maecenas laoreet bibendum laoreet. Morbi
+								tempor massa sit amet purus lobortis, non porta tellus dignissim. Proin dictum justo a
+								nisl pellentesque egestas.Nulla commodo euismod nisi ac bibendum. Mauris in pellentesque
+								tellus, in cursus magna. Sed volutpat dui bibendum mi molestie, at volutpat nunc dictum.
+								Fusce sagittis massa id eros scelerisque, eget accumsan magna lacinia. Nullam posuere
+								neque at neque dictum interdum</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--Middle Part End-->
+		</div>
+
+		<footer class="footer-container typefooter-1" th:replace="fragments/front/common :: ibioFooter"></footer>
+	</div>
+
+	<th:block th:replace="fragments/front/common :: scriptSrc"></th:block>
+
+</body>
+
+</html>

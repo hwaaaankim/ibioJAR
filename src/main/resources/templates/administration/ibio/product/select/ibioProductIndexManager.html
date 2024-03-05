@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ko" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none"
+	data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: headSrc">
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: headerMenu">
+
+		</header>
+
+		<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true"
+			th:replace="fragments/administration/common :: removeModal">
+		</div>
+
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: navMenu">
+		</div>
+
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+								<h4 class="mb-sm-0">본사제품 카테고리관리</h4>
+
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
+										<li class="breadcrumb-item active">본사제품 카테고리등록페이지</li>
+									</ol>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-header align-items-center d-flex">
+									<h4 class="card-title mb-0 flex-grow-1">검색 필터</h4>
+								</div>
+
+								<div class="card-body">
+									<p class="text-muted">
+										# <code>검색 조건</code> 을 선택하여 원하는 검색을 진행할 수 있습니다.<br>
+										# 한 페이지에 보고 싶은 <code>검색 결과의 수</code> 를 조정할 수 있습니다.<br>
+										# <code>제품명 / 분류명</code> 을 통해 검색이 가능합니다.<br>
+										# <code>체크박스를 체크한 상태</code> 로 검색 시 해당 단어가 포함된 모든 결과가 표시됩니다.
+									</p>
+									<div class="live-preview">
+										<form action="#">
+											<div class="row gy-2 gx-3 mb-3 align-items-center">
+												<div class="col-sm-auto">
+													<label class="visually-hidden">페이지사이즈</label> <select
+														class="form-select" id="pageSize">
+														<option value="Today">-- 10개씩 보기 --</option>
+														<option value="Today">-- 30개씩 보기 --</option>
+														<option value="Yesterday">-- 50개씩 보기 --</option>
+														<option value="Last 7 Days">-- 100개씩 보기 --</option>
+													</select>
+												</div>
+												<div class="col-sm">
+													<label class="visually-hidden">대분류</label>
+													<select class="form-select" id="smallPanelBigSortSelect"
+														name="bigId">
+														<option selected value="">== 대분류 선택 ==</option>
+													</select>
+												</div>
+												<div class="col-sm">
+													<label class="visually-hidden">중분류</label> <select
+														class="form-select">
+														<option selected value="">== 중분류 선택 ==</option>
+													</select>
+												</div>
+												<div class="col-sm">
+													<label class="visually-hidden">소분류</label> <select
+														class="form-select" id="smallPanelSmallSortSelect"
+														name="smallId">
+														<option selected>== 소분류 선택 ==</option>
+													</select>
+												</div>
+												<div class="col-sm-auto">
+													<button type="submit" class="btn btn-primary">검색
+														하기</button>
+												</div>
+												<div class="col-sm-auto">
+													<div>
+														<a href="/admin/ibioProductIndexManager" class="btn btn-danger"> 검색 초기화</a>
+													</div>
+												</div>
+												<div class="col-sm-auto">
+													<div>
+														<a href="/admin/ibioProductManagerInsert" class="btn btn-success"><i
+																class="ri-add-line align-bottom me-1"></i> 제품등록</a>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title mb-0">BionLifeScience 제품 INDEX 관리</h4>
+								</div>
+
+								<div class="card-body">
+									<p class="text-muted"># <code>드래그 앤 드랍</code>을 통해 제품/소분류/중분류/대분류 사이의 표시순서를 변경할 수
+										있습니다.<br>
+										# <code>같은 등급의 요소끼리만</code> 순서를 변경할 수 있습니다.<br>
+										# 변경 완료 후 <code>확인 버튼</code>클릭시 변경된 순서로 적용 됩니다.<br>
+									<div class="col-sm-auto">
+										<div>
+											<button id="indexChangeBtn" class="btn btn-success">컴포넌트 인덱스 변경</button>
+										</div>
+									</div>
+									<div class="list-group col nested-list nested-sortable">
+										<div class="list-group-item nested-1 sortable-items">
+											<span ><i class="mdi mdi-language-css3 fs-16 align-middle text-secondary me-2"></i>[제품명]</span>
+											<span ><i class="mdi mdi-folder fs-16 align-middle text-warning me-2"></i>[분류명]</span>
+										</div>
+										<div class="list-group-item nested-1 sortable-items">
+											<span ><i class="mdi mdi-language-css3 fs-16 align-middle text-secondary me-2"></i>[제품명]</span>
+											<span ><i class="mdi mdi-folder fs-16 align-middle text-warning me-2"></i>[분류명]</span>
+										</div>
+										<div class="list-group-item nested-1 sortable-items">
+											<span ><i class="mdi mdi-language-css3 fs-16 align-middle text-secondary me-2"></i>[제품명]</span>
+											<span ><i class="mdi mdi-folder fs-16 align-middle text-warning me-2"></i>[분류명]</span>
+										</div>
+										<div class="list-group-item nested-1 sortable-items">
+											<span ><i class="mdi mdi-language-css3 fs-16 align-middle text-secondary me-2"></i>[제품명]</span>
+											<span ><i class="mdi mdi-folder fs-16 align-middle text-warning me-2"></i>[분류명]</span>
+										</div>
+										<div class="list-group-item nested-1 sortable-items">
+											<span ><i class="mdi mdi-language-css3 fs-16 align-middle text-secondary me-2"></i>[제품명]</span>
+											<span ><i class="mdi mdi-folder fs-16 align-middle text-warning me-2"></i>[분류명]</span>
+										</div>
+										<div class="list-group-item nested-1 sortable-items">
+											<span ><i class="mdi mdi-language-css3 fs-16 align-middle text-secondary me-2"></i>[제품명]</span>
+											<span ><i class="mdi mdi-folder fs-16 align-middle text-warning me-2"></i>[분류명]</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0 text-center text-sm-start align-items-center mb-4">
+						<div class="col-sm-6">
+							<ul
+								class="pagination pagination-separated justify-content-center justify-content-sm-end mb-sm-0">
+								<li class="page-item disabled">
+									<a href="#" class="page-link">FIRST</a>
+								</li>
+								<li class="page-item disabled">
+									<a href="#" class="page-link">PREVIOUS</a>
+								</li>
+								<li class="page-item active">
+									<a href="#" class="page-link">1</a>
+								</li>
+								<li class="page-item ">
+									<a href="#" class="page-link">2</a>
+								</li>
+								<li class="page-item">
+									<a href="#" class="page-link">3</a>
+								</li>
+								<li class="page-item">
+									<a href="#" class="page-link">4</a>
+								</li>
+								<li class="page-item">
+									<a href="#" class="page-link">5</a>
+								</li>
+								<li class="page-item">
+									<a href="#" class="page-link">NEXT</a>
+								</li>
+								<li class="page-item">
+									<a href="#" class="page-link">LAST</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<th:block th:replace="fragments/administration/common :: footerSrc"></th:block>
+		</div>
+
+	</div>
+	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
+	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"
+		integrity="sha256-ipiJrswvAR4VAx/th+6zWsdeYmVae0iJuiR+6OqHJHQ=" crossorigin="anonymous"></script>
+	<script src="/administration/assets/libs/sortablejs/Sortable.min.js"></script>
+	<script src="/administration/assets/js/ibioProductIndexManager.js"></script>	
+</body>
+
+</html>

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ko" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none"
+	data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: headSrc">
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: headerMenu">
+
+		</header>
+
+		<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true"
+			th:replace="fragments/administration/common :: removeModal">
+		</div>
+
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: navMenu">
+		</div>
+
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+								<h4 class="mb-sm-0">사이트 정보관리</h4>
+
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a href="javascript: void(0);">INFORMATIONs</a></li>
+										<li class="breadcrumb-item active">사이트 정보관리</li>
+									</ol>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xxl-6">
+							<div class="card">
+								<div class="card-header align-items-center d-flex">
+									<h4 class="card-title mb-0 flex-grow-1">본사 정보관리</h4>
+								</div><!-- end card header -->
+
+								<div class="card-body">
+									<p class="text-muted"># 사이트 정보는 <code>하나씩만 저장이 가능합니다.</code></span></p>
+									<div class="live-preview">
+										<form action="javascript:void(0);">
+											<div class="row">
+												<div class="col-md-6">
+													<div class="mb-3">
+														<label for="firstNameinput" class="form-label">한글 업체명</label>
+														<input type="text" class="form-control"
+															placeholder="아이바이오" id="firstNameinput">
+													</div>
+												</div>
+
+												<div class="col-md-6">
+													<div class="mb-3">
+														<label for="lastNameinput" class="form-label">영문 업체명</label>
+														<input type="text" class="form-control"
+															placeholder="IBIO" id="lastNameinput">
+													</div>
+												</div>
+												
+												<div class="col-md-6">
+													<div class="mb-3">
+														<label for="lastNameinput" class="form-label">사업자 등록번호</label>
+														<input type="text" class="form-control"
+															placeholder="111-1111-1111" id="lastNameinput">
+													</div>
+												</div>			
+			
+												<div class="col-md-12">
+													<div class="mb-3">
+														<p class="text-muted"># <code>반드시 구글과 연동된 계정을 입력 해 주세요.</code></span></p>
+														<label for="compnayNameinput" class="form-label">대표 이메일</label>
+														<input type="text" class="form-control"
+															placeholder="대표 이메일" id="compnayNameinput">
+													</div>
+													
+												</div>
+
+												<div class="col-md-6">
+													<div class="mb-3">
+														<label for="phonenumberInput" class="form-label">대표번호</label>
+														<input type="tel" class="form-control"
+															placeholder="010-1234-1234">
+													</div>
+												</div>
+
+												<div class="col-md-6">
+													<div class="mb-3">
+														<label for="phonenumberInput" class="form-label">고객센터</label>
+														<input type="tel" class="form-control"
+															placeholder="02-2222-4444" >
+													</div>
+												</div>
+
+												<div class="col-md-6">
+													<div class="mb-3">
+														<label for="emailidInput" class="form-label">FAX</label>
+														<input type="email" class="form-control"
+															placeholder="02-2222-3333" id="emailidInput">
+													</div>
+												</div>
+
+												<div class="col-md-12">
+													<div class="mb-3">
+														<p class="text-muted"># <code>제품 발송지 주소로 사용됩니다.</code></span></p>
+														<label for="address1ControlTextarea"
+															class="form-label">본사주소</label>
+														<input type="text" class="form-control" placeholder="주소정보"
+															id="address1ControlTextarea">
+													</div>
+												</div>
+												
+												<div class="col-md-6">
+													<div class="mb-3">
+														<label for="citynameInput" class="form-label">우편번호</label>
+														<input type="email" class="form-control"
+															placeholder="Enter your city" id="citynameInput">
+													</div>
+												</div>
+												
+												<div class="col-lg-12">
+													<div class="text-end">
+														<button type="submit" class="btn btn-primary">정보 입력</button>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xxl-6">
+							<div class="card">
+								<div class="card-header align-items-center d-flex">
+									<h4 class="card-title mb-0 flex-grow-1">사이트 고급 관리</h4>
+								</div>
+
+								<div class="card-body">
+									<p class="text-muted"># <code> ---</code></span></p>
+									<div class="live-preview">
+										<form action="javascript:void(0);" class="row g-3">
+											<div class="col-md-12">
+												<label for="inputState" class="form-label">제품 노출방식 선택</label>
+												<select id="inputState" class="form-select">
+													<option selected>기본 노출 방식 사용</option>
+													<option>관리자 적용 순위 사용</option>
+												</select>
+											</div>
+											<div class="col-md-6">
+												<p class="text-muted"># <code>1회 거래시 발생하는</code> 배송비 항목 입니다.</span></p>
+												<label for="inputEmail4" class="form-label">배송비</label>
+												<input type="text" class="form-control" id="inputEmail4"
+													placeholder="3,000원">
+											</div>
+											<div class="col-md-6">
+												<p class="text-muted"># <code>하기 금액 초과 결제시</code> 배송비가 면제 됩니다.</span></p>
+												<label for="inputPassword4" class="form-label">배송비 면제를 위한 최소 거래금액</label>
+												<input type="text" class="form-control" id="inputPassword4"
+													placeholder="400,000원">
+											</div>
+											
+											<div class="col-lg-12 col-md-12">
+	                                            <div class="mb-3">
+	                                                <label for="choices-text-remove-button" class="form-label text-muted">이메일 수신 관리자 선택</label>
+	                                                <p class="text-muted"># <code>이벤트 발생 시 해당 이메일들로</code> 알림 메일이 발송 됩니다.</p>
+	                                                <input class="form-control" id="choices-text-remove-button" 
+	                                                data-choices data-choices-limit="10" 
+	                                                data-choices-removeItem type="text" value="admin@ibio.co.kr" />
+	                                            </div>
+	                                        </div>
+	                                        <div class="col-lg-12 col-md-12">
+	                                            <div class="mb-3">
+	                                                 <label for="choices-text-remove-button" class="form-label text-muted">문자 수신 관리자 선택</label>
+	                                                <p class="text-muted"># <code>이벤트 발생 시 해당 연락처들로</code> 알림 문자가 발송 됩니다.</p>
+	                                                <input class="form-control" id="choices-text-remove-button" 
+	                                                data-choices data-choices-limit="10" data-choices-removeItem type="text" 
+	                                                value="010-1234-1234" />
+	                                            </div>
+	                                        </div>
+	                                        <div class="col-12">
+												<div class="text-end">
+													<button type="submit" class="btn btn-primary">정보 입력</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div> 
+					</div>
+				</div> 
+			</div>
+			<th:block th:replace="fragments/administration/common :: footerSrc"></th:block>
+		</div>
+
+	</div>
+	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
+	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"
+		integrity="sha256-ipiJrswvAR4VAx/th+6zWsdeYmVae0iJuiR+6OqHJHQ=" crossorigin="anonymous"></script>
+	<script src="/administration/assets/libs/sortablejs/Sortable.min.js"></script>
+	<script src="/administration/assets/js/ibioProductIndexManager.js"></script>
+</body>
+
+</html>

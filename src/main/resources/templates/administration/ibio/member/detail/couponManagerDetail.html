@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ko" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none"
+	data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: headSrc">
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: headerMenu">
+
+		</header>
+
+		<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true"
+			th:replace="fragments/administration/common :: removeModal">
+		</div>
+
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: navMenu">
+		</div>
+
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card mt-n4 mx-n4 mb-n5">
+								<div class="bg-warning-subtle">
+									<div class="card-body pb-4 mb-5">
+										<div class="row">
+											<div class="col-md">
+												<div class="row align-items-center">
+													<!--end col-->
+													<div class="col-md">
+														<h4 id="ticket-title">#쿠폰코드</h4>
+														<div class="hstack gap-3 flex-wrap">
+															<div class="text-muted"><i
+																	class="ri-building-line align-bottom me-1"></i><span
+																	id="ticket-client">쿠폰 TITLE</span></div>
+															<div class="vr"></div>
+															<div class="text-muted">생성일 : <span
+																	class="fw-medium " id="create-date">2024.01.01</span></div>
+															<div class="vr"></div>
+															<div class="text-muted">사용종료기간 : <span class="fw-medium"
+																	id="due-date">2024.01.01</span></div>
+															<div class="vr"></div>
+															<div class="badge rounded-pill bg-info fs-12"
+																id="ticket-status">미사용쿠폰</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xxl-3">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title mb-0">쿠폰 상세정보</h5>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive table-card">
+										<table class="table table-borderless align-middle mb-0">
+											<tbody>
+												<tr>
+													<td class="fw-medium">Ticket</td>
+													<td>#쿠폰코드<span id="t-no">135</span> </td>
+												</tr>
+												<tr>
+													<td class="fw-medium">사용고객</td>
+													<td id="t-client">고객명</td>
+												</tr>
+												<tr>
+													<td class="fw-medium">할당고객</td>
+													<td>고객명</td>
+												</tr>
+												<tr>
+													<td class="fw-medium">쿠폰상태 :</td>
+													<td>
+														<select class="form-select" id="t-status" data-choices
+															data-choices-search-false
+															aria-label="Default select example" disabled>
+															<option value>Status</option>
+															<option value="New" selected>미사용</option>
+															<option value="Open">사용완료</option>
+															<option value="Inprogress">기간초과</option>
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td class="fw-medium">쿠폰 생성일</td>
+													<td id="c-date">2024.01.01</td>
+												</tr>
+												<tr>
+													<td class="fw-medium">사용종료 기간</td>
+													<td id="d-date">2024.01.01</td>
+												</tr>
+												<tr>
+													<td class="fw-medium">쿠폰 사용일</td>
+													<td>2024.01.01</td>
+												</tr>
+												<tr>
+													<td class="fw-medium">사용된 거래</td>
+													<td class="hstack text-wrap gap-1 fs-15">
+														<span class="badge bg-primary-subtle text-primary"><a href="/admin/memberPaymentManagerDetail">#거래코드</a></span>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<th:block th:replace="fragments/administration/common :: footerSrc"></th:block>
+		</div>
+
+	</div>
+
+
+	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
+
+	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+
+	<script src="/administration/assets/libs/list.js/list.min.js"></script>
+
+	<script src="/administration/assets/libs/list.pagination.js/list.pagination.min.js"></script>
+
+	<script src="/administration/assets/js/pages/ticketlist.init.js"></script>
+	<script src="/administration/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+
+
+</body>
+
+</html>

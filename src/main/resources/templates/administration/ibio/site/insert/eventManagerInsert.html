@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none"
+	data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: headSrc">
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: headerMenu">
+
+		</header>
+
+		<div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true"
+			th:replace="fragments/administration/common :: removeModal">
+		</div>
+
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: navMenu">
+		</div>
+
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+								<h4 class="mb-sm-0">이벤트 등록</h4>
+
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a href="javascript: void(0);">SITEs</a></li>
+										<li class="breadcrumb-item active">이벤트 등록</li>
+									</ol>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!-- end page title -->
+
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="mb-3">
+										<label class="form-label" for="project-title-input">이벤트 제목</label>
+										<input type="text" class="form-control" id="project-title-input"
+											placeholder="이벤트 제목을 입력 해 주세요.">
+									</div>
+
+									<div class="mb-3">
+										<label class="form-label" for="project-thumbnail-img">썸네일 이미지</label>
+										<input class="form-control" id="project-thumbnail-img" type="file"
+											accept="image/png, image/gif, image/jpeg">
+									</div>
+
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="mb-3 mb-lg-0">
+												<label for="choices-status-input" class="form-label">상태</label>
+												<select class="form-select" data-choices data-choices-search-false
+													id="choices-status-input">
+													<option value="Inprogress" selected>진행중 이벤트</option>
+													<option value="Completed">종료 이벤트</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div>
+												<label for="datepicker-deadline-input" class="form-label">종료기간</label>
+												<input type="text" class="form-control" id="datepicker-deadline-input"
+													placeholder="이벤트 종료일을 선택 해 주세요." data-provider="flatpickr">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="text-end mb-4">
+								<button type="submit" class="btn btn-success w-sm">등록하기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
+
+		<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+		<script src="/administration/assets/libs/dropzone/dropzone-min.js"></script>
+		<!-- project-create init -->
+		<script src="/administration/assets/js/pages/project-create.init.js"></script>
+</body>
+
+</html>

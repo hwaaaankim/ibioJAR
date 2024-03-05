@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/front/common :: headSrc">
+</head>
+
+<body class="res layout-1 layout-subpage">
+
+    <div id="wrapper" class="wrapper-fluid banners-effect-5">
+        <header id="header" class=" typeheader-1" th:replace="fragments/front/common :: headerMenu"></header>
+
+        <!-- Main Container  -->
+        <div class="main-container container">
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i></a></li>
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+
+            <div class="row">
+                <div id="content" class="col-sm-12">
+                    <div class="page-login">
+
+                        <div class="account-border">
+                            <div class="row">
+                                <div class="col-sm-6 new-customer">
+                                    <div class="well">
+                                        <h2><i class="fa fa-file-o" aria-hidden="true"></i> NEW MEMBER</h2>
+                                        <p>* 처음 방문하신 분은 회원가입을 진행 해 주시기 바랍니다.</p>
+                                        <p>* 구매를 위한 사용자의 경우 [일반회원가입]을 진행 해 주시기 바랍니다.</p>
+                                        <p>* 일반 구매자가 아닌 입점을 위한 회원의 경우 [판매자회원가입]을 진행 해 주시기 바랍니다.</p>
+                                        <p>* [판매자회원가입]의 경우 제출하신 서류 등을 관리자가 검수 후 회원가입 승낙을 진행하며 이메일 혹은 문자메시지를 통해 안내됩니다.</p>
+                                    </div>
+                                    <div class="bottom-form">
+                                        <a href="/loginForm" class="btn btn-default pull-right">일반회원가입</a>
+                                        <a href="/dealerSignupForm" class="btn btn-default pull-right" style="margin-right:5px;">판매자회원가입</a>
+                                    </div>
+                                </div>
+
+                                <form action="/signinProcess" method="post" enctype="multipart/form-data">
+                                    <div class="col-sm-6 customer-login">
+                                        <div class="well">
+                                            <h2><i class="fa fa-file-text-o" aria-hidden="true"></i> 회원 LOGIN
+                                            </h2>
+                                            <p><strong>회원가입을 진행하신 회원의 경우 로그인을 진행 해 주시기 바랍니다.</strong></p>
+                                            <div class="form-group">
+                                                <label class="control-label " for="input-email">ID</label>
+                                                <input type="text" name="username" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label " for="input-password">PASSWORD</label>
+                                                <input type="password" name="password"  class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="bottom-form">
+                                            <a href="/findUsername" class="forgot">Forgot ID</a> / <a href="/findPassword" class="forgot">Forgot PASSWORD</a>
+                                            <input type="submit" value="Login" class="btn btn-default pull-right" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+	<footer class="footer-container typefooter-1" th:replace="fragments/front/common :: ibioFooter"></footer>
+    </div>
+
+   <th:block th:replace="fragments/front/common :: scriptSrc"></th:block>
+
+</body>
+
+</html>
