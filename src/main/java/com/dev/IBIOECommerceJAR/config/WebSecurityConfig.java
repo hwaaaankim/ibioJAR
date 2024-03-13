@@ -64,7 +64,8 @@ public class WebSecurityConfig {
 					.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
 					.requestMatchers("/dealer/**").hasAnyAuthority("ROLE_DEALER")
 					.requestMatchers("/member/**").hasAnyAuthority("ROLE_MEMBER")
-					.requestMatchers(visitorsUrls).permitAll())
+					.requestMatchers(visitorsUrls).permitAll()
+					.anyRequest().authenticated())
 			.authenticationProvider(authenticationProvider)
 			.formLogin((formLogin) -> 
 				formLogin
