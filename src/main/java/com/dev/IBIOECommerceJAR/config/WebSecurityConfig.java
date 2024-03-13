@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class WebSecurityConfig {
 
 	private final String[] visitorsUrls = {
-			"/**", "/front/**", "/administration/**" ,"/api/v1/**" , "/logout"
+			"/**", "/front/**", "/administration/**" ,"/api/v1/**" , "/logout", "/test/**"
 	};
 	
 	private final String[] membersUrls = {

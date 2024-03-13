@@ -35,4 +35,15 @@ public class MemberService {
 
 	}
 	
+	public String passwordCheck() {
+		String result = "";
+		if(passwordEncoder().matches("12345", memberRepository.findByUsername("admin").get().getPassword())) {
+			result = "1";
+		}else {
+			result = "2";
+		}
+		
+		return result;
+	}
+	
 }
