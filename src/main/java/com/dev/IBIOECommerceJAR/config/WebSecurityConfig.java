@@ -26,7 +26,7 @@ public class WebSecurityConfig {
 	};
 	
 	private final String[] membersUrls = {
-			"/member/**",
+			"/member/**"
 	};
 	
 	private final String[] dealersUrls = {
@@ -58,12 +58,12 @@ public class WebSecurityConfig {
 					.disable()) // 1번
 			.headers((headerConfig) -> 
 				headerConfig
-					.frameOptions(frameOptionsConfig -> frameOptionsConfig.disable()))
+					.frameOptions(frameOptionsConfig -> frameOptionsConfig.sameOrigin()))
 			.authorizeHttpRequests((authorizeRequests) -> 
 				authorizeRequests
-					.requestMatchers(adminsUrls).hasAuthority("ROLE_ADMIN")
-					.requestMatchers(dealersUrls).hasAnyAuthority("ROLE_ADMIN", "ROLE_DEALER")
-					.requestMatchers(membersUrls).hasAnyAuthority("ROLE_ADMIN", "ROLE_DEALER", "ROLE_MEMBER")
+					.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+					.requestMatchers("/dealer/**").hasAnyAuthority("ROLE_DEALER")
+					.requestMatchers("/member/**").hasAnyAuthority("ROLE_MEMBER")
 					.requestMatchers(visitorsUrls).permitAll()
 					.anyRequest().authenticated())
 			.authenticationProvider(authenticationProvider)
