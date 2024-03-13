@@ -33,7 +33,7 @@ public class SessionFilter implements Filter {
             
             if (session != null) {
                 session.setHttpOnly(true);
-                session.setSecure(true);
+                session.setSecure(false);
                 res.addCookie(session);
             }
         }
