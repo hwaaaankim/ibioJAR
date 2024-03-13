@@ -61,9 +61,9 @@ public class WebSecurityConfig {
 					.frameOptions(frameOptionsConfig -> frameOptionsConfig.sameOrigin()))
 			.authorizeHttpRequests((authorizeRequests) -> 
 				authorizeRequests
-					.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
-					.requestMatchers("/dealer/**").hasAnyAuthority("ROLE_DEALER")
-					.requestMatchers("/member/**").hasAnyAuthority("ROLE_MEMBER")
+					.requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
+					.requestMatchers("/dealer").hasAnyAuthority("ROLE_DEALER")
+					.requestMatchers("/member").hasAnyAuthority("ROLE_MEMBER")
 					.requestMatchers(visitorsUrls).permitAll()
 					.anyRequest().authenticated())
 			.authenticationProvider(authenticationProvider)
