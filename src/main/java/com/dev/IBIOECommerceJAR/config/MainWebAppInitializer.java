@@ -8,7 +8,8 @@ import jakarta.servlet.ServletException;
 
 @Configuration
 public class MainWebAppInitializer implements WebApplicationInitializer {
-    @Override
+   
+	@Override
     public void onStartup(ServletContext sc) throws ServletException {
         sc.getSessionCookieConfig().setHttpOnly(true);        
         sc.getSessionCookieConfig().setSecure(true);        

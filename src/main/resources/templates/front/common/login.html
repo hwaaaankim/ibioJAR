@@ -51,6 +51,9 @@
                                                 <label class="control-label " for="input-password">PASSWORD</label>
                                                 <input type="password" name="password"  class="form-control" />
                                             </div>
+                                            <div th:if="error">
+											   <p style="color: red; font-size:12px;"><a th:text="${exception}"></a></p>
+											</div>
                                         </div>
                                         <div class="bottom-form">
                                             <a href="/findUsername" class="forgot">Forgot ID</a> / <a href="/findPassword" class="forgot">Forgot PASSWORD</a>

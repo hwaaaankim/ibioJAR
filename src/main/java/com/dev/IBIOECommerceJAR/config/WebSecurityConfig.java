@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect;
 
@@ -23,25 +24,34 @@ import lombok.RequiredArgsConstructor;
 @EnableMethodSecurity
 public class WebSecurityConfig {
 
+	// 일반 웹 페이지 조회 URL
+	// 회원가입, 로그인 페이지
 	private final String[] visitorsUrls = {
-			"/**", "/front/**", "/administration/**" ,"/api/v1/**" , "/logout", "/test/**"
+			"/**", 
+			"/front/**", 
+			"/administration/**",
+			"/api/v1/**", 
+			"/logout", 
 	};
 	
+	// 제품 구매관련
 	private final String[] membersUrls = {
 			"/member/**"
 	};
 	
+	// 딜러 제품 판매 관리
 	private final String[] dealersUrls = {
 			"/dealer/**"
 	};
-
+	
+	// 쇼핑몰 관리자
 	private final String[] adminsUrls = {
 			"/admin/**"
 	};
 	
 	private final AuthenticationProvider authenticationProvider;
 	private final PrincipalDetailsService principalDetailsService;
-	
+	private final AuthenticationFailureHandler customFailureHandler;
 	
 	
 	@Bean
@@ -70,9 +80,9 @@ public class WebSecurityConfig {
 					.frameOptions(frameOptionsConfig -> frameOptionsConfig.sameOrigin()))
 			.authorizeHttpRequests((authorizeRequests) -> 
 				authorizeRequests
-					.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
-					.requestMatchers("/dealer/**").hasAnyAuthority("ROLE_DEALER")
-					.requestMatchers("/member/**").hasAnyAuthority("ROLE_MEMBER")
+					.requestMatchers(adminsUrls).hasAuthority("ROLE_ADMIN")
+					.requestMatchers(dealersUrls).hasAnyAuthority("ROLE_DEALER")
+					.requestMatchers(membersUrls).hasAnyAuthority("ROLE_MEMBER", "ROLE_DEALER")
 					.requestMatchers(visitorsUrls).permitAll()
 					.anyRequest().authenticated())
 			.authenticationProvider(authenticationProvider)
@@ -88,7 +98,8 @@ public class WebSecurityConfig {
 					.usernameParameter("username")
 					.passwordParameter("password")
 					.loginProcessingUrl("/signinProcess")
-					.defaultSuccessUrl("/admin", false))
+					.defaultSuccessUrl("/", false)
+					.failureHandler(customFailureHandler))
 			.rememberMe((remember) -> 
 				remember
 					.rememberMeParameter("remember")
