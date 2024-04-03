@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomErrorController implements ErrorController{
 
-	private String VIEW_PATH = "/error/";
+	private String VIEW_PATH = "error/";
 
 	@GetMapping("/error")
 	public String handleError(
