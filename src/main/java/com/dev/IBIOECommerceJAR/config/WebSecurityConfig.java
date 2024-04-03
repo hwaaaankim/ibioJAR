@@ -3,12 +3,13 @@ package com.dev.IBIOECommerceJAR.config;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
@@ -49,11 +50,11 @@ public class WebSecurityConfig {
 			"/admin/**"
 	};
 	
-	private final AuthenticationProvider authenticationProvider;
+	// private final AuthenticationProvider authenticationProvider;
 	private final PrincipalDetailsService principalDetailsService;
 	private final AuthenticationFailureHandler customFailureHandler;
-	
-	
+	// private final ExceptionAuthenticationEntryPoint exceptionAuthenticationEntryPoint;
+	private final PasswordEncoder passwordEncoder;
 	@Bean
 	HttpSessionEventPublisher httpSessionEventPublisher() {
 	    return new HttpSessionEventPublisher();
@@ -85,13 +86,13 @@ public class WebSecurityConfig {
 					.requestMatchers(membersUrls).hasAnyAuthority("ROLE_MEMBER", "ROLE_DEALER")
 					.requestMatchers(visitorsUrls).permitAll()
 					.anyRequest().authenticated())
-			.authenticationProvider(authenticationProvider)
+			.authenticationProvider(daoAuthenticationProvider())
 			.sessionManagement(httpSecuritySessionManagermentConfigurer ->
 				httpSecuritySessionManagermentConfigurer
 					.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
 					.sessionFixation().migrateSession()
 					.maximumSessions(5)
-					.expiredUrl("/productList"))
+					.expiredUrl("/index"))
 			.formLogin((formLogin) -> 
 				formLogin
 					.loginPage("/loginForm")
@@ -100,6 +101,10 @@ public class WebSecurityConfig {
 					.loginProcessingUrl("/signinProcess")
 					.defaultSuccessUrl("/", false)
 					.failureHandler(customFailureHandler))
+			.exceptionHandling((exception) -> {
+				exception
+					.accessDeniedPage("/error/403");
+			})
 			.rememberMe((remember) -> 
 				remember
 					.rememberMeParameter("remember")
@@ -115,4 +120,12 @@ public class WebSecurityConfig {
 		return http.build();
 	}
 
+	@Bean
+	DaoAuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(principalDetailsService);
+        authenticationProvider.setPasswordEncoder(passwordEncoder);
+        authenticationProvider.setHideUserNotFoundExceptions(false);
+        return authenticationProvider;
+    }
 }
