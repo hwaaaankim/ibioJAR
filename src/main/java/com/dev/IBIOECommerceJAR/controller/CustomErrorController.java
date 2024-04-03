@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 public class CustomErrorController implements ErrorController{
 
 	private String VIEW_PATH = "/error/";
@@ -19,6 +21,7 @@ public class CustomErrorController implements ErrorController{
 			HttpServletRequest request,
 			Model model) {
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+		log.info(status.toString());
 		if(status != null) {
 			int statusCode = Integer.valueOf(status.toString());
 			
