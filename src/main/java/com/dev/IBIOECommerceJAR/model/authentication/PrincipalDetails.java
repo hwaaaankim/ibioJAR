@@ -10,10 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 
 @Data
-@Slf4j
 public class PrincipalDetails implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
@@ -29,9 +27,6 @@ public class PrincipalDetails implements UserDetails {
 		
 		ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
         auth.add(new SimpleGrantedAuthority(member.getRole()));
-        log.info("getAuthoritied");
-        log.info(member.getRole());
-        log.info(auth.get(0).getAuthority());
         return auth;
 	}
 	
@@ -81,7 +76,7 @@ public class PrincipalDetails implements UserDetails {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return this.member.getEnabled();
 	}
 
 //	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

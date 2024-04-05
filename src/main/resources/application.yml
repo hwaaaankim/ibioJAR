@@ -1,7 +1,7 @@
 # 동작 환경 설정
 spring:
   profiles:
-    active: prod
+    active: test
 server:
   error:
     include-exception: true
@@ -62,8 +62,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: 'bionlifesci@gmail.com'
-    password: 'nuuhdepcsveygwsy'
+    username: 'teriwoo48@gmail.com'
+    password: 'ridviujxwdwbxxre'
     properties:
       mail:
         smtp:
@@ -115,15 +115,15 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: 'bionlifesci@gmail.com'
-    password: 'nuuhdepcsveygwsy'
+    username: 'teriwoo48@gmail.com'
+    password: 'ridviujxwdwbxxre'
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
-  upload.path: /home/hosting_users/bionls/tomcat/webapps
+  upload.path: /project/files/
   upload.env: prod
 
 

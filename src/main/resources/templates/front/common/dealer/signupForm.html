@@ -13,165 +13,203 @@
 			<ul class="breadcrumb">
 				<li><a href="#"><i class="fa fa-home"></i></a></li>
 				<li><a href="#">ACCOUNT</a></li>
-				<li><a href="#">딜러 회원가입</a></li>
+				<li><a href="#">딜러회원가입</a></li>
 			</ul>
 
 			<div class="row">
 				<div id="content" class="col-sm-12">
 					<h2 class="title">딜러 회원 가입</h2>
-					<p># 일반 구매자 회원은 <a href="#">일반회원가입</a>을 진행 해 주시기 바랍니다.</p>
+					<p># 일반 구매자 회원은 <a href="/signupForm">[일반회원가입]</a>을 진행 해 주시기 바랍니다.</p>
 					<p># 딜러회원 가입의 경우 회원신청 완료 후 관리자의 승인 전까지는 일반회원으로의 활동만 가능합니다.</p>
-					<p># 관리자 승인 시 입력한 이메일과 문자를 통해 안내되니 정확한 정보를 입력 해 주시기.</p>
+					<p># 관리자 승인 시 입력한 이메일과 문자를 통해 안내되니 정확한 정보를 입력 해 주시기 바랍니다.</p>
+					<p># 만약 기존에 회원가입을 진행하신 분 이라면 <a href="/loginForm">[로그인]</a>을 진행 해 주세요.</p>
+					<p># 아이디 또는 비밀번호가 기억나지 않는 경우 <a href="/findUsername">[아이디 찾기]</a> 또는 <a href="/findPassword">[비밀번호 찾기]</a>를 진행 해 주세요.</p>
 					<form action="" method="post" enctype="multipart/form-data"
-						class="form-horizontal account-register clearfix">
+						class="form-horizontal clearfix">
+						<fieldset>
+							<legend>로그인 정보</legend>
+							<div class="form-group required">
+								<label class="col-sm-2 control-label" for="username">아이디</label>
+								<div class="col-sm-10">
+									<input 
+									type="text"
+									name="username"
+									id="username" 
+									required
+									placeholder="사용하실 아이디를 입력 해 주세요." 
+									class="form-control">
+								</div>
+							</div>
+							<div class="form-group required">
+								<label class="col-sm-2 control-label" for="password">비밀번호</label>
+								<div class="col-sm-10">
+									<input 
+									type="password" 
+									name="password"
+									id="password" 
+									required
+									placeholder="사용하실 비밀번호를 입력 해 주세요."
+									class="form-control">
+								</div>
+							</div>
+							<div class="form-group required">
+								<label class="col-sm-2 control-label" for="passwordCheck">비밀번호 확인</label>
+								<div class="col-sm-10">
+									<input 
+									type="password" 
+									name="passwordCheck" 
+									required
+									placeholder="비밀번호를 다시한번 입력 해 주세요."
+									id="passwordCheck" 
+									class="form-control">
+								</div>
+							</div>
+						</fieldset>
+						
 						<fieldset id="account">
 							<legend>개인정보 입력</legend>
-							<div class="form-group required" style="display: none;">
-								<label class="col-sm-2 control-label">Customer Group</label>
+							<div class="form-group required">
+								<label class="col-sm-2 control-label" for="name">성함</label>
 								<div class="col-sm-10">
-									<div class="radio">
-										<label>
-											<input type="radio" name="customer_group_id" value="1" checked="checked">
-											Default
-										</label>
-									</div>
+									<input 
+									type="text" 
+									name="name" 
+									required
+									placeholder="성함을 입력 해 주세요."
+									id="name" 
+									class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="business">사업자명</label>
+								<div class="col-sm-10">
+									<input 
+									type="text" 
+									name="business" 
+									placeholder="사업자 혹은 법인명을 입력 해 주세요. [법인 또는 사업자회원]"
+									id="business" 
+									class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="businessCode">사업자등록번호</label>
+								<div class="col-sm-10">
+									<input 
+									type="number" 
+									name="businessCode" 
+									placeholder="사업자등록번호를 입력 해 주세요. [법인 또는 사업자회원]"
+									id="businessCode" 
+									class="form-control">
 								</div>
 							</div>
 							<div class="form-group required">
-								<label class="col-sm-2 control-label" for="input-firstname">First Name</label>
+								<label class="col-sm-2 control-label" for="email">이메일</label>
 								<div class="col-sm-10">
-									<input type="text" name="firstname" value="" placeholder="First Name"
-										id="input-firstname" class="form-control">
+									<input 
+									type="email" 
+									name="email"
+									id="email"
+									required
+									placeholder="이메일을 이용 정확하게 입력 해 주세요."
+									class="form-control">
 								</div>
 							</div>
 							<div class="form-group required">
-								<label class="col-sm-2 control-label" for="input-lastname">Last Name</label>
-								<div class="col-sm-10">
-									<input type="text" name="lastname" value="" placeholder="Last Name"
-										id="input-lastname" class="form-control">
-								</div>
-							</div>
-							<div class="form-group required">
-								<label class="col-sm-2 control-label" for="input-lastname">업체명</label>
-								<div class="col-sm-10">
-									<input type="text" name="lastname" value=""class="form-control">
-								</div>
-							</div>
-							<div class="form-group required">
-								<label class="col-sm-2 control-label" for="input-lastname">사업자 등록번호</label>
-								<div class="col-sm-10">
-									<input type="text" name="lastname" value=""class="form-control">
-								</div>
-							</div>
-							<div class="form-group required">
-								<label class="col-sm-2 control-label" for="input-email">E-Mail</label>
-								<div class="col-sm-10">
-									<input type="email" name="email" value="" placeholder="E-Mail" id="input-email"
-										class="form-control">
-								</div>
-							</div>
-							<div class="form-group required">
-								<label class="col-sm-2 control-label" for="input-telephone">Telephone</label>
+								<label class="col-sm-2 control-label" for="phone">휴대폰 번호</label>
 								<div class="col-sm-9">
-									<input type="tel" name="telephone" value="" placeholder="Telephone"
-										id="input-telephone" class="form-control">
+									<input 
+									type="number" 
+									name="phone" 
+									id="phone"
+									required
+									placeholder="휴대폰 번호를 입력 해 주세요."
+									class="form-control">
 								</div>
 								<div class="col-sm-1">
 									<button style="width:100%;" class="btn btn-warning" disabled>인증하기</button>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label" for="input-fax">Fax</label>
+								<label class="col-sm-2 control-label" for="telephone">일반 전화번호</label>
 								<div class="col-sm-10">
-									<input type="text" name="fax" value="" placeholder="Fax" id="input-fax"
-										class="form-control">
+									<input 
+									type="text" 
+									name="telephone" 
+									id="telephone"
+									placeholder="일반 전화번호를 입력 해 주세요."
+									class="form-control">
 								</div>
 							</div>
-							<div class="form-group required">
-								<label class="col-sm-2 control-label" for="input-lastname">통장사본</label>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="fax">FAX</label>
 								<div class="col-sm-10">
-									<input type="text" name="lastname" value=""class="form-control">
-								</div>
-							</div>
-							<div class="form-group required">
-								<label class="col-sm-2 control-label" for="input-lastname">신분증 혹은 사업자등록증 사본</label>
-								<div class="col-sm-10">
-									<input type="text" name="lastname" value=""class="form-control">
+									<input 
+									type="text" 
+									name="fax" 
+									placeholder="Fax번호를 입력 해 주세요." 
+									id="fax"
+									class="form-control">
 								</div>
 							</div>
 						</fieldset>
 						<fieldset id="address">
 							<legend>주소 정보</legend>
-							<div class="form-group">
-								<label class="col-sm-2 control-label" for="input-company">환불 주소</label>
-								<div class="col-sm-10">
-									<input type="text" name="company" class="form-control">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label" for="input-company">사업장 주소</label>
-								<div class="col-sm-10">
-									<input type="text" name="company" class="form-control">
-								</div>
-							</div>
 							<div class="form-group required">
-								<label class="col-sm-2 control-label" for="input-address-1">Address 1</label>
+								<label class="col-sm-2 control-label" for="address">대표 주소</label>
 								<div class="col-sm-10">
-									<input type="text" name="address_1" value="" placeholder="Address 1"
-										id="input-address-1" class="form-control">
+									<input 
+									type="text" 
+									name="address" 
+									required
+									class="form-control"
+									placeholder="대표 주소를 입력 해 주세요."
+									id="address">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label" for="input-address-2">Address 2</label>
+								<label class="col-sm-2 control-label" for="postal">우편번호</label>
 								<div class="col-sm-10">
-									<input type="text" name="address_2" value="" placeholder="Address 2"
-										id="input-address-2" class="form-control">
+									<input 
+									type="number" 
+									name="postal"
+									id="postal"
+									placeholder="우편번호를 입력 해 주세요."
+									class="form-control">
 								</div>
 							</div>
-							<div class="form-group required">
-								<label class="col-sm-2 control-label" for="input-postcode">Post Code</label>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="deliveryAddress">배송지 주소</label>
 								<div class="col-sm-10">
-									<input type="text" name="postcode" value="" placeholder="Post Code"
-										id="input-postcode" class="form-control">
+									<input 
+									type="text" 
+									name="deliveryAddress" 
+									class="form-control"
+									placeholder="배송을 받을 주소를 입력 해 주세요."
+									id="deliveryAddress">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="deliveryPostal">우편번호</label>
+								<div class="col-sm-10">
+									<input 
+									type="number" 
+									name="deliveryPostal"
+									id="deliveryPostal"
+									placeholder="우편번호를 입력 해 주세요."
+									class="form-control">
 								</div>
 							</div>
 						</fieldset>
-						<fieldset>
-							<legend>비밀번호</legend>
-							<div class="form-group required">
-								<label class="col-sm-2 control-label" for="input-password">Password</label>
-								<div class="col-sm-10">
-									<input type="password" name="password" value="" placeholder="Password"
-										id="input-password" class="form-control">
-								</div>
-							</div>
-							<div class="form-group required">
-								<label class="col-sm-2 control-label" for="input-confirm">Password Confirm</label>
-								<div class="col-sm-10">
-									<input type="password" name="confirm" value="" placeholder="Password Confirm"
-										id="input-confirm" class="form-control">
-								</div>
-							</div>
-						</fieldset>
-						<fieldset>
-							<legend>Newsletter</legend>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Subscribe</label>
-								<div class="col-sm-10">
-									<label class="radio-inline">
-										<input type="radio" name="newsletter" value="1"> Yes
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="newsletter" value="0" checked="checked"> No
-									</label>
-								</div>
-							</div>
-						</fieldset>
+						
 						<div class="buttons">
-							<div class="pull-right">I have read and agree to the <a href="#" class="agree"><b>Pricing
-										Tables</b></a>
-								<input class="box-checkbox" type="checkbox" name="agree" value="1"> &nbsp;
-								<input type="submit" value="Continue" class="btn btn-primary">
+							<div class="pull-right">체크시 IBIO <a href="#" class="agree"><b>개인정보 처리방침</b></a> 및 <a href="#" class="agree"><b>쇼핑몰 이용약관</b></a>에 동의한 것으로 간주됩니다.
+								<input 
+								class="box-checkbox" 
+								type="checkbox" 
+								name="agree"
+								checked
+								id="agree"> &nbsp;
+								<input type="submit" value="회원가입" class="btn btn-primary">
 							</div>
 						</div>
 					</form>

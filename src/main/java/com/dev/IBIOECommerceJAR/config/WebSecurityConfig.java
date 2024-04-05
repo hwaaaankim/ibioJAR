@@ -3,7 +3,9 @@ package com.dev.IBIOECommerceJAR.config;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,6 +17,8 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect;
 
+import com.dev.IBIOECommerceJAR.handler.CustomAccessDeniedHandler;
+import com.dev.IBIOECommerceJAR.handler.ExceptionAuthenticationEntryPoint;
 import com.dev.IBIOECommerceJAR.service.authentication.PrincipalDetailsService;
 
 import lombok.RequiredArgsConstructor;
@@ -53,8 +57,11 @@ public class WebSecurityConfig {
 	// private final AuthenticationProvider authenticationProvider;
 	private final PrincipalDetailsService principalDetailsService;
 	private final AuthenticationFailureHandler customFailureHandler;
-	// private final ExceptionAuthenticationEntryPoint exceptionAuthenticationEntryPoint;
+	private final ExceptionAuthenticationEntryPoint exceptionAuthenticationEntryPoint;
+	private final CustomAccessDeniedHandler customAccessDeniedHandler;
 	private final PasswordEncoder passwordEncoder;
+	
+	
 	@Bean
 	HttpSessionEventPublisher httpSessionEventPublisher() {
 	    return new HttpSessionEventPublisher();
@@ -73,6 +80,11 @@ public class WebSecurityConfig {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
+		AuthenticationManagerBuilder sharedObject = http.getSharedObject(AuthenticationManagerBuilder.class);
+		sharedObject.authenticationProvider(daoAuthenticationProvider());
+        AuthenticationManager authenticationManager = sharedObject.build();
+
+        http.authenticationManager(authenticationManager);
 		http.csrf((csrfConfig) -> 
 				csrfConfig
 					.disable()) // 1번
@@ -86,7 +98,6 @@ public class WebSecurityConfig {
 					.requestMatchers(membersUrls).hasAnyAuthority("ROLE_MEMBER", "ROLE_DEALER")
 					.requestMatchers(visitorsUrls).permitAll()
 					.anyRequest().authenticated())
-			.authenticationProvider(daoAuthenticationProvider())
 			.sessionManagement(httpSecuritySessionManagermentConfigurer ->
 				httpSecuritySessionManagermentConfigurer
 					.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
@@ -101,9 +112,13 @@ public class WebSecurityConfig {
 					.loginProcessingUrl("/signinProcess")
 					.defaultSuccessUrl("/", false)
 					.failureHandler(customFailureHandler))
-			.exceptionHandling((exception) -> {
-				exception
-					.accessDeniedPage("/error/403");
+//			.exceptionHandling((exception) -> {
+//				exception
+//					.accessDeniedPage("/error/403");
+//			})
+			.exceptionHandling(e->{
+				e.accessDeniedHandler(customAccessDeniedHandler)
+				 .authenticationEntryPoint(exceptionAuthenticationEntryPoint);
 			})
 			.rememberMe((remember) -> 
 				remember
@@ -119,7 +134,7 @@ public class WebSecurityConfig {
 					.logoutSuccessUrl("/index"));
 		return http.build();
 	}
-
+	
 	@Bean
 	DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();

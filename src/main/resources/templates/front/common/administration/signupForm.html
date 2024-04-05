@@ -19,6 +19,9 @@
 			<div class="row">
 				<div id="content" class="col-sm-12">
 					<h2 class="title">딜러 회원 가입</h2>
+					<p># 일반 구매자 회원은 <a href="/signupForm">일반회원가입</a>을 진행 해 주시기 바랍니다.</p>
+					<p># 딜러회원 가입의 경우 회원신청 완료 후 관리자의 승인 전까지는 일반회원으로의 활동만 가능합니다.</p>
+					<p># 관리자 승인 시 입력한 이메일과 문자를 통해 안내되니 정확한 정보를 입력 해 주시기.</p>
 					<p># 만약 기존에 회원가입을 진행하신 분 이라면 <a href="/loginForm">로그인</a>을 진행 해 주세요.</p>
 					<p># 아이디 또는 비밀번호가 기억나지 않는 경우 <a href="/findUsername">아이디 찾기</a> 또는 <a href="/findPassword">비밀번호 찾기</a>를 진행 해 주세요.</p>
 					<form action="" method="post" enctype="multipart/form-data"
@@ -92,7 +95,7 @@
 								<label class="col-sm-2 control-label" for="businessCode">사업자등록번호</label>
 								<div class="col-sm-10">
 									<input 
-									type="number" 
+									type="text" 
 									name="businessCode" 
 									placeholder="사업자등록번호를 입력 해 주세요. [법인 또는 사업자회원]"
 									id="businessCode" 
@@ -103,10 +106,10 @@
 								<label class="col-sm-2 control-label" for="email">이메일</label>
 								<div class="col-sm-10">
 									<input 
-									type="email" 
+									type="text" 
+									required
 									name="email"
 									id="email"
-									required
 									placeholder="이메일을 이용 정확하게 입력 해 주세요."
 									class="form-control">
 								</div>
@@ -115,10 +118,10 @@
 								<label class="col-sm-2 control-label" for="phone">휴대폰 번호</label>
 								<div class="col-sm-9">
 									<input 
-									type="number" 
+									type="text" 
 									name="phone" 
-									id="phone"
 									required
+									id="phone"
 									placeholder="휴대폰 번호를 입력 해 주세요."
 									class="form-control">
 								</div>
@@ -157,8 +160,8 @@
 									<input 
 									type="text" 
 									name="address" 
-									required
 									class="form-control"
+									required
 									placeholder="대표 주소를 입력 해 주세요."
 									id="address">
 								</div>
@@ -167,7 +170,7 @@
 								<label class="col-sm-2 control-label" for="postal">우편번호</label>
 								<div class="col-sm-10">
 									<input 
-									type="number" 
+									type="text" 
 									name="postal"
 									id="postal"
 									placeholder="우편번호를 입력 해 주세요."
@@ -189,7 +192,7 @@
 								<label class="col-sm-2 control-label" for="deliveryPostal">우편번호</label>
 								<div class="col-sm-10">
 									<input 
-									type="number" 
+									type="text" 
 									name="deliveryPostal"
 									id="deliveryPostal"
 									placeholder="우편번호를 입력 해 주세요."
