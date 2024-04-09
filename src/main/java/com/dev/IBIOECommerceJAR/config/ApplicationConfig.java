@@ -11,9 +11,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.dev.IBIOECommerceJAR.service.authentication.PrincipalDetailsService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @RequiredArgsConstructor
+@Slf4j
 public class ApplicationConfig {
 
 	@Autowired
@@ -21,9 +23,11 @@ public class ApplicationConfig {
 	
 	@Bean
 	AuthenticationProvider authenticationProvider() {
+		log.info("DaoAuthenticationProvider");
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 		authProvider.setUserDetailsService(principalDetailsService);
 		authProvider.setPasswordEncoder(passwordEncoder());
+		authProvider.setHideUserNotFoundExceptions(false);
 		return authProvider;
 	}
 

@@ -1,6 +1,5 @@
 package com.dev.IBIOECommerceJAR.model.authentication;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.lang.Nullable;
@@ -14,17 +13,19 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "TB_MEMBER")
-public class Member implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Member{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -67,7 +68,7 @@ public class Member implements Serializable{
 	
 	@Column(name="MEMBER_POSTAL")
 	@Nullable
-	private int postal;
+	private String postal;
 	
 	@Column(name="MEMBER_DELIVERY_ADDRESS")
 	@Nullable
@@ -75,7 +76,7 @@ public class Member implements Serializable{
 	
 	@Column(name="MEMBER_DELIVERY_POSTAL")
 	@Nullable
-	private int deliveryPostal;
+	private String deliveryPostal;
 	
 	@Column(name = "MEMBER_ROLE")
 	private String role;
@@ -83,20 +84,44 @@ public class Member implements Serializable{
 	@Column(name="MEMBER_ENABLED")
 	private Boolean enabled;
 	
+	@Column(name="MEMBER_EXPIRED")
+	private Boolean expired;
+	
 	@Column(name="MEMBER_JOIN_DATE")
 	private Date joinDate;
 	
 	@Column(name="MEMBER_CHANGE_DATE")
 	private Date changeDate;
 	
-	@Column(name="MEMBER_FILE")
-	private String filePath;
-
-	@Column(name="MEMBER_FILE_NAME")
-	private String fileName;
+	@Column(name="MEMBER_BUSINESS_FILE_ORIGINAL_NAME")
+	private String businessOriginalName;
 	
-	@Column(name="MEMBER_FILE_ROAD")
-	private String fileRoad;
+	@Column(name="MEMBER_BUSINESS_FILE_PATH")
+	private String businessFilePath;
+
+	@Column(name="MEMBER_BUSINESS_FILE_NAME")
+	private String businessFileName;
+	
+	@Column(name="MEMBER_BUSINESS_FILE_EXTENSION")
+	private String businessFileExtension;
+	
+	@Column(name="MEMBER_BUSINESS_FILE_ROAD")
+	private String businessFileRoad;
+	
+	@Column(name="MEMBER_ACCOUNT_FILE_ORIGINAL_NAME")
+	private String accountOriginalName;
+	
+	@Column(name="MEMBER_ACCOUNT_FILE_PATH")
+	private String accountFilePath;
+
+	@Column(name="MEMBER_ACCOUNT_FILE_NAME")
+	private String accountFileName;
+	
+	@Column(name="MEMBER_ACCOUNT_FILE_EXTENSION")
+	private String accountFileExtension;
+	
+	@Column(name="MEMBER_ACCOUNT_FILE_ROAD")
+	private String accountFileRoad;
 	
 }
 

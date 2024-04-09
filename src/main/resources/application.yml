@@ -70,7 +70,7 @@ spring:
           auth: true
           starttls:
             enable: true
-  upload.path: src/main/resources/static/administration
+  upload.path: E:/TestAssets/
   upload.env: local
 
 # 배포 환경

@@ -3,21 +3,17 @@ package com.dev.IBIOECommerceJAR.config;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect;
 
 import com.dev.IBIOECommerceJAR.handler.CustomAccessDeniedHandler;
+import com.dev.IBIOECommerceJAR.handler.CustomAuthFailureHandler;
 import com.dev.IBIOECommerceJAR.handler.ExceptionAuthenticationEntryPoint;
 import com.dev.IBIOECommerceJAR.service.authentication.PrincipalDetailsService;
 
@@ -37,6 +33,8 @@ public class WebSecurityConfig {
 			"/administration/**",
 			"/api/v1/**", 
 			"/logout", 
+			"/signUp",
+			"/registration"
 	};
 	
 	// 제품 구매관련
@@ -56,10 +54,10 @@ public class WebSecurityConfig {
 	
 	// private final AuthenticationProvider authenticationProvider;
 	private final PrincipalDetailsService principalDetailsService;
-	private final AuthenticationFailureHandler customFailureHandler;
+	private final CustomAuthFailureHandler customFailureHandler;
 	private final ExceptionAuthenticationEntryPoint exceptionAuthenticationEntryPoint;
 	private final CustomAccessDeniedHandler customAccessDeniedHandler;
-	private final PasswordEncoder passwordEncoder;
+//	private final PasswordEncoder passwordEncoder;
 	
 	
 	@Bean
@@ -77,14 +75,25 @@ public class WebSecurityConfig {
 		return (web) -> web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
 	}
 	
+	
+//	@Bean
+//	DaoAuthenticationProvider daoAuthenticationProvider() {
+//		log.info("DaoAuthenticationProvider");
+//        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+//        authenticationProvider.setUserDetailsService(principalDetailsService);
+//        authenticationProvider.setPasswordEncoder(passwordEncoder);
+//        authenticationProvider.setHideUserNotFoundExceptions(false);
+//        return authenticationProvider;
+//    }
+//	
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
-		AuthenticationManagerBuilder sharedObject = http.getSharedObject(AuthenticationManagerBuilder.class);
-		sharedObject.authenticationProvider(daoAuthenticationProvider());
-        AuthenticationManager authenticationManager = sharedObject.build();
+//		AuthenticationManagerBuilder sharedObject = http.getSharedObject(AuthenticationManagerBuilder.class);
+//		sharedObject.authenticationProvider(daoAuthenticationProvider());
+//      AuthenticationManager authenticationManager = sharedObject.build();
 
-        http.authenticationManager(authenticationManager);
+    
 		http.csrf((csrfConfig) -> 
 				csrfConfig
 					.disable()) // 1번
@@ -100,10 +109,7 @@ public class WebSecurityConfig {
 					.anyRequest().authenticated())
 			.sessionManagement(httpSecuritySessionManagermentConfigurer ->
 				httpSecuritySessionManagermentConfigurer
-					.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-					.sessionFixation().migrateSession()
-					.maximumSessions(5)
-					.expiredUrl("/index"))
+					.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
 			.formLogin((formLogin) -> 
 				formLogin
 					.loginPage("/loginForm")
@@ -116,6 +122,7 @@ public class WebSecurityConfig {
 //				exception
 //					.accessDeniedPage("/error/403");
 //			})
+//		    .authenticationProvider(daoAuthenticationProvider())
 			.exceptionHandling(e->{
 				e.accessDeniedHandler(customAccessDeniedHandler)
 				 .authenticationEntryPoint(exceptionAuthenticationEntryPoint);
@@ -134,13 +141,5 @@ public class WebSecurityConfig {
 					.logoutSuccessUrl("/index"));
 		return http.build();
 	}
-	
-	@Bean
-	DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(principalDetailsService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder);
-        authenticationProvider.setHideUserNotFoundExceptions(false);
-        return authenticationProvider;
-    }
+
 }

@@ -18,12 +18,14 @@
 
 			<div class="row">
 				<div id="content" class="col-sm-12">
-					<h2 class="title">딜러 회원 가입</h2>
+					<h2 class="title">일반회원 가입</h2>
 					<p># 만약 기존에 회원가입을 진행하신 분 이라면 <a href="/loginForm">로그인</a>을 진행 해 주세요.</p>
 					<p># 아이디 또는 비밀번호가 기억나지 않는 경우 <a href="/findUsername">아이디 찾기</a> 또는 <a href="/findPassword">비밀번호 찾기</a>를 진행 해 주세요.</p>
-					<form action="" method="post" enctype="multipart/form-data"
+					<form 
+						action="/registration" 
+						onsubmit="return signUpCheck()"
+						method="post" 
 						class="form-horizontal clearfix">
-						<fieldset>
 							<legend>로그인 정보</legend>
 							<div class="form-group required">
 								<label class="col-sm-2 control-label" for="username">아이디</label>
@@ -35,6 +37,9 @@
 									required
 									placeholder="사용하실 아이디를 입력 해 주세요." 
 									class="form-control">
+									<div class="signup-error-message">
+										<p id="username-error-message"></p>
+									</div>
 								</div>
 							</div>
 							<div class="form-group required">
@@ -54,16 +59,17 @@
 								<div class="col-sm-10">
 									<input 
 									type="password" 
-									name="passwordCheck" 
 									required
 									placeholder="비밀번호를 다시한번 입력 해 주세요."
 									id="passwordCheck" 
 									class="form-control">
+									<div class="signup-error-message">
+										<p id="passswordcheck-error-message"></p>
+									</div>
 								</div>
+								
 							</div>
-						</fieldset>
 						
-						<fieldset id="account">
 							<legend>개인정보 입력</legend>
 							<div class="form-group required">
 								<label class="col-sm-2 control-label" for="name">성함</label>
@@ -73,7 +79,6 @@
 									name="name" 
 									required
 									placeholder="성함을 입력 해 주세요."
-									id="name" 
 									class="form-control">
 								</div>
 							</div>
@@ -84,7 +89,6 @@
 									type="text" 
 									name="business" 
 									placeholder="사업자 혹은 법인명을 입력 해 주세요. [법인 또는 사업자회원]"
-									id="business" 
 									class="form-control">
 								</div>
 							</div>
@@ -95,7 +99,6 @@
 									type="number" 
 									name="businessCode" 
 									placeholder="사업자등록번호를 입력 해 주세요. [법인 또는 사업자회원]"
-									id="businessCode" 
 									class="form-control">
 								</div>
 							</div>
@@ -107,23 +110,28 @@
 									name="email"
 									id="email"
 									required
-									placeholder="이메일을 이용 정확하게 입력 해 주세요."
+									placeholder="이메일을 정확하게 입력 해 주세요."
 									class="form-control">
+									<div class="signup-error-message">
+										<p id="email-error-message"></p>
+									</div>
 								</div>
 							</div>
 							<div class="form-group required">
 								<label class="col-sm-2 control-label" for="phone">휴대폰 번호</label>
-								<div class="col-sm-9">
+								<div class="col-sm-10">
 									<input 
-									type="number" 
+									type="text" 
 									name="phone" 
 									id="phone"
 									required
+									maxlength="13"
+									oninput="autoHyphen(this)"
 									placeholder="휴대폰 번호를 입력 해 주세요."
 									class="form-control">
-								</div>
-								<div class="col-sm-1">
-									<button style="width:100%;" class="btn btn-warning" disabled>인증하기</button>
+									<div class="signup-error-message">
+										<p id="phone-error-message"></p>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -132,7 +140,6 @@
 									<input 
 									type="text" 
 									name="telephone" 
-									id="telephone"
 									placeholder="일반 전화번호를 입력 해 주세요."
 									class="form-control">
 								</div>
@@ -144,12 +151,9 @@
 									type="text" 
 									name="fax" 
 									placeholder="Fax번호를 입력 해 주세요." 
-									id="fax"
 									class="form-control">
 								</div>
 							</div>
-						</fieldset>
-						<fieldset id="address">
 							<legend>주소 정보</legend>
 							<div class="form-group required">
 								<label class="col-sm-2 control-label" for="address">대표 주소</label>
@@ -159,8 +163,7 @@
 									name="address" 
 									required
 									class="form-control"
-									placeholder="대표 주소를 입력 해 주세요."
-									id="address">
+									placeholder="대표 주소를 입력 해 주세요.">
 								</div>
 							</div>
 							<div class="form-group">
@@ -170,8 +173,7 @@
 									type="number" 
 									name="postal"
 									id="postal"
-									placeholder="우편번호를 입력 해 주세요."
-									class="form-control">
+									placeholder="우편번호를 입력 해 주세요.">
 								</div>
 							</div>
 							<div class="form-group">
@@ -181,8 +183,7 @@
 									type="text" 
 									name="deliveryAddress" 
 									class="form-control"
-									placeholder="배송을 받을 주소를 입력 해 주세요."
-									id="deliveryAddress">
+									placeholder="배송을 받을 주소를 입력 해 주세요.">
 								</div>
 							</div>
 							<div class="form-group">
@@ -191,13 +192,10 @@
 									<input 
 									type="number" 
 									name="deliveryPostal"
-									id="deliveryPostal"
 									placeholder="우편번호를 입력 해 주세요."
 									class="form-control">
 								</div>
 							</div>
-						</fieldset>
-						
 						<div class="buttons">
 							<div class="pull-right">체크시 IBIO <a href="#" class="agree"><b>개인정보 처리방침</b></a> 및 <a href="#" class="agree"><b>쇼핑몰 이용약관</b></a>에 동의한 것으로 간주됩니다.
 								<input 
@@ -206,7 +204,10 @@
 								name="agree"
 								checked
 								id="agree"> &nbsp;
-								<input type="submit" value="회원가입" class="btn btn-primary">
+								<button type="submit" id="signupBtn" class="btn btn-primary">회원가입</button>
+								<div class="signup-error-message">
+									<p id="privacy-error-message"></p>
+								</div>
 							</div>
 						</div>
 					</form>
@@ -218,7 +219,15 @@
 	</div>
 
 	<th:block th:replace="fragments/front/common :: scriptSrc"></th:block>
-
+	<script src="/front/js/normalSignUp.js"></script>
+	<script>
+		const autoHyphen = (target) => {
+		target.value = target.value
+			.replace(/[^0-9]/g, '')
+			.replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+		}
+		
+	</script>
 </body>
 
 </html>

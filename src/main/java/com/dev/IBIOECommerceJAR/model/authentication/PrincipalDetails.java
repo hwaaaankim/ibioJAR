@@ -30,6 +30,10 @@ public class PrincipalDetails implements UserDetails {
         return auth;
 	}
 	
+	public String getName() {
+		
+		return this.member.getName();
+	}
 //	public String getMembergrade() {
 //		
 //		if(this.member.getMemberGrade() == 2 || this.member.getMemberGrade() == 3) {
@@ -58,7 +62,8 @@ public class PrincipalDetails implements UserDetails {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Override
 	public boolean isAccountNonExpired() {
-		return true;
+		return this.member.getExpired();
+		
 	}
 
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

@@ -11,5 +11,9 @@ import com.dev.IBIOECommerceJAR.model.authentication.Member;
 public interface MemberRepository extends JpaRepository<Member, Long>{
 	
 	Optional<Member> findByUsername(String username);
+	
+	Optional<Member> findByPhone(String phone);
+	
+	Optional<Member> findByEmail(String email);
 
 }

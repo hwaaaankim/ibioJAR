@@ -1,10 +1,21 @@
 package com.dev.IBIOECommerceJAR.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.dev.IBIOECommerceJAR.dto.SignUpDTO;
+import com.dev.IBIOECommerceJAR.model.authentication.Member;
+import com.dev.IBIOECommerceJAR.repository.MemberRepository;
+import com.dev.IBIOECommerceJAR.service.authentication.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,22 +24,27 @@ import lombok.extern.slf4j.Slf4j;
 public class CommonController {
 
 	
+	@Autowired
+	MemberRepository memberRepository;
+	
+	@Autowired
+	MemberService memberService;
+	
 	@GetMapping({"/", "/index"})
-	public String index() {
+	public String index(
+			Model model
+			) {
 		log.info("index 접속");
-		
+		String absolutePath = new File("").getAbsolutePath() + "\\";
+		Optional<Member> member = memberRepository.findByUsername("dealer_test1");
+		model.addAttribute("member", member.get());
 		return "front/common/index";
 	}
 	
 	@GetMapping("/loginForm")
 	public String loginForm(
-			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "exception", required = false) String exception,
 			Model model
 			) {
-		
-		model.addAttribute("error", error);
-		model.addAttribute("exception", exception);
 		
 		return "front/common/login";
 	}
@@ -45,10 +61,87 @@ public class CommonController {
 		return "front/common/signupForm";
 	}
 	
-	@PostMapping("/signupProcess")
-	public String signupProcess() {
+	@PostMapping("/usernameCheck")
+	@ResponseBody
+	public Boolean usernameCheck(
+			String username
+			) {
 		
-		return "front/common/index";
+		return memberRepository.findByUsername(username).isPresent();
+	}
+	
+	@PostMapping("/phoneCheck")
+	@ResponseBody
+	public Boolean phoneCheck(
+			String phone
+			) {
+		
+		return memberRepository.findByPhone(phone).isPresent();
+	}
+	
+	@PostMapping("/emailCheck")
+	@ResponseBody
+	public Boolean emailCheck(
+			String email
+			) {
+		System.out.println(email);
+		return memberRepository.findByEmail(email).isPresent();
+	}
+	
+	@PostMapping("/registration")
+	@ResponseBody
+	public String registration(
+			SignUpDTO dto
+			) {
+		
+		if(memberService.insertMember(dto)!=null) {
+			String msg = "회원 가입이 완료 되었습니다.";
+			StringBuilder sb = new StringBuilder();
+			sb.append("alert('"+msg+"');");
+			sb.append("location.href='/index'");
+			sb.insert(0, "<script>");
+			sb.append("</script>");
+			return sb.toString();
+		}else {
+			String msg = "에러가 발생 하였습니다. 다시 시도해 주세요.";
+			StringBuilder sb = new StringBuilder();
+			sb.append("alert('"+msg+"');");
+			sb.append("location.href='/signupForm'");
+			sb.insert(0, "<script>");
+			sb.append("</script>");
+			
+			return sb.toString();
+		}
+	}
+	
+	@PostMapping("/dealerRegistration")
+	@ResponseBody
+	public String dealerRegistration(
+			SignUpDTO dto,
+			MultipartFile accountFile,
+			MultipartFile businessFile
+			) throws IllegalStateException, IOException {
+		System.out.println(dto);
+		System.out.println(businessFile.isEmpty());
+		System.out.println(accountFile.isEmpty());
+		if(memberService.insertDealer(dto, accountFile, businessFile)!=null) {
+			String msg = "딜러 회원가입이 완료 되었습니다. 관리자 승인 후 이용 가능합니다.";
+			StringBuilder sb = new StringBuilder();
+			sb.append("alert('"+msg+"');");
+			sb.append("location.href='/index'");
+			sb.insert(0, "<script>");
+			sb.append("</script>");
+			return sb.toString();
+		}else {
+			String msg = "에러가 발생 하였습니다. 다시 시도해 주세요.";
+			StringBuilder sb = new StringBuilder();
+			sb.append("alert('"+msg+"');");
+			sb.append("location.href='/dealerSignupForm'");
+			sb.insert(0, "<script>");
+			sb.append("</script>");
+			
+			return sb.toString();
+		}
 	}
 	
 	@GetMapping("/dealerSignupForm")
