@@ -1,8 +1,6 @@
 package com.dev.IBIOECommerceJAR.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dev.IBIOECommerceJAR.dto.SignUpDTO;
-import com.dev.IBIOECommerceJAR.model.authentication.Member;
 import com.dev.IBIOECommerceJAR.repository.MemberRepository;
 import com.dev.IBIOECommerceJAR.service.authentication.MemberService;
 
@@ -35,9 +32,9 @@ public class CommonController {
 			Model model
 			) {
 		log.info("index 접속");
-		String absolutePath = new File("").getAbsolutePath() + "\\";
-		Optional<Member> member = memberRepository.findByUsername("dealer_test1");
-		model.addAttribute("member", member.get());
+//		String absolutePath = new File("").getAbsolutePath() + "\\";
+//		Optional<Member> member = memberRepository.findByUsername("dealer_test1");
+//		model.addAttribute("member", member.get());
 		return "front/common/index";
 	}
 	

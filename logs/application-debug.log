@@ -1,35 +1,367 @@
-2024-04-16 11:11:37,070 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Starting IbioeCommerceJarApplication using Java 17.0.8.1 with PID 26448 (D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR\target\classes started by thra_ in D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR)
-2024-04-16 11:11:37,074 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : The following 1 profile is active: "prod"
-2024-04-16 11:11:37,104 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-04-16 11:11:37,105 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-04-16 11:11:37,685 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
-2024-04-16 11:11:37,686 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2024-04-16 11:11:37,711 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.dev.IBIOECommerceJAR.repository.MemberRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
-2024-04-16 11:11:37,711 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 0 JDBC repository interfaces.
-2024-04-16 11:11:37,719 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
-2024-04-16 11:11:37,719 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-04-16 11:11:37,739 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 1 JPA repository interface.
-2024-04-16 11:11:38,202 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8081 (http)
-2024-04-16 11:11:38,209 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2024-04-16 11:11:38,210 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-04-16 11:11:38,279 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2024-04-16 11:11:38,279 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1173 ms
-2024-04-16 11:11:38,369 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Starting...
-2024-04-16 11:11:38,440 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool : HikariCP - Added connection org.mariadb.jdbc.Connection@2a81d234
-2024-04-16 11:11:38,442 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Start completed.
-2024-04-16 11:11:38,767 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-04-16 11:11:39,425 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-04-16 11:11:39,711 INFO  [restartedMain] com.dev.IBIOECommerceJAR.config.ApplicationConfig : DaoAuthenticationProvider
-2024-04-16 11:11:39,752 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-04-16 11:11:39,988 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1820b416, org.springframework.security.web.session.ForceEagerSessionCreationFilter@14932a20, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2095629d, org.springframework.security.web.context.SecurityContextHolderFilter@8ad15a1, org.springframework.security.web.header.HeaderWriterFilter@5644359b, org.springframework.security.web.authentication.logout.LogoutFilter@2f182e9a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@795efd6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@720c4b7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@551eed3d, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@752f3200, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@217727a5, org.springframework.security.web.session.SessionManagementFilter@42064041, org.springframework.security.web.access.ExceptionTranslationFilter@339c158f, org.springframework.security.web.access.intercept.AuthorizationFilter@165aa0d2]
-2024-04-16 11:11:39,994 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@6fd66fb3. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-04-16 11:11:39,994 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@6fd66fb3
-2024-04-16 11:11:42,332 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
-2024-04-16 11:11:42,363 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8081 (http) with context path ''
-2024-04-16 11:11:42,371 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Started IbioeCommerceJarApplication in 5.614 seconds (process running for 6.266)
-2024-04-16 11:12:10,974 INFO  [RMI TCP Connection(4)-127.0.0.1] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2024-04-16 11:12:10,981 INFO  [RMI TCP Connection(4)-127.0.0.1] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
-2024-04-16 11:12:10,984 WARN  [RMI TCP Connection(4)-127.0.0.1] org.apache.catalina.loader.WebappClassLoaderBase : The web application [ROOT] appears to have started a thread named [HikariCP housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2024-05-08 10:33:03,560 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Starting IbioeCommerceJarApplication using Java 17.0.8.1 with PID 26900 (D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR\target\classes started by thra_ in D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR)
+2024-05-08 10:33:03,564 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : The following 1 profile is active: "prod"
+2024-05-08 10:33:03,594 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-05-08 10:33:03,594 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-05-08 10:33:04,123 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-05-08 10:33:04,124 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-05-08 10:33:04,148 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.dev.IBIOECommerceJAR.repository.MemberRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-05-08 10:33:04,148 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 0 JDBC repository interfaces.
+2024-05-08 10:33:04,155 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-05-08 10:33:04,156 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-08 10:33:04,175 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 1 JPA repository interface.
+2024-05-08 10:33:04,652 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2024-05-08 10:33:04,659 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2024-05-08 10:33:04,660 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-05-08 10:33:04,728 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2024-05-08 10:33:04,728 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1133 ms
+2024-05-08 10:33:04,817 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Starting...
+2024-05-08 10:33:04,876 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool : HikariCP - Added connection org.mariadb.jdbc.Connection@369e31f0
+2024-05-08 10:33:04,877 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Start completed.
+2024-05-08 10:33:05,201 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-08 10:33:05,840 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-08 10:33:06,132 INFO  [restartedMain] com.dev.IBIOECommerceJAR.config.ApplicationConfig : DaoAuthenticationProvider
+2024-05-08 10:33:06,177 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-08 10:33:06,407 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@38612e2d, org.springframework.security.web.session.ForceEagerSessionCreationFilter@66ade6c9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2d1e561f, org.springframework.security.web.context.SecurityContextHolderFilter@43d2b9a3, org.springframework.security.web.header.HeaderWriterFilter@1fe1954d, org.springframework.security.web.authentication.logout.LogoutFilter@4bfa4368, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6e6ba33b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15bff7c0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@13075e68, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@25bf65a5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5d01faee, org.springframework.security.web.session.SessionManagementFilter@2f227132, org.springframework.security.web.access.ExceptionTranslationFilter@32dc8803, org.springframework.security.web.access.intercept.AuthorizationFilter@2c12a1c4]
+2024-05-08 10:33:06,414 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@4968c1e. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-05-08 10:33:06,414 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@4968c1e
+2024-05-08 10:33:07,164 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
+2024-05-08 10:33:07,193 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2024-05-08 10:33:07,201 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Started IbioeCommerceJarApplication in 3.927 seconds (process running for 5.583)
+2024-05-08 10:33:10,145 INFO  [http-nio-8080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-08 10:33:10,213 INFO  [http-nio-8080-exec-1] com.dev.IBIOECommerceJAR.controller.CommonController : index 접속
+2024-05-08 10:33:10,330 WARN  [http-nio-8080-exec-1] org.mariadb.jdbc.message.server.ErrorPacket : Error: 1054-42S22: Unknown column 'm1_0.member_account_file_extension' in 'field list'
+2024-05-08 10:33:10,331 ERROR [http-nio-8080-exec-1] org.hibernate.engine.jdbc.spi.SqlExceptionHelper : (conn=2) Unknown column 'm1_0.member_account_file_extension' in 'field list'
+2024-05-08 10:33:10,340 ERROR [http-nio-8080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [select m1_0.member_id,m1_0.member_account_file_extension,m1_0.member_account_file_name,m1_0.member_account_file_path,m1_0.member_account_file_road,m1_0.member_account_file_original_name,m1_0.member_address,m1_0.member_business,m1_0.member_business_code,m1_0.member_business_file_extension,m1_0.member_business_file_name,m1_0.member_business_file_path,m1_0.member_business_file_road,m1_0.member_business_file_original_name,m1_0.member_change_date,m1_0.member_delivery_address,m1_0.member_delivery_postal,m1_0.member_email,m1_0.member_enabled,m1_0.member_expired,m1_0.member_fax,m1_0.member_join_date,m1_0.member_name,m1_0.member_password,m1_0.member_phone,m1_0.member_postal,m1_0.member_role,m1_0.member_telephone,m1_0.member_username from tb_member m1_0 where m1_0.member_username=?] [(conn=2) Unknown column 'm1_0.member_account_file_extension' in 'field list'] [n/a]; SQL [n/a]] with root cause
+java.sql.SQLSyntaxErrorException: (conn=2) Unknown column 'm1_0.member_account_file_extension' in 'field list'
+	at org.mariadb.jdbc.export.ExceptionFactory.createException(ExceptionFactory.java:282)
+	at org.mariadb.jdbc.export.ExceptionFactory.create(ExceptionFactory.java:370)
+	at org.mariadb.jdbc.message.ClientMessage.readPacket(ClientMessage.java:134)
+	at org.mariadb.jdbc.client.impl.StandardClient.readPacket(StandardClient.java:872)
+	at org.mariadb.jdbc.client.impl.StandardClient.readResults(StandardClient.java:811)
+	at org.mariadb.jdbc.client.impl.StandardClient.readResponse(StandardClient.java:730)
+	at org.mariadb.jdbc.client.impl.StandardClient.execute(StandardClient.java:654)
+	at org.mariadb.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:95)
+	at org.mariadb.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:288)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:239)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:254)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:134)
+	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:19)
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:66)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:198)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:361)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$0(ConcreteSqmSelectQueryPlan.java:110)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:303)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:244)
+	at org.hibernate.query.sqm.internal.QuerySqmImpl.doList(QuerySqmImpl.java:518)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:473)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:223)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:92)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:149)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:137)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:164)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:244)
+	at jdk.proxy4/jdk.proxy4.$Proxy115.findByUsername(Unknown Source)
+	at com.dev.IBIOECommerceJAR.controller.CommonController.index(CommonController.java:39)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:887)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:798)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:145)
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.ForceEagerSessionCreationFilter.doFilterInternal(ForceEagerSessionCreationFilter.java:45)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2024-05-08 10:33:10,477 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][error/500] Deprecated unwrapped fragment expression "fragments/front/common :: headSrc" found in template error/500, line 4, col 7. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:33:10,524 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][error/500] Deprecated unwrapped fragment expression "fragments/front/common :: headerMenu" found in template error/500, line 10, col 45. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headerMenu}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:33:10,561 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][error/500] Deprecated unwrapped fragment expression "fragments/front/common :: ibioFooter" found in template error/500, line 171, col 49. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: ibioFooter}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:33:10,567 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][error/500] Deprecated unwrapped fragment expression "fragments/front/common :: scriptSrc" found in template error/500, line 174, col 12. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: scriptSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:33:10,673 INFO  [http-nio-8080-exec-2] com.dev.IBIOECommerceJAR.controller.CommonController : index 접속
+2024-05-08 10:33:10,675 WARN  [http-nio-8080-exec-2] org.mariadb.jdbc.message.server.ErrorPacket : Error: 1054-42S22: Unknown column 'm1_0.member_account_file_extension' in 'field list'
+2024-05-08 10:33:10,675 ERROR [http-nio-8080-exec-2] org.hibernate.engine.jdbc.spi.SqlExceptionHelper : (conn=2) Unknown column 'm1_0.member_account_file_extension' in 'field list'
+2024-05-08 10:33:10,676 ERROR [http-nio-8080-exec-2] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [select m1_0.member_id,m1_0.member_account_file_extension,m1_0.member_account_file_name,m1_0.member_account_file_path,m1_0.member_account_file_road,m1_0.member_account_file_original_name,m1_0.member_address,m1_0.member_business,m1_0.member_business_code,m1_0.member_business_file_extension,m1_0.member_business_file_name,m1_0.member_business_file_path,m1_0.member_business_file_road,m1_0.member_business_file_original_name,m1_0.member_change_date,m1_0.member_delivery_address,m1_0.member_delivery_postal,m1_0.member_email,m1_0.member_enabled,m1_0.member_expired,m1_0.member_fax,m1_0.member_join_date,m1_0.member_name,m1_0.member_password,m1_0.member_phone,m1_0.member_postal,m1_0.member_role,m1_0.member_telephone,m1_0.member_username from tb_member m1_0 where m1_0.member_username=?] [(conn=2) Unknown column 'm1_0.member_account_file_extension' in 'field list'] [n/a]; SQL [n/a]] with root cause
+java.sql.SQLSyntaxErrorException: (conn=2) Unknown column 'm1_0.member_account_file_extension' in 'field list'
+	at org.mariadb.jdbc.export.ExceptionFactory.createException(ExceptionFactory.java:282)
+	at org.mariadb.jdbc.export.ExceptionFactory.create(ExceptionFactory.java:370)
+	at org.mariadb.jdbc.message.ClientMessage.readPacket(ClientMessage.java:134)
+	at org.mariadb.jdbc.client.impl.StandardClient.readPacket(StandardClient.java:872)
+	at org.mariadb.jdbc.client.impl.StandardClient.readResults(StandardClient.java:811)
+	at org.mariadb.jdbc.client.impl.StandardClient.readResponse(StandardClient.java:730)
+	at org.mariadb.jdbc.client.impl.StandardClient.execute(StandardClient.java:654)
+	at org.mariadb.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:95)
+	at org.mariadb.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:288)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:239)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:254)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:134)
+	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:19)
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:66)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:198)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:361)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$0(ConcreteSqmSelectQueryPlan.java:110)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:303)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:244)
+	at org.hibernate.query.sqm.internal.QuerySqmImpl.doList(QuerySqmImpl.java:518)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:473)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:223)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:92)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:149)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:137)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:164)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:244)
+	at jdk.proxy4/jdk.proxy4.$Proxy115.findByUsername(Unknown Source)
+	at com.dev.IBIOECommerceJAR.controller.CommonController.index(CommonController.java:39)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:887)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:798)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:145)
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.ForceEagerSessionCreationFilter.doFilterInternal(ForceEagerSessionCreationFilter.java:45)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2024-05-08 10:33:10,680 WARN  [http-nio-8080-exec-2] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][error/500] Deprecated unwrapped fragment expression "fragments/front/common :: headSrc" found in template error/500, line 4, col 7. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:33:10,685 WARN  [http-nio-8080-exec-2] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][error/500] Deprecated unwrapped fragment expression "fragments/front/common :: headerMenu" found in template error/500, line 10, col 45. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headerMenu}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:33:10,692 WARN  [http-nio-8080-exec-2] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][error/500] Deprecated unwrapped fragment expression "fragments/front/common :: ibioFooter" found in template error/500, line 171, col 49. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: ibioFooter}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:33:10,697 WARN  [http-nio-8080-exec-2] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][error/500] Deprecated unwrapped fragment expression "fragments/front/common :: scriptSrc" found in template error/500, line 174, col 12. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: scriptSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:34:52,893 INFO  [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
+2024-05-08 10:34:52,901 INFO  [Thread-5] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
+2024-05-08 10:34:52,902 INFO  [Thread-5] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-05-08 10:34:52,905 WARN  [Thread-5] org.apache.catalina.loader.WebappClassLoaderBase : The web application [ROOT] appears to have started a thread named [HikariCP housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.8.1/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.8.1/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.8.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -39,6 +371,675 @@
  java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.8.1/java.lang.Thread.run(Thread.java:833)
-2024-04-16 11:12:11,453 INFO  [RMI TCP Connection(4)-127.0.0.1] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-04-16 11:12:11,456 INFO  [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown initiated...
-2024-04-16 11:12:11,459 INFO  [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown completed.
+2024-05-08 10:34:52,909 INFO  [Thread-5] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-08 10:34:52,911 INFO  [Thread-5] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown initiated...
+2024-05-08 10:34:52,913 INFO  [Thread-5] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown completed.
+2024-05-08 10:34:52,972 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Starting IbioeCommerceJarApplication using Java 17.0.8.1 with PID 26900 (D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR\target\classes started by thra_ in D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR)
+2024-05-08 10:34:52,973 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : The following 1 profile is active: "prod"
+2024-05-08 10:34:53,125 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-05-08 10:34:53,125 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-05-08 10:34:53,132 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.dev.IBIOECommerceJAR.repository.MemberRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-05-08 10:34:53,132 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JDBC repository interfaces.
+2024-05-08 10:34:53,134 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-05-08 10:34:53,134 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-08 10:34:53,141 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 1 JPA repository interface.
+2024-05-08 10:34:53,237 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2024-05-08 10:34:53,237 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2024-05-08 10:34:53,237 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-05-08 10:34:53,271 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2024-05-08 10:34:53,272 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 298 ms
+2024-05-08 10:34:53,313 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Starting...
+2024-05-08 10:34:53,316 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool : HikariCP - Added connection org.mariadb.jdbc.Connection@4c18b841
+2024-05-08 10:34:53,317 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Start completed.
+2024-05-08 10:34:53,323 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-08 10:34:53,364 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-08 10:34:53,439 INFO  [restartedMain] com.dev.IBIOECommerceJAR.config.ApplicationConfig : DaoAuthenticationProvider
+2024-05-08 10:34:53,453 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-08 10:34:53,555 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4f50e03d, org.springframework.security.web.session.ForceEagerSessionCreationFilter@78f2a3e2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@8775078, org.springframework.security.web.context.SecurityContextHolderFilter@44c80378, org.springframework.security.web.header.HeaderWriterFilter@4402370e, org.springframework.security.web.authentication.logout.LogoutFilter@69113c20, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1f7de10d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@50db657d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@534822f, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@7fed2efe, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1efb0556, org.springframework.security.web.session.SessionManagementFilter@5d96a193, org.springframework.security.web.access.ExceptionTranslationFilter@768c4175, org.springframework.security.web.access.intercept.AuthorizationFilter@43ee9f7a]
+2024-05-08 10:34:53,558 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@77486a55. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-05-08 10:34:53,558 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@77486a55
+2024-05-08 10:34:53,643 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
+2024-05-08 10:34:53,653 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2024-05-08 10:34:53,656 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Started IbioeCommerceJarApplication in 0.709 seconds (process running for 112.038)
+2024-05-08 10:34:53,657 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-05-08 10:34:58,533 INFO  [http-nio-8080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-08 10:34:58,535 INFO  [http-nio-8080-exec-1] com.dev.IBIOECommerceJAR.controller.CommonController : index 접속
+2024-05-08 10:34:58,538 WARN  [http-nio-8080-exec-1] org.mariadb.jdbc.message.server.ErrorPacket : Error: 1054-42S22: Unknown column 'm1_0.member_account_file_extension' in 'field list'
+2024-05-08 10:34:58,538 ERROR [http-nio-8080-exec-1] org.hibernate.engine.jdbc.spi.SqlExceptionHelper : (conn=12) Unknown column 'm1_0.member_account_file_extension' in 'field list'
+2024-05-08 10:34:58,539 ERROR [http-nio-8080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [select m1_0.member_id,m1_0.member_account_file_extension,m1_0.member_account_file_name,m1_0.member_account_file_path,m1_0.member_account_file_road,m1_0.member_account_file_original_name,m1_0.member_address,m1_0.member_business,m1_0.member_business_code,m1_0.member_business_file_extension,m1_0.member_business_file_name,m1_0.member_business_file_path,m1_0.member_business_file_road,m1_0.member_business_file_original_name,m1_0.member_change_date,m1_0.member_delivery_address,m1_0.member_delivery_postal,m1_0.member_email,m1_0.member_enabled,m1_0.member_expired,m1_0.member_fax,m1_0.member_join_date,m1_0.member_name,m1_0.member_password,m1_0.member_phone,m1_0.member_postal,m1_0.member_role,m1_0.member_telephone,m1_0.member_username from tb_member m1_0 where m1_0.member_username=?] [(conn=12) Unknown column 'm1_0.member_account_file_extension' in 'field list'] [n/a]; SQL [n/a]] with root cause
+java.sql.SQLSyntaxErrorException: (conn=12) Unknown column 'm1_0.member_account_file_extension' in 'field list'
+	at org.mariadb.jdbc.export.ExceptionFactory.createException(ExceptionFactory.java:282) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.export.ExceptionFactory.create(ExceptionFactory.java:370) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.message.ClientMessage.readPacket(ClientMessage.java:134) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.readPacket(StandardClient.java:872) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.readResults(StandardClient.java:811) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.readResponse(StandardClient.java:730) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.execute(StandardClient.java:654) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:95) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:288) ~[mariadb-java-client-3.1.4.jar:na]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:239) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:254) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:134) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:19) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:66) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:198) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:361) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$0(ConcreteSqmSelectQueryPlan.java:110) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:303) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:244) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.query.sqm.internal.QuerySqmImpl.doList(QuerySqmImpl.java:518) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:473) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:223) ~[spring-data-jpa-3.1.9.jar:3.1.9]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:92) ~[spring-data-jpa-3.1.9.jar:3.1.9]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:149) ~[spring-data-jpa-3.1.9.jar:3.1.9]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:137) ~[spring-data-jpa-3.1.9.jar:3.1.9]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136) ~[spring-data-commons-3.1.9.jar:3.1.9]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120) ~[spring-data-commons-3.1.9.jar:3.1.9]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:164) ~[spring-data-commons-3.1.9.jar:3.1.9]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143) ~[spring-data-commons-3.1.9.jar:3.1.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70) ~[spring-data-commons-3.1.9.jar:3.1.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.17.jar:6.0.17]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.17.jar:6.0.17]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.17.jar:6.0.17]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.17.jar:6.0.17]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135) ~[spring-data-jpa-3.1.9.jar:3.1.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:244) ~[spring-aop-6.0.17.jar:6.0.17]
+	at jdk.proxy5/jdk.proxy5.$Proxy129.findByUsername(Unknown Source) ~[na:na]
+	at com.dev.IBIOECommerceJAR.controller.CommonController.index(CommonController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.17.jar:6.0.17]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:887) ~[spring-webmvc-6.0.17.jar:6.0.17]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:798) ~[spring-webmvc-6.0.17.jar:6.0.17]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.17.jar:6.0.17]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.17.jar:6.0.17]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.17.jar:6.0.17]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.0.17.jar:6.0.17]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.0.17.jar:6.0.17]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.19.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.17.jar:6.0.17]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.19.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:145) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:101) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.session.ForceEagerSessionCreationFilter.doFilterInternal(ForceEagerSessionCreationFilter.java:45) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.0.17.jar:6.0.17]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.1.7.jar:6.1.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+2024-05-08 10:34:58,554 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][error/500] Deprecated unwrapped fragment expression "fragments/front/common :: headSrc" found in template error/500, line 4, col 7. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:34:58,558 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][error/500] Deprecated unwrapped fragment expression "fragments/front/common :: headerMenu" found in template error/500, line 10, col 45. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headerMenu}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:34:58,565 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][error/500] Deprecated unwrapped fragment expression "fragments/front/common :: ibioFooter" found in template error/500, line 171, col 49. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: ibioFooter}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:34:58,569 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][error/500] Deprecated unwrapped fragment expression "fragments/front/common :: scriptSrc" found in template error/500, line 174, col 12. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: scriptSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:35:45,916 INFO  [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-05-08 10:35:45,922 INFO  [Thread-7] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
+2024-05-08 10:35:45,922 INFO  [Thread-7] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-05-08 10:35:45,924 WARN  [Thread-7] org.apache.catalina.loader.WebappClassLoaderBase : The web application [ROOT] appears to have started a thread named [HikariCP housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.8.1/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.8.1/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.8.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.8.1/java.lang.Thread.run(Thread.java:833)
+2024-05-08 10:35:45,927 INFO  [Thread-7] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-08 10:35:45,927 INFO  [Thread-7] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown initiated...
+2024-05-08 10:35:45,929 INFO  [Thread-7] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown completed.
+2024-05-08 10:35:46,003 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Starting IbioeCommerceJarApplication using Java 17.0.8.1 with PID 26900 (D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR\target\classes started by thra_ in D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR)
+2024-05-08 10:35:46,004 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : The following 1 profile is active: "prod"
+2024-05-08 10:35:46,136 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-05-08 10:35:46,136 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-05-08 10:35:46,141 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.dev.IBIOECommerceJAR.repository.MemberRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-05-08 10:35:46,141 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 0 JDBC repository interfaces.
+2024-05-08 10:35:46,143 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-05-08 10:35:46,143 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-08 10:35:46,150 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 1 JPA repository interface.
+2024-05-08 10:35:46,235 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2024-05-08 10:35:46,235 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2024-05-08 10:35:46,235 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-05-08 10:35:46,268 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2024-05-08 10:35:46,268 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 263 ms
+2024-05-08 10:35:46,307 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Starting...
+2024-05-08 10:35:46,310 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool : HikariCP - Added connection org.mariadb.jdbc.Connection@49990052
+2024-05-08 10:35:46,310 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Start completed.
+2024-05-08 10:35:46,316 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-08 10:35:46,356 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-08 10:35:46,427 INFO  [restartedMain] com.dev.IBIOECommerceJAR.config.ApplicationConfig : DaoAuthenticationProvider
+2024-05-08 10:35:46,441 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-08 10:35:46,538 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@63f3b517, org.springframework.security.web.session.ForceEagerSessionCreationFilter@505e45b2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1fcc8856, org.springframework.security.web.context.SecurityContextHolderFilter@3f36ff00, org.springframework.security.web.header.HeaderWriterFilter@4032193a, org.springframework.security.web.authentication.logout.LogoutFilter@6751d458, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3ece3275, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2f5fffde, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7ff4d8c6, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@57d4c2e0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6efe9a8d, org.springframework.security.web.session.SessionManagementFilter@225654b1, org.springframework.security.web.access.ExceptionTranslationFilter@4e8bde56, org.springframework.security.web.access.intercept.AuthorizationFilter@6ecbaab9]
+2024-05-08 10:35:46,541 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@122a844c. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-05-08 10:35:46,541 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@122a844c
+2024-05-08 10:35:46,625 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
+2024-05-08 10:35:46,635 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2024-05-08 10:35:46,638 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Started IbioeCommerceJarApplication in 0.654 seconds (process running for 165.019)
+2024-05-08 10:35:46,638 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-05-08 10:35:52,494 INFO  [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-05-08 10:35:52,500 INFO  [Thread-11] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
+2024-05-08 10:35:52,502 WARN  [Thread-11] org.apache.catalina.loader.WebappClassLoaderBase : The web application [ROOT] appears to have started a thread named [HikariCP housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.8.1/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.8.1/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.8.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.8.1/java.lang.Thread.run(Thread.java:833)
+2024-05-08 10:35:52,504 INFO  [Thread-11] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-08 10:35:52,504 INFO  [Thread-11] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown initiated...
+2024-05-08 10:35:52,506 INFO  [Thread-11] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown completed.
+2024-05-08 10:35:52,571 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Starting IbioeCommerceJarApplication using Java 17.0.8.1 with PID 26900 (D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR\target\classes started by thra_ in D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR)
+2024-05-08 10:35:52,571 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : The following 1 profile is active: "prod"
+2024-05-08 10:35:52,703 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-05-08 10:35:52,703 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-05-08 10:35:52,709 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.dev.IBIOECommerceJAR.repository.MemberRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-05-08 10:35:52,709 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 JDBC repository interfaces.
+2024-05-08 10:35:52,711 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-05-08 10:35:52,711 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-08 10:35:52,717 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 1 JPA repository interface.
+2024-05-08 10:35:52,798 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2024-05-08 10:35:52,799 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2024-05-08 10:35:52,799 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-05-08 10:35:52,833 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2024-05-08 10:35:52,833 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 261 ms
+2024-05-08 10:35:52,874 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Starting...
+2024-05-08 10:35:52,877 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool : HikariCP - Added connection org.mariadb.jdbc.Connection@241f2b56
+2024-05-08 10:35:52,877 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Start completed.
+2024-05-08 10:35:52,885 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-08 10:35:52,923 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-08 10:35:52,994 INFO  [restartedMain] com.dev.IBIOECommerceJAR.config.ApplicationConfig : DaoAuthenticationProvider
+2024-05-08 10:35:53,007 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-08 10:35:53,104 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5ad8daae, org.springframework.security.web.session.ForceEagerSessionCreationFilter@1e0c8f14, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@63245405, org.springframework.security.web.context.SecurityContextHolderFilter@6bd91ce3, org.springframework.security.web.header.HeaderWriterFilter@1632e03, org.springframework.security.web.authentication.logout.LogoutFilter@28b1b8af, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@67f655d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@774eeea9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f45d575, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@232ec1fd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@36d050b5, org.springframework.security.web.session.SessionManagementFilter@173e7676, org.springframework.security.web.access.ExceptionTranslationFilter@72eddcc5, org.springframework.security.web.access.intercept.AuthorizationFilter@6925a6bf]
+2024-05-08 10:35:53,107 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@6b1f294d. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-05-08 10:35:53,107 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@6b1f294d
+2024-05-08 10:35:53,191 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
+2024-05-08 10:35:53,201 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2024-05-08 10:35:53,204 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Started IbioeCommerceJarApplication in 0.653 seconds (process running for 171.586)
+2024-05-08 10:35:53,205 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-05-08 10:36:53,260 INFO  [http-nio-8080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-08 10:36:53,262 INFO  [http-nio-8080-exec-1] com.dev.IBIOECommerceJAR.controller.CommonController : index 접속
+2024-05-08 10:36:53,313 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/index] Deprecated unwrapped fragment expression "fragments/front/common :: headSrc" found in template front/common/index, line 4, col 7. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:36:53,317 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/index] Deprecated unwrapped fragment expression "fragments/front/common :: headerMenu" found in template front/common/index, line 10, col 45. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headerMenu}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:36:53,334 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/index] Deprecated unwrapped fragment expression "fragments/front/common :: ibioFooter" found in template front/common/index, line 2699, col 49. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: ibioFooter}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:36:53,338 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/index] Deprecated unwrapped fragment expression "fragments/front/common :: scriptSrc" found in template front/common/index, line 2702, col 12. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: scriptSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:36:58,119 WARN  [http-nio-8080-exec-6] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][error/404] Deprecated unwrapped fragment expression "fragments/front/common :: headSrc" found in template error/404, line 4, col 7. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:36:58,122 WARN  [http-nio-8080-exec-6] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][error/404] Deprecated unwrapped fragment expression "fragments/front/common :: headerMenu" found in template error/404, line 10, col 45. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headerMenu}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:36:58,128 WARN  [http-nio-8080-exec-6] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][error/404] Deprecated unwrapped fragment expression "fragments/front/common :: ibioFooter" found in template error/404, line 171, col 49. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: ibioFooter}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:36:58,132 WARN  [http-nio-8080-exec-6] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][error/404] Deprecated unwrapped fragment expression "fragments/front/common :: scriptSrc" found in template error/404, line 174, col 12. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: scriptSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:38:10,501 INFO  [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-05-08 10:38:10,507 INFO  [Thread-15] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
+2024-05-08 10:38:10,508 INFO  [Thread-15] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-05-08 10:38:10,513 WARN  [Thread-15] org.apache.catalina.loader.WebappClassLoaderBase : The web application [ROOT] appears to have started a thread named [HikariCP housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.8.1/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.8.1/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.8.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.8.1/java.lang.Thread.run(Thread.java:833)
+2024-05-08 10:38:10,515 INFO  [Thread-15] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-08 10:38:10,515 INFO  [Thread-15] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown initiated...
+2024-05-08 10:38:10,517 INFO  [Thread-15] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown completed.
+2024-05-08 10:38:10,587 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Starting IbioeCommerceJarApplication using Java 17.0.8.1 with PID 26900 (D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR\target\classes started by thra_ in D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR)
+2024-05-08 10:38:10,588 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : The following 1 profile is active: "prod"
+2024-05-08 10:38:10,725 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-05-08 10:38:10,725 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-05-08 10:38:10,730 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.dev.IBIOECommerceJAR.repository.MemberRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-05-08 10:38:10,730 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 0 JDBC repository interfaces.
+2024-05-08 10:38:10,732 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-05-08 10:38:10,732 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-08 10:38:10,738 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 1 JPA repository interface.
+2024-05-08 10:38:10,823 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2024-05-08 10:38:10,823 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2024-05-08 10:38:10,823 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-05-08 10:38:10,854 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2024-05-08 10:38:10,854 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 265 ms
+2024-05-08 10:38:10,893 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Starting...
+2024-05-08 10:38:10,896 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool : HikariCP - Added connection org.mariadb.jdbc.Connection@43350479
+2024-05-08 10:38:10,896 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Start completed.
+2024-05-08 10:38:10,903 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-08 10:38:10,945 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-08 10:38:11,026 INFO  [restartedMain] com.dev.IBIOECommerceJAR.config.ApplicationConfig : DaoAuthenticationProvider
+2024-05-08 10:38:11,041 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-08 10:38:11,143 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@392b36e8, org.springframework.security.web.session.ForceEagerSessionCreationFilter@1cc94368, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6c7a7f53, org.springframework.security.web.context.SecurityContextHolderFilter@527aa10e, org.springframework.security.web.header.HeaderWriterFilter@3a732ad0, org.springframework.security.web.authentication.logout.LogoutFilter@12760a94, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7c219c4e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@338cc308, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@108a4a03, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@3a54677b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@758cb218, org.springframework.security.web.session.SessionManagementFilter@23ee7ed2, org.springframework.security.web.access.ExceptionTranslationFilter@13ee5f26, org.springframework.security.web.access.intercept.AuthorizationFilter@58efa500]
+2024-05-08 10:38:11,146 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@77398b95. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-05-08 10:38:11,146 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@77398b95
+2024-05-08 10:38:11,238 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
+2024-05-08 10:38:11,249 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2024-05-08 10:38:11,251 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Started IbioeCommerceJarApplication in 0.685 seconds (process running for 309.633)
+2024-05-08 10:38:11,252 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-05-08 10:38:15,122 INFO  [http-nio-8080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-08 10:38:15,124 INFO  [http-nio-8080-exec-1] com.dev.IBIOECommerceJAR.controller.CommonController : index 접속
+2024-05-08 10:38:15,134 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/index] Deprecated unwrapped fragment expression "fragments/front/common :: headSrc" found in template front/common/index, line 4, col 7. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:38:15,137 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/index] Deprecated unwrapped fragment expression "fragments/front/common :: headerMenu" found in template front/common/index, line 10, col 45. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headerMenu}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:38:15,153 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/index] Deprecated unwrapped fragment expression "fragments/front/common :: ibioFooter" found in template front/common/index, line 2699, col 49. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: ibioFooter}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:38:15,159 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/index] Deprecated unwrapped fragment expression "fragments/front/common :: scriptSrc" found in template front/common/index, line 2702, col 12. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: scriptSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:38:17,146 WARN  [http-nio-8080-exec-9] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][front/common/login] Deprecated unwrapped fragment expression "fragments/front/common :: headSrc" found in template front/common/login, line 4, col 7. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:38:17,149 WARN  [http-nio-8080-exec-9] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][front/common/login] Deprecated unwrapped fragment expression "fragments/front/common :: headerMenu" found in template front/common/login, line 10, col 51. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headerMenu}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:38:17,212 WARN  [http-nio-8080-exec-9] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][front/common/login] Deprecated unwrapped fragment expression "fragments/front/common :: ibioFooter" found in template front/common/login, line 71, col 48. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: ibioFooter}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:38:17,216 WARN  [http-nio-8080-exec-9] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][front/common/login] Deprecated unwrapped fragment expression "fragments/front/common :: scriptSrc" found in template front/common/login, line 74, col 14. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: scriptSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:38:20,888 INFO  [http-nio-8080-exec-6] com.dev.IBIOECommerceJAR.service.authentication.PrincipalDetailsService : PrincipalDetailService.loadUserByUsername
+2024-05-08 10:38:20,911 WARN  [http-nio-8080-exec-6] org.mariadb.jdbc.message.server.ErrorPacket : Error: 1054-42S22: Unknown column 'm1_0.member_account_file_extension' in 'field list'
+2024-05-08 10:38:20,911 ERROR [http-nio-8080-exec-6] org.hibernate.engine.jdbc.spi.SqlExceptionHelper : (conn=42) Unknown column 'm1_0.member_account_file_extension' in 'field list'
+2024-05-08 10:38:20,912 ERROR [http-nio-8080-exec-6] org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter : An internal error occurred while trying to authenticate the user.
+org.springframework.security.authentication.InternalAuthenticationServiceException: JDBC exception executing SQL [select m1_0.member_id,m1_0.member_account_file_extension,m1_0.member_account_file_name,m1_0.member_account_file_path,m1_0.member_account_file_road,m1_0.member_account_file_original_name,m1_0.member_address,m1_0.member_business,m1_0.member_business_code,m1_0.member_business_file_extension,m1_0.member_business_file_name,m1_0.member_business_file_path,m1_0.member_business_file_road,m1_0.member_business_file_original_name,m1_0.member_change_date,m1_0.member_delivery_address,m1_0.member_delivery_postal,m1_0.member_email,m1_0.member_enabled,m1_0.member_expired,m1_0.member_fax,m1_0.member_join_date,m1_0.member_name,m1_0.member_password,m1_0.member_phone,m1_0.member_postal,m1_0.member_role,m1_0.member_telephone,m1_0.member_username from tb_member m1_0 where m1_0.member_username=?] [(conn=42) Unknown column 'm1_0.member_account_file_extension' in 'field list'] [n/a]; SQL [n/a]
+	at org.springframework.security.authentication.dao.DaoAuthenticationProvider.retrieveUser(DaoAuthenticationProvider.java:118) ~[spring-security-core-6.1.7.jar:6.1.7]
+	at org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider.authenticate(AbstractUserDetailsAuthenticationProvider.java:133) ~[spring-security-core-6.1.7.jar:6.1.7]
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182) ~[spring-security-core-6.1.7.jar:6.1.7]
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:201) ~[spring-security-core-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.attemptAuthentication(UsernamePasswordAuthenticationFilter.java:85) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:231) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.session.ForceEagerSessionCreationFilter.doFilterInternal(ForceEagerSessionCreationFilter.java:45) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.1.7.jar:6.1.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.0.17.jar:6.0.17]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.1.7.jar:6.1.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.17.jar:6.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+Caused by: org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [select m1_0.member_id,m1_0.member_account_file_extension,m1_0.member_account_file_name,m1_0.member_account_file_path,m1_0.member_account_file_road,m1_0.member_account_file_original_name,m1_0.member_address,m1_0.member_business,m1_0.member_business_code,m1_0.member_business_file_extension,m1_0.member_business_file_name,m1_0.member_business_file_path,m1_0.member_business_file_road,m1_0.member_business_file_original_name,m1_0.member_change_date,m1_0.member_delivery_address,m1_0.member_delivery_postal,m1_0.member_email,m1_0.member_enabled,m1_0.member_expired,m1_0.member_fax,m1_0.member_join_date,m1_0.member_name,m1_0.member_password,m1_0.member_phone,m1_0.member_postal,m1_0.member_role,m1_0.member_telephone,m1_0.member_username from tb_member m1_0 where m1_0.member_username=?] [(conn=42) Unknown column 'm1_0.member_account_file_extension' in 'field list'] [n/a]; SQL [n/a]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256) ~[spring-orm-6.0.17.jar:6.0.17]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:229) ~[spring-orm-6.0.17.jar:6.0.17]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550) ~[spring-orm-6.0.17.jar:6.0.17]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-6.0.17.jar:6.0.17]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:243) ~[spring-tx-6.0.17.jar:6.0.17]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152) ~[spring-tx-6.0.17.jar:6.0.17]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135) ~[spring-data-jpa-3.1.9.jar:3.1.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:244) ~[spring-aop-6.0.17.jar:6.0.17]
+	at jdk.proxy8/jdk.proxy8.$Proxy144.findByUsername(Unknown Source) ~[na:na]
+	at com.dev.IBIOECommerceJAR.service.authentication.PrincipalDetailsService.loadUserByUsername(PrincipalDetailsService.java:29) ~[classes/:na]
+	at org.springframework.security.authentication.dao.DaoAuthenticationProvider.retrieveUser(DaoAuthenticationProvider.java:103) ~[spring-security-core-6.1.7.jar:6.1.7]
+	... 65 common frames omitted
+Caused by: org.hibernate.exception.SQLGrammarException: JDBC exception executing SQL [select m1_0.member_id,m1_0.member_account_file_extension,m1_0.member_account_file_name,m1_0.member_account_file_path,m1_0.member_account_file_road,m1_0.member_account_file_original_name,m1_0.member_address,m1_0.member_business,m1_0.member_business_code,m1_0.member_business_file_extension,m1_0.member_business_file_name,m1_0.member_business_file_path,m1_0.member_business_file_road,m1_0.member_business_file_original_name,m1_0.member_change_date,m1_0.member_delivery_address,m1_0.member_delivery_postal,m1_0.member_email,m1_0.member_enabled,m1_0.member_expired,m1_0.member_fax,m1_0.member_join_date,m1_0.member_name,m1_0.member_password,m1_0.member_phone,m1_0.member_postal,m1_0.member_role,m1_0.member_telephone,m1_0.member_username from tb_member m1_0 where m1_0.member_username=?] [(conn=42) Unknown column 'm1_0.member_account_file_extension' in 'field list'] [n/a]
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:64) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:56) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:257) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:254) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:134) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:19) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:66) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:198) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:361) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$0(ConcreteSqmSelectQueryPlan.java:110) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:303) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:244) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.query.sqm.internal.QuerySqmImpl.doList(QuerySqmImpl.java:518) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:473) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:406) ~[spring-orm-6.0.17.jar:6.0.17]
+	at jdk.proxy8/jdk.proxy8.$Proxy146.getSingleResult(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:223) ~[spring-data-jpa-3.1.9.jar:3.1.9]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:92) ~[spring-data-jpa-3.1.9.jar:3.1.9]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:149) ~[spring-data-jpa-3.1.9.jar:3.1.9]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:137) ~[spring-data-jpa-3.1.9.jar:3.1.9]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136) ~[spring-data-commons-3.1.9.jar:3.1.9]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120) ~[spring-data-commons-3.1.9.jar:3.1.9]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:164) ~[spring-data-commons-3.1.9.jar:3.1.9]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143) ~[spring-data-commons-3.1.9.jar:3.1.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70) ~[spring-data-commons-3.1.9.jar:3.1.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.17.jar:6.0.17]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.17.jar:6.0.17]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.17.jar:6.0.17]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.17.jar:6.0.17]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.17.jar:6.0.17]
+	... 74 common frames omitted
+Caused by: java.sql.SQLSyntaxErrorException: (conn=42) Unknown column 'm1_0.member_account_file_extension' in 'field list'
+	at org.mariadb.jdbc.export.ExceptionFactory.createException(ExceptionFactory.java:282) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.export.ExceptionFactory.create(ExceptionFactory.java:370) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.message.ClientMessage.readPacket(ClientMessage.java:134) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.readPacket(StandardClient.java:872) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.readResults(StandardClient.java:811) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.readResponse(StandardClient.java:730) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.execute(StandardClient.java:654) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:95) ~[mariadb-java-client-3.1.4.jar:na]
+	at org.mariadb.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:288) ~[mariadb-java-client-3.1.4.jar:na]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:239) ~[hibernate-core-6.2.22.Final.jar:6.2.22.Final]
+	... 113 common frames omitted
+2024-05-08 10:38:20,921 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/login] Deprecated unwrapped fragment expression "fragments/front/common :: headSrc" found in template front/common/login, line 4, col 7. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:38:20,925 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/login] Deprecated unwrapped fragment expression "fragments/front/common :: headerMenu" found in template front/common/login, line 10, col 51. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headerMenu}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:38:20,930 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/login] Deprecated unwrapped fragment expression "fragments/front/common :: ibioFooter" found in template front/common/login, line 71, col 48. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: ibioFooter}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:38:20,934 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/login] Deprecated unwrapped fragment expression "fragments/front/common :: scriptSrc" found in template front/common/login, line 74, col 14. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: scriptSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:37,475 INFO  [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-05-08 10:39:37,481 INFO  [Thread-19] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
+2024-05-08 10:39:37,481 INFO  [Thread-19] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-05-08 10:39:37,489 WARN  [Thread-19] org.apache.catalina.loader.WebappClassLoaderBase : The web application [ROOT] appears to have started a thread named [HikariCP housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.8.1/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.8.1/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.8.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.8.1/java.lang.Thread.run(Thread.java:833)
+2024-05-08 10:39:37,491 INFO  [Thread-19] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-08 10:39:37,491 INFO  [Thread-19] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown initiated...
+2024-05-08 10:39:37,493 INFO  [Thread-19] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown completed.
+2024-05-08 10:39:37,561 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Starting IbioeCommerceJarApplication using Java 17.0.8.1 with PID 26900 (D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR\target\classes started by thra_ in D:\BigData\NewWork\ClientSiteJava17\IBIOECommerceJAR)
+2024-05-08 10:39:37,562 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : The following 1 profile is active: "prod"
+2024-05-08 10:39:37,685 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-05-08 10:39:37,686 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-05-08 10:39:37,690 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.dev.IBIOECommerceJAR.repository.MemberRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-05-08 10:39:37,691 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 0 JDBC repository interfaces.
+2024-05-08 10:39:37,692 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-05-08 10:39:37,692 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-08 10:39:37,697 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 1 JPA repository interface.
+2024-05-08 10:39:37,780 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2024-05-08 10:39:37,780 INFO  [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2024-05-08 10:39:37,780 INFO  [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-05-08 10:39:37,810 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2024-05-08 10:39:37,810 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 247 ms
+2024-05-08 10:39:37,848 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Starting...
+2024-05-08 10:39:37,870 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool : HikariCP - Added connection org.mariadb.jdbc.Connection@16461bbe
+2024-05-08 10:39:37,870 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource : HikariCP - Start completed.
+2024-05-08 10:39:37,876 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-08 10:39:37,914 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-08 10:39:37,990 INFO  [restartedMain] com.dev.IBIOECommerceJAR.config.ApplicationConfig : DaoAuthenticationProvider
+2024-05-08 10:39:38,004 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-08 10:39:38,106 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4978fa53, org.springframework.security.web.session.ForceEagerSessionCreationFilter@22ccc639, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@44c7c0e0, org.springframework.security.web.context.SecurityContextHolderFilter@4ad50b21, org.springframework.security.web.header.HeaderWriterFilter@286cfecf, org.springframework.security.web.authentication.logout.LogoutFilter@72c848be, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5256976f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6d9831ef, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@22cd3015, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@7b2f1aeb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@473c62d1, org.springframework.security.web.session.SessionManagementFilter@18b0dfc4, org.springframework.security.web.access.ExceptionTranslationFilter@2260b14d, org.springframework.security.web.access.intercept.AuthorizationFilter@1f4e823f]
+2024-05-08 10:39:38,109 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@218fd0ae. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-05-08 10:39:38,109 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@218fd0ae
+2024-05-08 10:39:38,202 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : LiveReload server is running on port 35729
+2024-05-08 10:39:38,213 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2024-05-08 10:39:38,215 INFO  [restartedMain] com.dev.IBIOECommerceJAR.IbioeCommerceJarApplication : Started IbioeCommerceJarApplication in 0.672 seconds (process running for 396.596)
+2024-05-08 10:39:38,216 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-05-08 10:39:44,221 INFO  [http-nio-8080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-08 10:39:44,233 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/login] Deprecated unwrapped fragment expression "fragments/front/common :: headSrc" found in template front/common/login, line 4, col 7. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:44,236 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/login] Deprecated unwrapped fragment expression "fragments/front/common :: headerMenu" found in template front/common/login, line 10, col 51. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headerMenu}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:44,242 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/login] Deprecated unwrapped fragment expression "fragments/front/common :: ibioFooter" found in template front/common/login, line 71, col 48. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: ibioFooter}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:44,246 WARN  [http-nio-8080-exec-1] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][front/common/login] Deprecated unwrapped fragment expression "fragments/front/common :: scriptSrc" found in template front/common/login, line 74, col 14. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: scriptSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:47,769 INFO  [http-nio-8080-exec-6] com.dev.IBIOECommerceJAR.service.authentication.PrincipalDetailsService : PrincipalDetailService.loadUserByUsername
+2024-05-08 10:39:47,876 INFO  [http-nio-8080-exec-4] com.dev.IBIOECommerceJAR.controller.AdminController : admin 접속
+2024-05-08 10:39:47,891 WARN  [http-nio-8080-exec-4] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][administration/common/index] Deprecated unwrapped fragment expression "fragments/administration/common :: headSrc" found in template administration/common/index, line 6, col 7. Please use the complete syntax of fragment expressions instead ("~{fragments/administration/common :: headSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:47,920 WARN  [http-nio-8080-exec-4] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][administration/common/index] Deprecated unwrapped fragment expression "fragments/administration/common :: headerMenu" found in template administration/common/index, line 14, col 28. Please use the complete syntax of fragment expressions instead ("~{fragments/administration/common :: headerMenu}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:47,925 WARN  [http-nio-8080-exec-4] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][administration/common/index] Deprecated unwrapped fragment expression "fragments/administration/common :: navMenu" found in template administration/common/index, line 18, col 37. Please use the complete syntax of fragment expressions instead ("~{fragments/administration/common :: navMenu}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:47,932 WARN  [http-nio-8080-exec-4] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][administration/common/index] Deprecated unwrapped fragment expression "fragments/administration/common :: footerSrc" found in template administration/common/index, line 799, col 14. Please use the complete syntax of fragment expressions instead ("~{fragments/administration/common :: footerSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:47,935 WARN  [http-nio-8080-exec-4] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][administration/common/index] Deprecated unwrapped fragment expression "fragments/administration/common :: themeSrc" found in template administration/common/index, line 805, col 12. Please use the complete syntax of fragment expressions instead ("~{fragments/administration/common :: themeSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:47,940 WARN  [http-nio-8080-exec-4] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][administration/common/index] Deprecated unwrapped fragment expression "fragments/administration/common :: scriptSrc" found in template administration/common/index, line 807, col 12. Please use the complete syntax of fragment expressions instead ("~{fragments/administration/common :: scriptSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:48,251 WARN  [http-nio-8080-exec-7] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][error/404] Deprecated unwrapped fragment expression "fragments/front/common :: headSrc" found in template error/404, line 4, col 7. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:48,254 WARN  [http-nio-8080-exec-7] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][error/404] Deprecated unwrapped fragment expression "fragments/front/common :: headerMenu" found in template error/404, line 10, col 45. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: headerMenu}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:48,262 WARN  [http-nio-8080-exec-7] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][error/404] Deprecated unwrapped fragment expression "fragments/front/common :: ibioFooter" found in template error/404, line 171, col 49. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: ibioFooter}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:39:48,267 WARN  [http-nio-8080-exec-7] org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][error/404] Deprecated unwrapped fragment expression "fragments/front/common :: scriptSrc" found in template error/404, line 174, col 12. Please use the complete syntax of fragment expressions instead ("~{fragments/front/common :: scriptSrc}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-05-08 10:40:03,850 INFO  [RMI TCP Connection(9)-127.0.0.1] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-05-08 10:40:03,855 INFO  [RMI TCP Connection(9)-127.0.0.1] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
+2024-05-08 10:40:03,856 INFO  [RMI TCP Connection(9)-127.0.0.1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-05-08 10:40:03,860 WARN  [RMI TCP Connection(9)-127.0.0.1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Cannot serialize session attribute [SPRING_SECURITY_CONTEXT] for session [F96F753F59DE4AB3CB3CFA2AE9940548]
+java.io.NotSerializableException: com.dev.IBIOECommerceJAR.model.authentication.Member
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1187) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1572) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1529) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1438) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1572) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1529) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1438) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1572) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1529) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1438) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:350) ~[na:na]
+	at org.apache.catalina.session.StandardSession.doWriteObject(StandardSession.java:1526) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1000) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:307) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:259) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:374) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:242) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5105) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:242) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1348) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1337) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:931) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:242) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1348) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1337) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:931) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:242) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardService.stopInternal(StandardService.java:496) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:242) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:974) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:242) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:447) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:273) ~[spring-boot-3.1.9.jar:3.1.9]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stop(TomcatWebServer.java:331) ~[spring-boot-3.1.9.jar:3.1.9]
+	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.stop(WebServerStartStopLifecycle.java:53) ~[spring-boot-3.1.9.jar:3.1.9]
+	at org.springframework.context.SmartLifecycle.stop(SmartLifecycle.java:117) ~[spring-context-6.0.17.jar:6.0.17]
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:239) ~[spring-context-6.0.17.jar:6.0.17]
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:380) ~[spring-context-6.0.17.jar:6.0.17]
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:211) ~[spring-context-6.0.17.jar:6.0.17]
+	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:134) ~[spring-context-6.0.17.jar:6.0.17]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-6.0.17.jar:6.0.17]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:173) ~[spring-boot-3.1.9.jar:3.1.9]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1034) ~[spring-context-6.0.17.jar:6.0.17]
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160) ~[spring-boot-3.1.9.jar:3.1.9]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:72) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:262) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:117) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:54) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:237) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252) ~[na:na]
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:814) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:587) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:828) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:705) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:704) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+2024-05-08 10:40:03,865 WARN  [RMI TCP Connection(9)-127.0.0.1] org.apache.catalina.loader.WebappClassLoaderBase : The web application [ROOT] appears to have started a thread named [HikariCP housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.8.1/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.8.1/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.8.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.8.1/java.lang.Thread.run(Thread.java:833)
+2024-05-08 10:40:04,265 INFO  [RMI TCP Connection(9)-127.0.0.1] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-08 10:40:04,265 INFO  [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown initiated...
+2024-05-08 10:40:04,301 INFO  [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource : HikariCP - Shutdown completed.

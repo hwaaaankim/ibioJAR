@@ -123,10 +123,10 @@ public class WebSecurityConfig {
 //					.accessDeniedPage("/error/403");
 //			})
 //		    .authenticationProvider(daoAuthenticationProvider())
-			.exceptionHandling(e->{
-				e.accessDeniedHandler(customAccessDeniedHandler)
-				 .authenticationEntryPoint(exceptionAuthenticationEntryPoint);
-			})
+//			.exceptionHandling(e->{
+//				e.accessDeniedHandler(customAccessDeniedHandler)
+//				 .authenticationEntryPoint(exceptionAuthenticationEntryPoint);
+//			})
 			.rememberMe((remember) -> 
 				remember
 					.rememberMeParameter("remember")
