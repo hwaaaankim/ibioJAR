@@ -1,22 +1,4 @@
 @charset "UTF-8";
-/*******************************************
- *	Theme Name: SuperMaket
- *	Author: Magentech
- *	Author URI: http://www.magentech.com
- *	Version: 1.0.0
- *	Description: This is html5 Sass template 
- *******************************************/
-/* [2] */
-/* [8] */
-/*===============================================
- [SASS DIRECTORY ]
- [1] Minxin Link
- [2] Minxin Button
- [3] Minxin Triangle
- [4] Minxin LABEL PRODUCT
- [5] Minxin Scrollbars
- [6] Minxin Dev Custom
- ==============================================*/
 .no-margin {
   margin: 0 !important;
 }
