@@ -12,7 +12,7 @@ $(document).ready(function() {
 					}
 			});
 			$(this).removeClass('open');
-			$('.vertical .megamenu .loadmore').html('<i class="fa fa-plus-square"></i><span class="more-view">Open Categories</span>');
+			$('.vertical .megamenu .loadmore').html('<i class="fa fa-plus-square"></i><span class="more-view">카테고리 열기</span>');
 		}else{
 			$('.vertical ul.megamenu li.item-vertical').each(function(i){
 				if(i>show_itemver){
@@ -20,7 +20,7 @@ $(document).ready(function() {
 				}
 			});
 			$(this).addClass('open');
-			$('.vertical .megamenu .loadmore').html('<i class="fa fa-minus-square"></i><span class="more-view">Close Categories</span>');
+			$('.vertical .megamenu .loadmore').html('<i class="fa fa-minus-square"></i><span class="more-view">카테고리 닫기</span>');
 		}
 	});
 
@@ -141,7 +141,8 @@ function renderWidthSubmenu()
 			var vertical_width = $('.vertical').width();
 			var full_width = container_width - vertical_width;
 			var width_submenu = (full_width*value)/100;
-			$(this).css('width',width_submenu+'px');
+			/*$(this).css('width',width_submenu+'px');*/
+			$(this).css('width','100%');
 		}	
 	});
 }	

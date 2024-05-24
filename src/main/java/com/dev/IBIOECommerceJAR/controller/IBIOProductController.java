@@ -2,6 +2,7 @@ package com.dev.IBIOECommerceJAR.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class IBIOProductController {
@@ -23,4 +24,13 @@ public class IBIOProductController {
 		
 		return "front/common/product/productQuickView";
 	}
+	
+	@GetMapping("/productDetailView/{id}")
+	public String productDetailView(
+			@PathVariable Long id
+			) {
+		System.out.println(id);
+		return "front/common/product/temp/productDetail" + id;
+	}
+	
 }
