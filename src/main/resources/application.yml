@@ -62,8 +62,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: 'teriwoo48@gmail.com'
-    password: 'ridviujxwdwbxxre'
+    username: 'admin@ibioscience.co.kr'
+    password: 'vukqdrgkpagrvomf'
     properties:
       mail:
         smtp:
@@ -115,8 +115,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: 'teriwoo48@gmail.com'
-    password: 'ridviujxwdwbxxre'
+    username: 'admin@ibioscience.co.kr'
+    password: 'vukqdrgkpagrvomf'
     properties:
       mail:
         smtp:
