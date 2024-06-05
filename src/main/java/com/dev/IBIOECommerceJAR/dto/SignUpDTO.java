@@ -16,7 +16,7 @@ public class SignUpDTO {
 	private String fax;
 	private String address;
 	private String postal;
-	
+	private String sign;
 	private String deliveryAddress;
 	private String deliveryPostal;
 	

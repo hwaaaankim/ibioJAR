@@ -1,12 +1,14 @@
 package com.dev.IBIOECommerceJAR.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -85,60 +87,73 @@ public class CommonController {
 		return memberRepository.findByEmail(email).isPresent();
 	}
 	
+//	@PostMapping("/registration")
+//	@ResponseBody
+//	public String registration(
+//			SignUpDTO dto
+//			) {
+//		
+//		if(memberService.insertMember(dto)!=null) {
+//			String msg = "회원 가입이 완료 되었습니다.";
+//			StringBuilder sb = new StringBuilder();
+//			sb.append("alert('"+msg+"');");
+//			sb.append("location.href='/index'");
+//			sb.insert(0, "<script>");
+//			sb.append("</script>");
+//			return sb.toString();
+//		}else {
+//			String msg = "에러가 발생 하였습니다. 다시 시도해 주세요.";
+//			StringBuilder sb = new StringBuilder();
+//			sb.append("alert('"+msg+"');");
+//			sb.append("location.href='/signupForm'");
+//			sb.insert(0, "<script>");
+//			sb.append("</script>");
+//			
+//			return sb.toString();
+//		}
+//	}
+	
+//	@PostMapping("/dealerRegistration")
+//	@ResponseBody
+//	public String dealerRegistration(
+//			SignUpDTO dto,
+//			MultipartFile accountFile,
+//			MultipartFile businessFile
+//			) throws IllegalStateException, IOException {
+//		System.out.println(dto);
+//		System.out.println(businessFile.isEmpty());
+//		System.out.println(accountFile.isEmpty());
+//		if(memberService.insertDealer(dto, accountFile, businessFile)!=null) {
+//			String msg = "딜러 회원가입이 완료 되었습니다. 관리자 승인 후 이용 가능합니다.";
+//			StringBuilder sb = new StringBuilder();
+//			sb.append("alert('"+msg+"');");
+//			sb.append("location.href='/index'");
+//			sb.insert(0, "<script>");
+//			sb.append("</script>");
+//			return sb.toString();
+//		}else {
+//			String msg = "에러가 발생 하였습니다. 다시 시도해 주세요.";
+//			StringBuilder sb = new StringBuilder();
+//			sb.append("alert('"+msg+"');");
+//			sb.append("location.href='/dealerSignupForm'");
+//			sb.insert(0, "<script>");
+//			sb.append("</script>");
+//			
+//			return sb.toString();
+//		}
+//	}
+	
 	@PostMapping("/registration")
 	@ResponseBody
 	public String registration(
-			SignUpDTO dto
-			) {
-		
-		if(memberService.insertMember(dto)!=null) {
-			String msg = "회원 가입이 완료 되었습니다.";
-			StringBuilder sb = new StringBuilder();
-			sb.append("alert('"+msg+"');");
-			sb.append("location.href='/index'");
-			sb.insert(0, "<script>");
-			sb.append("</script>");
-			return sb.toString();
-		}else {
-			String msg = "에러가 발생 하였습니다. 다시 시도해 주세요.";
-			StringBuilder sb = new StringBuilder();
-			sb.append("alert('"+msg+"');");
-			sb.append("location.href='/signupForm'");
-			sb.insert(0, "<script>");
-			sb.append("</script>");
-			
-			return sb.toString();
-		}
-	}
-	
-	@PostMapping("/dealerRegistration")
-	@ResponseBody
-	public String dealerRegistration(
 			SignUpDTO dto,
-			MultipartFile accountFile,
-			MultipartFile businessFile
+			@RequestBody(required = false) List<MultipartFile> memberFile
+
 			) throws IllegalStateException, IOException {
-		System.out.println(dto);
-		System.out.println(businessFile.isEmpty());
-		System.out.println(accountFile.isEmpty());
-		if(memberService.insertDealer(dto, accountFile, businessFile)!=null) {
-			String msg = "딜러 회원가입이 완료 되었습니다. 관리자 승인 후 이용 가능합니다.";
-			StringBuilder sb = new StringBuilder();
-			sb.append("alert('"+msg+"');");
-			sb.append("location.href='/index'");
-			sb.insert(0, "<script>");
-			sb.append("</script>");
-			return sb.toString();
-		}else {
-			String msg = "에러가 발생 하였습니다. 다시 시도해 주세요.";
-			StringBuilder sb = new StringBuilder();
-			sb.append("alert('"+msg+"');");
-			sb.append("location.href='/dealerSignupForm'");
-			sb.insert(0, "<script>");
-			sb.append("</script>");
-			
-			return sb.toString();
-		}
+	
+		
+		return memberService.registration(dto, memberFile);
+		
 	}
 	
 	@GetMapping("/dealerSignupForm")
