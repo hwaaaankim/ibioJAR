@@ -32,13 +32,13 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="page-title-box d-sm-flex align-items-center justify-content-between">
-								<h4 class="mb-sm-0">딜러 회원가입 신청관리</h4>
+								<h4 class="mb-sm-0">회원가입 신청관리</h4>
 
 								<div class="page-title-right">
 									<ol class="breadcrumb m-0">
 										<li class="breadcrumb-item"><a href="javascript: void(0);">AUTHENTICATION</a>
 										</li>
-										<li class="breadcrumb-item active">딜러 회원가입 신청관리</li>
+										<li class="breadcrumb-item active">회원가입 신청관리</li>
 									</ol>
 								</div>
 
@@ -50,30 +50,73 @@
 						<div class="col-lg-12">
 							<div class="card" id="invoiceList">
 								<div class="card-header border-0">
-									<div class="d-flex align-items-center">
-										<h5 class="card-title mb-0 flex-grow-1 fs-17">딜러 회원가입 관리</h5>
+									<div class="align-items-center">
+										<h5 class="card-title mb-0 flex-grow-1 fs-17">회원가입 관리 <span style="font-size:14px;font-weight:500;">[새로운 가입 신청 : <span th:text="${members.totalElements}"></span>건]</span></h5>
 									</div>
 								</div>
 								<div class="card-body bg-light-subtle border border-dashed border-start-0 border-end-0">
-									<form>
+									<form method="post" action="/admin/memberRegistrationCheck">
 										<div class="row g-3">
-											<div class="col-xxl-5 col-sm-12">
-												<div class="search-box">
-													<input type="text" class="form-control search bg-light border-light"
-														placeholder="검색어를 입력 해 주세요.">
-													<i class="ri-search-line search-icon"></i>
-												</div>
-											</div>
-
-											<div class="col-xxl-5 col-sm-4">
-												<input type="text" class="form-control bg-light border-light"
-													id="datepicker-range" placeholder="기간을 설정 해 주세요.">
+											<div class="col-xxl-2 col-sm-12">
+												<select 
+												name="size"
+												id="pageSize"
+												class="form-select mb-3" 
+												aria-label="Default select example">
+                                                    <option selected>데이터 수량 선택</option>
+                                                    <option value="10" th:selected="${members.pageable.pageSize} == '10'">10개씩 보기</option>
+                                                    <option value="30" th:selected="${members.pageable.pageSize} == '30'">30개씩 보기</option>
+                                                    <option value="50" th:selected="${members.pageable.pageSize} == '50'">50개씩 보기</option>
+                                                    <option value="100" th:selected="${members.pageable.pageSize} == '100'">100개씩 보기</option>
+                                                </select>
 											</div>
 
 											<div class="col-xxl-2 col-sm-4">
-												<button type="button" class="btn btn-primary w-100"
-													onclick="SearchData();">
-													<i class="ri-equalizer-fill me-1 align-bottom"></i> 검색하기
+												<select
+												name="searchType"
+												id="searchType"
+												class="form-select mb-3">
+                                                    <option id="searchBasic" value="none" selected>조회 조건 선택 </option>
+                                                    <option id="searchName" value="name">아이디 조회</option>
+                                                    <option id="searchUsername" value="username">고객명 조회</option>
+                                                    <option id="searchBusiness" value="business">업체명 조회</option>
+                                                    <option id="searchEmail" value="email">이메일 조회</option>
+                                                    <option id="searchPhone" value="phone">휴대폰 번호 조회</option>
+                                                    <option id="searchPeriod" value="period">신청기간별 조회</option>
+                                                </select>
+											</div>
+											<div class="col-xxl-3 col-sm-4" id="textSearch">
+												<div class="form-icon">
+                                                    <input 
+                                                    name="searchWord"
+                                                    type="text" 
+                                                    class="form-control form-control-icon" 
+                                                    placeholder="검색어를 입력 하세요" />
+                                                    <i class="fa-solid fa-pencil"></i>
+                                                </div>
+											</div>	
+											<div class="col-xxl-3 col-sm-4" id="phoneSearch">
+												<div class="form-icon">
+                                                    <input 
+                                                    name="phoneNumber"
+                                                    type="text" 
+                                                    class="form-control form-control-icon" 
+                                                    maxlength="13"
+                                                    required
+                                                    oninput="autoHyphen(this)"
+                                                    placeholder="휴대폰 번호를 '-'제외하고 입력하세요." />
+                                                    <i class="fa-solid fa-pencil"></i>
+                                                </div>
+											</div>
+											<div class="col-xxl-2 col-sm-4" id="periodStart">
+                                                <input type="date" name="startDate" class="form-control" id="startDate"/>
+											</div>
+											<div class="col-xxl-2 col-sm-2" id="periodEnd">
+                                                <input type="date" name="endDate" class="form-control" id="endDate"/>
+											</div>
+											<div class="col-xxl-2 col-sm-4">
+												<button type="submit" class="btn btn-primary w-100">
+													<i class="ri-equalizer-fill me-1 align-bottom"></i> 데이터 검색
 												</button>
 											</div>
 										</div>
@@ -81,24 +124,55 @@
 								</div>
 								<div class="card-body">
 									<div>
-										<div class="table-responsive table-card">
-											<table class="table align-middle table-nowrap" id="invoiceTable">
+										<div class="table-responsive table-card" style="padding:0px 20px 0px 20px;">
+											
+											<table th:if="${members.totalElements} != '0'" class="table align-middle table-nowrap">
 												<thead class="text-muted">
 													<tr>
-														<th class="sort text-uppercase" data-sort="invoice_id">PHONE</th>
-														<th class="sort text-uppercase" data-sort="customer_name">
-															Customer</th>
-														<th class="sort text-uppercase" data-sort="email">Email</th>
-														<th class="sort text-uppercase" data-sort="date">가입신청일</th>
-														<th class="sort text-uppercase" data-sort="status">상태</th>
-														<th class="sort text-uppercase" data-sort="action">Action</th>
+														<th class="text-uppercase">번호</th>
+														<th class="text-uppercase">고객명</th>
+														<th class="text-uppercase">연락처</th>
+														<th class="text-uppercase">가입신청일</th>
+														<th class="text-uppercase">상태</th>
+														<th class="text-uppercase">동작</th>
 													</tr>
 												</thead>
-												<tbody class="list form-check-all" id="invoice-list-data">
-
+												<tbody class="form-check-all">
+													<tr th:each="m:${members}">
+														<td class="id" th:text="${m.id}"># VLZ501</td>
+														<td class="project_name">
+															<a href="@{|/admin/memberRegistrationCheckDetail/${m.id}|}" class="fw-medium link-primary" th:text="${m.name}">USERNAME</a>
+														</td>
+														<td class="client_name">
+															<a href="|tel:,${m.phone}|" class="fw-medium link-primary" th:text="${m.phone}">USERNAME</a>
+														</td>
+														<td class="due_date" th:text="${m.joindate}">25 Jan, 2022</td>
+														<td class="status">
+															<span class="badge bg-secondary-subtle text-secondary text-uppercase">새로운신청</span>
+														</td>
+														<td>
+															<ul class="list-inline tasks-list-menu mb-0">
+																<li class="list-inline-item"><a
+																		class="edit-item-btn"
+																		href="#changeOrder"
+																		th:onclick="|javascript:changeOrderId('${m.id}')|"
+																		data-bs-toggle="modal"><i
+																			class="ri-pencil-fill align-bottom me-2 text-muted"></i></a>
+																</li>
+																<li class="list-inline-item">
+																	<a class="remove-item-btn"
+																		data-bs-toggle="modal"
+																		th:onclick="|javascript:deleteOrderId('${m.id}')|"
+																		href="#deleteOrder">
+																		<i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+																	</a>
+																</li>
+															</ul>
+														</td>
+													</tr>
 												</tbody>
 											</table>
-											<div class="noresult" style="display: none">
+											<div class="noresult" th:if="${members.totalElements} == '0'">
 												<div class="text-center">
 													<lord-icon src="https://cdn.lordicon.com/msoeawqm.json"
 														trigger="loop" colors="primary:#121331,secondary:#08a88a"
@@ -108,15 +182,27 @@
 												</div>
 											</div>
 										</div>
-										<div class="d-flex justify-content-end mt-3">
+										<div class="d-flex justify-content-center mt-3" th:if="${members.totalElements} != '0'">
 											<div class="pagination-wrap hstack gap-2">
-												<a class="page-item pagination-prev disabled" href="#">
-													PREV
-												</a>
-												<ul class="pagination listjs-pagination mb-0"></ul>
-												<a class="page-item pagination-next" href="#">
-													NEXT
-												</a>
+												<nav aria-label="Page navigation example">
+													<ul class="pagination justify-content-center">
+														<li class="page-item disabled">
+															<a class="page-link" href="#" tabindex="-1">First</a>
+														</li>
+														<li class="page-item disabled">
+															<a class="page-link" href="#" tabindex="-1">Previous</a>
+														</li>
+														<li class="page-item"><a class="page-link" href="#">1</a></li>
+														<li class="page-item"><a class="page-link" href="#">2</a></li>
+														<li class="page-item"><a class="page-link" href="#">3</a></li>
+														<li class="page-item">
+															<a class="page-link" href="#">Next</a>
+														</li>
+														<li class="page-item">
+															<a class="page-link" href="#">Last</a>
+														</li>
+													</ul>
+												</nav>
 											</div>
 										</div>
 									</div>
@@ -133,13 +219,13 @@
 													<div class="mt-4 text-center">
 														<h4>해당 신청을 삭제 하시겠습니까 ?</h4>
 														<div class="hstack gap-2 justify-content-center remove">
+															<input type="hidden" id="deleteOrderValue">
 															<button
 																class="btn btn-link link-success fw-medium text-decoration-none"
 																id="deleteRecord-close" data-bs-dismiss="modal"><i
 																	class="ri-close-line me-1 align-middle"></i>
 																닫기</button>
-															<button class="btn btn-danger"
-																id="delete-record">삭제하기</button>
+															<button onclick="deleteApply()" class="btn btn-danger">신청삭제하기</button>
 														</div>
 													</div>
 												</div>
@@ -158,13 +244,13 @@
 													<div class="mt-4 text-center">
 														<h4>해당 회원을 정규회원으로 전환 하시겠습니까 ?</h4>
 														<div class="hstack gap-2 justify-content-center remove">
+															<input type="hidden" id="changeOrderValue">
 															<button
 																class="btn btn-link link-success fw-medium text-decoration-none"
 																id="deleteRecord-close" data-bs-dismiss="modal"><i
 																	class="ri-close-line me-1 align-middle"></i>
 																닫기</button>
-															<button class="btn btn-danger"
-																id="delete-record">전환하기</button>
+															<button onclick="changeStatus();" class="btn btn-danger">전환하기</button>
 														</div>
 													</div>
 												</div>
@@ -179,20 +265,33 @@
 			</div>
 			<th:block th:replace="fragments/administration/common :: footerSrc"></th:block>
 		</div>
-
 	</div>
 
 
 	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
-
 	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
-
-	<script src="/administration/assets/libs/list.js/list.min.js"></script>
-	<script src="/administration/assets/libs/list.pagination.js/list.pagination.min.js"></script>
+	<script th:inline="javascript">
+   		var searchType = /*[[${searchType}]]*/ 'default';
+    </script>
 	<script src="/administration/assets/js/memberRegistrationCheck.js"></script>
-	<script src="/administration/assets/libs/sweetalert2/sweetalert2.min.js"></script>
-
-
+	<script>
+		
+		function deleteOrderId(id){
+			$('#deleteOrderValue').val(id);
+		}
+		
+		function changeOrderId(id){
+			$('#changeOrderValue').val(id);
+		}
+		
+		function deleteApply(){
+			alert($('#deleteOrderValue').val());
+		}
+		
+		function changeStatus(){
+			alert($('#changeOrderValue').val());
+		}
+	</script>
 </body>
 
 </html>

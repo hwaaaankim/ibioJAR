@@ -2,7 +2,9 @@ package com.dev.IBIOECommerceJAR.service.authentication;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -11,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dev.IBIOECommerceJAR.dto.SignUpDTO;
 import com.dev.IBIOECommerceJAR.model.authentication.Member;
+import com.dev.IBIOECommerceJAR.model.authentication.MemberFile;
+import com.dev.IBIOECommerceJAR.repository.MemberFileRepository;
 import com.dev.IBIOECommerceJAR.repository.MemberRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +36,9 @@ public class MemberService {
 
 	@Autowired
 	private MemberRepository memberRepository;
+	
+	@Autowired
+	private MemberFileRepository memberFileRepository;
 
 	@Value("${spring.upload.env}")
 	private String env;
@@ -41,143 +50,61 @@ public class MemberService {
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
+	public Page<Member> findByDate(Pageable pageable, String startDate, String endDate) throws ParseException {
 
-	public Member insertMember(SignUpDTO dto) {
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat bf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		if ("".equals(startDate) && "".equals(startDate)) {
 
-		Member member = new Member();
+			Date today = new Date();
+			String day = bf.format(today);
 
-		member.setUsername(dto.getUsername());
-		member.setPassword(passwordEncoder().encode(dto.getPassword()));
-		member.setName(dto.getName());
-		member.setBusiness(dto.getBusiness());
-		member.setBusinessCode(dto.getBusinessCode());
-		member.setEmail(dto.getEmail());
-		member.setPhone(dto.getPhone());
-		member.setFax(dto.getFax());
-		member.setTelephone(dto.getTelephone());
-		member.setAddress(dto.getAddress());
-		member.setPostal(dto.getPostal());
-		member.setDeliveryAddress(dto.getDeliveryAddress());
-		member.setDeliveryPostal(dto.getDeliveryPostal());
-		member.setRole("ROLE_MEMBER");
-		member.setEnabled(true);
-		member.setExpired(true);
-		member.setJoinDate(new Date());
-		member.setChangeDate(new Date());
+			String start = day.substring(0, 10) + " 00:00:00";
+			String end = day.substring(0, 10) + " 23:59:00";
 
-		return memberRepository.save(member);
+			Date first = bf.parse(start);
+			Date second = bf.parse(end);
+			return memberRepository.findAllByEnabledAndJoindateBetween(pageable, false, first, second);
+
+		} else if (!"".equals(startDate) && !"".equals(startDate) && startDate.equals(endDate)) {
+			String start = startDate.substring(0, 10) + " 00:00:00";
+			Date first = f.parse(start);
+			Date second = f.parse(start);
+
+			Calendar c = Calendar.getInstance();
+			c.setTime(second);
+			c.add(Calendar.DATE, 1);
+			second = c.getTime();
+
+			return memberRepository.findAllByEnabledAndJoindateBetween(pageable, false, first, second);
+
+		} else if ("".equals(startDate) && !"".equals(endDate)) {
+
+			Date second = f.parse(endDate);
+			return memberRepository.findAllByEnabledAndJoindateLessThan(pageable, false, second);
+
+		} else if (!"".equals(startDate) && "".equals(endDate)) {
+			Date first = f.parse(startDate);
+			return memberRepository.findAllByEnabledAndJoindateGreaterThan(pageable, false, first);
+		} else {
+			Date first = f.parse(startDate);
+			Date second = f.parse(endDate);
+
+			Calendar c = Calendar.getInstance();
+			c.setTime(second);
+			c.add(Calendar.DATE, 1);
+			second = c.getTime();
+
+			return memberRepository.findAllByEnabledAndJoindateBetween(pageable, false, first, second);
+		}
 	}
-
+	
 	public Member insertDealer(
 			SignUpDTO dto, 
-			MultipartFile accountFile, 
-			MultipartFile businessFile
+			List<MultipartFile> dealerFiles
 			) throws IllegalStateException, IOException {
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		String current_date = simpleDateFormat.format(new Date());
-		
-		// 실제 파일 저장 위치
-		String path = commonPath + "dealer/" + current_date + "/";
-		// 파일 resource 로드 url
-		String road = "/upload/dealer/" + current_date + "/";
-		
-		int leftLimit = 48;
-		int rightLimit = 122;
-		int targetStringLength = 10;
-		Random random = new Random();
-
-		// Account File 처리
-		String accountGeneratedString = random.ints(leftLimit, rightLimit + 1)
-				.filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97)).limit(targetStringLength)
-				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
-
-		String accountContentType = accountFile.getContentType();
-		String accountOriginalFileExtension = "";
-		// 확장자 명이 없으면 이 파일은 잘 못 된 것.
-		if (ObjectUtils.isEmpty(accountContentType)) {
-			return null;
-		} else {
-			if (accountContentType.contains("image/jpeg")) {
-				accountOriginalFileExtension = ".jpg";
-			} else if (accountContentType.contains("image/png")) {
-				accountOriginalFileExtension = ".png";
-			} else if (accountContentType.contains("application/pdf")) {
-				accountOriginalFileExtension = ".pdf";
-			}
-		}
-		String accountOriginalName = accountFile.getOriginalFilename();
-		String accountFileName = accountGeneratedString + "." + accountOriginalFileExtension;
-		String accountFilePath = path + dto.getUsername() + "/account/" + accountFileName;
-		String accountFileRoad = road + dto.getUsername() + "/account/" + accountFileName;
-		String accountFileExtension = accountOriginalFileExtension;
-		
-		String accountSavePath = "";
-		if(env.equals("local")) {
-			accountSavePath = accountFilePath;
-		}else if(env.equals("prod")) {
-			accountSavePath = accountFilePath;
-		}
-		File accountSaveFile = new File(accountSavePath);	
-		if (!accountSaveFile.exists()) {
-			accountSaveFile.mkdirs();
-		}
-		accountFile.transferTo(accountSaveFile);
-		
-		// Business File 처리
-		String businessGeneratedString = random.ints(leftLimit, rightLimit + 1)
-				.filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97)).limit(targetStringLength)
-				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
-
-		String businessContentType = accountFile.getContentType();
-		String businessOriginalFileExtension = "";
-		// 확장자 명이 없으면 이 파일은 잘 못 된 것이다
-		if (ObjectUtils.isEmpty(businessContentType)) {
-			return null;
-		} else {
-			if (businessContentType.contains("image/jpeg")) {
-				businessOriginalFileExtension = ".jpg";
-			} else if (businessContentType.contains("image/png")) {
-				businessOriginalFileExtension = ".png";
-			} else if (businessContentType.contains("image/gif")) {
-				businessOriginalFileExtension = ".gif";
-			} else if (businessContentType.contains("application/pdf")) {
-				businessOriginalFileExtension = ".pdf";
-			} else if (businessContentType.contains("application/x-zip-compressed")) {
-				businessOriginalFileExtension = ".zip";
-			} else if (businessContentType
-					.contains("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
-				businessOriginalFileExtension = ".xlsx";
-			} else if (businessContentType
-					.contains("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
-				businessOriginalFileExtension = ".docx";
-			} else if (businessContentType.contains("text/plain")) {
-				businessOriginalFileExtension = ".txt";
-			} else if (businessContentType.contains("image/x-icon")) {
-				businessOriginalFileExtension = ".ico";
-			} else if (businessContentType.contains("application/haansofthwp")) {
-				businessOriginalFileExtension = ".hwp";
-			}
-		}
-		String businessFileName = businessGeneratedString  + "." + businessOriginalFileExtension;
-		String businessFilePath = path + dto.getUsername() + "/business/" + businessFileName;
-		String businessFileRoad = road + dto.getUsername() + "/business/" + businessFileName;
-		String businessFileExtension = businessOriginalFileExtension;
-		String businessOriginalName = businessFile.getOriginalFilename();
-		
-		String businessSavePath = "";
-		if(env.equals("local")) {
-			businessSavePath = businessFilePath;
-		}else if(env.equals("prod")) {
-			businessSavePath = businessFilePath;
-		}
-		File businessSaveFile = new File(businessSavePath);	
-		if (!businessSaveFile.exists()) {
-			businessSaveFile.mkdirs();
-		}
-		businessFile.transferTo(businessSaveFile);
-		
-		
 		// DB Entity 작성
 		Member member = new Member();
 		member.setUsername(dto.getUsername());
@@ -196,172 +123,208 @@ public class MemberService {
 		member.setRole("ROLE_DEALER");
 		member.setEnabled(false);
 		member.setExpired(true);
-		member.setJoinDate(new Date());
+		member.setJoindate(new Date());
 		member.setChangeDate(new Date());
-		member.setBusinessFileExtension(businessFileExtension);
-		member.setBusinessFileName(businessFileName);
-		member.setBusinessFilePath(businessFilePath);
-		member.setBusinessFileRoad(businessFileRoad);
-		member.setBusinessOriginalName(businessOriginalName);
-		
-		member.setAccountFileExtension(accountFileExtension);
-		member.setAccountFileName(accountFileName);
-		member.setAccountFilePath(accountFilePath);
-		member.setAccountFileRoad(accountFileRoad);
-		member.setAccountOriginalName(accountOriginalName);
 
-		return memberRepository.save(member);
+		Member newMember = memberRepository.save(member);
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String current_date = simpleDateFormat.format(new Date());
+		
+		// 실제 파일 저장 위치
+		String path = commonPath + "dealer/" + current_date + "/";
+		// 파일 resource 로드 url
+		String road = "/upload/dealer/" + current_date + "/";
+		
+		int leftLimit = 48;
+		int rightLimit = 122;
+		int targetStringLength = 10;
+		Random random = new Random();
+
+		// Account File 처리
+		String accountGeneratedString = random.ints(leftLimit, rightLimit + 1)
+				.filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97)).limit(targetStringLength)
+				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
+		if(dealerFiles != null) {
+			for(MultipartFile f : dealerFiles) {
+				if(!f.isEmpty()) {
+					String contentType = f.getContentType();
+					String fileExtension = "";
+					
+					if (ObjectUtils.isEmpty(contentType)) {
+						return null;
+					} else {
+						if (contentType.contains("image/jpeg")) {
+							fileExtension = ".jpg";
+						} else if (contentType.contains("image/png")) {
+							fileExtension = ".png";
+						} else if (contentType.contains("image/gif")) {
+							fileExtension = ".gif";
+						} else if (contentType.contains("application/pdf")) {
+							fileExtension = ".pdf";
+						} else if (contentType.contains("application/x-zip-compressed")) {
+							fileExtension = ".zip";
+						} else if (contentType
+								.contains("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+							fileExtension = ".xlsx";
+						} else if (contentType
+								.contains("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
+							fileExtension = ".docx";
+						} else if (contentType.contains("text/plain")) {
+							fileExtension = ".txt";
+						} else if (contentType.contains("image/x-icon")) {
+							fileExtension = ".ico";
+						} else if (contentType.contains("application/haansofthwp")) {
+							fileExtension = ".hwp";
+						}
+					}
+					
+					String originalName = f.getOriginalFilename();
+					String fileName = accountGeneratedString + "." + fileExtension;
+					String filePath = path + dto.getUsername() + "/account/" + fileName;
+					String fileRoad = road + dto.getUsername() + "/account/" + fileName;
+					String memberFileExtension = fileExtension;
+					
+					String accountSavePath = filePath;
+					File accountSaveFile = new File(accountSavePath);	
+					if (!accountSaveFile.exists()) {
+						accountSaveFile.mkdirs();
+					}
+					f.transferTo(accountSaveFile);
+					
+					MemberFile memberFile = new MemberFile();
+					memberFile.setMemberFileOriginalName(originalName);
+					memberFile.setMemberFileDate(new Date());
+					memberFile.setMemberFilePath(accountSavePath);
+					memberFile.setMemberFileName(fileName);
+					memberFile.setMemberFileRoad(fileRoad);
+					memberFile.setMemberFileExtentsion(memberFileExtension);
+					memberFile.setMemberId(newMember.getId());
+					
+					memberFileRepository.save(memberFile);
+					
+				}
+			}
+		}
+		return newMember;
 	}
 	
-//	public Member registration(
-//			SignUpDTO dto, 
-//			List<MultipartFile> memberFile
-//			) throws IllegalStateException, IOException {
-//
-//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//		String current_date = simpleDateFormat.format(new Date());
-//		
-//		// 실제 파일 저장 위치
-//		String path = commonPath + "dealer/" + current_date + "/";
-//		// 파일 resource 로드 url
-//		String road = "/upload/dealer/" + current_date + "/";
-//		
-//		int leftLimit = 48;
-//		int rightLimit = 122;
-//		int targetStringLength = 10;
-//		Random random = new Random();
-//
-//		// Account File 처리
-//		String accountGeneratedString = random.ints(leftLimit, rightLimit + 1)
-//				.filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97)).limit(targetStringLength)
-//				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
-//
-//		String accountContentType = accountFile.getContentType();
-//		String accountOriginalFileExtension = "";
-//		// 확장자 명이 없으면 이 파일은 잘 못 된 것.
-//		if (ObjectUtils.isEmpty(accountContentType)) {
-//			return null;
-//		} else {
-//			if (accountContentType.contains("image/jpeg")) {
-//				accountOriginalFileExtension = ".jpg";
-//			} else if (accountContentType.contains("image/png")) {
-//				accountOriginalFileExtension = ".png";
-//			} else if (accountContentType.contains("application/pdf")) {
-//				accountOriginalFileExtension = ".pdf";
-//			}
-//		}
-//		String accountOriginalName = accountFile.getOriginalFilename();
-//		String accountFileName = accountGeneratedString + "." + accountOriginalFileExtension;
-//		String accountFilePath = path + dto.getUsername() + "/account/" + accountFileName;
-//		String accountFileRoad = road + dto.getUsername() + "/account/" + accountFileName;
-//		String accountFileExtension = accountOriginalFileExtension;
-//		
-//		String accountSavePath = "";
-//		if(env.equals("local")) {
-//			accountSavePath = accountFilePath;
-//		}else if(env.equals("prod")) {
-//			accountSavePath = accountFilePath;
-//		}
-//		File accountSaveFile = new File(accountSavePath);	
-//		if (!accountSaveFile.exists()) {
-//			accountSaveFile.mkdirs();
-//		}
-//		accountFile.transferTo(accountSaveFile);
-//		
-//		// Business File 처리
-//		String businessGeneratedString = random.ints(leftLimit, rightLimit + 1)
-//				.filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97)).limit(targetStringLength)
-//				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
-//
-//		String businessContentType = accountFile.getContentType();
-//		String businessOriginalFileExtension = "";
-//		// 확장자 명이 없으면 이 파일은 잘 못 된 것이다
-//		if (ObjectUtils.isEmpty(businessContentType)) {
-//			return null;
-//		} else {
-//			if (businessContentType.contains("image/jpeg")) {
-//				businessOriginalFileExtension = ".jpg";
-//			} else if (businessContentType.contains("image/png")) {
-//				businessOriginalFileExtension = ".png";
-//			} else if (businessContentType.contains("image/gif")) {
-//				businessOriginalFileExtension = ".gif";
-//			} else if (businessContentType.contains("application/pdf")) {
-//				businessOriginalFileExtension = ".pdf";
-//			} else if (businessContentType.contains("application/x-zip-compressed")) {
-//				businessOriginalFileExtension = ".zip";
-//			} else if (businessContentType
-//					.contains("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
-//				businessOriginalFileExtension = ".xlsx";
-//			} else if (businessContentType
-//					.contains("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
-//				businessOriginalFileExtension = ".docx";
-//			} else if (businessContentType.contains("text/plain")) {
-//				businessOriginalFileExtension = ".txt";
-//			} else if (businessContentType.contains("image/x-icon")) {
-//				businessOriginalFileExtension = ".ico";
-//			} else if (businessContentType.contains("application/haansofthwp")) {
-//				businessOriginalFileExtension = ".hwp";
-//			}
-//		}
-//		String businessFileName = businessGeneratedString  + "." + businessOriginalFileExtension;
-//		String businessFilePath = path + dto.getUsername() + "/business/" + businessFileName;
-//		String businessFileRoad = road + dto.getUsername() + "/business/" + businessFileName;
-//		String businessFileExtension = businessOriginalFileExtension;
-//		String businessOriginalName = businessFile.getOriginalFilename();
-//		
-//		String businessSavePath = "";
-//		if(env.equals("local")) {
-//			businessSavePath = businessFilePath;
-//		}else if(env.equals("prod")) {
-//			businessSavePath = businessFilePath;
-//		}
-//		File businessSaveFile = new File(businessSavePath);	
-//		if (!businessSaveFile.exists()) {
-//			businessSaveFile.mkdirs();
-//		}
-//		businessFile.transferTo(businessSaveFile);
-//		
-//		
-//		// DB Entity 작성
-//		Member member = new Member();
-//		member.setUsername(dto.getUsername());
-//		member.setPassword(passwordEncoder().encode(dto.getPassword()));
-//		member.setName(dto.getName());
-//		member.setBusiness(dto.getBusiness());
-//		member.setBusinessCode(dto.getBusinessCode());
-//		member.setEmail(dto.getEmail());
-//		member.setPhone(dto.getPhone());
-//		member.setFax(dto.getFax());
-//		member.setTelephone(dto.getTelephone());
-//		member.setAddress(dto.getAddress());
-//		member.setPostal(dto.getPostal());
-//		member.setDeliveryAddress(dto.getDeliveryAddress());
-//		member.setDeliveryPostal(dto.getDeliveryPostal());
-//		member.setRole("ROLE_DEALER");
-//		member.setEnabled(false);
-//		member.setExpired(true);
-//		member.setJoinDate(new Date());
-//		member.setChangeDate(new Date());
-//		member.setBusinessFileExtension(businessFileExtension);
-//		member.setBusinessFileName(businessFileName);
-//		member.setBusinessFilePath(businessFilePath);
-//		member.setBusinessFileRoad(businessFileRoad);
-//		member.setBusinessOriginalName(businessOriginalName);
-//		
-//		member.setAccountFileExtension(accountFileExtension);
-//		member.setAccountFileName(accountFileName);
-//		member.setAccountFilePath(accountFilePath);
-//		member.setAccountFileRoad(accountFileRoad);
-//		member.setAccountOriginalName(accountOriginalName);
-//
-//		return memberRepository.save(member);
-//	}
+	public Member insertMember(
+			SignUpDTO dto, 
+			List<MultipartFile> memberFiles
+			) throws IllegalStateException, IOException {
+
+		// DB Entity 작성
+		Member member = new Member();
+		member.setUsername(dto.getUsername());
+		member.setPassword(passwordEncoder().encode(dto.getPassword()));
+		member.setName(dto.getName());
+		member.setBusiness(dto.getBusiness());
+		member.setBusinessCode(dto.getBusinessCode());
+		member.setEmail(dto.getEmail());
+		member.setPhone(dto.getPhone());
+		member.setFax(dto.getFax());
+		member.setTelephone(dto.getTelephone());
+		member.setAddress(dto.getAddress());
+		member.setPostal(dto.getPostal());
+		member.setDeliveryAddress(dto.getDeliveryAddress());
+		member.setDeliveryPostal(dto.getDeliveryPostal());
+		member.setRole("ROLE_MEMBER");
+		member.setEnabled(false);
+		member.setExpired(true);
+		member.setJoindate(new Date());
+		member.setChangeDate(new Date());
+
+		Member newMember = memberRepository.save(member);
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String current_date = simpleDateFormat.format(new Date());
+		
+		// 실제 파일 저장 위치
+		String path = commonPath + "member/" + current_date + "/";
+		// 파일 resource 로드 url
+		String road = "/upload/member/" + current_date + "/";
+		
+		int leftLimit = 48;
+		int rightLimit = 122;
+		int targetStringLength = 10;
+		Random random = new Random();
+
+		// Account File 처리
+		String accountGeneratedString = random.ints(leftLimit, rightLimit + 1)
+				.filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97)).limit(targetStringLength)
+				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
+		if(memberFiles != null) {
+			for(MultipartFile f : memberFiles) {
+				if(!f.isEmpty()) {
+					String contentType = f.getContentType();
+					String fileExtension = "";
+					
+					if (ObjectUtils.isEmpty(contentType)) {
+						return null;
+					} else {
+						if (contentType.contains("image/jpeg")) {
+							fileExtension = ".jpg";
+						} else if (contentType.contains("image/png")) {
+							fileExtension = ".png";
+						} else if (contentType.contains("image/gif")) {
+							fileExtension = ".gif";
+						} else if (contentType.contains("application/pdf")) {
+							fileExtension = ".pdf";
+						} else if (contentType.contains("application/x-zip-compressed")) {
+							fileExtension = ".zip";
+						} else if (contentType
+								.contains("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+							fileExtension = ".xlsx";
+						} else if (contentType
+								.contains("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
+							fileExtension = ".docx";
+						} else if (contentType.contains("text/plain")) {
+							fileExtension = ".txt";
+						} else if (contentType.contains("image/x-icon")) {
+							fileExtension = ".ico";
+						} else if (contentType.contains("application/haansofthwp")) {
+							fileExtension = ".hwp";
+						}
+					}
+					
+					String originalName = f.getOriginalFilename();
+					String fileName = accountGeneratedString + "." + fileExtension;
+					String filePath = path + dto.getUsername() + "/account/" + fileName;
+					String fileRoad = road + dto.getUsername() + "/account/" + fileName;
+					String memberFileExtension = fileExtension;
+					
+					String accountSavePath = filePath;
+					File accountSaveFile = new File(accountSavePath);	
+					if (!accountSaveFile.exists()) {
+						accountSaveFile.mkdirs();
+					}
+					f.transferTo(accountSaveFile);
+					
+					MemberFile memberFile = new MemberFile();
+					memberFile.setMemberFileOriginalName(originalName);
+					memberFile.setMemberFileDate(new Date());
+					memberFile.setMemberFilePath(accountSavePath);
+					memberFile.setMemberFileName(fileName);
+					memberFile.setMemberFileRoad(fileRoad);
+					memberFile.setMemberFileExtentsion(memberFileExtension);
+					memberFile.setMemberId(newMember.getId());
+					
+					memberFileRepository.save(memberFile);
+					
+				}
+			}
+		}
+
+		return newMember;
+	}
 	
-	public String registration(SignUpDTO dto, List<MultipartFile> memberFile) {
-		if(memberFile == null) {
-			return "null";
-		}else {
-			return memberFile.toString();
+	
+	public Member registration(SignUpDTO dto, List<MultipartFile> memberFile) throws IllegalStateException, IOException {
+		if(dto.getSign().equals("dealer")) {
+			return insertDealer(dto, memberFile);
+		}else{
+			return insertMember(dto, memberFile);
 		}
 	}
 

@@ -1,5 +1,6 @@
 package com.dev.IBIOECommerceJAR.model.authentication;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +30,9 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member{
+public class Member implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -92,7 +95,7 @@ public class Member{
 	private Boolean expired;
 	
 	@Column(name="MEMBER_JOIN_DATE")
-	private Date joinDate;
+	private Date joindate;
 	
 	@Column(name="MEMBER_CHANGE_DATE")
 	private Date changeDate;

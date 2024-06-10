@@ -38,6 +38,7 @@
 									required
 									placeholder="사용하실 아이디를 입력 해 주세요." 
 									class="form-control">
+									<input type="hidden" name="sign" value="member">
 									<div class="signup-error-message">
 										<p id="username-error-message"></p>
 									</div>
@@ -203,7 +204,7 @@
 								<div class="col-sm-10">
 									<div class="d-flex">
 									    <input type="text" placeholder="첨부파일들을 업로드 해 주세요." class="file-input" readonly="readonly">
-										<input type="file" name="memberFile" class="file">
+										<input type="file" onchange="fileCheck(this)" multiple name="memberFile" class="file">
 									    <input type="button" class="file-btn" value="select">
 									</div>
 								</div>
@@ -232,24 +233,7 @@
 
 	<th:block th:replace="fragments/front/common :: scriptSrc"></th:block>
 	<script src="/front/js/normalSignUp.js"></script>
-	<script>
-		const autoHyphen = (target) => {
-		target.value = target.value
-			.replace(/[^0-9]/g, '')
-			.replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
-		}
-		$(document).ready(function() {
-		  $('.file-btn').on('click', function() {
-		    $(this).prev().trigger('click');
-		  });
-		
-		  $('.file').on('change', function() {
-		    var fileName = $(this)[0].files[0].name;    
-		    $(this).prev().val(fileName);
-		  });
-		})
-		
-	</script>
+	<script src="/front/js/signupCheck.js"></script>
 </body>
 
 </html>

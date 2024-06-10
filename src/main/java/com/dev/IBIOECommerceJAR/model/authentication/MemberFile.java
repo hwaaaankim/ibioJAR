@@ -20,6 +20,9 @@ public class MemberFile {
 	@Column(name="MEMBER_FILE_ID")
 	private Long id;
 	
+	@Column(name="MEMBER_FILE_ORIGINAL_NAME")
+	private String memberFileOriginalName;
+	
 	@Column(name="MEMBER_FILE_NAME")
 	private String memberFileName;
 	

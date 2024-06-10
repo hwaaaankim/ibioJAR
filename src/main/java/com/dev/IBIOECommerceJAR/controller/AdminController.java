@@ -1,8 +1,20 @@
 package com.dev.IBIOECommerceJAR.controller;
 
+import java.text.ParseException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.dev.IBIOECommerceJAR.model.authentication.Member;
+import com.dev.IBIOECommerceJAR.repository.MemberRepository;
+import com.dev.IBIOECommerceJAR.service.authentication.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -10,16 +22,73 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/admin")
 @Slf4j
 public class AdminController {
-
+	
+	@Autowired
+	MemberRepository memberRepository;
+	
+	@Autowired
+	MemberService memberService;
+	
 	@GetMapping({"" , "/", "/index"})
 	public String adminIndex() {
 		log.info("admin 접속");
+		
 		
 		return "administration/common/index";
 	} 
 	
 	@GetMapping("/memberRegistrationCheck")
-	public String memberRegistrationCheck() {
+	public String memberRegistrationCheck(
+			Model model,
+			@PageableDefault(size = 10) Pageable pageable,
+			@RequestParam(required = false, defaultValue = "none") String searchType,
+			@RequestParam(required = false) String searchWord,
+			@RequestParam(required = false) String phoneNumber,
+			@RequestParam(required = false) String startDate, 
+			@RequestParam(required = false) String endDate
+			) throws ParseException {
+		
+		Page<Member> members = null;
+		
+		if(searchType==null || "none".equals(searchType)) {
+			members = memberRepository.findAllByEnabledOrderByJoindateDesc(pageable, false);
+		}else if("name".equals(searchType)) {
+			if(!"".equals(searchWord)) {
+				members = memberRepository.findAllByEnabledAndNameContainingOrderByJoindateDesc(pageable, false, searchWord);
+			}
+		}else if("username".equals(searchType)) {
+			if(!"".equals(searchWord)) {
+				members = memberRepository.findAllByEnabledAndUsernameContainingOrderByJoindateDesc(pageable, false, searchWord);
+			}
+		}else if("phone".equals(searchType)) {
+			if(!"".equals(phoneNumber)) {
+				members = memberRepository.findAllByEnabledAndPhoneContainingOrderByJoindateDesc(pageable, false, phoneNumber);
+			}
+		}else if("email".equals(searchType)) {
+			if(!"".equals(searchWord)) {
+				members = memberRepository.findAllByEnabledAndEmailContainingOrderByJoindateDesc(pageable, false, searchWord);
+			}
+		}else if("business".equals(searchType)) {
+			if(!"".equals(searchWord)) {
+				members = memberRepository.findAllByEnabledAndBusinessContainingOrderByJoindateDesc(pageable, false, searchWord);
+			}
+		}else if("period".equals(searchType)) {
+			members = memberService.findByDate(pageable, startDate, endDate);
+		}else {
+			members = memberRepository.findAllByEnabledOrderByJoindateDesc(pageable, false);
+		}
+		
+		int startPage = 0;
+		int endPage = 0;
+		if(members!=null) {
+			startPage = Math.max(1, members.getPageable().getPageNumber() - 4);
+			endPage = Math.min(members.getTotalPages(), members.getPageable().getPageNumber() + 4);
+		}
+		
+		model.addAttribute("members", members);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("searchType", searchType);
 		
 		return "administration/ibio/member/select/memberRegistrationCheck";
 	}

@@ -151,8 +151,14 @@ public class CommonController {
 
 			) throws IllegalStateException, IOException {
 	
-		
-		return memberService.registration(dto, memberFile);
+		memberService.registration(dto, memberFile);
+		String msg = "회원 가입이 완료 되었습니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("alert('"+msg+"');");
+		sb.append("location.href='/login'");
+		sb.insert(0, "<script>");
+		sb.append("</script>");
+		return sb.toString();
 		
 	}
 	

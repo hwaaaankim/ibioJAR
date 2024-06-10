@@ -51,8 +51,8 @@
                                                 <label class="control-label " for="input-password">PASSWORD</label>
                                                 <input type="password" name="password"  class="form-control" />
                                             </div>
-                                            <div th:if="error">
-											   <p style="color: red; font-size:12px;"><a th:text="${exception}"></a></p>
+                                            <div th:if="${param.error}">
+											   <p><a style="color: red; font-size:12px;" th:text="${param.exception}"></a></p>
 											</div>
                                         </div>
                                         <div class="bottom-form">
