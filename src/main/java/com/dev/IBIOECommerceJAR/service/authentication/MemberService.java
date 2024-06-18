@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dev.IBIOECommerceJAR.dto.MemberDTO;
 import com.dev.IBIOECommerceJAR.dto.SignUpDTO;
 import com.dev.IBIOECommerceJAR.model.authentication.Member;
 import com.dev.IBIOECommerceJAR.model.authentication.MemberFile;
@@ -49,6 +50,23 @@ public class MemberService {
 	@Bean(name = "saveBean")
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+	
+	public void deleteRegistartion(MemberDTO dto) {
+		memberRepository.deleteById(dto.getId());
+	}
+	
+	public Member changeStatus(MemberDTO dto) {
+		
+		memberRepository.findById(dto.getId()).ifPresent(m->{
+			m.setDiscount(dto.getAddedDiscount());
+			m.setCalculate(dto.getCaculate());
+			m.setCommission(dto.getCommission());
+			m.setEnabled(true);
+			memberRepository.save(m);
+		});
+		
+		return memberRepository.findById(dto.getId()).get();
 	}
 	
 	public Page<Member> findByDate(Pageable pageable, String startDate, String endDate) throws ParseException {

@@ -46,7 +46,7 @@
 
 					<form id="createproduct-form" autocomplete="off" class="needs-validation" novalidate>
 						<div class="row">
-							<div class="col-lg-12">
+							<!--<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header">
 										<h5 class="card-title mb-2">브랜드 입력</h5>
@@ -87,7 +87,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div>-->
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header">
@@ -96,31 +96,44 @@
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="card-body" style="padding-right:0px;">
-												<div class="mb-3">
-                                                    <p class="text-muted mb-3"># 최대 10개의 대분류를 <code>동시에 입력할 수 있습니다.</code></p>
-                                                    <input class="form-control" data-choices data-choices-limit="10" data-choices-removeItem type="text" value="Task-1" />
-                                                </div>
-                                                <div class="text-end">
-													<button type="submit" class="btn btn-success btn-sm">대분류 등록</button>
-												</div>
+												<form method="POST" action="/admin/bigsortInsert">
+													<div class="mb-3">
+	                                                    <p class="text-muted mb-3"># 최대 10개의 대분류를 <code>동시에 입력할 수 있습니다.</code></p>
+	                                                    <input 
+	                                                    id="bigSorts"
+	                                                    class="form-control" 
+	                                                    data-choices 
+	                                                    data-choices-limit="10" 
+	                                                    data-choices-removeItem 
+	                                                    type="text" 
+	                                                    required/>
+	                                                </div>
+	                                                <div class="text-end">
+														<button 
+														type="button" 
+														id="bigsortInsertBtn" 
+														class="btn btn-success btn-sm">대분류 등록</button>
+													</div>
+												</form>
 											</div>
 										</div>
 										<div class="col-lg-6">
 											<div class="card-body">
 												<div class="mb-3" style="padding-left:0px;">
 													<p class="text-muted mb-3"># 여러개의 대분류를 <code>드래그를 통해 동시에 삭제할 수 있습니다.</code></p>
-													<select class="form-select" multiple aria-label="multiple select example">
-	                                                    <option selected>대분류</option>
-	                                                    <option value="1">One</option>
-	                                                    <option value="2">Two</option>
-	                                                    <option value="3">Three</option>
-	                                                    <option value="1">One</option>
-	                                                    <option value="2">Two</option>
-	                                                    <option value="3">Three</option>
+													<select 
+													id="bigPanelBigSort"
+													class="form-select" 
+													multiple 
+													aria-label="multiple select example">
+	                                                   <option th:each="b:${bigsorts}" th:text="${b.name}" th:value="${b.id}"></option>
 	                                                </select>
                                                 </div>
                                                 <div class="text-end" style="margin-bottom:0px;">
-													<button type="submit" class="btn btn-success btn-sm">브랜드 등록</button>
+													<button 
+													id="bigsortDeleteBtn" 
+													type="button" 
+													class="btn btn-success btn-sm">대분류 삭제</button>
 												</div>
 											</div>
 										</div>
@@ -138,11 +151,12 @@
 											<div class="card-body" style="padding-right:0px;">
 												<div class="mb-3">
 													<p class="text-muted mb-3"># 하나의 대분류를 먼저 선택 해 주세요.</p>
-													<select class="form-select mb-3" aria-label="Default select example">
-	                                                    <option selected>Select your Status </option>
-	                                                    <option value="1">Declined Payment</option>
-	                                                    <option value="2">Delivery Error</option>
-	                                                    <option value="3">Wrong Amount</option>
+													<select 
+													class="form-select mb-3" 
+													id="middlePanelBigSort"
+													aria-label="Default select example">
+														<option selected value="">=== 대분류 선택 ===</option>
+	                                                    <option th:each="b:${bigsorts}" th:text="${b.name}" th:value="${b.id}"></option>
 	                                                </select>
                                                 </div>
 											</div>
@@ -151,10 +165,19 @@
 											<div class="card-body" style="padding-right:0px;padding-left:0px;">
 												<div class="mb-3">
                                                     <p class="text-muted mb-3"># 최대 10개의 중분류를 <code>동시에 입력할 수 있습니다.</code></p>
-                                                    <input class="form-control" data-choices data-choices-limit="10" data-choices-removeItem type="text" value="Task-1" />
+                                                    <input 
+                                                    class="form-control" 
+                                                    data-choices 
+                                                    data-choices-limit="10" 
+                                                    id="middleSorts"
+                                                    required
+                                                    data-choices-removeItem type="text"/>
                                                 </div>
                                                 <div class="text-end">
-													<button type="submit" class="btn btn-success btn-sm">중분류 등록</button>
+													<button 
+													type="button" 
+													id="middlesortInsertBtn"
+													class="btn btn-success btn-sm">중분류 등록</button>
 												</div>
 											</div>
 										</div>
@@ -162,18 +185,19 @@
 											<div class="card-body" style="padding-left:0px;">
 												<div class="mb-3">
 													<p class="text-muted mb-3"># 여러개의 중분류를 <code>드래그를 통해 동시에 삭제할 수 있습니다.</code></p>
-													<select class="form-select" multiple aria-label="multiple select example">
-	                                                    <option selected>중분류</option>
-	                                                    <option value="1">One</option>
-	                                                    <option value="2">Two</option>
-	                                                    <option value="3">Three</option>
-	                                                    <option value="1">One</option>
-	                                                    <option value="2">Two</option>
-	                                                    <option value="3">Three</option>
+													<select 
+													class="form-select" 
+													id="middlePanelMiddleSort"
+													name="middleId" 
+													multiple 
+													aria-label="multiple select example">
 	                                                </select>
                                                 </div>
                                                 <div class="text-end" style="margin-bottom:0px;">
-													<button type="submit" class="btn btn-success btn-sm">중분류 등록</button>
+													<button 
+													type="button" 
+													id="middlesortDeleteBtn"
+													class="btn btn-success btn-sm">중분류 삭제</button>
 												</div>
 											</div>
 										</div>
@@ -190,11 +214,12 @@
 										<div class="col-lg-3">
 											<div class="card-body" style="padding-right:0px;">
 												<div class="mb-3">
-													<select class="form-select mb-3" aria-label="Default select example">
-	                                                    <option selected>Select your 대분류 </option>
-	                                                    <option value="1">Declined Payment</option>
-	                                                    <option value="2">Delivery Error</option>
-	                                                    <option value="3">Wrong Amount</option>
+													<p class="text-muted mb-3"># 하나의 대분류를 먼저 선택 해 주세요.</code></p>
+													<select 
+													class="form-select mb-3" 
+													aria-label="Default select example"
+													id="smallPanelBigSort">
+	                                                    <option th:each="b:${bigsorts}" th:text="${b.name}" th:value="${b.id}"></option>
 	                                                </select>
                                                 </div>
 											</div>
@@ -202,11 +227,11 @@
 										<div class="col-lg-3">
 											<div class="card-body" style="padding-right:0px;">
 												<div class="mb-3">
-													<select class="form-select mb-3" aria-label="Default select example">
-	                                                    <option selected>Select your 중분류 </option>
-	                                                    <option value="1">Declined Payment</option>
-	                                                    <option value="2">Delivery Error</option>
-	                                                    <option value="3">Wrong Amount</option>
+													<p class="text-muted mb-3"># 하나의 중분류를 먼저 선택 해 주세요.</code></p>
+													<select 
+													class="form-select mb-3" 
+													aria-label="Default select example"
+													id="smallPanelMiddleSort">
 	                                                </select>
                                                 </div>
 											</div>
@@ -215,10 +240,20 @@
 											<div class="card-body" style="padding-right:0px;padding-left:0px;">
 												<div class="mb-3">
                                                     <p class="text-muted mb-3"># 최대 10개의 소분류를 <code>동시에 입력할 수 있습니다.</code></p>
-                                                    <input class="form-control" data-choices data-choices-limit="10" data-choices-removeItem type="text" value="Task-1" />
+                                                    <input 
+                                                    class="form-control" 
+                                                    data-choices 
+                                                    required
+                                                    id="smallSorts"
+                                                    data-choices-limit="10" 
+                                                    data-choices-removeItem 
+                                                    type="text"/>
                                                 </div>
                                                 <div class="text-end">
-													<button type="submit" class="btn btn-success btn-sm">소분류 등록</button>
+													<button 
+													type="button"
+													id="smallsortInsertBtn" 
+													class="btn btn-success btn-sm">소분류 등록</button>
 												</div>
 											</div>
 										</div>
@@ -226,18 +261,18 @@
 											<div class="card-body" style="padding-left:0px;">
 												<div class="mb-3">
 													<p class="text-muted mb-3"># 여러개의 소분류를 <code>드래그를 통해 동시에 삭제할 수 있습니다.</code></p>
-													<select class="form-select" multiple aria-label="multiple select example">
-	                                                    <option selected>소분류</option>
-	                                                    <option value="1">One</option>
-	                                                    <option value="2">Two</option>
-	                                                    <option value="3">Three</option>
-	                                                    <option value="1">One</option>
-	                                                    <option value="2">Two</option>
-	                                                    <option value="3">Three</option>
+													<select 
+													class="form-select" 
+													multiple 
+													aria-label="multiple select example"
+													id="smallPanelSmallSort">
 	                                                </select>
                                                 </div>
                                                 <div class="text-end" style="margin-bottom:0px;">
-													<button type="submit" class="btn btn-success btn-sm">소분류 등록</button>
+													<button 
+													type="button" 
+													id="smallsortDeleteBtn"
+													class="btn btn-success btn-sm">소분류 삭제</button>
 												</div>
 											</div>
 										</div>
@@ -256,8 +291,8 @@
 
 
 	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
-
 	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+	<script src="/administration/assets/js/productSortManager.js"></script>
 </body>
 
 </html>

@@ -2,6 +2,7 @@ package com.dev.IBIOECommerceJAR.controller;
 
 import java.text.ParseException;
 
+import org.apache.commons.codec.EncoderException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,11 +10,16 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dev.IBIOECommerceJAR.dto.MemberDTO;
 import com.dev.IBIOECommerceJAR.model.authentication.Member;
 import com.dev.IBIOECommerceJAR.repository.MemberRepository;
+import com.dev.IBIOECommerceJAR.service.SMSService;
 import com.dev.IBIOECommerceJAR.service.authentication.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,13 +27,16 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/admin")
 @Slf4j
-public class AdminController {
+public class AdminMemberController {
 	
 	@Autowired
 	MemberRepository memberRepository;
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	SMSService smsService;
 	
 	@GetMapping({"" , "/", "/index"})
 	public String adminIndex() {
@@ -47,7 +56,7 @@ public class AdminController {
 			@RequestParam(required = false) String startDate, 
 			@RequestParam(required = false) String endDate
 			) throws ParseException {
-		
+
 		Page<Member> members = null;
 		
 		if(searchType==null || "none".equals(searchType)) {
@@ -93,12 +102,48 @@ public class AdminController {
 		return "administration/ibio/member/select/memberRegistrationCheck";
 	}
 	
-	@GetMapping("/memberRegistrationCheckDetail")
-	public String memberRegistrationCheckDetail() {
-		
+	@GetMapping("/memberRegistrationCheckDetail/{id}")
+	public String memberRegistrationCheckDetail(
+			@PathVariable Long id,
+			Model model
+			) {
+		model.addAttribute("member", memberRepository.findById(id).get());
 		return "administration/ibio/member/detail/memberRegistrationCheckDetail";
 	}
 	
+	@PostMapping("/memberRegistrationStatusChange")
+	@ResponseBody
+	public String memberRegistrationStatusChange(
+			MemberDTO dto
+			) throws EncoderException {
+		
+		Member member = memberService.changeStatus(dto);
+		smsService.sendMessage(member.getPhone(), "회원 가입이 승인 되어 정상적으로 이용 가능합니다.");
+		String msg = "회원의 상태가 변경 되었습니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("alert('"+msg+"');");
+		sb.append("location.href='/admin/memberRegistrationCheck'");
+		sb.insert(0, "<script>");
+		sb.append("</script>");
+		return sb.toString();
+	}
+	
+	@PostMapping("/memberRegistrationDelete")
+	@ResponseBody
+	public String memberRegistrationDelete(
+			MemberDTO dto
+			) throws EncoderException {
+		System.out.println("123");
+		smsService.sendMessage(memberRepository.findById(dto.getId()).get().getPhone(), "회원 가입이 거절 되었습니다. 다시 신청해 주시기 바랍니다.");
+		memberService.deleteRegistartion(dto);
+		String msg = "회원가입 신청이 삭제 되었습니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("alert('"+msg+"');");
+		sb.append("location.href='/admin/memberRegistrationCheck'");
+		sb.insert(0, "<script>");
+		sb.append("</script>");
+		return sb.toString();
+	}
 	
 	@GetMapping("/dealerManager")
 	public String dealerManager() {
@@ -345,61 +390,6 @@ public class AdminController {
 	public String dealerCalculationManagerDetail() {
 		
 		return "administration/ibio/basic/detail/dealerCalculationManagerDetail";
-	}
-	
-
-	@GetMapping("/ibioProductManager")
-	public String ibioProductManager() {
-		
-		return "administration/ibio/product/select/ibioProductManager";
-	}
-	
-	@GetMapping("/ibioProductManagerInsert")
-	public String ibioProductManagerInsert() {
-		
-		return "administration/ibio/product/insert/ibioProductManagerInsert";
-	}
-	
-	@GetMapping("/ibioProductManagerDetail")
-	public String ibioProductManagerDetail() {
-		
-		return "administration/ibio/product/detail/ibioProductManagerDetail";
-	}
-	
-	@GetMapping("/ibioProductCategoryManager")
-	public String ibioProductCategoryManager() {
-		
-		return "administration/ibio/product/select/ibioProductCategoryManager";
-	}
-	
-	@GetMapping("/ibioProductIndexManager")
-	public String ibioProductIndexManager() {
-		
-		return "administration/ibio/product/select/ibioProductIndexManager";
-	}
-	
-	@GetMapping("/dealerProductManager")
-	public String dealerProductManager() {
-		
-		return "administration/ibio/product/select/dealerProductManager";
-	}
-	
-	@GetMapping("/dealerProductManagerDetail")
-	public String dealerProductManagerDetail() {
-		
-		return "administration/ibio/product/detail/dealerProductManagerDetail";
-	}
-	
-	@GetMapping("/ibioProductInfoDumpManager")
-	public String ibioProductInfoDumpManager() {
-		
-		return "administration/ibio/product/select/ibioProductInfoDumpManager";
-	}
-	
-	@GetMapping("/ibioProductFileDumpManager")
-	public String ibioProductFileDumpManager() {
-		
-		return "administration/ibio/product/select/ibioProductFileDumpManager";
 	}
 	
 }

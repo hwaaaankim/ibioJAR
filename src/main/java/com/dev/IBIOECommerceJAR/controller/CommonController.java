@@ -3,6 +3,7 @@ package com.dev.IBIOECommerceJAR.controller;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.codec.EncoderException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dev.IBIOECommerceJAR.dto.SignUpDTO;
+import com.dev.IBIOECommerceJAR.model.authentication.Member;
 import com.dev.IBIOECommerceJAR.repository.MemberRepository;
+import com.dev.IBIOECommerceJAR.service.SMSService;
 import com.dev.IBIOECommerceJAR.service.authentication.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +31,9 @@ public class CommonController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	SMSService smsService;
 	
 	@GetMapping({"/", "/index"})
 	public String index(
@@ -149,9 +155,17 @@ public class CommonController {
 			SignUpDTO dto,
 			@RequestBody(required = false) List<MultipartFile> memberFile
 
-			) throws IllegalStateException, IOException {
+			) throws IllegalStateException, IOException, EncoderException {
 	
-		memberService.registration(dto, memberFile);
+		Member newMember = memberService.registration(dto, memberFile);
+		smsService.sendMessage(newMember.getPhone(), "회원 가입 신청이 완료 되었습니다. 관리자의 승인 시 알림 메시지가 발송되며 쇼핑몰 이용이 가능합니다.");
+		String adminMsg = "";
+		if(dto.getSign().equals("dealer")) {
+			adminMsg = "딜러 회원 가입신청이 발생 하였습니다.";
+		}else {
+			adminMsg = "일반 회원 가입신청이 발생 하였습니다.";
+		}
+		smsService.sendMessage("010-3894-3849", adminMsg);
 		String msg = "회원 가입이 완료 되었습니다.";
 		StringBuilder sb = new StringBuilder();
 		sb.append("alert('"+msg+"');");

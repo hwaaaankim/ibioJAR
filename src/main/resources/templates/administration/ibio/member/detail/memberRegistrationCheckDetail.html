@@ -38,8 +38,8 @@
 							<!--end col-->
 							<div class="col">
 								<div class="p-2">
-									<h3 class="text-white mb-1">고객명</h3>
-									<p class="text-white text-opacity-75">고객 비즈니스 명</p>
+									<h3 class="text-white mb-1" th:text="${member.name}">고객명</h3>
+									<p class="text-white text-opacity-75" th:text="${member.business}">고객 비즈니스 명</p>
 								</div>
 							</div>
 						</div>
@@ -85,42 +85,42 @@
 																<tbody>
 																	<tr>
 																		<th class="ps-0" scope="row">이름 :</th>
-																		<td class="text-muted">Kim hwan</td>
+																		<td class="text-muted" th:text="${member.name}">Kim hwan</td>
 																	</tr>
 																	<tr>
 																		<th class="ps-0" scope="row">연락처 :</th>
-																		<td class="text-muted">010-3894-3849</td>
+																		<td class="text-muted" th:text="${member.phone}">010-3894-3849</td>
 																	</tr>
 																	<tr>
 																		<th class="ps-0" scope="row">EMAIL :</th>
-																		<td class="text-muted">contact@contact.com</td>
+																		<td class="text-muted" th:text="${member.email}">contact@contact.com</td>
 																	</tr>
 																	<tr>
 																		<th class="ps-0" scope="row">FAX :</th>
-																		<td class="text-muted">02-2223-1113</td>
+																		<td class="text-muted" th:text="${member.fax}">02-2223-1113</td>
 																	</tr>
 																	<tr>
 																		<th class="ps-0" scope="row">주소 :</th>
-																		<td class="text-muted">주소
+																		<td class="text-muted" th:text="${member.address}">주소
 																		</td>
 																	</tr>
 																	<tr>
 																		<th class="ps-0" scope="row">신청일</th>
-																		<td class="text-muted">2024.01.01</td>
+																		<td class="text-muted" th:text="${member.joindate}">2024.01.01</td>
 																	</tr>
 																	<tr>
 																		<th class="ps-0" scope="row">비즈니스명 :</th>
-																		<td class="text-muted">업체명
+																		<td class="text-muted" th:text="${member.business}">업체명
 																		</td>
 																	</tr>
 																	<tr>
 																		<th class="ps-0" scope="row">업체 주소 :</th>
-																		<td class="text-muted">주소
+																		<td class="text-muted" th:text="${member.deliveryAddress}">주소
 																		</td>
 																	</tr>
 																	<tr>
 																		<th class="ps-0" scope="row">사업자등록번호</th>
-																		<td class="text-muted">111-111-1111</td>
+																		<td class="text-muted" th:text="${member.businessCode}">111-111-1111</td>
 																	</tr>
 																</tbody>
 															</table>
@@ -129,15 +129,68 @@
 												</div>
 											</div>
 											<!--end col-->
-											<div class="col-xxl-9">
+											<div class="col-xxl-6" th:if="${member.role} == 'ROLE_MEMBER'">
 												<div class="card">
 													<div class="card-body">
-														<h5 class="card-title mb-3">About</h5>
-														<p># 신청 메시지</p>
-														<p># 신청 메시지</p>
 														<div class="row">
 															<div class="col-6 col-md-4">
-																<div class="d-flex mt-4">
+																<div class="d-flex">
+																	<div
+																		class="flex-shrink-0 avatar-xs align-self-center me-3">
+																		<div
+																			class="avatar-title bg-light rounded-circle fs-16 text-primary">
+																			<i class="ri-user-2-fill"></i>
+																		</div>
+																	</div>
+																	<div class="flex-grow-1 overflow-hidden">
+																		<p class="mb-1">지원포지션 :</p>
+																		<h6 class="text-truncate mb-0">IBIO / 일반회원</h6>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="card">
+													<div class="card-body p-4">
+														<div class="tab-content">
+															<div class="tab-pane active" id="personalDetails"
+																role="tabpanel">
+																<form action="/admin/memberRegistrationStatusChange" method="post">
+																	<div class="row">
+																		<div class="col-lg-12">
+																			<div class="mb-3">
+																				<label class="form-label">제품 구매 할인 비율</label>
+																				<input type="hidden" th:value="${member.id}" name="id">
+																				<input type="hidden" th:value="${member.role}" name="role">
+																				<input 
+																				type="number" 
+																				class="form-control"
+																				required
+																				placeholder="회원에게 적용할 추가 할인율을 입력 해 주세요."
+																				name="addedDiscount"
+																				min="0"
+																				max="99">
+																			</div>
+																		</div>
+																		<div class="col-lg-12">
+					                                                        <div class="hstack gap-2 justify-content-end">
+					                                                            <button type="submit" class="btn btn-soft-success">정회원전환</button>
+					                                                        </div>
+					                                                    </div>
+																	</div>
+																</form>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-xxl-6" th:if="${member.role} == 'ROLE_DEALER'">
+												<div class="card">
+													<div class="card-body">
+														<div class="row">
+															<div class="col-6 col-md-4">
+																<div class="d-flex">
 																	<div
 																		class="flex-shrink-0 avatar-xs align-self-center me-3">
 																		<div
@@ -159,52 +212,55 @@
 														<div class="tab-content">
 															<div class="tab-pane active" id="personalDetails"
 																role="tabpanel">
-																<form action="javascript:void(0);">
+																<form action="/admin/memberRegistrationStatusChange" method="post">
 																	<div class="row">
 																		<div class="col-lg-6">
 																			<div class="mb-3">
-																				<label for="firstnameInput"
-																					class="form-label">제품 구매 할인 비율</label>
-																				<input type="text" class="form-control"
-																					id="firstnameInput"
-																					placeholder="딜러에게 적용할 할인율을 입력 해 주세요."
-																					value="10%">
+																				<label class="form-label">제품 구매 할인 비율</label>
+																				<input 
+																				type="number" 
+																				class="form-control"
+																				required
+																				placeholder="딜러에게 적용할 할인율을 입력 해 주세요."
+																				min="0"
+																				max="99"
+																				name="addedDiscount">
+																				<input type="hidden" th:value="${member.id}" name="id">
+																				<input type="hidden" th:value="${member.role}" name="role">
 																			</div>
 																		</div>
 																		<!--end col-->
 																		<div class="col-lg-6">
 																			<div class="mb-3">
-																				<label for="lastnameInput"
-																					class="form-label">제품 판매 수수료</label>
-																				<input type="text" class="form-control"
-																					id="lastnameInput"
-																					placeholder="딜러에게 적용할 제품 판매 수수료율을 입력 해 주세요."
-																					value="10%">
+																				<label class="form-label">제품 판매 수수료</label>
+																				<input 
+																				type="number" 
+																				class="form-control"
+																				name="commission"
+																				required
+																				placeholder="딜러에게 적용할 제품 판매 수수료율을 입력 해 주세요."
+																				min="0"
+																				max="99"
+																				>
 																			</div>
 																		</div>
-																		<div class="col-lg-6">
+																		<div class="col-lg-12">
 																			<div class="mb-3">
-																				<label for="lastnameInput"
-																					class="form-label">1회차 정산 기준일</label>
-																				<input type="text" class="form-control"
-																					id="lastnameInput"
-																					placeholder="딜러에게 적용할 제품 판매 수수료율을 입력 해 주세요."
-																					value="15일">
-																			</div>
-																		</div>
-																		<div class="col-lg-6">
-																			<div class="mb-3">
-																				<label for="lastnameInput"
-																					class="form-label">2회차 정산 기준일</label>
-																				<input type="text" class="form-control"
-																					id="lastnameInput"
-																					placeholder="딜러에게 적용할 제품 판매 수수료율을 입력 해 주세요."
-																					value="30일">
+																				<label class="form-label">정산 기준일</label>
+																				<input 
+																				type="number"
+																				class="form-control"
+																				name="calculate"
+																				min="0"
+																				max="31"
+																				required
+																				placeholder="정산일을 입력 해 주세요."
+																				>
 																			</div>
 																		</div>
 																		<div class="col-lg-12">
 					                                                        <div class="hstack gap-2 justify-content-end">
-					                                                            <button type="button" class="btn btn-soft-success">정회원전환</button>
+					                                                            <button type="submit" class="btn btn-soft-success">정회원전환</button>
 					                                                        </div>
 					                                                    </div>
 																	</div>
@@ -214,7 +270,6 @@
 													</div>
 												</div>
 											</div>
-
 										</div>
 									</div>
 									<div class="tab-pane fade" id="documents" role="tabpanel">

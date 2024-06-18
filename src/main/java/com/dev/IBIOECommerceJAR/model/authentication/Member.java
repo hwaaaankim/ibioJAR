@@ -100,6 +100,15 @@ public class Member implements Serializable{
 	@Column(name="MEMBER_CHANGE_DATE")
 	private Date changeDate;
 	
+	@Column(name="MEMBER_ADDED_DISCOUNT")
+	private int discount;
+	
+	@Column(name="MEMBER_COMMISSION")
+	private int commission;
+	
+	@Column(name="MEMBER_CACULATE_DATE")
+	private int calculate;
+	
 	@Column(name="MEMBER_BUSINESS_FILE_ORIGINAL_NAME")
 	private String businessOriginalName;
 	

@@ -128,8 +128,8 @@
 										<li sec:authorize = "hasAnyRole('MEMBER', 'DEALER')"> <a href="/member/myDelivery"> # 배송 조회 </a> </li>
 										<li sec:authorize = "hasAnyRole('MEMBER', 'DEALER')"> <a href="/member/couponInsert"> # 쿠폰관리 </a> </li>
 										<li sec:authorize = "hasAnyRole('MEMBER', 'DEALER')"> <a href="/member/refundProduct"> # 환불신청 </a> </li>
-										<li sec:authorize = "hasAnyRole('DEALER')"> <a href="/dealer"> # 관리자 페이지 </a> </li>	
-										<li sec:authorize = "hasRole('ADMIN')"> <a href="/admin"> # 관리자 페이지 </a> </li>			
+										<li sec:authorize = "hasAnyRole('DEALER')"> <a href="/dealer"> # 딜러전용 페이지 </a> </li>	
+										<li sec:authorize = "hasRole('ADMIN')"> <a href="/admin"> # 관리자전용 페이지 </a> </li>			
 										<li sec:authorize = "hasAnyRole('MEMBER', 'DEALER', 'ADMIN')"><a href="/logout"> # 로그아웃 </a> </li>			
 									</ul>
 								</form>

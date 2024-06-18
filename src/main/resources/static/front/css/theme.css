@@ -7462,7 +7462,7 @@ span.fa-stack .fa-star.fa-stack-2x:before {
 
 .price {
   margin: 0 0 10px 0;
-  line-height: 24px;
+  line-height: 1.4;
   color: #094bad;
   font-size: 16px;
   font-weight: 600;
@@ -7478,7 +7478,7 @@ span.fa-stack .fa-star.fa-stack-2x:before {
   /* [6] */
   /* [7] */
   font-size: 14px;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   /* [8] */
   font-weight: normal;
 }
@@ -12174,8 +12174,8 @@ footer a:hover {
   .item
   .item-inner {
   display: inline-block;
-  padding-bottom: 10px;
-  margin-bottom: 11px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
   width: 100%;
 }
 .common-home

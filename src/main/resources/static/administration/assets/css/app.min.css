@@ -11432,7 +11432,7 @@ div.dtr-modal div.dtr-modal-close:hover {
   border: var(--vz-border-width) solid var(--vz-input-border-custom);
   border-radius: var(--vz-border-radius) !important;
   font-size: 0.875rem;
-  min-height: 37.5px;
+  min-height: 100px;
   overflow: hidden;
 }
 .is-focused .choices__inner,
