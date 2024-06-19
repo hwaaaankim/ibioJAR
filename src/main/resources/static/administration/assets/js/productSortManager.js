@@ -68,8 +68,8 @@ const smallPanelMiddleSortId = document.getElementById('smallPanelMiddleSort');
 smallSortInsertBtn.addEventListener('click', function(event) {
 	event.preventDefault();
 	var result = confirm("소분류들을 등록 하시겠습니까?");
+	var selectedValues = smallSortValue.value;
 	if (result) {
-		var selectedValues = smallSortValue.value;
 		if (smallPanelBigSortId.value === null || smallPanelBigSortId.value === "" || smallPanelBigSortId.value === undefined) {
 			alert('대분류를 정확하게 선택 해 주세요.');
 		} else if (smallPanelMiddleSortId.value === null || smallPanelMiddleSortId.value === "" || smallPanelMiddleSortId.value === undefined) {
@@ -81,7 +81,7 @@ smallSortInsertBtn.addEventListener('click', function(event) {
 			var form = document.createElement('form');
 			form.setAttribute("charset", "UTF-8");
 			form.setAttribute("method", "Post");
-			form.setAttribute("action", "/admin/smallortInsert");
+			form.setAttribute("action", "/admin/smallsortInsert");
 
 			var sort = document.createElement("input");
 			sort.setAttribute("type", "hidden");

@@ -46,15 +46,52 @@ public class AdminProductController {
 	
 	
 	@GetMapping("/ibioProductManager")
-	public String ibioProductManager() {
+	public String ibioProductManager(
+			Model model
+			) {
+		
+		List<BigSort> b = bigSortRepository.findAll();
+		
+		if(b.size()<1) {
+			BigSort bs = new BigSort();
+			bs.setName("분류를 등록 해 주세요");
+			bs.setId(0L);
+			b.add(bs);
+		}
+		
+		model.addAttribute("bigsorts", b);
 		
 		return "administration/ibio/product/select/ibioProductManager";
 	}
 	
 	@GetMapping("/ibioProductManagerInsert")
-	public String ibioProductManagerInsert() {
+	public String ibioProductManagerInsert(
+			Model model
+			) {
 		
+		List<BigSort> b = bigSortRepository.findAll();
+		
+		if(b.size()<1) {
+			BigSort bs = new BigSort();
+			bs.setName("분류를 등록 해 주세요");
+			bs.setId(0L);
+			b.add(bs);
+		}
+		
+		model.addAttribute("bigsorts", b);
 		return "administration/ibio/product/insert/ibioProductManagerInsert";
+	}
+	
+	@PostMapping("/productInsert")
+	public String productInsert(
+			Long bigId,
+			Long middleId,
+			Long smallId
+			) {
+		System.out.println(bigId);
+		System.out.println(middleId);
+		System.out.println(smallId);
+		return "redirect:/admin/ibioProductManagerInsert";
 	}
 	
 	@GetMapping("/ibioProductManagerDetail")

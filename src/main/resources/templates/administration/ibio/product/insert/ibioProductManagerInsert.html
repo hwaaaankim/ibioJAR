@@ -45,8 +45,11 @@
 							</div>
 						</div>
 					</div>
-
-					<form id="createproduct-form" autocomplete="off" class="needs-validation" novalidate>
+					<form 
+					id="productAddForm" 
+					action="/admin/productInsert" 
+					method="Post"
+					enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="card">
@@ -55,52 +58,72 @@
 										<p class="text-muted mb-2"># 대분류는 반드시 선택 되어야 합니다.</p>
 									</div>
 									<div class="row">
-										<div class="col-lg-3">
+										<div class="col-lg-4">
 											<div class="card-body" style="padding-right:0px;">
 												<div>
-													<label for="choices-publish-visibility-input"
-														class="form-label">대분류</label>
-													<select class="form-select" id="choices-publish-visibility-input"
-														data-choices data-choices-search-false>
-														<option value="Public" selected>Public</option>
-														<option value="Hidden">Hidden</option>
+													<label class="form-label">대분류</label>
+													<select 
+														class="form-select" 
+														id="smallPanelBigSort"
+														name="bigId"
+														required														>
+														<option selected value="">=== 대분류 선택 ===</option>
+														<option th:each="b:${bigsorts}" th:text="${b.name}" th:value="${b.id}"></option>
 													</select>
 												</div>
 											</div>
 										</div>
-										<div class="col-lg-3">
+										<div class="col-lg-4">
 											<div class="card-body" style="padding-right:0px;padding-left:0px;">
 												<div>
-													<label for="choices-publish-visibility-input"
-														class="form-label">중분류</label>
-													<select class="form-select" id="choices-publish-visibility-input"
-														data-choices data-choices-search-false>
-														<option value="Public" selected>Public</option>
-														<option value="Hidden">Hidden</option>
+													<label class="form-label">중분류</label>
+													<select 
+														class="form-select" 
+														id="smallPanelMiddleSort"
+														name="middleId"
+														required
+														>
 													</select>
 												</div>
 											</div>
 										</div>
-										<div class="col-lg-3">
-											<div class="card-body" style="padding-right:0px;padding-left:0px;">
-												<div>
-													<label for="choices-publish-visibility-input"
-														class="form-label">소분류</label>
-													<select class="form-select" id="choices-publish-visibility-input"
-														data-choices data-choices-search-false>
-														<option value="Public" selected>Public</option>
-														<option value="Hidden">Hidden</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3">
+										<div class="col-lg-4">
 											<div class="card-body" style="padding-left:0px;">
 												<div>
-													<label for="choices-publish-visibility-input"
-														class="form-label">브랜드</label>
-													<input type="text" class="form-control" value=""
-														placeholder="Enter PRODUCT BRAND" required>
+													<label class="form-label">소분류</label>
+													<select 
+														class="form-select" 
+														id="smallPanelSmallSort"
+														name="smallId"
+														required
+														>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="card-body" style="padding-right:0px;">
+												<div>
+													<label class="form-label">브랜드</label>
+													<input 
+													type="text" 
+													class="form-control" 
+													name="brand"
+													placeholder="브랜드명을 입력 해 주세요." 
+													>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="card-body" style="padding-left:0px;">
+												<div>
+													<label class="form-label">브랜드 대표이미지</label>
+													<input 
+													type="file" 
+													name="brandImage"
+													class="form-control" 
+													required
+													>
 												</div>
 											</div>
 										</div>
@@ -114,12 +137,12 @@
 									</div>
 									<div class="card-body">
 										<div class="mb-3">
-											<input type="hidden" class="form-control" id="formAction" name="formAction"
-												value="add">
-											<input type="text" class="form-control d-none" id="product-id-input">
-											<input type="text" class="form-control" id="product-title-input" value=""
-												placeholder="Enter product title" required>
-											<div class="invalid-feedback">Please Enter a product title.</div>
+											<input 
+											type="text"
+											name="title"
+											required 
+											class="form-control" 
+											placeholder="제품 이름을 입력 해 주세요.">
 										</div>
 									</div>
 								</div>
@@ -132,9 +155,14 @@
 									<div class="card-body">
 										<div class="hstack gap-3 align-items-start">
 											<div class="flex-grow-1">
-												<input class="form-control" data-choices
-													data-choices-multiple-remove="true" placeholder="제품 스펙을 입력 해 주세요."
-													type="text" value="중량 : 15Kg" />
+												<input 
+												class="form-control" 
+												data-choices
+												id="productSpecs"
+												data-choices-multiple-remove="true" 
+												data-choices-groups="예) 중량 : 15kg"
+												type="text" 
+												/>
 											</div>
 										</div>
 									</div>
@@ -148,10 +176,13 @@
 									<div class="card-body">
 										<div class="hstack gap-3 align-items-start">
 											<div class="flex-grow-1">
-												<input class="form-control" data-choices
-													data-choices-multiple-remove="true"
-													placeholder="제품의 TAGs를 입력 해 주세요." type="text"
-													value="# 실험기구, # 제품용" />
+												<input 
+												id="productTags"
+												class="form-control" 
+												data-choices
+												data-choices-multiple-remove="true"
+												type="text"
+												data-choices-groups="예) # 실험기기"/>
 											</div>
 										</div>
 									</div>
@@ -162,8 +193,11 @@
 									</div>
 									<div class="card-body">
 										<p class="text-muted mb-2"># 제품에 대한 설명을 입력 해 주세요.</p>
-										<textarea class="form-control" placeholder="제품에 대한 설명을 입력 해 주세요."
-											rows="5"></textarea>
+										<textarea 
+										name="description"
+										class="form-control" 
+										placeholder="제품에 대한 설명을 입력 해 주세요."
+										rows="5"></textarea>
 									</div>
 								</div>
 								<div class="card">
@@ -175,91 +209,42 @@
 											<h5 class="fs-15 mb-1">대표 이미지</h5>
 											<p class="text-muted"># 제품의 대표 이미지를 선택 하여 업로드 해 주세요.</p>
 											<p class="text-muted"># 제품 상세페이지를 포함하여 해당 이미지로 제품이 표시됩니다.</p>
-											<div class="text-center">
-												<div class="position-relative d-inline-block">
-													<div class="position-absolute top-100 start-100 translate-middle">
-														<label for="product-image-input" class="mb-0"
-															data-bs-toggle="tooltip" data-bs-placement="right"
-															title="Select Image">
-															<div class="avatar-xs">
-																<div
-																	class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
-																	<i class="ri-image-fill"></i>
-																</div>
-															</div>
-														</label>
-														<input class="form-control d-none" value=""
-															id="product-image-input" type="file"
-															accept="image/png, image/gif, image/jpeg">
-													</div>
-													<div class="avatar-lg">
-														<div class="avatar-title bg-light rounded">
-															<img src="" id="product-img" class="avatar-md h-auto" />
-														</div>
-													</div>
-												</div>
+											<div>
+												<input 
+												type="file" 
+												name="productImage"
+												class="form-control" 
+												>
 											</div>
 										</div>
 										<div>
 											<h5 class="fs-15 mb-1">제품 슬라이드 이미지</h5>
 											<p class="text-muted"># 제품 상세페이지의 슬라이드 이미지들을 업로드 해 주세요.</p>
-
-											<div class="dropzone">
-												<div class="fallback">
-													<input name="file" type="file" multiple="multiple">
-												</div>
-												<div class="dz-message needsclick">
-													<div class="mb-3">
-														<i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
-													</div>
-
-													<h5>Drop files here or click to upload.</h5>
-												</div>
+											<div>
+												<input 
+												type="file" 
+												name="slideImages"
+												multiple
+												class="form-control" 
+												>
 											</div>
-
-											<ul class="list-unstyled mb-0" id="dropzone-preview">
-												<li class="mt-2" id="dropzone-preview-list">
-													<!-- This is used as the file preview template -->
-													<div class="border rounded">
-														<div class="d-flex p-2">
-															<div class="flex-shrink-0 me-3">
-																<div class="avatar-sm bg-light rounded">
-																	<img data-dz-thumbnail
-																		class="img-fluid rounded d-block" src="#"
-																		alt="Product-Image" />
-																</div>
-															</div>
-															<div class="flex-grow-1">
-																<div class="pt-1">
-																	<h5 class="fs-14 mb-1" data-dz-name>&nbsp;</h5>
-																	<p class="fs-13 text-muted mb-0" data-dz-size></p>
-																	<strong class="error text-danger"
-																		data-dz-errormessage></strong>
-																</div>
-															</div>
-															<div class="flex-shrink-0 ms-3">
-																<button data-dz-remove
-																	class="btn btn-sm btn-danger">Delete</button>
-															</div>
-														</div>
-													</div>
-												</li>
-											</ul>
 										</div>
 									</div>
 								</div>
 								<div class="card">
 									<div class="card-header">
 										<h5 class="card-title mb-0">제품 소비자가격</h5>
+										<p class="text-muted"># 제품 소비자가격은 숫자로만 입력 해 주세요.</p>
 									</div>
 									<div class="card-body">
 										<div class="mb-3">
-											<input type="hidden" class="form-control" id="formAction" name="formAction"
-												value="add">
-											<input type="text" class="form-control d-none" id="product-id-input">
-											<input type="text" class="form-control" id="product-title-input" value=""
-												placeholder="Enter product title" required>
-											<div class="invalid-feedback">소비자 가격을 입력 해 주세요.</div>
+											<input 
+											type="number" 
+											class="form-control" 
+											placeholder="소비자 가격"
+											name="price"
+											required
+											>
 										</div>
 									</div>
 								</div>
@@ -270,17 +255,20 @@
 									</div>
 									<div class="card-body">
 										<div class="mb-3">
-											<select class="form-control" id="choices-multiple-remove-button"
-												data-choices data-choices-removeItem
-												name="choices-multiple-remove-button" multiple>
-												<option value="Choice 1" selected>딜러</option>
-												<option value="Choice 2">회원</option>
-												<option value="Choice 3">비회원</option>
+											<select 
+											id="target"
+											class="form-control" 
+											data-choices 
+											data-choices-removeItem
+											multiple>
+												<option value="dealer" selected>딜러</option>
+												<option value="member">회원</option>
+												<option value="none">비회원</option>
 											</select>
 										</div>
 									</div>
 								</div>
-
+	
 								<div class="card">
 									<div class="card-header" style="display: flex;">
 										<h5 class="card-title mb-0">할인 비율 선택</h5>
@@ -291,52 +279,49 @@
 									</div>
 									<div class="card-body" id="discountSection">
 										<div class="row">
-											<div class="col-lg-4 col-sm-6">
+											<div class="col-lg-4 col-sm-12">
 												<div class="mb-3">
-													<label class="form-label" for="product-discount-input">비회원 할인
-														비율</label>
+													<label class="form-label">비회원 할인 비율</label>
 													<div class="input-group mb-3">
-														<span class="input-group-text"
-															id="product-discount-addon">%</span>
-														<input type="text" class="form-control"
-															id="product-discount-input" placeholder="Enter discount"
-															aria-label="discount"
-															aria-describedby="product-discount-addon">
+														<span class="input-group-text">%</span>
+														<input 
+														id="noneDiscount"
+														type="number"
+														class="form-control"
+														placeholder="할인율을 숫자로 입력 해 주세요.">
 													</div>
 												</div>
 											</div>
-											<div class="col-lg-4 col-sm-6">
+											<div class="col-lg-4 col-sm-12">
 												<div class="mb-3">
-													<label class="form-label" for="product-discount-input">회원 할인
-														비율</label>
+													<label class="form-label">회원 할인 비율</label>
 													<div class="input-group mb-3">
-														<span class="input-group-text"
-															id="product-discount-addon">%</span>
-														<input type="text" class="form-control"
-															id="product-discount-input" placeholder="Enter discount"
-															aria-label="discount"
-															aria-describedby="product-discount-addon">
+														<span class="input-group-text">%</span>
+														<input 
+														id="memberDiscount"
+														type="number"
+														class="form-control"
+														placeholder="할인율을 숫자로 입력 해 주세요.">
 													</div>
 												</div>
 											</div>
-											<div class="col-lg-4 col-sm-6">
+											<div class="col-lg-4 col-sm-12">
 												<div class="mb-3">
-													<label class="form-label" for="product-discount-input">딜러 할인
-														비율</label>
+													<label class="form-label">딜러 할인 비율</label>
 													<div class="input-group mb-3">
-														<span class="input-group-text"
-															id="product-discount-addon">%</span>
-														<input type="text" class="form-control"
-															id="product-discount-input" placeholder="Enter discount"
-															aria-label="discount"
-															aria-describedby="product-discount-addon">
+														<span class="input-group-text">%</span>
+														<input 
+														id="dealerDiscount"
+														type="number"
+														class="form-control"
+														placeholder="할인율을 숫자로 입력 해 주세요.">
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-
+	
 								<div class="card">
 									<div class="card-header" style="display: flex;">
 										<h5 class="card-title mb-0">제품 선택옵션 등록</h5>
@@ -344,35 +329,44 @@
 											<input type="checkbox" class="form-check-input" id="optionRadio">
 										</div>
 									</div>
-
+	
 									<div class="card-body" id="optionSection">
 										<div class="row">
 											<div class="col-lg-12 col-sm-12"
 												style="display:flex;align-items: center;vertical-align: middle;">
 												<div class="form-check form-radio-primary mr-10">
-													<input class="form-check-input" type="radio" name="priceChange"
-														value="true" id="priceChange">
+													<input 
+													class="form-check-input" 
+													type="radio" 
+													name="priceChange"
+													value="true" 
+													id="priceChange">
 													<label class="form-check-label" for="priceChange">
 														가격 변동이 있는 옵션
 													</label>
 												</div>
 												<div class="form-check form-radio-primary mr-10">
-													<input class="form-check-input" type="radio" name="priceChange"
-														value="false" id="priceNoneChange">
+													<input 
+													class="form-check-input" 
+													type="radio" 
+													name="priceNoneChange"
+													value="false" 
+													id="priceNoneChange">
 													<label class="form-check-label" for="priceNoneChange">
 														가격 변동이 없는 옵션
 													</label>
 												</div>
-												<button type="button" class="btn btn-success btn-sm"
-													id="optionAddButton"> <i class="bx bx-add-to-queue"></i>
-													옵션추가</button>
+												<button 
+												type="button" 
+												class="btn btn-success btn-sm"
+												id="optionAddButton"> <i class="bx bx-add-to-queue"></i>옵션추가</button>
 											</div>
 										</div>
 										<div id="optionSelectForm">
 										</div>
 									</div>
 								</div>
-
+	
 								<div class="card">
 									<div class="card-header" style="display: flex;">
 										<h5 class="card-title mb-0">제품 이벤트 등록</h5>
@@ -383,55 +377,48 @@
 									<div class="card-body" id="eventSection">
 										<div class="row">
 											<div class="col-lg-3 col-sm-6">
-												<label for="choices-publish-visibility-input" class="form-label">이벤트
-													선택</label>
-												<select class="form-select" id="choices-publish-visibility-input"
-													data-choices data-choices-search-false>
-													<option value="Public" selected>NONE</option>
-													<option value="Hidden">FLASH 세일</option>
-													<option value="Hidden">RECOMMENED 세일</option>
-													<option value="Hidden">특별할인</option>
+												<label class="form-label">이벤트 선택</label>
+												<select class="form-select" id="eventName">
+													<option value="none" selected>이벤트 없음</option>
+													<option value="flash">FLASH 세일</option>
 												</select>
 											</div>
 											<div class="col-lg-3 col-sm-6">
 												<div class="mb-3">
-													<label class="form-label" for="product-discount-input">비회원 추가 할인
-														비율</label>
+													<label class="form-label">비회원 추가 할인 비율</label>
 													<div class="input-group mb-3">
-														<span class="input-group-text"
-															id="product-discount-addon">%</span>
-														<input type="text" class="form-control"
-															id="product-discount-input" placeholder="Enter discount"
-															aria-label="discount"
-															aria-describedby="product-discount-addon">
+														<span class="input-group-text">%</span>
+														<input 
+														type="number" 
+														id="eventNoneDiscount"
+														class="form-control"
+														placeholder="Enter discount">
 													</div>
 												</div>
 											</div>
 											<div class="col-lg-3 col-sm-6">
 												<div class="mb-3">
-													<label class="form-label" for="product-discount-input">회원 추가 할인
-														비율</label>
+													<label class="form-label">회원 추가 할인 비율</label>
 													<div class="input-group mb-3">
-														<span class="input-group-text"
-															id="product-discount-addon">%</span>
-														<input type="text" class="form-control"
-															id="product-discount-input" placeholder="Enter discount"
-															aria-label="discount"
-															aria-describedby="product-discount-addon">
+														<span class="input-group-text">%</span>
+														<input 
+														type="number" 
+														id="eventMemberDiscount"
+														class="form-control"
+														placeholder="Enter discount">
 													</div>
 												</div>
 											</div>
 											<div class="col-lg-3 col-sm-6">
 												<div class="mb-3">
-													<label class="form-label" for="product-discount-input">딜러 추가 할인
-														비율</label>
+													<label class="form-label">딜러 추가 할인 비율</label>
 													<div class="input-group mb-3">
-														<span class="input-group-text"
-															id="product-discount-addon">%</span>
-														<input type="text" class="form-control"
-															id="product-discount-input" placeholder="Enter discount"
-															aria-label="discount"
-															aria-describedby="product-discount-addon">
+														<span class="input-group-text">%</span>
+														<input 
+														type="number" 
+														id="eventDealerDiscount"
+														class="form-control"
+														placeholder="Enter discount">
 													</div>
 												</div>
 											</div>
@@ -442,153 +429,38 @@
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-header">
-										<ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
-											<li class="nav-item">
-												<a class="nav-link active" data-bs-toggle="tab"
-													href="#addproduct-general-info" role="tab">
-													OVERVIEW IMAGE
-												</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link" data-bs-toggle="tab" href="#addproduct-spec"
-													role="tab">
-													SPECIFICATION IMAGE
-												</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link" data-bs-toggle="tab" href="#addproduct-metadata"
-													role="tab">
-													PRODUCT TABLE DATA
-												</a>
-											</li>
-										</ul>
+										<h5 class="card-title mb-2">제품 스펙 이미지 및 첨부파일</h5>
 									</div>
-									<div class="card-body">
-										<div class="tab-content">
-											<div class="tab-pane active" id="addproduct-general-info" role="tabpanel">
-												<div class="row">
-													<div class="card-body">
-														<div class="mb-4">
-															<h5 class="fs-15 mb-1">대표 이미지</h5>
-															<p class="text-muted"># 제품의 대표 이미지를 선택 하여 업로드 해 주세요.</p>
-															<p class="text-muted"># 제품 상세페이지를 포함하여 해당 이미지로 제품이 표시됩니다.
-															</p>
-															<div class="text-center">
-																<div class="position-relative d-inline-block">
-																	<div
-																		class="position-absolute top-100 start-100 translate-middle">
-																		<label for="product-image-input" class="mb-0"
-																			data-bs-toggle="tooltip"
-																			data-bs-placement="right"
-																			title="Select Image">
-																			<div class="avatar-xs">
-																				<div
-																					class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
-																					<i class="ri-image-fill"></i>
-																				</div>
-																			</div>
-																		</label>
-																		<input class="form-control d-none" value=""
-																			id="product-image-input" type="file"
-																			accept="image/png, image/gif, image/jpeg">
-																	</div>
-																	<div class="avatar-lg">
-																		<div class="avatar-title bg-light rounded">
-																			<img src="" id="product-img"
-																				class="avatar-md h-auto" />
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="card-body">
+												<div>
+													<label class="form-label">제품 스펙 이미지</label>
+													<input 
+													type="file" 
+													class="form-control"
+													name="specImage"
+													>
 												</div>
 											</div>
-											<div class="tab-pane" id="addproduct-spec" role="tabpanel">
-												<div class="row">
-													<div class="card-body">
-														<div class="mb-4">
-															<h5 class="fs-15 mb-1">대표 이미지</h5>
-															<p class="text-muted"># 제품의 대표 이미지를 선택 하여 업로드 해 주세요.</p>
-															<p class="text-muted"># 제품 상세페이지를 포함하여 해당 이미지로 제품이 표시됩니다.
-															</p>
-															<div class="text-center">
-																<div class="position-relative d-inline-block">
-																	<div
-																		class="position-absolute top-100 start-100 translate-middle">
-																		<label for="product-image-input" class="mb-0"
-																			data-bs-toggle="tooltip"
-																			data-bs-placement="right"
-																			title="Select Image">
-																			<div class="avatar-xs">
-																				<div
-																					class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
-																					<i class="ri-image-fill"></i>
-																				</div>
-																			</div>
-																		</label>
-																		<input class="form-control d-none" value=""
-																			id="product-image-input" type="file"
-																			accept="image/png, image/gif, image/jpeg">
-																	</div>
-																	<div class="avatar-lg">
-																		<div class="avatar-title bg-light rounded">
-																			<img src="" id="product-img"
-																				class="avatar-md h-auto" />
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="tab-pane" id="addproduct-metadata" role="tabpanel">
-												<div class="row">
-													<div class="card-body">
-														<div class="mb-4">
-															<h5 class="fs-15 mb-1">제품 스펙 데이터</h5>
-															<p class="text-muted"># 엑셀을 통해 테이블형태의 데이터를 입력할 수 있습니.</p>
-															<p class="text-muted"># 다운로드 버튼을 통해 양식을 다운로드 후 입력 해 주시기 바랍니.
-															</p>
-															<button class="btn btn-danger" style="margin-top:10px;">양식 다운로드</button>
-															<div class="text-center">
-																<div class="position-relative d-inline-block">
-																	<div
-																		class="position-absolute top-100 start-100 translate-middle">
-																		<label for="product-image-input" class="mb-0"
-																			data-bs-toggle="tooltip"
-																			data-bs-placement="right"
-																			title="Select Image">
-																			<div class="avatar-xs">
-																				<div
-																					class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
-																					<i class="ri-image-fill"></i>
-																				</div>
-																			</div>
-																		</label>
-																		<input class="form-control d-none" value=""
-																			id="product-image-input" type="file"
-																			accept="image/png, image/gif, image/jpeg">
-																	</div>
-																	<div class="avatar-lg">
-																		<div class="avatar-title bg-light rounded">
-																			<img src="" id="product-img"
-																				class="avatar-md h-auto" />
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="card-body">
+												<div>
+													<label class="form-label">제품 첨부파일</label>
+													<input 
+													type="file" 
+													class="form-control" 
+													name="addedFiles"
+													multiple
+													>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="text-end mb-3">
-									<button type="submit" class="btn btn-success w-sm">제품 등록</button>
+									<button type="button" id="productAddBtn" class="btn btn-success w-sm">제품 등록</button>
 								</div>
 							</div>
 						</div>
@@ -603,9 +475,6 @@
 	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
 
 	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
-	<script src="/administration/assets/libs/dropzone/dropzone-min.js"></script>
-	<script src="/administration/assets/js/pages/ecommerce-product-create.init.js"></script>
-	<script src="/administration/assets/libs/prismjs/prism.js"></script>
 	<script src="/administration/assets/js/addProduct.js"></script>
 </body>
 

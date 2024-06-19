@@ -1693,7 +1693,7 @@
       var t = {},
         a = e.attributes;
       a["data-choices-groups"] &&
-        (t.placeholderValue = "This is a placeholder set in the config"),
+        (t.placeholderValue = a["data-choices-groups"].value.toString()),
         a["data-choices-search-false"] && (t.searchEnabled = !1),
         a["data-choices-search-true"] && (t.searchEnabled = !0),
         a["data-choices-removeItem"] && (t.removeItemButton = !0),
