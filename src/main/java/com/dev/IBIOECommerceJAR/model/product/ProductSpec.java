@@ -1,4 +1,4 @@
-package com.dev.IBIOECommerceJAR.model;
+package com.dev.IBIOECommerceJAR.model.product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,20 +9,18 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
+@Table(name="tb_product_spec")
 @Data
-@Table(name="tb_big_sort")
-public class BigSort {
-	
+public class ProductSpec {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="BIG_SORT_ID")
+	@Column(name="PRODUCT_SPEC_ID")
 	private Long id;
 	
-	@Column(name="BIG_SORT_NAME")
-	private String name;
+	@Column(name="PRODUCT_SPEC_SUBJECT")
+	private String productSpecSubject;
 	
-	@Column(name="BIG_SORT_INDEX")
-	private int bigSortIndex;
-
+	@Column(name="PRODUCT_ID")
+	private Long productId;
 }
-

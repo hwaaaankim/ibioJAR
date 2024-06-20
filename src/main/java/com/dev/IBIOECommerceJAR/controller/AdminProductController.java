@@ -1,5 +1,6 @@
 package com.dev.IBIOECommerceJAR.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +12,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dev.IBIOECommerceJAR.dto.ProductDTO;
 import com.dev.IBIOECommerceJAR.exception.DeleteViolationException;
-import com.dev.IBIOECommerceJAR.model.BigSort;
-import com.dev.IBIOECommerceJAR.model.MiddleSort;
-import com.dev.IBIOECommerceJAR.model.SmallSort;
+import com.dev.IBIOECommerceJAR.model.product.BigSort;
+import com.dev.IBIOECommerceJAR.model.product.MiddleSort;
+import com.dev.IBIOECommerceJAR.model.product.Product;
+import com.dev.IBIOECommerceJAR.model.product.SmallSort;
 import com.dev.IBIOECommerceJAR.repository.product.BigSortRepository;
 import com.dev.IBIOECommerceJAR.repository.product.MiddleSortRepository;
 import com.dev.IBIOECommerceJAR.repository.product.SmallSortRepository;
 import com.dev.IBIOECommerceJAR.service.product.BigSortService;
 import com.dev.IBIOECommerceJAR.service.product.MiddleSortService;
+import com.dev.IBIOECommerceJAR.service.product.ProductFileService;
+import com.dev.IBIOECommerceJAR.service.product.ProductImageService;
+import com.dev.IBIOECommerceJAR.service.product.ProductOptionService;
+import com.dev.IBIOECommerceJAR.service.product.ProductService;
+import com.dev.IBIOECommerceJAR.service.product.ProductSpecService;
+import com.dev.IBIOECommerceJAR.service.product.ProductTagService;
 import com.dev.IBIOECommerceJAR.service.product.SmallSortService;
 
 @Controller
@@ -44,6 +53,23 @@ public class AdminProductController {
 	@Autowired
 	SmallSortService smallSortService;
 	
+	@Autowired
+	ProductService productService;
+	
+	@Autowired
+	ProductOptionService productOptionService;
+	
+	@Autowired
+	ProductImageService productImageService;
+	
+	@Autowired
+	ProductFileService productFileService;
+	
+	@Autowired
+	ProductTagService productTagService;
+	
+	@Autowired
+	ProductSpecService productSpecService;
 	
 	@GetMapping("/ibioProductManager")
 	public String ibioProductManager(
@@ -51,7 +77,6 @@ public class AdminProductController {
 			) {
 		
 		List<BigSort> b = bigSortRepository.findAll();
-		
 		if(b.size()<1) {
 			BigSort bs = new BigSort();
 			bs.setName("분류를 등록 해 주세요");
@@ -60,7 +85,6 @@ public class AdminProductController {
 		}
 		
 		model.addAttribute("bigsorts", b);
-		
 		return "administration/ibio/product/select/ibioProductManager";
 	}
 	
@@ -70,7 +94,6 @@ public class AdminProductController {
 			) {
 		
 		List<BigSort> b = bigSortRepository.findAll();
-		
 		if(b.size()<1) {
 			BigSort bs = new BigSort();
 			bs.setName("분류를 등록 해 주세요");
@@ -84,14 +107,50 @@ public class AdminProductController {
 	
 	@PostMapping("/productInsert")
 	public String productInsert(
-			Long bigId,
-			Long middleId,
-			Long smallId
-			) {
-		System.out.println(bigId);
-		System.out.println(middleId);
-		System.out.println(smallId);
-		return "redirect:/admin/ibioProductManagerInsert";
+			ProductDTO dto
+			) throws IllegalStateException, IOException {
+
+		Product savedProduct = productService.productInsert(dto);
+		
+		if(dto.getChangeOptionName() != null 
+				&& dto.getChangeOptionValues() != null) {
+			productOptionService.insertChangeOption(
+				savedProduct,
+				dto.getChangeOptionName(),
+				dto.getChangeOptionValues()
+				);
+		}
+		
+		if(dto.getNoneChangeOptionName() != null 
+				&& dto.getNoneChangeOptionValues() != null) {
+			productOptionService.insertNoneChangeOption(
+				savedProduct,
+				dto.getNoneChangeOptionName(),
+				dto.getNoneChangeOptionValues()
+				);
+		}
+		
+		if(dto.getSlideImages() != null 
+				&& !dto.getSlideImages().isEmpty() 
+				&& !dto.getSlideImages().get(0).isEmpty()) {
+			productImageService.imageUpload(savedProduct, dto.getSlideImages());
+		}
+		
+		if(dto.getAddedFiles() != null
+				&& !dto.getAddedFiles().isEmpty()
+				&& !dto.getAddedFiles().get(0).isEmpty()) {
+			productFileService.fileUpload(savedProduct, dto.getAddedFiles());
+		}
+		
+		if(dto.getProductSpecs() != null) {
+			productSpecService.insertSpec(savedProduct, dto.getProductSpecs());
+		}
+		
+		if(dto.getProductTags() != null) {
+			productTagService.insertTags(savedProduct, dto.getProductTags());
+		}
+		
+		return "redirect:/admin/ibioProductManager";
 	}
 	
 	@GetMapping("/ibioProductManagerDetail")
@@ -106,7 +165,6 @@ public class AdminProductController {
 			) {
 		
 		List<BigSort> b = bigSortRepository.findAll();
-		
 		if(b.size()<1) {
 			BigSort bs = new BigSort();
 			bs.setName("분류를 등록 해 주세요");

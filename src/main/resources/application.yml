@@ -9,7 +9,6 @@ server:
     path: /error
   tomcat:
     uri-encoding: UTF-8
-      
   port: 8080
   servlet:
     session:
@@ -59,6 +58,7 @@ spring:
     multipart:
       maxFileSize: 1000MB
       maxRequestSize: -1
+      enabled : true
   mail:
     host: smtp.gmail.com
     port: 587
@@ -112,6 +112,7 @@ spring:
     multipart:
       maxFileSize: 1000MB
       maxRequestSize: -1
+      enabled : true
   mail:
     host: smtp.gmail.com
     port: 587

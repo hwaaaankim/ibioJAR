@@ -1,4 +1,4 @@
-package com.dev.IBIOECommerceJAR.model;
+package com.dev.IBIOECommerceJAR.model.product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

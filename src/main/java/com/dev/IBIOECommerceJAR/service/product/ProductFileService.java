@@ -1,0 +1,143 @@
+package com.dev.IBIOECommerceJAR.service.product;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.dev.IBIOECommerceJAR.model.product.Product;
+import com.dev.IBIOECommerceJAR.model.product.ProductFile;
+import com.dev.IBIOECommerceJAR.repository.product.ProductFileRepository;
+
+@Service
+public class ProductFileService {
+
+	@Autowired
+	ProductFileRepository productFileRepository;
+	
+	@Value("${spring.upload.env}")
+	private String env;
+	
+	@Value("${spring.upload.path}")
+	private String commonPath;
+	
+	public void fileUpload(
+			Product product,
+			List<MultipartFile> files
+			) {
+		System.out.println("fileUpload");
+		for(MultipartFile f : files) {
+			System.out.println(f.getName());
+		}
+	}
+	
+	public Boolean fileDelete(
+			Long id
+			) {
+		List<ProductFile> files = productFileRepository.findAllByProductId(id);
+		for(ProductFile p : files) {
+			File pFile = new File(p.getProductFilePath());
+			if(!pFile.delete()) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	public String fileUpload(
+			List<MultipartFile> productFiles,
+			Product product
+			) throws IllegalStateException, IOException {
+		
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String current_date = simpleDateFormat.format(new Date());
+
+        // 실제 파일 저장 위치
+ 		String path = commonPath + "product/ibio/" + current_date + "/";
+ 		// 파일 resource 로드 url
+ 		String road = "/upload/product/ibio/" + current_date + "/";
+        
+        int leftLimit = 48; // numeral '0'
+		int rightLimit = 122; // letter 'z'
+		int targetStringLength = 10;
+		Random random = new Random();
+		
+        for(MultipartFile file : productFiles) {
+        	if(!file.isEmpty()) {
+        		String generatedString = random.ints(leftLimit,rightLimit + 1)
+      				  .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+      				  .limit(targetStringLength)
+      				  .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+      				  .toString();
+        		ProductFile f = new ProductFile();
+        		f.setProductId(product.getId());
+            	String contentType = file.getContentType();
+                String originalFileExtension = "";
+                // 확장자 명이 없으면 이 파일은 잘 못 된 것이다
+                if (ObjectUtils.isEmpty(contentType)){
+                    return "NONE";
+                }else{
+                    if(contentType.contains("image/jpeg")){
+                        originalFileExtension = ".jpg";
+                    }
+                    else if(contentType.contains("image/png")){
+                        originalFileExtension = ".png";
+                    }
+                }
+                String slideImageName = generatedString + originalFileExtension;
+				String slideImagePath = path + product.getProductTitle() + "/slide/" + slideImageName;
+				String slideImageRoad = road + product.getProductTitle() + "/slide/" + slideImageName;
+				String slideImageSavePath = slideImagePath;
+				File slideImageSaveFile = new File(slideImageSavePath);	
+				if (!slideImageSaveFile.exists()) {
+					slideImageSaveFile.mkdirs();
+				}
+                file.transferTo(slideImageSaveFile);
+                f.setProductFileOriginalName(file.getOriginalFilename());
+                f.setProductFileExtension(originalFileExtension);
+                f.setProductFilePath(slideImagePath);
+                f.setProductFileRoad(slideImageRoad);
+                f.setProductFileName(slideImageName);
+                f.setProductFileDate(new Date());
+                productFileRepository.save(f);
+            }
+        }
+        
+        return "success";
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

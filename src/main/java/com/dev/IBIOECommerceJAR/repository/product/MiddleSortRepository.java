@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.dev.IBIOECommerceJAR.model.BigSort;
-import com.dev.IBIOECommerceJAR.model.MiddleSort;
+import com.dev.IBIOECommerceJAR.model.product.BigSort;
+import com.dev.IBIOECommerceJAR.model.product.MiddleSort;
 
 @Repository
 public interface MiddleSortRepository extends JpaRepository<MiddleSort, Long>{

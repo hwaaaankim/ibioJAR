@@ -3,8 +3,8 @@ package com.dev.IBIOECommerceJAR.service.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dev.IBIOECommerceJAR.model.BigSort;
-import com.dev.IBIOECommerceJAR.model.MiddleSort;
+import com.dev.IBIOECommerceJAR.model.product.BigSort;
+import com.dev.IBIOECommerceJAR.model.product.MiddleSort;
 import com.dev.IBIOECommerceJAR.repository.product.MiddleSortRepository;
 
 @Service

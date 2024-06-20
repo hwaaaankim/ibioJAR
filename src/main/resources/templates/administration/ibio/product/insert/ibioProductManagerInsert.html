@@ -46,9 +46,9 @@
 						</div>
 					</div>
 					<form 
-					id="productAddForm" 
+					id="productAddForm"
 					action="/admin/productInsert" 
-					method="Post"
+					method="POST" 
 					enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-lg-12">
@@ -108,6 +108,7 @@
 													<input 
 													type="text" 
 													class="form-control" 
+													id="brand"
 													name="brand"
 													placeholder="브랜드명을 입력 해 주세요." 
 													>
@@ -121,8 +122,10 @@
 													<input 
 													type="file" 
 													name="brandImage"
+													id="brandImage"
 													class="form-control" 
 													required
+													accept="image/*"
 													>
 												</div>
 											</div>
@@ -139,8 +142,8 @@
 										<div class="mb-3">
 											<input 
 											type="text"
+											id="title"
 											name="title"
-											required 
 											class="form-control" 
 											placeholder="제품 이름을 입력 해 주세요.">
 										</div>
@@ -194,6 +197,7 @@
 									<div class="card-body">
 										<p class="text-muted mb-2"># 제품에 대한 설명을 입력 해 주세요.</p>
 										<textarea 
+										id="description"
 										name="description"
 										class="form-control" 
 										placeholder="제품에 대한 설명을 입력 해 주세요."
@@ -211,9 +215,11 @@
 											<p class="text-muted"># 제품 상세페이지를 포함하여 해당 이미지로 제품이 표시됩니다.</p>
 											<div>
 												<input 
-												type="file" 
+												type="file"
 												name="productImage"
+												id="productImage" 
 												class="form-control" 
+												accept="image/*"
 												>
 											</div>
 										</div>
@@ -224,8 +230,10 @@
 												<input 
 												type="file" 
 												name="slideImages"
+												id="slideImages"
 												multiple
 												class="form-control" 
+												accept="image/*"
 												>
 											</div>
 										</div>
@@ -240,9 +248,10 @@
 										<div class="mb-3">
 											<input 
 											type="number" 
+											name="price"
 											class="form-control" 
 											placeholder="소비자 가격"
-											name="price"
+											id="price"
 											required
 											>
 										</div>
@@ -257,13 +266,11 @@
 										<div class="mb-3">
 											<select 
 											id="target"
-											class="form-control" 
-											data-choices 
-											data-choices-removeItem
-											multiple>
-												<option value="dealer" selected>딜러</option>
-												<option value="member">회원</option>
-												<option value="none">비회원</option>
+											name="priceTarget"
+											class="form-control">
+												<option value="0" selected>모두</option>
+												<option value="1">회원이상</option>
+												<option value="2">딜러만</option>
 											</select>
 										</div>
 									</div>
@@ -286,6 +293,7 @@
 														<span class="input-group-text">%</span>
 														<input 
 														id="noneDiscount"
+														name="noneDiscount"
 														type="number"
 														class="form-control"
 														placeholder="할인율을 숫자로 입력 해 주세요.">
@@ -299,6 +307,7 @@
 														<span class="input-group-text">%</span>
 														<input 
 														id="memberDiscount"
+														name="memberDiscount"
 														type="number"
 														class="form-control"
 														placeholder="할인율을 숫자로 입력 해 주세요.">
@@ -312,6 +321,7 @@
 														<span class="input-group-text">%</span>
 														<input 
 														id="dealerDiscount"
+														name="dealerDiscount"
 														type="number"
 														class="form-control"
 														placeholder="할인율을 숫자로 입력 해 주세요.">
@@ -349,7 +359,7 @@
 													<input 
 													class="form-check-input" 
 													type="radio" 
-													name="priceNoneChange"
+													name="priceChange"
 													value="false" 
 													id="priceNoneChange">
 													<label class="form-check-label" for="priceNoneChange">
@@ -378,7 +388,7 @@
 										<div class="row">
 											<div class="col-lg-3 col-sm-6">
 												<label class="form-label">이벤트 선택</label>
-												<select class="form-select" id="eventName">
+												<select class="form-select" name="eventN" id="eventName">
 													<option value="none" selected>이벤트 없음</option>
 													<option value="flash">FLASH 세일</option>
 												</select>
@@ -390,6 +400,7 @@
 														<span class="input-group-text">%</span>
 														<input 
 														type="number" 
+														name="eventNoneD"
 														id="eventNoneDiscount"
 														class="form-control"
 														placeholder="Enter discount">
@@ -402,6 +413,7 @@
 													<div class="input-group mb-3">
 														<span class="input-group-text">%</span>
 														<input 
+														name="eventMemberD"
 														type="number" 
 														id="eventMemberDiscount"
 														class="form-control"
@@ -415,6 +427,7 @@
 													<div class="input-group mb-3">
 														<span class="input-group-text">%</span>
 														<input 
+														name="eventDealerD"
 														type="number" 
 														id="eventDealerDiscount"
 														class="form-control"
@@ -439,7 +452,9 @@
 													<input 
 													type="file" 
 													class="form-control"
+													id="specImage"
 													name="specImage"
+													accept="image/*"
 													>
 												</div>
 											</div>
@@ -451,6 +466,7 @@
 													<input 
 													type="file" 
 													class="form-control" 
+													id="addedFiles"
 													name="addedFiles"
 													multiple
 													>
