@@ -98,6 +98,8 @@ public class Product {
 	@Column(name="PRODUCT_EVENT_Dealer_DISCOUNT")
 	private int productEventDealerDiscount;
 	
+	@Transient
+	private int afterPrice;
 	
 	@Column(name="PRODUCT_INDEX")
 	private int productIndex;

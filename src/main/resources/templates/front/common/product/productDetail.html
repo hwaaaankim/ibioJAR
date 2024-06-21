@@ -12,7 +12,7 @@
 		<div class="main-container container">
 			<ul class="breadcrumb">
 				<li><a href="#"><i class="fa fa-home"></i></a></li>
-				<li><a href="#">제품대분류/중분류/소분류<a></li>
+				<li><a href="#" th:text="|${product.bigSort.name}/${product.middleSort.name}/${product.smallSort.name}|">제품대분류/중분류/소분류<a></li>
 				<li><a href="#">제품브랜드</a></li>
 
 			</ul>
@@ -240,9 +240,12 @@
 
 							<div class="content-product-left class-honizol col-md-5 col-sm-12 col-xs-12">
 								<div class="large-image  ">
-									<img itemprop="image" class="product-image-zoom"
-										src="/front/image/catalog/demo/product/fashion/1.jpg" title="Chicken swinesha"
-										alt="Chicken swinesha">
+									<img 
+									itemprop="image" 
+									class="product-image-zoom"
+									src="/front/image/catalog/demo/product/fashion/1.jpg" 
+									title="product"
+									alt="product">
 								</div>
 								<a class="thumb-video pull-left" href="https://www.youtube.com/watch?v=HhabgvIIXik"><i
 										class="fa fa-youtube-play"></i></a>
@@ -284,10 +287,10 @@
 
 							<div class="content-product-right col-md-7 col-sm-12 col-xs-12">
 								<div class="title-product">
-									<h1>제품명</h1>
+									<h1 th:text="${product.productTitle}">제품명</h1>
 								</div>
 								<div class="box-review form-group">
-									<div class="ratings">
+									<!--<div class="ratings">
 										<div class="rating-box">
 											<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
 											<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
@@ -297,15 +300,15 @@
 										</div>
 									</div>
 
-									<!--<a class="reviews_button" href=""
+									<a class="reviews_button" href=""
 										onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">0
 										reviews</a> |
 									<a class="write_review_button" href=""
 										onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Write a
 										review</a>-->
-									<a>제품 대분류</a> |
-									<a>제품 중분류</a> |
-									<a>제품 소분류</a> 
+									<a th:text="${product.bigSort.name}">제품 대분류</a> |
+									<a th:text="${product.middleSort.name}">제품 중분류</a> |
+									<a th:text="${product.smallSort.name}">제품 소분류</a> 
 								</div>
 
 								<div class="product-label form-group">
@@ -403,7 +406,8 @@
 										<div class="cart">
 											<input type="button" data-toggle="tooltip" title="" value="Add to Cart"
 												data-loading-text="Loading..." id="button-cart"
-												class="btn btn-mega btn-lg" onclick="cart.add('42', '1');"
+												class="btn btn-mega btn-lg" 
+												th:onclick="|javascript:cart.add('${product.id}')|"
 												data-original-title="Add to Cart">
 										</div>
 										<div class="add-to-links wish_comp">

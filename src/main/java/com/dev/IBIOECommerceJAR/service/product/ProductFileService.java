@@ -29,16 +29,6 @@ public class ProductFileService {
 	@Value("${spring.upload.path}")
 	private String commonPath;
 	
-	public void fileUpload(
-			Product product,
-			List<MultipartFile> files
-			) {
-		System.out.println("fileUpload");
-		for(MultipartFile f : files) {
-			System.out.println(f.getName());
-		}
-	}
-	
 	public Boolean fileDelete(
 			Long id
 			) {
@@ -54,8 +44,8 @@ public class ProductFileService {
 	}
 	
 	public String fileUpload(
-			List<MultipartFile> productFiles,
-			Product product
+			Product product,
+			List<MultipartFile> productFiles
 			) throws IllegalStateException, IOException {
 		
 		
@@ -86,28 +76,45 @@ public class ProductFileService {
                 // 확장자 명이 없으면 이 파일은 잘 못 된 것이다
                 if (ObjectUtils.isEmpty(contentType)){
                     return "NONE";
-                }else{
-                    if(contentType.contains("image/jpeg")){
-                        originalFileExtension = ".jpg";
-                    }
-                    else if(contentType.contains("image/png")){
-                        originalFileExtension = ".png";
-                    }
+                }else {
+        			if (contentType.contains("image/jpeg")) {
+        				originalFileExtension = ".jpg";
+        			} else if (contentType.contains("image/png")) {
+        				originalFileExtension = ".png";
+        			} else if (contentType.contains("image/gif")) {
+        				originalFileExtension = ".gif";
+        			} else if (contentType.contains("application/pdf")) {
+        				originalFileExtension = ".pdf";
+        			} else if (contentType.contains("application/x-zip-compressed")) {
+        				originalFileExtension = ".zip";
+        			} else if (contentType
+        					.contains("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+        				originalFileExtension = ".xlsx";
+        			} else if (contentType
+        					.contains("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
+        				originalFileExtension = ".docx";
+        			} else if (contentType.contains("text/plain")) {
+        				originalFileExtension = ".txt";
+        			} else if (contentType.contains("image/x-icon")) {
+        				originalFileExtension = ".ico";
+        			} else if (contentType.contains("application/haansofthwp")) {
+        				originalFileExtension = ".hwp";
+        			}
                 }
-                String slideImageName = generatedString + originalFileExtension;
-				String slideImagePath = path + product.getProductTitle() + "/slide/" + slideImageName;
-				String slideImageRoad = road + product.getProductTitle() + "/slide/" + slideImageName;
-				String slideImageSavePath = slideImagePath;
-				File slideImageSaveFile = new File(slideImageSavePath);	
-				if (!slideImageSaveFile.exists()) {
-					slideImageSaveFile.mkdirs();
+                String productFileName = generatedString + originalFileExtension;
+				String productFilePath = path + product.getProductTitle() + "/files/" + productFileName;
+				String productFileRoad = road + product.getProductTitle() + "/files/" + productFileName;
+				String productFileSavePath = productFilePath;
+				File productFileSaveFile = new File(productFileSavePath);	
+				if (!productFileSaveFile.exists()) {
+					productFileSaveFile.mkdirs();
 				}
-                file.transferTo(slideImageSaveFile);
+                file.transferTo(productFileSaveFile);
                 f.setProductFileOriginalName(file.getOriginalFilename());
                 f.setProductFileExtension(originalFileExtension);
-                f.setProductFilePath(slideImagePath);
-                f.setProductFileRoad(slideImageRoad);
-                f.setProductFileName(slideImageName);
+                f.setProductFilePath(productFilePath);
+                f.setProductFileRoad(productFileRoad);
+                f.setProductFileName(productFileName);
                 f.setProductFileDate(new Date());
                 productFileRepository.save(f);
             }

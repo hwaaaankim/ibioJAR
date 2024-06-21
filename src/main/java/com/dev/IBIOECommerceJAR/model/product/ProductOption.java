@@ -25,7 +25,7 @@ public class ProductOption {
 	private Boolean code;
 	
 	@Column(name="PRODUCT_OPTION_NAME")
-	private String productSpecSubject;
+	private String productOptionName;
 	
 	@Column(name="PRODUCT_OPTION_VALUE")
 	private String productOptionValue;

@@ -193,6 +193,8 @@ addBtn.addEventListener('click', function(){
 		for(var i=0; i<changeOptions.length;i++){
 			var cOptionName = changeOptions[i].querySelector('.changeOptionName').value;
 			var cOptionValue = changeOptions[i].querySelector('.changeOptionValues').value;
+			console.log(cOptionName);
+			console.log(cOptionValue);
 			if(cOptionName === "" || cOptionName === undefined || cOptionName === null){
 				alert('옵션이름을 정확하게 입력 해 주세요.');
 				return false;
@@ -207,6 +209,8 @@ addBtn.addEventListener('click', function(){
 			
 			var nOptionName = noneChangeOptions[i].querySelector('.noneChangeOptionsNames').value;
 			var nOptionValue = noneChangeOptions[i].querySelector('.noneChangeOptionsValues').value;
+			console.log(nOptionName);
+			console.log(nOptionValue);
 			if(nOptionName === "" || nOptionName === undefined || nOptionName === null){
 				alert('옵션이름을 정확하게 입력 해 주세요.');
 				return false;
