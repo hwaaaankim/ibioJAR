@@ -1,7 +1,7 @@
 # 동작 환경 설정
 spring:
   profiles:
-    active: prod
+    active: dev
 server:
   error:
     include-exception: true
@@ -9,7 +9,6 @@ server:
     path: /error
   tomcat:
     uri-encoding: UTF-8
-  port: 8081
   servlet:
     session:
       timeout: 1440m      # 60m * 24h * 30d
@@ -19,8 +18,10 @@ server:
         http-only: true
         secure: false
         
-# 개발 환경
+# 로컬 환경
 --- 
+server:
+  port: 8080
 logging:
   file.name: logs/application-debug.log
   pattern:
@@ -33,7 +34,7 @@ logging:
 spring:
   config:
     activate: 
-      on-profile: test
+      on-profile: local
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://119.205.220.240:3306/ibio?useUnicode=true&characterEncoding=utf8
@@ -73,8 +74,66 @@ spring:
   upload.path: D:/TestAssets/
   upload.env: local
 
+# 개발 환경
+--- 
+server:
+  port: 8081
+logging:
+  file.name: logs/application-debug.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework.web: ERROR
+    com.dev.BionLifeScienceWar: DEBUG
+    org.hibernate: ERROR
+spring:
+  config:
+    activate: 
+      on-profile: dev
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    password: ghksrka3849!
+    url: jdbc:mariadb://119.205.220.240:3306/ibio?useUnicode=true&characterEncoding=utf8
+    username: root
+    hikari:
+      connectionTimeout: 30000
+      maximumPoolSize: 10
+      maxLifetime: 1800000
+      poolName: HikariCP
+      readOnly: false
+      connectionTestQuery: SELECT 1
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDB103Dialect
+  servlet:
+    multipart:
+      maxFileSize: 1000MB
+      maxRequestSize: -1
+      enabled : true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: 'admin@ibioscience.co.kr'
+    password: 'vukqdrgkpagrvomf'
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  upload.path: /project/files/
+  upload.env: prod
+
 # 배포 환경
 --- 
+server:
+  port: 8080
 logging:
   file.name: logs/application-debug.log
   pattern:
