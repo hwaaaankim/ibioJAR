@@ -9,4 +9,6 @@ import com.dev.IBIOECommerceJAR.model.product.Product;
 public interface ProductRepository extends JpaRepository<Product, Long>{
 
 	Page<Product> findAllByOrderByProductClicks(Pageable pageable);
+	
+	Page<Product> findAllByOrderByIdDesc(Pageable pageable);
 }

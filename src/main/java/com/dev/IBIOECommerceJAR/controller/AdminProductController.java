@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +23,7 @@ import com.dev.IBIOECommerceJAR.model.product.Product;
 import com.dev.IBIOECommerceJAR.model.product.SmallSort;
 import com.dev.IBIOECommerceJAR.repository.product.BigSortRepository;
 import com.dev.IBIOECommerceJAR.repository.product.MiddleSortRepository;
+import com.dev.IBIOECommerceJAR.repository.product.ProductRepository;
 import com.dev.IBIOECommerceJAR.repository.product.SmallSortRepository;
 import com.dev.IBIOECommerceJAR.service.product.BigSortService;
 import com.dev.IBIOECommerceJAR.service.product.MiddleSortService;
@@ -57,6 +61,9 @@ public class AdminProductController {
 	ProductService productService;
 	
 	@Autowired
+	ProductRepository productRepository;
+	
+	@Autowired
 	ProductOptionService productOptionService;
 	
 	@Autowired
@@ -73,7 +80,16 @@ public class AdminProductController {
 	
 	@GetMapping("/ibioProductManager")
 	public String ibioProductManager(
-			Model model
+			Model model,
+			@PageableDefault(size=10) Pageable pageable,
+			@RequestParam(required = false, defaultValue = "0") Long bigId,
+			@RequestParam(required = false, defaultValue = "0") Long middleId,
+			@RequestParam(required = false, defaultValue = "0") Long smallId,
+			@RequestParam(required = false) Integer minCost,
+	        @RequestParam(required = false) Integer maxCost,
+	        @RequestParam(required = false) Boolean productSort,
+	        @RequestParam(required = false) Boolean productDiscount,
+	        @RequestParam(required = false) Boolean sellingResult
 			) {
 		
 		List<BigSort> b = bigSortRepository.findAll();
@@ -83,8 +99,21 @@ public class AdminProductController {
 			bs.setId(0L);
 			b.add(bs);
 		}
-		
-		model.addAttribute("bigsorts", b);
+		Page<Product> products = productRepository.findAllByOrderByIdDesc(pageable);
+		int startPage = Math.max(1, products.getPageable().getPageNumber() - 4);
+		int endPage = Math.min(products.getTotalPages(), products.getPageable().getPageNumber() + 4);
+		model.addAttribute("products", products);
+		model.addAttribute("bigSorts", b);
+		model.addAttribute("bigSortId", bigId);
+		model.addAttribute("middleSortId", middleId);
+		model.addAttribute("smallSortId", smallId);
+		model.addAttribute("maxCost", maxCost);
+		model.addAttribute("minCost", minCost);
+		model.addAttribute("productSort", productSort);
+		model.addAttribute("productDiscount", productDiscount);
+		model.addAttribute("sellingResult", sellingResult);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		return "administration/ibio/product/select/ibioProductManager";
 	}
 	

@@ -53,15 +53,24 @@ public class Product {
 	@Column(name="PRODUCT_PRICE")
 	private int productPrice;
 
+	// 소비자 가격을 어디까지 보여줄지 여부를 선택
+	// 0 : 모두 ~ 2 : 딜러만
 	@Column(name="PRODUCT_PRICE_TARGET")
 	private int productPriceTarget;
 	
+	// 제품의 할인가격이 존재하는지 여부
+	@Column(name="PRODUCT_DISCOUNT_SIGN")
+	private Boolean productDiscountSign;
+	
+	// 비회원 전용가격
 	@Column(name="PRODUCT_NONE_DISCOUNT")
 	private int productNoneDiscount;
-	
+
+	// 회원 전용가격
 	@Column(name="PRODUCT_MEMBER_DISCOUNT")
 	private int productMemberDiscount;
 	
+	// 딜러 전용가격
 	@Column(name="PRODUCT_DEALER_DISCOUNT")
 	private int productDealerDiscount;
 	
