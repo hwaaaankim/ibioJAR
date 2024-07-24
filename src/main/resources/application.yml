@@ -22,15 +22,15 @@ server:
 --- 
 server:
   port: 8080
-logging:
-  file.name: logs/application-debug.log
-  pattern:
-    console: "%d %-5level %logger : %msg%n"
-    file: "%d %-5level [%thread] %logger : %msg%n"
-  level:
-    org.springframework.web: ERROR
-    com.dev.IBIOECommerce: DEBUG
-    org.hibernate: ERROR
+#logging:
+#  file.name: logs/application-debug.log
+#  pattern:
+#    console: "%d %-5level %logger : %msg%n"
+#    file: "%d %-5level [%thread] %logger : %msg%n"
+#  level:
+#    org.springframework.web: ERROR
+#    com.dev.IBIOECommerce: DEBUG
+#    org.hibernate: ERROR
 spring:
   config:
     activate: 
@@ -78,15 +78,15 @@ spring:
 --- 
 server:
   port: 8081
-logging:
-  file.name: logs/application-debug.log
-  pattern:
-    console: "%d %-5level %logger : %msg%n"
-    file: "%d %-5level [%thread] %logger : %msg%n"
-  level:
-    org.springframework.web: ERROR
-    com.dev.BionLifeScienceWar: DEBUG
-    org.hibernate: ERROR
+#logging:
+#  file.name: logs/application-debug.log
+#  pattern:
+#    console: "%d %-5level %logger : %msg%n"
+#    file: "%d %-5level [%thread] %logger : %msg%n"
+#  level:
+#    org.springframework.web: ERROR
+#    com.dev.BionLifeScienceWar: DEBUG
+#    org.hibernate: ERROR
 spring:
   config:
     activate: 
@@ -134,15 +134,15 @@ spring:
 --- 
 server:
   port: 8080
-logging:
-  file.name: logs/application-debug.log
-  pattern:
-    console: "%d %-5level %logger : %msg%n"
-    file: "%d %-5level [%thread] %logger : %msg%n"
-  level:
-    org.springframework.web: ERROR
-    com.dev.BionLifeScienceWar: DEBUG
-    org.hibernate: ERROR
+#logging:
+#  file.name: logs/application-debug.log
+#  pattern:
+#    console: "%d %-5level %logger : %msg%n"
+#    file: "%d %-5level [%thread] %logger : %msg%n"
+#  level:
+#    org.springframework.web: ERROR
+#    com.dev.BionLifeScienceWar: DEBUG
+#    org.hibernate: ERROR
 spring:
   config:
     activate: 

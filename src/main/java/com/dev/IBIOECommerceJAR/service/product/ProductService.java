@@ -130,9 +130,19 @@ public class ProductService {
 		}else {
 			product.setProductDescription(dto.getDescription());
 		}
+		
 		product.setProductTitle(dto.getTitle());
 		product.setProductPrice(dto.getPrice());
 		product.setProductPriceTarget(dto.getPriceTarget());
+		
+		if(dto.getNoneD()!=null 
+				&& dto.getMemberD()!=null 
+				&& dto.getDealerD()!=null) {
+			product.setProductDiscountSign(true);
+		}else {
+			product.setProductDiscountSign(false);
+		}
+		
 		if(dto.getNoneD()!=null) {
 			product.setProductNoneDiscount(dto.getNoneD());
 		}else {
