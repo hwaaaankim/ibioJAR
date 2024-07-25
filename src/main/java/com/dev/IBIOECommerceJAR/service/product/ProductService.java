@@ -8,6 +8,8 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -238,6 +240,30 @@ public class ProductService {
 		Product savedProduct = productRepository.save(product);
 		
 		return savedProduct;
+	}
+	
+	public Page<Product> findProducts(
+			Long bigId, 
+			Long middleId, 
+			Long smallId, 
+			Integer minCost, 
+			Integer maxCost, 
+			String productSort, 
+			String productDiscount, 
+			String sellingResult, 
+			String searchWord,
+			Pageable pageable) {
+		
+	    return productRepository.findByConditions(bigId, 
+	    		middleId, 
+	    		smallId, 
+	    		minCost, 
+	    		maxCost,
+	    		productSort, 
+	    		productDiscount, 
+	    		sellingResult, 
+	    		searchWord,
+	    		pageable);
 	}
 }
 

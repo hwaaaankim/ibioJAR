@@ -14,12 +14,14 @@ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(InvalidFormatException.class)
+	@ExceptionHandler(InvalidFormatException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<Map<String, String>> handleInvalidFormatException(InvalidFormatException ex) {
         Map<String, String> errorResponse = new HashMap<>();
         errorResponse.put("return_code", "400");
+        errorResponse.put("error_type", "InvalidFormatException");
         errorResponse.put("description", "JSON format 오류!");
+        errorResponse.put("details", ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
@@ -28,7 +30,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleException(Exception ex) {
         Map<String, String> errorResponse = new HashMap<>();
         errorResponse.put("return_code", "400");
-        errorResponse.put("description", "JSON format 오류");
+        errorResponse.put("error_type", ex.getClass().getSimpleName());
+        errorResponse.put("description", "잘못된 요청입니다.");
+        errorResponse.put("details", ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }

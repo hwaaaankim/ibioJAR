@@ -196,10 +196,23 @@
 														<input 
 														class="form-check-input" 
 														type="radio" 
-														value="true"
+														value="all"
+														name="productSort"
+														id="allProduct"
+														th:checked="${productSort == 'all'}"
+														>
+														<label 
+														class="form-check-label"
+														for="allProduct">전체제품</label>
+													</div>
+													<div class="form-check">
+														<input 
+														class="form-check-input" 
+														type="radio" 
+														value="normal"
 														name="productSort"
 														id="normalProduct"
-														th:checked="${productSort == true}"
+														th:checked="${productSort == 'normal'}"
 														>
 														<label 
 														class="form-check-label"
@@ -209,10 +222,10 @@
 														<input 
 														class="form-check-input" 
 														type="radio" 
-														value="false"
+														value="event"
 														name="productSort"
 														id="eventProduct"
-														th:checked="${productSort == false}"
+														th:checked="${productSort == 'event'}"
 														>
 														<label 
 														class="form-check-label"
@@ -246,8 +259,19 @@
 														class="form-check-input" 
 														type="radio"
 														name="productDiscount"
-														th:checked="${productDiscount == true}"
-														value="true"
+														th:checked="${productDiscount == 'all'}"
+														value="all"
+														id="allProductDiscount">
+														<label class="form-check-label" 
+														for="allProductDiscount">할인가격 있음</label>
+													</div>
+													<div class="form-check">
+														<input 
+														class="form-check-input" 
+														type="radio"
+														name="productDiscount"
+														th:checked="${productDiscount == 'yes'}"
+														value="yes"
 														id="yesProductDiscount">
 														<label class="form-check-label" for="yesProductDiscount">할인가격 있음</label>
 													</div>
@@ -256,8 +280,8 @@
 														class="form-check-input" 
 														type="radio"
 														name="productDiscount"
-														value="false" 
-														th:checked="${productDiscount == false}"
+														value="no" 
+														th:checked="${productDiscount == 'no'}"
 														id="noProductDiscount">
 														<label class="form-check-label" for="noProductDiscount">할인가격 없음</label>
 													</div>
@@ -291,8 +315,18 @@
 														class="form-check-input" 
 														type="radio"
 														name="sellingResult"
-														value="true" 
-														th:checked="${sellingResult == true}"
+														value="all" 
+														th:checked="${sellingResult == 'all'}"
+														id="allSellingResult">
+														<label class="form-check-label" for="allSellingResult">판매실적 있음</label>
+													</div>
+													<div class="form-check">
+														<input 
+														class="form-check-input" 
+														type="radio"
+														name="sellingResult"
+														value="yes" 
+														th:checked="${sellingResult == 'yes'}"
 														id="yesSellingResult">
 														<label class="form-check-label" for="yesSellingResult">판매실적 있음</label>
 													</div>
@@ -301,10 +335,10 @@
 														class="form-check-input" 
 														type="radio"
 														name="sellingResult"
-														value="false" 
-														th:checked="${sellingResult == false}"
-														id="noneSellingResult">
-														<label class="form-check-label" for="noneSellingResult">판매실적 없음</label>
+														value="no" 
+														th:checked="${sellingResult == 'no'}"
+														id="noSellingResult">
+														<label class="form-check-label" for="noSellingResult">판매실적 없음</label>
 													</div>
 												</div>
 											</div>
@@ -318,7 +352,13 @@
 								<div class="col-sm gap-2" style="padding-left:0px;display:flex;">
 									<div class="d-flex justify-content-sm-start gap-2">
 										<div class="search-box">
-											<input type="text" class="form-control" placeholder="검색어를 입력 해 주세요.">
+											<input 
+											style="min-width:300px;" 
+											type="text" 
+											id="searchWord"
+											th:value="${searchWord}"
+											class="form-control" 
+											placeholder="검색어를 입력 해 주세요.">
 											<i class="ri-search-line search-icon"></i>
 										</div>
 										<select 
@@ -332,8 +372,10 @@
 									</div>
 									<div class="d-flex justify-content-sm-start gap-2">
 
-										<a href="/admin/ibioProductManagerInsert" class="btn btn-warning"><i class="bx bx-search-alt-2"></i> 제품검색</a>
-										<a href="/admin/ibioProductManagerInsert" class="btn btn-danger"><i class="bx bx-refresh"></i> 검색조건초기화</a>
+										<button 
+										id="productSearchBtn"
+										class="btn btn-warning"><i class="bx bx-search-alt-2"></i> 제품검색</button>
+										<a href="/admin/ibioProductManager" class="btn btn-danger"><i class="bx bx-refresh"></i> 검색조건초기화</a>
 										<a href="/admin/ibioProductManagerInsert" class="btn btn-success"><i
 												class="ri-add-line align-bottom me-1"></i> 제품등록</a>
 									</div>
@@ -387,14 +429,14 @@
 										<li class="page-item"
 											th:classappend="${1 == products.pageable.pageNumber+1} ? 'disabled'">
 											<a class="page-link" href="#"
-											th:href="@{/admin/ibioProductManager(page=0, size=${param.size}, bigId=${bigId}, middleId=${middleId}, 
+											th:href="@{/admin/ibioProductManager(page=0, searchWord=${searchWord}, size=${param.size}, bigId=${bigId}, middleId=${middleId}, 
 											smallId=${smallId}, minCost=${minCost}, maxCost=${maxCost}, productSort=${productSort}, productDiscount=${productDiscount}, sellingResult=${sellingResult})}"
 											tabindex="-1" aria-disabled="true">First</a>
 										</li>
 										<li class="page-item"
 											th:classappend="${1 == products.pageable.pageNumber+1} ? 'disabled'">
 											<a class="page-link" href="#"
-											th:href="@{/admin/ibioProductManager(page=${products.pageable.pageNumber - 1}, size=${param.size}, bigId=${bigId}, middleId=${middleId}, 
+											th:href="@{/admin/ibioProductManager(page=${products.pageable.pageNumber - 1}, searchWord=${searchWord}, size=${param.size}, bigId=${bigId}, middleId=${middleId}, 
 											smallId=${smallId}, minCost=${minCost}, maxCost=${maxCost}, productSort=${productSort}, productDiscount=${productDiscount}, sellingResult=${sellingResult})}"
 											tabindex="-1" aria-disabled="true">Previous</a>
 										</li>
@@ -402,19 +444,19 @@
 											th:classappend="${i == products.pageable.pageNumber+1} ? 'disabled'"
 											th:each="i : ${#numbers.sequence(startPage, endPage)}">
 											<a	class="page-link" href="#" th:text=${i}
-											th:href="@{/admin/ibioProductManager(page=${i-1}, size=${param.size}, bigId=${bigId}, middleId=${middleId}, 
+											th:href="@{/admin/ibioProductManager(page=${i-1}, searchWord=${searchWord}, size=${param.size}, bigId=${bigId}, middleId=${middleId}, 
 											smallId=${smallId}, minCost=${minCost}, maxCost=${maxCost}, productSort=${productSort}, productDiscount=${productDiscount}, sellingResult=${sellingResult})}">1</a>
 										</li>
 										<li class="page-item"
 											th:classappend="${products.totalPages == products.pageable.pageNumber + 1} ? 'disabled'">
 											<a class="page-link" href="#"
-											th:href="@{/admin/ibioProductManager(page=${products.pageable.pageNumber + 1}, size=${param.size}, bigId=${bigId}, middleId=${middleId}, 
+											th:href="@{/admin/ibioProductManager(page=${products.pageable.pageNumber + 1}, searchWord=${searchWord}, size=${param.size}, bigId=${bigId}, middleId=${middleId}, 
 											smallId=${smallId}, minCost=${minCost}, maxCost=${maxCost}, productSort=${productSort}, productDiscount=${productDiscount}, sellingResult=${sellingResult})}">Next</a>
 										</li>
 										<li class="page-item"
 											th:classappend="${products.totalPages == products.pageable.pageNumber + 1} ? 'disabled'">
 											<a class="page-link" href="#"
-											th:href="@{/admin/ibioProductManager(page=${products.totalPages-1}, size=${param.size}, bigId=${bigId}, middleId=${middleId}, 
+											th:href="@{/admin/ibioProductManager(page=${products.totalPages-1}, searchWord=${searchWord}, size=${param.size}, bigId=${bigId}, middleId=${middleId}, 
 											smallId=${smallId}, minCost=${minCost}, maxCost=${maxCost}, productSort=${productSort}, productDiscount=${productDiscount}, sellingResult=${sellingResult})}">Last</a>
 										</li>
 									</ul>
