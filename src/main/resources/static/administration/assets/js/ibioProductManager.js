@@ -1,125 +1,28 @@
 $(function() {
-	$('#middleSortDeleteBtn').attr('disabled', true);
 
-	$('#middlePanelMiddleSort').on('change', function() {
-		$('#middleSortDeleteBtn').attr('disabled', false);
-		$('#middleSortDeleteBtn').on('click', function() {
-			var arr = new Array();
-			arr = $('#middlePanelMiddleSort').val();
+	$('#bigSort').on('change', function() {
+		if($(this).val()!=0){
 			$.ajax({
 				cache: false,
 				type: 'POST',
-				url: '/admin/middleSortDelete',
+				url: '/admin/searchMiddleSort',
 				data: {
-					text: arr,
-					bigId: $('#middlePanelBigSort').val()
-				}, error: function(error) {
-					console.log(error)
+					bigId: $(this).val()
+				}, success: function(result) {
+					$('#middleSort').find('option').remove();
+					$('#middleSort').append("<option value='0'> === 중분류 선택 === </option>");
+					for (var i = 0; i < result.length; i++) {
+						var option = $("<option value=" + result[i].id + ">" + result[i].name + "</option>");
+						$('#middleSort').append(option);
+					}
 				}
-
-			}).done(function(fragment) {
-				if (fragment != 'fail') {
-					$('#middlePanelMiddleSort').replaceWith(fragment);
-					alert('삭제 되었습니다.');
-					location.reload();
-				} else {
-					alert('해당 분류가 적용된 소분류를 삭제 후 시도해 주세요');
-					location.reload();
-				}
+	
 			});
-		});
-
+		}
 	});
-
-	$('#middlePanelBigSort').on('change', function() {
-		$.ajax({
-			cache: false,
-			type: 'POST',
-			url: '/admin/searchMiddleSort',
-			data: {
-				bigId: $(this).val()
-			}, success: function(result) {
-				$('#middlePanelMiddleSort').find('option').remove();
-				for (var i = 0; i < result.length; i++) {
-					var option = $("<option value=" + result[i].id + ">" + result[i].name + "</option>");
-					$('#middlePanelMiddleSort').append(option);
-				}
-			}
-
-		});
-	});
-
-	$('#bigSortDeleteBtn').attr('disabled', true);
-	$('#bigPanelBigSort').on('change', function() {
-		$('#bigSortDeleteBtn').attr('disabled', false);
-		$('#bigSortDeleteBtn').on('click', function() {
-			var arr = new Array();
-			arr = $('#bigPanelBigSort').val();
-			$.ajax({
-				cache: false,
-				type: 'POST',
-				url: '/admin/bigSortDelete',
-				data: {
-					text: arr,
-				}, error: function(error) {
-					console.log(error)
-				}
-
-			}).done(function(fragment) {
-				if (fragment != 'fail') {
-					$('#bigPanelBigSort').replaceWith(fragment);
-					alert('삭제 되었습니다.');
-					location.reload();
-				} else {
-					alert('해당 분류가 적용된 중분류를 삭제 후 시도해 주세요');
-					location.reload();
-				}
-			});
-		});
-	});
-
-	$('#smallSortInsertForm').attr('disabled', true);
-	$('#smallPanelBigSort').on('change', function() {
-		$.ajax({
-			cache: false,
-			type: 'POST',
-			url: '/admin/searchMiddleSort',
-			data: {
-				bigId: $(this).val()
-			}, success: function(result) {
-				$('#smallPanelMiddleSort').find('option').remove();
-				$('#smallPanelMiddleSort').append("<option> === 중분류 선택 === </option>");
-				for (var i = 0; i < result.length; i++) {
-					var option = $("<option value=" + result[i].id + ">" + result[i].name + "</option>");
-					$('#smallPanelMiddleSort').append(option);
-				}
-			}
-
-		});
-		$('#smallPanelMiddleSort').on('change', function() {
-			$('#smallSortInsertForm').attr('disabled', false);
-		});
-	});
-	$('#smallSortDeleteBtn').attr('disabled', true);
-	$('#smallPanelBigSortSelect').on('change', function() {
-		$.ajax({
-			cache: false,
-			type: 'POST',
-			url: '/admin/searchMiddleSort',
-			data: {
-				bigId: $(this).val()
-			}, success: function(result) {
-				$('#smallPanelMiddleSortSelect').find('option').remove();
-				$('#smallPanelMiddleSortSelect').append("<option> === 중분류 선택 === </option>");
-				for (var i = 0; i < result.length; i++) {
-					var option = $("<option value=" + result[i].id + ">" + result[i].name + "</option>");
-					$('#smallPanelMiddleSortSelect').append(option);
-				}
-			}
-
-		});
-
-		$('#smallPanelMiddleSortSelect').on('change', function() {
+	
+	$('#middleSort').on('change', function() {
+		if($(this).val()!=0){
 			$.ajax({
 				cache: false,
 				type: 'POST',
@@ -127,93 +30,17 @@ $(function() {
 				data: {
 					middleId: $(this).val()
 				}, success: function(result) {
-					$('#smallPanelSmallSortSelect').find('option').remove();
-					$('#smallPanelSmallSortSelect').append("<option value=''> === 소 분류 선택 === </option>");
+					$('#smallSort').find('option').remove();
+					$('#smallSort').append("<option value='0'> === 소분류 선택 === </option>");
 					for (var i = 0; i < result.length; i++) {
 						var option = $("<option value=" + result[i].id + ">" + result[i].name + "</option>");
-						$('#smallPanelSmallSortSelect').append(option);
+						$('#smallSort').append(option);
 					}
 				}
-
-			});
-			$('#smallPanelSmallSortSelect').on('change', function() {
-				$('#smallSortDeleteBtn').attr('disabled', false);
-				$('#smallSortDeleteBtn').on('click', function() {
-
-					var arr = new Array();
-					arr = $('#smallPanelSmallSortSelect').val();
-					$.ajax({
-						cache: false,
-						type: 'POST',
-						url: '/admin/smallSortDelete',
-						data: {
-							text: arr,
-						}, error: function(error) {
-							console.log(error)
-						}
-
-					}).done(function(fragment) {
-						if (fragment != 'fail') {
-							alert('삭제 되었습니다.');
-							location.reload();
-						} else {
-							alert('해당 분류가 적용된 제품을 삭제 후 시도해 주세요');
-							location.reload();
-						}
-					});
-				});
-			});
-		});
-	});
-	$("#productFile").on('change', function (e) {
-    	if(e.target.files.length>5){
-    		alert('파일은 최대 5까지 업로드 가능합니다.');
-    		$(this).val('');
-    		return;
-    	}
-    	var size = 0;
-    	for(var i=0;i<e.target.files.length;i++){
-    		size += e.target.files[i].size;
-    	}
-    	if(size > 20000000){
-    		alert('1회 업로드 가능 용량은 20MB입니다.');
-    		$(this).val('');
-    		return;
-    	}
-    });
 	
-	
-	$('#spec-plus-button').on('click',function(){
-		var specDiv = $('<div class="spec-wrap">'
-		+'<input type="text" name="spec" required="required" placeholder="제품 스펙을 입력 해 주세요. 예) 80mm*80mm*100mm" class="form-control" style="width:80%;">'+
-		'</div>');
-		$(specDiv).appendTo('#spec-wrap');
-	});
-	$('#spec-del-button').on('click',function(){
-		if($('#spec-wrap div').length < 2){
-			alert('1개 이하로 삭제할 수 없습니다.');			
-		}else{
-			$('#spec-wrap').find('div:last').remove();
+			});
 		}
 	});
-	
-	$('#info-plus-button').on('click',function(){
-		var infoDiv = $('<div class="spec-wrap">'
-		+'<input type="text" class="form-control" name="infoQ" required="required" placeholder="주제를 입력 해 주세요. 예) 제조자" style="width:40%;margin-right:4px;">'+
-		'<input type="text" class="form-control" name="infoA" required="required" placeholder="답변을 입력 해 주세요. 예) 바이온라이프사이언스" style="width:40%;">'+
-		'</div>');
-		$(infoDiv).appendTo('#info-wrap');
-	});
-	$('#info-del-button').on('click',function(){
-		if($('#info-wrap div').length < 2){
-			alert('1개 이하로 삭제할 수 없습니다.');			
-		}else{
-			$('#info-wrap').find('div:last').remove();
-		}
-	});
-	
-	
-
 });
 
 
@@ -224,7 +51,113 @@ function productDelete(id){
 	}
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const productSearchBtn = document.getElementById('productSearchBtn');
+    productSearchBtn.addEventListener('click', function() {
+        var bigId = $('#bigSort').val() || 0;
+        var middleId = $('#middleSort').val() || 0;
+        var smallId = $('#smallSort').val() || 0;
+        var minCost = $('#minCost').val();
+        var maxCost = $('#maxCost').val();
+        var productSort = $('input[name="productSort"]:checked').val() || false;
+        var productDiscount = $('input[name="productDiscount"]:checked').val() || false;
+        var sellingResult = $('input[name="sellingResult"]:checked').val() || false;
+        var searchWord = $('#searchWord').val();
+        changeList(
+            bigId,
+            middleId,
+            smallId,
+            minCost,
+            maxCost,
+            productSort,
+            productDiscount,
+            sellingResult,
+            searchWord
+            
+        );
+    });
+});
 
+function changeList(
+    bigId,
+    middleId,
+    smallId,
+    minCost,
+    maxCost,
+    productSort,
+    productDiscount,
+    sellingResult,
+    searchWord
+) {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/admin/ibioProductManager';
+
+    // bigId 입력 필드 생성 및 추가
+    const bigIdInput = document.createElement('input');
+    bigIdInput.type = 'hidden';
+    bigIdInput.name = 'bigId';
+    bigIdInput.value = bigId;
+    form.appendChild(bigIdInput);
+
+    // middleId 입력 필드 생성 및 추가
+    const middleIdInput = document.createElement('input');
+    middleIdInput.type = 'hidden';
+    middleIdInput.name = 'middleId';
+    middleIdInput.value = middleId;
+    form.appendChild(middleIdInput);
+
+    // smallId 입력 필드 생성 및 추가
+    const smallIdInput = document.createElement('input');
+    smallIdInput.type = 'hidden';
+    smallIdInput.name = 'smallId';
+    smallIdInput.value = smallId;
+    form.appendChild(smallIdInput);
+
+    // minCost 입력 필드 생성 및 추가
+    const minCostInput = document.createElement('input');
+    minCostInput.type = 'hidden';
+    minCostInput.name = 'minCost';
+    minCostInput.value = minCost;
+    form.appendChild(minCostInput);
+
+    // maxCost 입력 필드 생성 및 추가
+    const maxCostInput = document.createElement('input');
+    maxCostInput.type = 'hidden';
+    maxCostInput.name = 'maxCost';
+    maxCostInput.value = maxCost;
+    form.appendChild(maxCostInput);
+
+    // productSort 입력 필드 생성 및 추가
+    const productSortInput = document.createElement('input');
+    productSortInput.type = 'hidden';
+    productSortInput.name = 'productSort';
+    productSortInput.value = productSort;
+    form.appendChild(productSortInput);
+
+    // productDiscount 입력 필드 생성 및 추가
+    const productDiscountInput = document.createElement('input');
+    productDiscountInput.type = 'hidden';
+    productDiscountInput.name = 'productDiscount';
+    productDiscountInput.value = productDiscount;
+    form.appendChild(productDiscountInput);
+
+    // sellingResult 입력 필드 생성 및 추가
+    const sellingResultInput = document.createElement('input');
+    sellingResultInput.type = 'hidden';
+    sellingResultInput.name = 'sellingResult';
+    sellingResultInput.value = sellingResult;
+    form.appendChild(sellingResultInput);
+    
+    const searchWordInput = document.createElement('input');
+    searchWordInput.type = 'hidden';
+    searchWordInput.name = 'searchWord';
+    searchWordInput.value = searchWord;
+    form.appendChild(searchWordInput)
+
+    document.body.appendChild(form);
+    form.submit();
+}
 
 
 

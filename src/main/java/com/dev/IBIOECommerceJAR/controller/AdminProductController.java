@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -78,18 +79,21 @@ public class AdminProductController {
 	@Autowired
 	ProductSpecService productSpecService;
 	
-	@GetMapping("/ibioProductManager")
+	@RequestMapping(
+			value = "/ibioProductManager", 
+			method = {RequestMethod.GET, RequestMethod.POST})
 	public String ibioProductManager(
 			Model model,
 			@PageableDefault(size=10) Pageable pageable,
 			@RequestParam(required = false, defaultValue = "0") Long bigId,
 			@RequestParam(required = false, defaultValue = "0") Long middleId,
 			@RequestParam(required = false, defaultValue = "0") Long smallId,
+			@RequestParam(required = false) String searchWord,
 			@RequestParam(required = false) Integer minCost,
 	        @RequestParam(required = false) Integer maxCost,
-	        @RequestParam(required = false) Boolean productSort,
-	        @RequestParam(required = false) Boolean productDiscount,
-	        @RequestParam(required = false) Boolean sellingResult
+	        @RequestParam(required = false, defaultValue="all") String productSort,
+	        @RequestParam(required = false, defaultValue="all") String productDiscount,
+	        @RequestParam(required = false, defaultValue="all") String sellingResult
 			) {
 		
 		List<BigSort> b = bigSortRepository.findAll();
@@ -99,11 +103,22 @@ public class AdminProductController {
 			bs.setId(0L);
 			b.add(bs);
 		}
-		Page<Product> products = productRepository.findAllByOrderByIdDesc(pageable);
+		
+		Page<Product> products = productService.findProducts(bigId, 
+				middleId, 
+				smallId, 
+				minCost, 
+				maxCost, 
+				productSort, 
+				productDiscount, 
+				sellingResult, 
+				searchWord,
+				pageable);
 		int startPage = Math.max(1, products.getPageable().getPageNumber() - 4);
 		int endPage = Math.min(products.getTotalPages(), products.getPageable().getPageNumber() + 4);
 		model.addAttribute("products", products);
 		model.addAttribute("bigSorts", b);
+		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("bigSortId", bigId);
 		model.addAttribute("middleSortId", middleId);
 		model.addAttribute("smallSortId", smallId);
