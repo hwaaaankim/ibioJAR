@@ -1,8 +1,10 @@
 package com.dev.IBIOECommerceJAR.controller;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -135,18 +137,34 @@ public class IBIOProductController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/viewCart")
+    @PostMapping("/viewCart")
     public String viewCart(@RequestParam List<Long> ids, @RequestParam List<Integer> quantities, Model model) {
         List<Product> cartProducts = productService.findProductsByIds(ids);
         Map<Long, Integer> quantitiesMap = new HashMap<>();
+        int totalPrice = 0;
+
         for (int i = 0; i < ids.size(); i++) {
             quantitiesMap.put(ids.get(i), quantities.get(i));
+            totalPrice += cartProducts.get(i).getProductPrice() * quantities.get(i);
         }
+
+        int taxPrice = (int) (totalPrice * 0.1);
+        int finalPrice = totalPrice + taxPrice;
+
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
+        String formattedTotalPrice = numberFormat.format(totalPrice);
+        String formattedTaxPrice = numberFormat.format(taxPrice);
+        String formattedFinalPrice = numberFormat.format(finalPrice);
 
         model.addAttribute("products", cartProducts);
         model.addAttribute("quantities", quantitiesMap);
+        model.addAttribute("totalPrice", formattedTotalPrice);
+        model.addAttribute("taxPrice", formattedTaxPrice);
+        model.addAttribute("finalPrice", formattedFinalPrice);
         return "front/member/viewCart";
     }
+
+
 
     @GetMapping("/checkout")
     public String checkout(@RequestParam Long[] ids, @RequestParam Integer[] quantities, Model model) {

@@ -63,32 +63,32 @@
 					    </table>
 					</div>
 					<div class="row">
-					    <div class="col-sm-4 col-sm-offset-8">
-					        <table class="table table-bordered">
-					            <tbody>
-					                <tr>
-					                    <td class="text-right"><strong>총 금액 :</strong></td>
-					                    <td class="text-right" id="totalPrice">0 원</td>
-					                </tr>
-					                <tr>
-					                    <td class="text-right"><strong>부가세 :</strong></td>
-					                    <td class="text-right" id="taxPrice">0 원</td>
-					                </tr>
-					                <tr>
-					                    <td class="text-right"><strong>최종 금액 :</strong></td>
-					                    <td class="text-right" id="finalPrice">0 원</td>
-					                </tr>
-					            </tbody>
-					        </table>
-					    </div>
-					</div>
+				        <div class="col-sm-4 col-sm-offset-8">
+				             <table class="table table-bordered">
+				                <tbody>
+				                    <tr>
+				                        <td class="text-right"><strong>총 금액 :</strong></td>
+				                        <td class="text-right" th:text="${totalPrice} + ' 원'"></td>
+				                    </tr>
+				                    <tr>
+				                        <td class="text-right"><strong>부가세 :</strong></td>
+				                        <td class="text-right" th:text="'+' + ${taxPrice} + ' 원'"></td>
+				                    </tr>
+				                    <tr>
+				                        <td class="text-right"><strong>최종 금액 :</strong></td>
+				                        <td class="text-right" th:text="${finalPrice} + ' 원'"></td>
+				                    </tr>
+				                </tbody>
+				            </table>
+				        </div>
+				    </div>
 
 					<div class="panel-group" id="accordion">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a href="#collapse-coupon" class="accordion-toggle" data-toggle="collapse"
-										data-parent="#accordion" aria-expanded="true">Use Coupon Code
+										data-parent="#accordion" aria-expanded="true">쿠폰코드입력
 
 										<i class="fa fa-caret-down"></i>
 									</a>
@@ -96,8 +96,7 @@
 							</div>
 							<div id="collapse-coupon" class="panel-collapse collapse in" aria-expanded="true">
 								<div class="panel-body">
-									<label class="col-sm-2 control-label" for="input-coupon">Enter your coupon
-										here</label>
+									<label class="col-sm-2 control-label" for="input-coupon">쿠폰번호</label>
 									<div class="input-group">
 										<input type="text" name="coupon" value="" placeholder="Enter your coupon here"
 											id="input-coupon" class="form-control">
@@ -108,37 +107,11 @@
 								</div>
 							</div>
 						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a href="#collapse-voucher" data-toggle="collapse" data-parent="#accordion"
-										class="accordion-toggle collapsed" aria-expanded="false">Use Gift Certificate
-
-										<i class="fa fa-caret-down"></i>
-									</a>
-								</h4>
-							</div>
-							<div id="collapse-voucher" class="panel-collapse collapse" aria-expanded="false"
-								style="height: 0px;">
-								<div class="panel-body">
-									<label class="col-sm-2 control-label" for="input-voucher">Enter your gift
-										certificate code here</label>
-									<div class="input-group">
-										<input type="text" name="voucher" value=""
-											placeholder="Enter your gift certificate code here" id="input-voucher"
-											class="form-control">
-										<span class="input-group-btn"><input type="submit"
-												value="Apply Gift Certificate" id="button-voucher"
-												data-loading-text="Loading..." class="btn btn-primary"></span>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 
 					<div class="buttons">
-						<div class="pull-left"><a href="index.html" class="btn btn-primary">Continue Shopping</a></div>
-						<div class="pull-right"><a href="checkout.html" class="btn btn-primary">Checkout</a></div>
+						<div class="pull-left"><a href="/index" class="btn btn-primary">Continue Shopping</a></div>
+						<div class="pull-right"><a href="/checkout" class="btn btn-primary">Checkout</a></div>
 					</div>
 				</div>
 
@@ -149,7 +122,6 @@
 	</div>
 
 	<th:block th:replace="fragments/front/common :: scriptSrc"></th:block>
-	<script src="/front/js/cart.js"></script>
 </body>
 
 </html>

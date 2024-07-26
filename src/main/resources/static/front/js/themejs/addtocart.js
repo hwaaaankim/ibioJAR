@@ -1,13 +1,3 @@
-var wishlist = {
-	'add': function(product_id) {
-		addProductNotice('제품 찜 리스트 추가!', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3>You must <a href="#">login</a>  to save <a href="#">Apple Cinema 30"</a> to your <a href="#">wish list</a>!</h3>', 'success');
-	}
-}
-var compare = {
-	'add': function(product_id) {
-		addProductNotice('제품 비교 페이지 추가!', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3>Success: You have added <a href="#">Apple Cinema 30"</a> to your <a href="#">product comparison</a>!</h3>', 'success');
-	}
-}
 // 장바구니 항목을 localStorage에서 가져오기
 function getCartItems() {
     const cart = localStorage.getItem('cartItems');
@@ -18,18 +8,7 @@ function getCartItems() {
 function setCartItems(cartItems) {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
 }
-function addProductNotice(title, thumb, text, type) {
-	$.jGrowl.defaults.closer = false;
-	//Stop jGrowl
-	//$.jGrowl.defaults.sticky = true;
-	var tpl = thumb + '<h3>' + text + '</h3>';
-	$.jGrowl(tpl, {
-		life: 4000,
-		header: title,
-		speed: 'slow',
-		theme: type
-	});
-}
+
 // 장바구니 UI 업데이트
 function updateCartDisplay() {
     const cartItems = getCartItems();
@@ -65,24 +44,35 @@ function updateCartDisplay() {
                         <a href="/productDetail/${productId}">${product.name}</a>
                     </td>
                     <td class="text-center">x${quantity}</td>
-                    <td class="text-center">${product.price.toLocaleString()} 원</td>
-                    <td class="text-center">${total.toLocaleString()} 원</td>
+                    <td class="text-center" id="price-${productId}" data-price="${product.price}">${product.price.toLocaleString()} 원</td>
+                    <td class="text-center" id="total-${productId}">${total.toLocaleString()} 원</td>
                     <td class="text-right">
-                        <a onclick="cart.remove(${productId});" class="fa fa-times fa-delete"></a>
+                        <a onclick="removeProduct(${productId});" class="fa fa-times fa-delete"></a>
                     </td>
                 </tr>
             `);
         });
 
-        const taxPrice = cartPrice * 0.1;
-        const finalPrice = cartPrice + taxPrice;
-
-        $('#totalPrice').text(`${cartPrice.toLocaleString()} 원`);
-        $('#taxPrice').text(`+${taxPrice.toLocaleString()} 원`);
-        $('#finalPrice').text(`${finalPrice.toLocaleString()} 원`);
+        updateCartSummary();
     }
 }
 
+function updateCartSummary() {
+    const cartItems = getCartItems();
+    const totalPrice = Object.keys(cartItems).reduce((acc, key) => acc + (cartItems[key].quantity * cartItems[key].price), 0);
+    const taxPrice = totalPrice * 0.1;
+    const finalPrice = totalPrice + taxPrice;
+
+    $('#totalPrice').text(`${totalPrice.toLocaleString()} 원`);
+    $('#taxPrice').text(`+${taxPrice.toLocaleString()} 원`);
+    $('#finalPrice').text(`${finalPrice.toLocaleString()} 원`);
+
+    // Update cart UI in header
+    $('#cartCount').text(Object.keys(cartItems).reduce((acc, key) => acc + cartItems[key].quantity, 0));
+    $('#cartPrice').text(`(${totalPrice.toLocaleString()} 원)`);
+}
+
+// 제품 정보 가져오기
 function findProduct(id) {
     $.ajax({
         type: 'POST',
@@ -106,7 +96,7 @@ function findProduct(id) {
             }
             setCartItems(cartItems);
             updateCartDisplay();
-            addProductNotice('제품 장바구니 추가!', '<img src="' + result.image + '" alt="">', '<h3>' + result.name + ' 제품이 <a href="/member/viewCart">장바구니에 추가되었습니다.</a>!</h3>', 'success');
+            addProductNotice('제품 장바구니 추가!', '<img src="' + result.image + '" alt="">', '<h3>' + result.name + ' 제품이 <a href="/viewCart">장바구니에 추가되었습니다.</a>!</h3>', 'success');
         },
         error: function(request, status, error) {
             console.log(error);
@@ -131,49 +121,83 @@ var cart = {
     }
 };
 
+function updateQuantity(productId) {
+    var quantityInput = document.getElementById('quantity-' + productId);
+    var newQuantity = parseInt(quantityInput.value);
+
+    if (newQuantity <= 0 || isNaN(newQuantity)) {
+        alert("수량은 1 이상이어야 합니다.");
+        return;
+    }
+
+    // Update localStorage
+    var cartItems = getCartItems();
+    if (cartItems[productId]) {
+        cartItems[productId].quantity = newQuantity;
+    }
+    setCartItems(cartItems);
+
+    // Update UI
+    var productPrice = cartItems[productId].price;
+    document.getElementById('total-' + productId).innerText = (productPrice * newQuantity).toLocaleString() + ' 원';
+    updateCartSummary();
+
+    // 서버로 데이터 전송
+    viewCart();
+}
+
+function removeProduct(productId) {
+    // Update localStorage
+    var cartItems = getCartItems();
+    delete cartItems[productId];
+    setCartItems(cartItems);
+
+    // Remove product from UI
+    var productRow = document.getElementById('row-' + productId);
+    if (productRow) {
+        productRow.remove();
+    }
+
+    // If cart is empty, show "비어있음" message
+    if (Object.keys(cartItems).length === 0) {
+        document.getElementById('nullCart').style.display = '';
+        document.getElementById('notNullCart').style.display = 'none';
+    }
+
+    updateCartSummary();
+
+    // 서버로 데이터 전송
+    viewCart();
+}
+
 // 장바구니 UI를 초기화
 $(document).ready(function() {
     updateCartDisplay();
+    updateCartSummary();
 });
 
 function viewCart() {
     const cartItems = getCartItems();
-    const ids = Object.keys(cartItems).join(',');
-    const quantities = Object.values(cartItems).map(item => item.quantity).join(',');
+    const form = $('<form>', { action: '/viewCart', method: 'POST' });
 
-    window.location.href = `/viewCart?ids=${ids}&quantities=${quantities}`;
+    Object.keys(cartItems).forEach(id => {
+        form.append($('<input>', { type: 'hidden', name: 'ids', value: id }));
+        form.append($('<input>', { type: 'hidden', name: 'quantities', value: cartItems[id].quantity }));
+    });
+
+    $('body').append(form);
+    form.submit();
 }
 
 function checkoutCart() {
     const cartItems = getCartItems();
-    const ids = Object.keys(cartItems).join(',');
-    const quantities = Object.values(cartItems).map(item => item.quantity).join(',');
+    const form = $('<form>', { action: '/checkout', method: 'POST' });
 
-    window.location.href = `/checkout?ids=${ids}&quantities=${quantities}`;
+    Object.keys(cartItems).forEach(id => {
+        form.append($('<input>', { type: 'hidden', name: 'ids', value: id }));
+        form.append($('<input>', { type: 'hidden', name: 'quantities', value: cartItems[id].quantity }));
+    });
+
+    $('body').append(form);
+    form.submit();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
