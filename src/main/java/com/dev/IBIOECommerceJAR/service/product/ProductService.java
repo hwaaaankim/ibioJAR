@@ -4,15 +4,22 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import com.dev.IBIOECommerceJAR.dto.CartSummary;
 import com.dev.IBIOECommerceJAR.dto.ProductDTO;
 import com.dev.IBIOECommerceJAR.model.product.Product;
 import com.dev.IBIOECommerceJAR.repository.product.BigSortRepository;
@@ -58,11 +65,11 @@ public class ProductService {
 	@Value("${spring.upload.path}")
 	private String commonPath;
 
+	private Map<Long, Integer> cart = new HashMap<>();
 	
 	public Product productInsert(
 			ProductDTO dto
 			) throws IllegalStateException, IOException {
-		
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 		String current_date = simpleDateFormat.format(new Date());
 
@@ -137,28 +144,28 @@ public class ProductService {
 		product.setProductPrice(dto.getPrice());
 		product.setProductPriceTarget(dto.getPriceTarget());
 		
-		if(dto.getNoneD()!=null 
-				&& dto.getMemberD()!=null 
-				&& dto.getDealerD()!=null) {
+		if(dto.getNoneDiscount()!=null 
+				&& dto.getMemberDiscount()!=null 
+				&& dto.getDealerDiscount()!=null) {
 			product.setProductDiscountSign(true);
 		}else {
 			product.setProductDiscountSign(false);
 		}
 		
-		if(dto.getNoneD()!=null) {
-			product.setProductNoneDiscount(dto.getNoneD());
+		if(dto.getNoneDiscount()!=null) {
+			product.setProductNoneDiscount(dto.getNoneDiscount());
 		}else {
 			product.setProductNoneDiscount(0);
 		}
 		
-		if(dto.getMemberD()!=null) {
-			product.setProductMemberDiscount(dto.getMemberD());
+		if(dto.getMemberDiscount()!=null) {
+			product.setProductMemberDiscount(dto.getMemberDiscount());
 		}else {
 			product.setProductMemberDiscount(0);
 		}
 		
-		if(dto.getDealerD()!=null) {
-			product.setProductDealerDiscount(dto.getDealerD());
+		if(dto.getDealerDiscount()!=null) {
+			product.setProductDealerDiscount(dto.getDealerDiscount());
 		}else {
 			product.setProductDealerDiscount(0);
 		}
@@ -176,8 +183,8 @@ public class ProductService {
 			} 
 		}
 		String productImageName = generatedString + productImageFileExtension;
-		String productImagePath = path + dto.getTitle() + "/image/" + productImageName;
-		String productImageRoad = road + dto.getTitle() + "/image/" + productImageName;
+		String productImagePath = path + productCode + "/image/" + productImageName;
+		String productImageRoad = road + productCode + "/image/" + productImageName;
 		
 		String productImageSavePath = productImagePath;
 		File productImageSaveFile = new File(productImageSavePath);	
@@ -204,8 +211,8 @@ public class ProductService {
 				} 
 			}
 			String specImageName = generatedString + specImageFileExtension;
-			String specImagePath = path + dto.getTitle() + "/spec/" + specImageName;
-			String specImageRoad = road + dto.getTitle() + "/spec/" + specImageName;
+			String specImagePath = path + productCode + "/spec/" + specImageName;
+			String specImageRoad = road + productCode + "/spec/" + specImageName;
 			
 			String specImageSavePath = specImagePath;
 			File specImageSaveFile = new File(specImageSavePath);	
@@ -265,6 +272,87 @@ public class ProductService {
 	    		searchWord,
 	    		pageable);
 	}
+	
+	 public String getProductPrice(Product product) {
+	        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	        String role = getRole(authentication);
+
+	        if (product.getProductPriceTarget() == 0) {
+	            return formatPrice(product.getProductPrice(), product.getProductDiscountSign(), product.getProductNoneDiscount());
+	        } else if (product.getProductPriceTarget() == 1) {
+	            if ("ROLE_MEMBER".equals(role) || "ROLE_DEALER".equals(role)) {
+	                return formatPrice(product.getProductPrice(), product.getProductDiscountSign(), product.getProductMemberDiscount());
+	            }
+	        } else if (product.getProductPriceTarget() == 2) {
+	            if ("ROLE_DEALER".equals(role)) {
+	                return formatPrice(product.getProductPrice(), product.getProductDiscountSign(), product.getProductDealerDiscount());
+	            }
+	        }
+	        return "전화문의";
+	    }
+
+    private String getRole(Authentication authentication) {
+        if (authentication != null && authentication.getAuthorities() != null) {
+            for (GrantedAuthority authority : authentication.getAuthorities()) {
+                return authority.getAuthority();
+            }
+        }
+        return null;
+    }
+
+    private String formatPrice(int productPrice, Boolean productDiscountSign, int discountPrice) {
+        if (Boolean.TRUE.equals(productDiscountSign)) {
+            return String.format("%d 원", discountPrice);
+        }
+        return String.format("%d 원", productPrice);
+    }
+    
+    public Product findProductById(Long id) {
+        return productRepository.findById(id).orElse(null);
+    }
+
+    public List<Product> findProductsByIds(List<Long> ids) {
+        return productRepository.findAllById(ids);
+    }
+    
+    public void updateProductQuantity(Long id, int quantity) {
+        cart.put(id, quantity);
+    }
+
+    public void removeProductFromCart(Long id) {
+        cart.remove(id);
+    }
+
+    public int getTotalPrice(Long productId) {
+        Product product = productRepository.findById(productId).orElseThrow();
+        return product.getProductPrice() * cart.get(productId);
+    }
+
+    public CartSummary calculateCartSummary() {
+        int totalPrice = cart.entrySet().stream()
+            .mapToInt(entry -> {
+                Product product = productRepository.findById(entry.getKey()).orElseThrow();
+                return product.getProductPrice() * entry.getValue();
+            })
+            .sum();
+        int taxPrice = (int) (totalPrice * 0.1);
+        int shippingCost = calculateShippingCost();
+        int finalPrice = totalPrice + taxPrice + shippingCost;
+        return new CartSummary(totalPrice, shippingCost, taxPrice, finalPrice);
+    }
+
+    private int calculateShippingCost() {
+        // 배송비 계산 로직
+        return 5000; // 예시로 5000원으로 설정
+    }
+
+    public List<Product> getCartProducts() {
+        return productRepository.findAllById(cart.keySet());
+    }
+
+    public Map<Long, Integer> getCartQuantities() {
+        return new HashMap<>(cart);
+    }
 }
 
 

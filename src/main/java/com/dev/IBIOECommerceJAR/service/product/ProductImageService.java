@@ -34,7 +34,7 @@ public class ProductImageService {
 			List<MultipartFile> images
 			) throws IllegalStateException, IOException {
 	
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         String current_date = simpleDateFormat.format(new Date());
 
         // 실제 파일 저장 위치
@@ -69,8 +69,8 @@ public class ProductImageService {
         			} 
                 }
                 String productImageName = generatedString + originalFileExtension;
-				String productImagePath = path + product.getProductTitle() + "/slides/" + productImageName;
-				String productImageRoad = road + product.getProductTitle() + "/slides/" + productImageName;
+				String productImagePath = path + product.getProductCode() + "/slides/" + productImageName;
+				String productImageRoad = road + product.getProductCode() + "/slides/" + productImageName;
 				String productImageSavePath = productImagePath;
 				File productImageSaveFile = new File(productImageSavePath);	
 				if (!productImageSaveFile.exists()) {

@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dev.IBIOECommerceJAR.dto.SignUpDTO;
 import com.dev.IBIOECommerceJAR.model.authentication.Member;
 import com.dev.IBIOECommerceJAR.repository.MemberRepository;
+import com.dev.IBIOECommerceJAR.repository.product.ProductRepository;
 import com.dev.IBIOECommerceJAR.service.SMSService;
 import com.dev.IBIOECommerceJAR.service.authentication.MemberService;
 
@@ -34,6 +35,9 @@ public class CommonController {
 	
 	@Autowired
 	SMSService smsService;
+	
+	@Autowired
+	ProductRepository productRepository;
 	
 	@GetMapping({"/", "/index"})
 	public String index(
@@ -259,18 +263,5 @@ public class CommonController {
 		
 		return "front/common/event/eventDetail";
 	}
-	
-	@GetMapping("/productCompare")
-	public String productCompare() {
-		
-		return "front/common/product/productCompare";
-	}
-	
-	
-	
-	
-	
-	
-	
 	
 }

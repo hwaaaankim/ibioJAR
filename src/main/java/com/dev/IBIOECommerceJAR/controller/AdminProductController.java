@@ -157,11 +157,15 @@ public class AdminProductController {
 		Product savedProduct = productService.productInsert(dto);
 		
 		if(dto.getChangeOptionName() != null 
-				&& dto.getChangeOptionValues() != null) {
+				&& dto.getChangeOptionValues() != null
+				&& dto.getNoneChangeOptionFiles() != null) {
 			productOptionService.insertChangeOption(
 				savedProduct,
 				dto.getChangeOptionName(),
-				dto.getChangeOptionValues()
+				dto.getChangeOptionValues(),
+				dto.getChangeOptionUnits(),
+				dto.getChangeOptionPrices(),
+				dto.getChangeOptionSigns()
 				);
 		}
 		
@@ -170,7 +174,8 @@ public class AdminProductController {
 			productOptionService.insertNoneChangeOption(
 				savedProduct,
 				dto.getNoneChangeOptionName(),
-				dto.getNoneChangeOptionValues()
+				dto.getNoneChangeOptionValues(),
+				dto.getNoneChangeOptionFiles()
 				);
 		}
 		

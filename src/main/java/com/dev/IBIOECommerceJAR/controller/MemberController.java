@@ -40,24 +40,6 @@ public class MemberController {
 		return "front/member/myDelivery";
 	}
 	
-	@GetMapping("/viewCart")
-	public String viewCart() {
-		
-		return "front/member/viewCart";
-	}
-	
-	@GetMapping("/checkOut")
-	public String checkOut() {
-		
-		return "front/member/checkOut";
-	}
-	
-	@GetMapping("/wishList")
-	public String wishList() {
-		
-		return "front/member/wishList";
-	}
-	
 	@GetMapping("/deliveryDetail")
 	public String deliveryDetail() {
 		

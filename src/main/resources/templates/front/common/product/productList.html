@@ -83,16 +83,16 @@
 									<div class="right-block">
 										<div class="button-group so-quickview cartinfo--left">
 											<button type="button" class="addToCart" title="Add to cart"
-												onclick="cart.add('50')">
-												<span>Add to cart </span>
+										        th:onclick="'cart.add(' + ${p.id} + ')'">
+										   		 <span>Add to cart </span>
 											</button>
 											<button type="button" class="wishlist btn-button" title="Add to Wish List"
-												onclick="wishlist.add('60');"><i class="fa fa-heart-o"></i><span>Add to
-													Wish List</span>
+											        th:onclick="'wishlist.add(' + ${p.id} + ')'">
+											    <i class="fa fa-heart-o"></i><span>Add to Wish List</span>
 											</button>
-											<button type="button" class="compare btn-button"
-												title="Compare this Product " onclick="compare.add('60');"><i
-													class="fa fa-retweet"></i><span>Compare this Product</span>
+											<button type="button" class="compare btn-button" title="Compare this Product"
+											        th:onclick="'compare.add(' + ${p.id} + ')'">
+											    <i class="fa fa-retweet"></i><span>Compare this Product</span>
 											</button>
 
 										</div>
@@ -103,21 +103,24 @@
 											th:text="${p.productTitle}"></a></h4>
 										</div>
 										<p class="price">
-											<span class="price-new" th:text="|${p.productPrice},원|"></span>
+											<!--<span class="price-new" th:text="|${p.productPrice},원|"></span>-->
+											<span class="price-new" th:text="${@productService.getProductPrice(p)}"></span>
 										</p>
 										<div class="description item-desc">
 											<p th:text="${p.productDescription}"></p>
 										</div>
 										<div class="list-block">
 											<button class="addToCart btn-button" type="button" title="Add to Cart"
-												onclick="cart.add('101', '1');"><i class="fa fa-shopping-basket"></i>
+											        th:onclick="'cart.add(' + ${p.id} + ', 1);'">
+											    <i class="fa fa-shopping-basket"></i>
 											</button>
 											<button class="wishlist btn-button" type="button" title="Add to Wish List"
-												onclick="wishlist.add('101');"><i class="fa fa-heart"></i>
+											        th:onclick="'wishlist.add(' + ${p.id} + ');'">
+											    <i class="fa fa-heart"></i>
 											</button>
-											<button class="compare btn-button" type="button"
-												title="Compare this Product" onclick="compare.add('101');"><i
-													class="fa fa-refresh"></i>
+											<button class="compare btn-button" type="button" title="Compare this Product"
+											        th:onclick="'compare.add(' + ${p.id} + ');'">
+											    <i class="fa fa-refresh"></i>
 											</button>
 
 											<a class="iframe-link btn-button quickview quickview_handler visible-lg"
@@ -142,18 +145,41 @@
 						<div class="product-filter product-filter-top filters-panel hidden-sm hidden-xs">
 							<div class="row">
 								<div class="col-sm-4 view-mode">
-									<div class="list-view ">
-										<button type="button" id="grid-view"
-											class="btn btn-view hidden-sm hidden-xs">1</button>
-										<button type="button" id="grid-view-2" class="btn btn-view ">2</button>
-										<button type="button" id="grid-view-3"
-											class="btn btn-view hidden-sm hidden-xs ">3</button>
-										<button type="button" id="grid-view-4"
-											class="btn btn-view hidden-sm hidden-xs">4</button>
-										<button type="button" id="list-view" class="btn btn-view list "><i
-												class="fa fa-bars"></i>
-										</button>
-									</div>
+									<ul class="pagination justify-content-center">
+										<li class="page-item"
+											th:classappend="${1 == products.pageable.pageNumber+1} ? 'disabled'">
+											<a class="page-link" href="#"
+											th:href="@{/productList(page=0, size=${param.size}, searchType=${param.searchType}, searchWord=${param.searchWord}, startDate=${param.startDate}
+											,endDate=${param.endDate}, businessWord=${param.businessWord})}"
+											tabindex="-1" aria-disabled="true">First</a>
+										</li>
+										<li class="page-item"
+											th:classappend="${1 == products.pageable.pageNumber+1} ? 'disabled'">
+											<a class="page-link" href="#"
+											th:href="@{/productList(page=${products.pageable.pageNumber - 1}, size=${param.size}, searchType=${param.searchType}, searchWord=${param.searchWord}, startDate=${param.startDate}
+											,endDate=${param.endDate}, businessWord=${param.businessWord})}"
+											tabindex="-1" aria-disabled="true">Previous</a>
+										</li>
+										<li class="page-item"
+											th:classappend="${i == products.pageable.pageNumber+1} ? 'disabled'"
+											th:each="i : ${#numbers.sequence(startPage, endPage)}">
+											<a	class="page-link" href="#" th:text=${i}
+											th:href="@{/productList(page=${i-1}, size=${param.size}, searchType=${param.searchType}, searchWord=${param.searchWord}, startDate=${param.startDate}
+											,endDate=${param.endDate}, businessWord=${param.businessWord})}">1</a>
+										</li>
+										<li class="page-item"
+											th:classappend="${products.totalPages == products.pageable.pageNumber + 1} ? 'disabled'">
+											<a class="page-link" href="#"
+											th:href="@{/productList(page=${products.pageable.pageNumber + 1}, size=${param.size}, searchType=${param.searchType}, searchWord=${param.searchWord}, startDate=${param.startDate}
+											,endDate=${param.endDate}, businessWord=${param.businessWord})}">Next</a>
+										</li>
+										<li class="page-item"
+											th:classappend="${products.totalPages == products.pageable.pageNumber + 1} ? 'disabled'">
+											<a class="page-link" href="#"
+											th:href="@{/productList(page=${products.totalPages-1}, size=${param.size}, searchType=${param.searchType}, searchWord=${param.searchWord}, startDate=${param.startDate}
+											,endDate=${param.endDate}, businessWord=${param.businessWord})}">Last</a>
+										</li>
+									</ul>
 								</div>
 							</div>
 						</div>

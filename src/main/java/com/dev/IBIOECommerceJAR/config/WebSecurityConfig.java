@@ -12,9 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect;
 
-import com.dev.IBIOECommerceJAR.handler.CustomAccessDeniedHandler;
 import com.dev.IBIOECommerceJAR.handler.CustomAuthFailureHandler;
-import com.dev.IBIOECommerceJAR.handler.ExceptionAuthenticationEntryPoint;
 import com.dev.IBIOECommerceJAR.service.authentication.PrincipalDetailsService;
 
 import lombok.RequiredArgsConstructor;
@@ -52,11 +50,11 @@ public class WebSecurityConfig {
 			"/admin/**"
 	};
 	
-	// private final AuthenticationProvider authenticationProvider;
+//  private final AuthenticationProvider authenticationProvider;
 	private final PrincipalDetailsService principalDetailsService;
 	private final CustomAuthFailureHandler customFailureHandler;
-	private final ExceptionAuthenticationEntryPoint exceptionAuthenticationEntryPoint;
-	private final CustomAccessDeniedHandler customAccessDeniedHandler;
+//	private final ExceptionAuthenticationEntryPoint exceptionAuthenticationEntryPoint;
+//	private final CustomAccessDeniedHandler customAccessDeniedHandler;
 //	private final PasswordEncoder passwordEncoder;
 	
 	

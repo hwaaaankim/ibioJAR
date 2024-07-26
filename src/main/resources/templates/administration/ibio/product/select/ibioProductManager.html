@@ -398,23 +398,23 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td><a href="#" class="fw-semibold">#VZ2110</a></td>
-												<td>2024.01.01</td>
-												<td class="text-success"><i
-														class="ri-checkbox-circle-line fs-17 align-middle"></i> 판매중
+											<tr th:each="p:${products}">
+												<td><a th:href="@{|/admin/ibioProductManagerDetail/${p.id}|}" 
+												class="fw-semibold" th:text="${p.productCode}">#VZ2110</a></td>
+												<td>[[${p.bigSort.name}]]/[[${p.middleSort.name}]]/[[${p.smallSort.name}]]</td>
+												<td class="text-success">
+													<a th:href="@{|/admin/ibioProductManagerDetail/${p.id}|}" class="fw-semibold">[[${p.productTitle}]]</a>
 												</td>
 												<td>
 													<div class="d-flex gap-2 align-items-center">
 														<div class="flex-shrink-0">
-															<img src="/administration/assets/images/users/avatar-3.jpg"
-																alt="" class="avatar-xs" />
+															<img th:src="@{${p.productImageRoad}}"alt="productImage" class="avatar-xs" />
 														</div>
 													</div>
 												</td>
-												<td>118회</td>
-												<td>1,117회</td>
-												<td>130,000원</td>
+												<td>[[${p.productSell}]]회</td>
+												<td>[[${p.productClicks}]]회</td>
+												<td>[[${p.productPrice}]]원</td>
 											</tr>
 										</tbody>
 									</table>

@@ -21,6 +21,7 @@ public class ProductOption {
 	@Column(name="PRODUCT_ID")
 	private Long productId;
 	
+	// 가격변화 유무
 	@Column(name="PRODUCT_OPTION_CODE")
 	private Boolean code;
 	
@@ -29,10 +30,23 @@ public class ProductOption {
 	
 	@Column(name="PRODUCT_OPTION_VALUE")
 	private String productOptionValue;
+
+	@Column(name="PRODUCT_OPTION_UNIT")
+	private String productOptionUnit;
 	
 	@Column(name="PRODUCT_OPTION_PRICE")
 	private Integer productOptionPrice;
 	
+	@Column(name="PRODUCT_OPTION_FILE_NAME")
+	private String productOptionFileName;
+	
+	@Column(name="PRODUCT_OPTION_FILE_PATH")
+	private String productOptionFilePath;
+	
+	@Column(name="PRODUCT_OPTION_FILE_ROAD")
+	private String productOptionFileRoad;
+	
+	// 가격변화 있는 경우 + 인지 - 인지
 	@Column(name="PRODUCT_OPTION_PRICE_SIGN")
 	private Boolean productOptionPriceSign;
 	

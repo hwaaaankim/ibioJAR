@@ -185,94 +185,68 @@
 				<div class="middle-right col-lg-3 col-md-3 col-sm-3">
 					<div class="shopping_cart">
 						<div id="cart" class="btn-shopping-cart">
-
-							<a data-loading-text="Loading... " class="btn-group top_cart dropdown-toggle"
-								data-toggle="dropdown" aria-expanded="true">
-								<div class="shopcart">
-									<span class="icon-c">
-										<i class="fa fa-shopping-bag"></i>
-									</span>
-									<div class="shopcart-inner">
-										<p class="text-shopping-cart">
-											장바구니
-										</p>
-										<span class="total-shopping-cart cart-total-full">
-											<span class="items_cart" id="cartCount"></span><span class="items_cart2">
-												ITEMs</span><span class="items_carts" id="cartPrice">( 130,000 )</span>
-										</span>
-									</div>
-								</div>
-							</a>
-
-							<ul class="dropdown-menu pull-right shoppingcart-box" role="menu">
-								<li>
-									<table class="table table-striped">
-										<tbody>
-											<tr>
-												<td class="text-center" style="width:70px">
-													<a href="/productDetail">
-														<img src="/front/image/catalog/demo/product/80/1.jpg"
-															style="width:70px" alt="Yutculpa ullamcon"
-															title="Yutculpa ullamco" class="preview">
-													</a>
-												</td>
-												<td class="text-left"> <a class="cart_product_name" href="#">제품명</a>
-												</td>
-												<td class="text-center">x1</td>
-												<td class="text-center">10,000원</td>
-												<td class="text-right">
-													<a href="#" class="fa fa-edit"></a>
-												</td>
-												<td class="text-right">
-													<a onclick="cart.remove('2');" class="fa fa-times fa-delete"></a>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</li>
-								<li>
-									<div>
-										<table class="table table-bordered">
-											<tbody>
-												<tr>
-													<td class="text-left"><strong>총액</strong>
-													</td>
-													<td class="text-right">100,000</td>
-												</tr>
-												<tr>
-													<td class="text-left"><strong>부가세(10%)</strong>
-													</td>
-													<td class="text-right">+10,000</td>
-												</tr>
-												<tr>
-													<td class="text-left"><strong>추가 할인(-20%)</strong>
-													</td>
-													<td class="text-right">-20,000</td>
-												</tr>
-												<tr>
-													<td class="text-left"><strong>Total</strong>
-													</td>
-													<td class="text-right">110,000</td>
-												</tr>
-											</tbody>
-										</table>
-										<p class="text-right">
-											<a class="btn view-cart" href="/member/viewCart"><i
-													class="fa fa-shopping-cart"></i>장바구니보기</a>&nbsp;&nbsp;&nbsp;
-
-											<a class="btn btn-mega checkout-cart" href="/member/checkOut"><i
-													class="fa fa-share"></i>구매하기</a>
-										</p>
-									</div>
-								</li>
-							</ul>
+						    <a data-loading-text="Loading..." class="btn-group top_cart dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+						        <div class="shopcart">
+						            <span class="icon-c">
+						                <i class="fa fa-shopping-bag"></i>
+						            </span>
+						            <div class="shopcart-inner">
+						                <p class="text-shopping-cart">장바구니</p>
+						                <span class="total-shopping-cart cart-total-full">
+						                    <span class="items_cart" id="cartCount">0</span><span class="items_cart2"> ITEMs</span><span class="items_carts" id="cartPrice">( 0 원 )</span>
+						                </span>
+						            </div>
+						        </div>
+						    </a>
+						
+						    <ul class="dropdown-menu pull-right shoppingcart-box" role="menu">
+						        <li id="nullCart">
+						            <table class="table table-striped">
+						                <tbody>
+						                    <tr><td class="text-center" colspan="6">비어있음</td></tr>
+						                </tbody>
+						            </table>
+						        </li>
+						        <li id="notNullCart" style="display: none;">
+						            <div>
+						                <table class="table table-bordered" id="contentTable">
+						                    <tbody>
+						                        <!-- 제품 항목이 여기에 동적으로 삽입됩니다 -->
+						                    </tbody>
+						                </table>
+						                <table class="table table-bordered" id="totalTable">
+						                    <tbody>
+						                        <tr>
+						                            <td class="text-left"><strong>총액</strong></td>
+						                            <td class="text-right" id="totalPrice">0 원</td>
+						                        </tr>
+						                        <tr>
+						                            <td class="text-left"><strong>부가세(10%)</strong></td>
+						                            <td class="text-right" id="taxPrice">+0 원</td>
+						                        </tr>
+						                        <tr>
+						                            <td class="text-left"><strong>Total</strong></td>
+						                            <td class="text-right" id="finalPrice">0 원</td>
+						                        </tr>
+						                    </tbody>
+						                </table>
+						                <p class="text-right">
+						                    <a class="btn view-cart" onclick="viewCart()"><i class="fa fa-shopping-cart"></i>장바구니보기</a>&nbsp;&nbsp;&nbsp;
+						                    <a class="btn btn-mega checkout-cart" onclick="checkoutCart()"><i class="fa fa-share"></i>구매하기</a>
+						                </p>
+						            </div>
+						        </li>
+						    </ul>
 						</div>
 
 					</div>
 
 					<ul class="wishlist-comp hidden-md hidden-sm hidden-xs">
-						<li class="wishlist hidden-xs"><a href="/member/wishList" class="top-link-wishlist"
-								title="Wish List (0) "><i class="fa fa-heart"></i>(관심상품)</a>
+						<li class="compare hidden-xs">
+							<a href="/productCompare" class="top-link-compare" title="Compare "><i class="fa fa-refresh"></i></a>
+                        </li>
+						<li class="wishlist hidden-xs">
+							<a href="/member/wishList" class="top-link-wishlist" title="WISH "><i class="fa fa-heart"></i>(관심상품)</a>
 						</li>
 					</ul>
 				</div>
