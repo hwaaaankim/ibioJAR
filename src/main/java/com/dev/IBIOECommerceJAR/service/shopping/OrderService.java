@@ -103,50 +103,57 @@ public class OrderService {
         return orderRepository.findById(orderId).map(this::convertToDTO);
     }
     
-    public void updateOrderSign(Long orderId, int orderSign) {
-    	System.out.println("updateOrderSign");
-        Optional<Order> orderOpt = orderRepository.findById(orderId);
-        if (orderOpt.isPresent()) {
-            Order order = orderOpt.get();
-            order.setOrderSign(orderSign);
-            orderRepository.save(order);
-        }
-    }
-
     public List<Map<String, String>> checkAndUpdateOrders(List<Map<String, Object>> requests) {
-    	System.out.println("checkAndUpdateOrders");
-    	System.out.println(requests.size());
-    	System.out.println(requests.toString());
-    	List<Map<String, String>> errors = new ArrayList<>();
+        System.out.println("checkAndUpdateOrders");
+        System.out.println("Requests size: " + requests.size());
+        System.out.println("Requests: " + requests.toString());
+
+        List<Map<String, String>> errors = new ArrayList<>();
         for (Map<String, Object> request : requests) {
-            Long orderId;
+            Long orderId = null;
             try {
+                System.out.println("Parsing order_id: " + request.get("order_id"));
                 orderId = Long.valueOf((String) request.get("order_id"));
-                System.out.println(orderId);
+                System.out.println("Parsed order_id: " + orderId);
             } catch (NumberFormatException e) {
+                System.out.println("NumberFormatException for order_id: " + request.get("order_id"));
                 errors.add(Map.of("order_id", (String) request.get("order_id"), "description", "order_id 오류"));
-                System.out.println("error");
                 continue;
             }
-            System.out.println(orderId);
+
+            System.out.println("Finding order by ID: " + orderId);
             Optional<Order> orderOpt = orderRepository.findById(orderId);
             if (orderOpt.isPresent()) {
-            	System.out.println("orderOpt.isPresent()");
+                System.out.println("Order found with ID: " + orderId);
                 Order order = orderOpt.get();
                 if (order.getOrderSign() == 2) {
-                	System.out.println("order.getOrderSign() == 2");
+                    System.out.println("Order sign is 2 for order_id: " + orderId);
                     errors.add(Map.of("order_id", (String) request.get("order_id"), "description", "입금대기 상태 에러"));
                 } else if (order.getOrderSign() == 0) {
-                	System.out.println("order.getOrderSign() == 0");
+                    System.out.println("Order sign is 0 for order_id: " + orderId);
                     updateOrderSign(orderId, 1);
                 }
             } else {
+                System.out.println("Order not found for order_id: " + orderId);
                 errors.add(Map.of("order_id", (String) request.get("order_id"), "description", "order_id 오류"));
-                System.out.println("order_id 오류");
             }
         }
-        System.out.println(errors);
+
+        System.out.println("Errors: " + errors);
         return errors;
+    }
+
+    public void updateOrderSign(Long orderId, int sign) {
+        // 실제로 order의 sign을 업데이트하는 로직을 여기에 추가합니다.
+        Optional<Order> orderOpt = orderRepository.findById(orderId);
+        if (orderOpt.isPresent()) {
+            Order order = orderOpt.get();
+            order.setOrderSign(sign);
+            orderRepository.save(order);
+            System.out.println("Order sign updated for order_id: " + orderId);
+        } else {
+            System.out.println("Order not found for update, order_id: " + orderId);
+        }
     }
     
     private OrderDTO convertToDTO(Order order) {

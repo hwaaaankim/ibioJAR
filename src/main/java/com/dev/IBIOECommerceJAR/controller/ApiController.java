@@ -78,13 +78,16 @@ public class ApiController {
 	@PostMapping("/paymentChecks")
     public ResponseEntity<Map<String, Object>> paymentChecks(@RequestBody PaymentCheckDTO requests) {
         Map<String, Object> response = new HashMap<>();
-        List<Map<String, String>> errors = orderService.checkAndUpdateOrders(requests.getRequests());
-
+        
         if (requests.getRequests() == null) {
             response.put("return_code", "400");
             response.put("description", "JSON format 오류");
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }else {
+        	System.out.println(requests.getRequests().toString());
         }
+
+        List<Map<String, String>> errors = orderService.checkAndUpdateOrders(requests.getRequests());
 
         if (errors.isEmpty()) {
             response.put("return_code", "200");
