@@ -104,6 +104,7 @@ public class OrderService {
     }
     
     public void updateOrderSign(Long orderId, int orderSign) {
+    	System.out.println("updateOrderSign");
         Optional<Order> orderOpt = orderRepository.findById(orderId);
         if (orderOpt.isPresent()) {
             Order order = orderOpt.get();
