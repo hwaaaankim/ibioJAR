@@ -108,31 +108,50 @@
 						<li class="language">
 							<div class="btn-group languages-block ">
 								<form action="#" method="post" enctype="multipart/form-data">
-									<a class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-										<span class="" sec:authorize="isAuthenticated()" sec:authentication="principal.name"></span>
-										<span class="" sec:authorize="isAnonymous()">계정관리</span>
-										<span class="fa fa-angle-down"></span>
-									</a>
-									<ul class="dropdown-menu" sec:authorize="isAnonymous()">
-										
-										<li><a href="/loginForm"># 로그인</a></li>
-										<li><a href="/signupForm"># 일반회원가입 </a> </li>
-										<li><a href="/dealerSignupForm"># 딜러회원가입 </a> </li>
-											
-									</ul>
-									<ul class="dropdown-menu" sec:authorize="isAuthenticated()">
-										
-										<li sec:authorize = "hasAnyRole('MEMBER', 'DEALER')"><a href="/member/myInfo"> # 나의 정보 </a></li>
-										<li sec:authorize = "hasAnyRole('MEMBER', 'DEALER')"> <a href="/member/myTrading"> # 주문 관리 </a> </li>
-										<li sec:authorize = "hasAnyRole('MEMBER', 'DEALER')"> <a href="/member/myPayment"> # 결제 관리 </a> </li>
-										<li sec:authorize = "hasAnyRole('MEMBER', 'DEALER')"> <a href="/member/myDelivery"> # 배송 조회 </a> </li>
-										<li sec:authorize = "hasAnyRole('MEMBER', 'DEALER')"> <a href="/member/couponInsert"> # 쿠폰관리 </a> </li>
-										<li sec:authorize = "hasAnyRole('MEMBER', 'DEALER')"> <a href="/member/refundProduct"> # 환불신청 </a> </li>
-										<li sec:authorize = "hasAnyRole('DEALER')"> <a href="/dealer"> # 딜러전용 페이지 </a> </li>	
-										<li sec:authorize = "hasRole('ADMIN')"> <a href="/admin"> # 관리자전용 페이지 </a> </li>			
-										<li sec:authorize = "hasAnyRole('MEMBER', 'DEALER', 'ADMIN')"><a href="/logout"> # 로그아웃 </a> </li>			
-									</ul>
+								    <a class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+								        <span sec:authorize="isAuthenticated()">
+								            <span th:text="${#authentication.principal.member.name}"></span>
+								        </span>
+								        <span sec:authorize="isAnonymous()">계정관리</span>
+								        <span class="fa fa-angle-down"></span>
+								    </a>
+								    <ul class="dropdown-menu" sec:authorize="isAnonymous()">
+								        <li><a href="/loginForm"># 로그인</a></li>
+								        <li><a href="/signupForm"># 일반회원가입</a></li>
+								        <li><a href="/dealerSignupForm"># 딜러회원가입</a></li>
+								    </ul>
+								    <ul class="dropdown-menu" sec:authorize="isAuthenticated()">
+								        <li sec:authorize="hasAnyRole('ROLE_MEMBER', 'ROLE_DEALER')">
+								            <a href="/member/myInfo"># 나의 정보</a>
+								        </li>
+								        <li sec:authorize="hasAnyRole('ROLE_MEMBER', 'ROLE_DEALER')">
+								            <a href="/member/myTrading"># 주문 관리</a>
+								        </li>
+								        <li sec:authorize="hasAnyRole('ROLE_MEMBER', 'ROLE_DEALER')">
+								            <a href="/member/myPayment"># 결제 관리</a>
+								        </li>
+								        <li sec:authorize="hasAnyRole('ROLE_MEMBER', 'ROLE_DEALER')">
+								            <a href="/member/myDelivery"># 배송 조회</a>
+								        </li>
+								        <li sec:authorize="hasAnyRole('ROLE_MEMBER', 'ROLE_DEALER')">
+								            <a href="/member/couponInsert"># 쿠폰관리</a>
+								        </li>
+								        <li sec:authorize="hasAnyRole('ROLE_MEMBER', 'ROLE_DEALER')">
+								            <a href="/member/refundProduct"># 환불신청</a>
+								        </li>
+								        <li sec:authorize="hasRole('ROLE_DEALER')">
+								            <a href="/dealer"># 딜러전용 페이지</a>
+								        </li>
+								        <li sec:authorize="hasRole('ROLE_ADMIN')">
+								            <a href="/admin"># 관리자전용 페이지</a>
+								        </li>
+								        <li sec:authorize="hasAnyRole('ROLE_MEMBER', 'ROLE_DEALER', 'ROLE_ADMIN')">
+								            <a href="/logout"># 로그아웃</a>
+								        </li>
+								    </ul>
 								</form>
+
+
 							</div>
 						</li>
 					</ul>
