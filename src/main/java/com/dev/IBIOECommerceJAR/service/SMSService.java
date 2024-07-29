@@ -26,7 +26,8 @@ public class SMSService {
 	
 	public void sendMessage(
 			String phone,
-			String message) throws EncoderException {
+			String message,
+			String value) throws EncoderException {
 		
 		try {
 			URL obj = new URL(apiUrl);
@@ -44,7 +45,7 @@ public class SMSService {
 					+"&sphone2=" + new String(Base64.encodeBase64("3894".getBytes()))
 					+"&sphone3=" + new String(Base64.encodeBase64("3849".getBytes()))
 					+"&mode=" + new String(Base64.encodeBase64("1".getBytes()))
-					+"&smsType=S";
+					+"&smsType=" + new String(Base64.encodeBase64(value.getBytes()));
 			if(isTest) {
 				postParams +="$testflag="+new String(Base64.encodeBase64("Y".getBytes()));
 			}

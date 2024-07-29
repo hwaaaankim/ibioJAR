@@ -119,14 +119,14 @@ public class CommonController {
 			) throws IllegalStateException, IOException, EncoderException {
 	
 		Member newMember = memberService.registration(dto, memberFile);
-		smsService.sendMessage(newMember.getPhone(), "회원 가입 신청이 완료 되었습니다. 관리자의 승인 시 알림 메시지가 발송되며 쇼핑몰 이용이 가능합니다.");
+		smsService.sendMessage(newMember.getPhone(), "회원 가입 신청이 완료 되었습니다. 관리자의 승인 시 알림 메시지가 발송되며 쇼핑몰 이용이 가능합니다.", "S");
 		String adminMsg = "";
 		if(dto.getSign().equals("dealer")) {
 			adminMsg = "딜러 회원 가입신청이 발생 하였습니다.";
 		}else {
 			adminMsg = "일반 회원 가입신청이 발생 하였습니다.";
 		}
-		smsService.sendMessage("010-3894-3849", adminMsg);
+		smsService.sendMessage("010-3894-3849", adminMsg, "S");
 		String msg = "회원 가입이 완료 되었습니다.";
 		StringBuilder sb = new StringBuilder();
 		sb.append("alert('"+msg+"');");

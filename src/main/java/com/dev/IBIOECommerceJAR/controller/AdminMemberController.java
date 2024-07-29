@@ -118,7 +118,7 @@ public class AdminMemberController {
 			) throws EncoderException {
 		
 		Member member = memberService.changeStatus(dto);
-		smsService.sendMessage(member.getPhone(), "회원 가입이 승인 되어 정상적으로 이용 가능합니다.");
+		smsService.sendMessage(member.getPhone(), "회원 가입이 승인 되어 정상적으로 이용 가능합니다.", "S");
 		String msg = "회원의 상태가 변경 되었습니다.";
 		StringBuilder sb = new StringBuilder();
 		sb.append("alert('"+msg+"');");
@@ -134,7 +134,7 @@ public class AdminMemberController {
 			MemberDTO dto
 			) throws EncoderException {
 		System.out.println("123");
-		smsService.sendMessage(memberRepository.findById(dto.getId()).get().getPhone(), "회원 가입이 거절 되었습니다. 다시 신청해 주시기 바랍니다.");
+		smsService.sendMessage(memberRepository.findById(dto.getId()).get().getPhone(), "회원 가입이 거절 되었습니다. 다시 신청해 주시기 바랍니다.", "S");
 		memberService.deleteRegistartion(dto);
 		String msg = "회원가입 신청이 삭제 되었습니다.";
 		StringBuilder sb = new StringBuilder();
