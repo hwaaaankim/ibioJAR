@@ -125,7 +125,7 @@ public class ShoppingController {
         return "front/member/viewCart";
     }
 
-    @RequestMapping(value = "/checkout", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/checkOut", method = {RequestMethod.POST, RequestMethod.GET})
     public String checkout(
     		@RequestParam List<Long> ids, 
     		@RequestParam List<Integer> quantities, 
@@ -155,7 +155,7 @@ public class ShoppingController {
         model.addAttribute("user", principalDetails.getMember());
         model.addAttribute("products", cartProducts);
         model.addAttribute("quantities", quantitiesMap);
-        return "front/member/checkout";
+        return "front/member/checkOut";
     }
     
     @RequestMapping(
