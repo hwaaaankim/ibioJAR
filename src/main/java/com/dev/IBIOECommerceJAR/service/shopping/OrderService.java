@@ -122,14 +122,18 @@ public class OrderService {
 
             Optional<Order> orderOpt = orderRepository.findById(orderId);
             if (orderOpt.isPresent()) {
+            	System.out.println("orderOpt.isPresent()");
                 Order order = orderOpt.get();
                 if (order.getOrderSign() == 2) {
+                	System.out.println("order.getOrderSign() == 2");
                     errors.add(Map.of("order_id", (String) request.get("order_id"), "description", "입금대기 상태 에러"));
-                } else if (order.getOrderSign() != 1) {
+                } else if (order.getOrderSign() == 0) {
+                	System.out.println("order.getOrderSign() == 0");
                     updateOrderSign(orderId, 1);
                 }
             } else {
                 errors.add(Map.of("order_id", (String) request.get("order_id"), "description", "order_id 오류"));
+                System.out.println("order_id 오류");
             }
         }
         return errors;
