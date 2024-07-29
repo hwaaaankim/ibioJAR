@@ -99,7 +99,6 @@ public class OrderService {
     }
     
     public void updateOrderSign(Long orderId, Integer orderSign) {
-    	System.out.println("updateOrderSign");
         Optional<Order> orderOpt = orderRepository.findById(orderId);
         if (orderOpt.isPresent()) {
             Order order = orderOpt.get();
@@ -109,14 +108,15 @@ public class OrderService {
     }
 
     public List<Map<String, String>> checkAndUpdateOrders(List<Map<String, Object>> requests) {
-    	System.out.println("checkAndUpdateOrders");
         List<Map<String, String>> errors = new ArrayList<>();
         for (Map<String, Object> request : requests) {
             Long orderId;
             try {
                 orderId = Long.valueOf((String) request.get("order_id"));
+                System.out.println(orderId);
             } catch (NumberFormatException e) {
                 errors.add(Map.of("order_id", (String) request.get("order_id"), "description", "order_id 오류"));
+                System.out.println("error");
                 continue;
             }
 
