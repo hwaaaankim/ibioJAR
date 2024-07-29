@@ -259,7 +259,12 @@ $(document).ready(function() {
     // Checkout 버튼 클릭 이벤트 추가
     $(document).on('click', '#checkoutBtn', function(event) {
         event.preventDefault();
-        checkoutCart();
+        checkout()
+    });
+    
+    $(document).on('click', '#confirmOrder', function(event) {
+        event.preventDefault();
+        confirmOrder();
     });
 });
 
@@ -276,7 +281,7 @@ function viewCart() {
     form.submit();
 }
 
-function checkoutCart() {
+function checkout() {
     const cartItems = getCartItems();
     const form = $('<form>', { action: '/shopping/checkout', method: 'POST' });
 
@@ -287,5 +292,44 @@ function checkoutCart() {
 
     $('body').append(form);
     form.submit();
+}
+
+function checkoutCart() {
+    const cartItems = getCartItems();
+    const userId = getUserId();
+    const form = $('<form>', { action: '/shopping/checkoutProcess', method: 'POST' });
+
+    Object.keys(cartItems).forEach(id => {
+        form.append($('<input>', { type: 'hidden', name: 'ids', value: id }));
+        form.append($('<input>', { type: 'hidden', name: 'quantities', value: cartItems[id].quantity }));
+    });
+
+    $('body').append(form);
+    form.submit();
+
+    // Clear cart items in localStorage
+    if (userId) {
+        localStorage.removeItem(`cartItems_${userId}`);
+    }
+}
+
+function confirmOrder() {
+    const cartItems = getCartItems();
+    const productDetails = [];
+    let totalPrice = 0;
+
+    Object.keys(cartItems).forEach(id => {
+        const item = cartItems[id];
+        const itemTotal = item.price * item.quantity;
+        totalPrice += itemTotal;
+        productDetails.push(`${item.name} x${item.quantity}`);
+    });
+
+    const productDetailsText = productDetails.join(', ');
+    const confirmMessage = `${productDetailsText}를 구매 하시겠습니까? 최종금액은 ${totalPrice.toLocaleString()}원 입니다.`;
+
+    if (confirm(confirmMessage)) {
+        checkoutCart();
+    }
 }
 

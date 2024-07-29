@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.lang.Nullable;
 
+import com.dev.IBIOECommerceJAR.model.order.Order;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -106,7 +108,7 @@ public class Member implements Serializable{
 	@Column(name="MEMBER_COMMISSION")
 	private int commission;
 	
-	@Column(name="MEMBER_CACULATE_DATE")
+	@Column(name="MEMBER_CALCULATE_DATE")
 	private int calculate;
 	
 	@Column(name="MEMBER_BUSINESS_FILE_ORIGINAL_NAME")
@@ -146,6 +148,14 @@ public class Member implements Serializable{
 			mappedBy = "memberId"
 			)
 	private List<MemberFile> files;
+	
+	@OneToMany(
+			fetch = FetchType.LAZY, 
+			cascade = CascadeType.ALL, 
+			orphanRemoval = true, 
+			mappedBy = "orderBuyer"
+			)
+    private List<Order> orders;
 	
 }
 

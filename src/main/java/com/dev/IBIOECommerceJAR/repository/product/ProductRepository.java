@@ -20,8 +20,8 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
             + "(:smallId = 0L OR p.smallSort.id = :smallId) AND "
             + "(:minCost IS NULL OR p.productPrice >= :minCost) AND "
             + "(:maxCost IS NULL OR p.productPrice <= :maxCost) AND "
-            + "(:productSort = 'all' OR (p.productDiscountSign = true AND :productSort = 'yes') OR (p.productDiscountSign = false AND :productSort = 'no')) AND "
-            + "(:productDiscount = 'all' OR (p.productEventSign = true AND :productDiscount = 'yes') OR (p.productEventSign = false AND :productDiscount = 'no')) AND "
+            + "(:productSort = 'all' OR (p.productEventSign = true AND :productSort = 'yes') OR (p.productEventSign = false AND :productSort = 'no')) AND "
+            + "(:productDiscount = 'all' OR (p.productDiscountSign = true AND :productDiscount = 'yes') OR (p.productDiscountSign = false AND :productDiscount = 'no')) AND "
             + "(:sellingResult = 'all' OR (p.productSell > 0 AND :sellingResult = 'yes') OR (p.productSell = 0 AND :sellingResult = 'no')) AND "
             + "(:searchWord IS NULL OR p.productCode LIKE %:searchWord% OR p.productTitle LIKE %:searchWord%)")
     Page<Product> findByConditions(
