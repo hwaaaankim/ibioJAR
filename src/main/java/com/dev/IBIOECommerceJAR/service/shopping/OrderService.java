@@ -90,6 +90,11 @@ public class OrderService {
     public List<OrderDTO> getUncheckedOrders() {
     	System.out.println("getUncheckedOrders");
         List<Order> orders = orderRepository.findByOrderSign(0);
+        for(Order order : orders) {
+        	System.out.println(order.getOrderBillingName());
+        	System.out.println(order.getOrderSign());
+        	System.out.println(order.getOrderId());
+        }
         return orders.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
@@ -98,7 +103,7 @@ public class OrderService {
         return orderRepository.findById(orderId).map(this::convertToDTO);
     }
     
-    public void updateOrderSign(Long orderId, Integer orderSign) {
+    public void updateOrderSign(Long orderId, int orderSign) {
         Optional<Order> orderOpt = orderRepository.findById(orderId);
         if (orderOpt.isPresent()) {
             Order order = orderOpt.get();
@@ -119,7 +124,7 @@ public class OrderService {
                 System.out.println("error");
                 continue;
             }
-
+            System.out.println(orderId);
             Optional<Order> orderOpt = orderRepository.findById(orderId);
             if (orderOpt.isPresent()) {
             	System.out.println("orderOpt.isPresent()");
