@@ -283,7 +283,7 @@ function viewCart() {
 
 function checkout() {
     const cartItems = getCartItems();
-    const form = $('<form>', { action: '/shopping/checkout', method: 'POST' });
+    const form = $('<form>', { action: '/shopping/checkOut', method: 'POST' });
 
     Object.keys(cartItems).forEach(id => {
         form.append($('<input>', { type: 'hidden', name: 'ids', value: id }));
