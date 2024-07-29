@@ -25,6 +25,17 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 	
+	@ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<Map<String, Object>> handleAllExceptions(Exception ex) {
+		System.out.println(ex.getMessage());
+        Map<String, Object> response = new HashMap<>();
+        response.put("return_code", "500");
+        response.put("description", "서버 오류 발생: " + ex.getMessage());
+        ex.printStackTrace(); // 로그에 예외 스택 트레이스 출력
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+	
 }
 
 
