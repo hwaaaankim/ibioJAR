@@ -1,5 +1,6 @@
 package com.dev.IBIOECommerceJAR.controller;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.commons.codec.EncoderException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -23,10 +25,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dev.IBIOECommerceJAR.dto.CartSummary;
 import com.dev.IBIOECommerceJAR.dto.CartUpdateRequest;
 import com.dev.IBIOECommerceJAR.dto.ProductCartDTO;
+import com.dev.IBIOECommerceJAR.model.authentication.Member;
 import com.dev.IBIOECommerceJAR.model.authentication.PrincipalDetails;
+import com.dev.IBIOECommerceJAR.model.order.Order;
 import com.dev.IBIOECommerceJAR.model.product.Product;
 import com.dev.IBIOECommerceJAR.repository.product.ProductRepository;
+import com.dev.IBIOECommerceJAR.service.SMSService;
 import com.dev.IBIOECommerceJAR.service.product.ProductService;
+import com.dev.IBIOECommerceJAR.service.shopping.OrderService;
 
 @Controller
 @RequestMapping("/shopping")
@@ -37,6 +43,12 @@ public class ShoppingController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	OrderService orderService;
+	
+	@Autowired
+	SMSService smsService;
 	
 	@PostMapping("/findProduct")
 	@ResponseBody
@@ -144,6 +156,37 @@ public class ShoppingController {
         model.addAttribute("products", cartProducts);
         model.addAttribute("quantities", quantitiesMap);
         return "front/member/checkout";
+    }
+    
+    @RequestMapping(
+    		value = "/checkoutProcess", 
+    		method = {RequestMethod.POST, RequestMethod.GET}
+    		)
+    @ResponseBody
+    public String checkoutProcess(
+    		@RequestParam List<Long> ids, 
+    		@RequestParam List<Integer> quantities, 
+    		@AuthenticationPrincipal PrincipalDetails principalDetails,
+    		Model model) throws EncoderException {
+    	
+    	String buyerMessage = "";
+    	Member orderBuyer = principalDetails.getMember();
+        Order order = orderService.createOrder(ids, quantities, orderBuyer);
+        
+        String orderSummary = orderService.generateOrderSummary(order);
+        int totalPrice = new BigDecimal(order.getOrderTotalPrice()).intValue();
+       
+        buyerMessage = orderSummary;
+        smsService.sendMessage(orderBuyer.getPhone(), "주문이 완료 되었습니다. 주문번호는 " + order.getOrderId() 
+        + "이며, 주문하신 내역은 " + buyerMessage + ", 총 결제 금액은 " + totalPrice + "입니다. 감사합니다.");
+        smsService.sendMessage("010-3894-3849", "결제 방식 계좌이체로 주문이 발생하였습니다.");
+        String msg = "주문이 완료 되었습니다. 감사합니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("alert('"+msg+"');");
+		sb.append("location.href='/index'");
+		sb.insert(0, "<script>");
+		sb.append("</script>");
+		return sb.toString();
     }
     
 	@GetMapping("/wishList")

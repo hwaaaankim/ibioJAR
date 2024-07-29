@@ -95,7 +95,6 @@ public class AdminProductController {
 	        @RequestParam(required = false, defaultValue="all") String productDiscount,
 	        @RequestParam(required = false, defaultValue="all") String sellingResult
 			) {
-		
 		List<BigSort> b = bigSortRepository.findAll();
 		if(b.size()<1) {
 			BigSort bs = new BigSort();
