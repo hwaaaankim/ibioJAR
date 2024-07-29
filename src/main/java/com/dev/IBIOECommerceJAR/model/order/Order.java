@@ -46,5 +46,5 @@ public class Order {
 
     // 0 : 주문대기, 1 : 입금완료, 2 : 고객취소
     @Column(name="ORDER_SIGN")
-    private Integer orderSign;
+    private int orderSign;
 }
