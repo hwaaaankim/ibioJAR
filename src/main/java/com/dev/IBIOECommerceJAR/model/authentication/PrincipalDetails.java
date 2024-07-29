@@ -22,6 +22,10 @@ public class PrincipalDetails implements UserDetails {
 		this.member = member;
 	}
 
+	public Member getMember() {
+        return this.member;
+    }
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
@@ -34,20 +38,6 @@ public class PrincipalDetails implements UserDetails {
 		
 		return this.member.getName();
 	}
-//	public String getMembergrade() {
-//		
-//		if(this.member.getMemberGrade() == 2 || this.member.getMemberGrade() == 3) {
-//			return "MANAGER";
-//		}else {
-//			return "ADMINISTRATION";
-//		}
-//		
-//	}
-//	
-//	public String getMembername() {
-//		
-//		return this.member.getMemberName();
-//	}
 	
     @Override
     public String getUsername() {
@@ -83,10 +73,4 @@ public class PrincipalDetails implements UserDetails {
 	public boolean isEnabled() {
 		return this.member.getEnabled();
 	}
-
-//	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//	@Override
-//	public boolean isEnabled() {
-//		return this.member.isMemberEnabled();
-//	}
 }

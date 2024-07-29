@@ -1,10 +1,13 @@
 package com.dev.IBIOECommerceJAR.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.codec.EncoderException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dev.IBIOECommerceJAR.dto.SignUpDTO;
 import com.dev.IBIOECommerceJAR.model.authentication.Member;
 import com.dev.IBIOECommerceJAR.repository.MemberRepository;
+import com.dev.IBIOECommerceJAR.repository.product.ProductRepository;
 import com.dev.IBIOECommerceJAR.service.SMSService;
 import com.dev.IBIOECommerceJAR.service.authentication.MemberService;
 
@@ -35,14 +39,27 @@ public class CommonController {
 	@Autowired
 	SMSService smsService;
 	
+	@Autowired
+	ProductRepository productRepository;
+	
+	@GetMapping("/checkLogin")
+	@ResponseBody
+    public Map<String, Object> checkLogin(Authentication authentication) {
+        Map<String, Object> response = new HashMap<>();
+        if (authentication != null && authentication.isAuthenticated()) {
+            response.put("loggedIn", true);
+            response.put("userId", authentication.getName()); // 또는 사용자 ID를 반환
+        } else {
+            response.put("loggedIn", false);
+        }
+        return response;
+    }
+	
 	@GetMapping({"/", "/index"})
 	public String index(
 			Model model
 			) {
 		log.info("index 접속");
-//		String absolutePath = new File("").getAbsolutePath() + "\\";
-//		Optional<Member> member = memberRepository.findByUsername("dealer_test1");
-//		model.addAttribute("member", member.get());
 		return "front/common/index";
 	}
 	
@@ -92,62 +109,6 @@ public class CommonController {
 		System.out.println(email);
 		return memberRepository.findByEmail(email).isPresent();
 	}
-	
-//	@PostMapping("/registration")
-//	@ResponseBody
-//	public String registration(
-//			SignUpDTO dto
-//			) {
-//		
-//		if(memberService.insertMember(dto)!=null) {
-//			String msg = "회원 가입이 완료 되었습니다.";
-//			StringBuilder sb = new StringBuilder();
-//			sb.append("alert('"+msg+"');");
-//			sb.append("location.href='/index'");
-//			sb.insert(0, "<script>");
-//			sb.append("</script>");
-//			return sb.toString();
-//		}else {
-//			String msg = "에러가 발생 하였습니다. 다시 시도해 주세요.";
-//			StringBuilder sb = new StringBuilder();
-//			sb.append("alert('"+msg+"');");
-//			sb.append("location.href='/signupForm'");
-//			sb.insert(0, "<script>");
-//			sb.append("</script>");
-//			
-//			return sb.toString();
-//		}
-//	}
-	
-//	@PostMapping("/dealerRegistration")
-//	@ResponseBody
-//	public String dealerRegistration(
-//			SignUpDTO dto,
-//			MultipartFile accountFile,
-//			MultipartFile businessFile
-//			) throws IllegalStateException, IOException {
-//		System.out.println(dto);
-//		System.out.println(businessFile.isEmpty());
-//		System.out.println(accountFile.isEmpty());
-//		if(memberService.insertDealer(dto, accountFile, businessFile)!=null) {
-//			String msg = "딜러 회원가입이 완료 되었습니다. 관리자 승인 후 이용 가능합니다.";
-//			StringBuilder sb = new StringBuilder();
-//			sb.append("alert('"+msg+"');");
-//			sb.append("location.href='/index'");
-//			sb.insert(0, "<script>");
-//			sb.append("</script>");
-//			return sb.toString();
-//		}else {
-//			String msg = "에러가 발생 하였습니다. 다시 시도해 주세요.";
-//			StringBuilder sb = new StringBuilder();
-//			sb.append("alert('"+msg+"');");
-//			sb.append("location.href='/dealerSignupForm'");
-//			sb.insert(0, "<script>");
-//			sb.append("</script>");
-//			
-//			return sb.toString();
-//		}
-//	}
 	
 	@PostMapping("/registration")
 	@ResponseBody
@@ -259,18 +220,4 @@ public class CommonController {
 		
 		return "front/common/event/eventDetail";
 	}
-	
-	@GetMapping("/productCompare")
-	public String productCompare() {
-		
-		return "front/common/product/productCompare";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 }

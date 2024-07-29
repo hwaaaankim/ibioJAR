@@ -8,9 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dev.IBIOECommerceJAR.model.product.Product;
 import com.dev.IBIOECommerceJAR.repository.product.ProductRepository;
+import com.dev.IBIOECommerceJAR.service.product.ProductService;
 
 @Controller
 public class IBIOProductController {
@@ -18,6 +22,8 @@ public class IBIOProductController {
 	@Autowired
 	ProductRepository productRepository;
 	
+	@Autowired
+	ProductService productService;
 	
 	@GetMapping("/productList")
 	public String productList(
@@ -45,12 +51,6 @@ public class IBIOProductController {
 		return "front/common/product/productDetail";
 	}
 	
-	@GetMapping("/productQuickView")
-	public String productQuickView() {
-		
-		return "front/common/product/productQuickView";
-	}
-	
 	@GetMapping("/productDetailView/{id}")
 	public String productDetailView(
 			@PathVariable Long id
@@ -59,4 +59,20 @@ public class IBIOProductController {
 		return "front/common/product/temp/productDetail" + id;
 	}
 	
+	@GetMapping("/productQuickView/{id}")
+	public String productQuickView(
+			@PathVariable Long id,
+			Model model
+			) {
+		model.addAttribute("test", "123");
+		return "front/common/product/productQuickView";
+	}
+	
+	@RequestMapping(value = "/productCompare",  method = {RequestMethod.POST , RequestMethod.GET})
+	public String productCompare(
+			@RequestParam Long[] ids
+			) {
+		
+		return "front/common/product/productCompare";
+	}
 }

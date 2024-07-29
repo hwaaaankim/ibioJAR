@@ -49,7 +49,7 @@ public class ProductFileService {
 			) throws IllegalStateException, IOException {
 		
 		
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         String current_date = simpleDateFormat.format(new Date());
 
         // 실제 파일 저장 위치
@@ -102,8 +102,8 @@ public class ProductFileService {
         			}
                 }
                 String productFileName = generatedString + originalFileExtension;
-				String productFilePath = path + product.getProductTitle() + "/files/" + productFileName;
-				String productFileRoad = road + product.getProductTitle() + "/files/" + productFileName;
+				String productFilePath = path + product.getProductCode() + "/files/" + productFileName;
+				String productFileRoad = road + product.getProductCode() + "/files/" + productFileName;
 				String productFileSavePath = productFilePath;
 				File productFileSaveFile = new File(productFileSavePath);	
 				if (!productFileSaveFile.exists()) {

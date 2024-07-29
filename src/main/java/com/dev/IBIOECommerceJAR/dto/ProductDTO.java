@@ -17,7 +17,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductDTO {
-
+	
 	private Long bigId;
 	private Long middleId;
 	private Long smallId;
@@ -31,14 +31,18 @@ public class ProductDTO {
 	private List<MultipartFile> slideImages;
 	private Integer price;
 	private Integer priceTarget;
-	private Integer noneD;
-	private Integer memberD;
-	private Integer dealerD;
+	private Integer noneDiscount;
+	private Integer memberDiscount;
+	private Integer dealerDiscount;
 	
 	private String[] noneChangeOptionName;
 	private String[] noneChangeOptionValues;
+	private List<MultipartFile> noneChangeOptionFiles;
 	private String[] changeOptionName;
 	private String[] changeOptionValues;
+	private String[] changeOptionUnits;
+	private Integer[] changeOptionPrices;
+	private String[] changeOptionSigns;
 	
 	private Boolean eventSign;
 	private String eventN;
