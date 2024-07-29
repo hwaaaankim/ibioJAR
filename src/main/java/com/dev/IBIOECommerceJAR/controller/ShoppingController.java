@@ -178,8 +178,8 @@ public class ShoppingController {
        
         buyerMessage = orderSummary;
         smsService.sendMessage(orderBuyer.getPhone(), "주문이 완료 되었습니다. 주문번호는 " + order.getOrderId() 
-        + "이며, 주문하신 내역은 " + buyerMessage + ", 총 결제 금액은 " + totalPrice + "입니다. 감사합니다.");
-        smsService.sendMessage("010-3894-3849", "결제 방식 계좌이체로 주문이 발생하였습니다.");
+        + "이며, 주문하신 내역은 " + buyerMessage + ", 총 결제 금액은 " + totalPrice + "입니다. 감사합니다.", "L");
+        smsService.sendMessage("010-3894-3849", "결제 방식 계좌이체로 주문이 발생하였습니다.", "S");
         String msg = "주문이 완료 되었습니다. 감사합니다.";
 		StringBuilder sb = new StringBuilder();
 		sb.append("alert('"+msg+"');");
