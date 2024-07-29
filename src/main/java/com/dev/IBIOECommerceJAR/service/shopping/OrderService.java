@@ -115,6 +115,8 @@ public class OrderService {
 
     public List<Map<String, String>> checkAndUpdateOrders(List<Map<String, Object>> requests) {
     	System.out.println("checkAndUpdateOrders");
+    	System.out.println(requests.size());
+    	System.out.println(requests.toString());
     	List<Map<String, String>> errors = new ArrayList<>();
         for (Map<String, Object> request : requests) {
             Long orderId;
@@ -143,6 +145,7 @@ public class OrderService {
                 System.out.println("order_id 오류");
             }
         }
+        System.out.println(errors);
         return errors;
     }
     
