@@ -119,7 +119,7 @@ public class OrderService {
                 System.out.println("error");
                 continue;
             }
-
+            System.out.println(orderId);
             Optional<Order> orderOpt = orderRepository.findById(orderId);
             if (orderOpt.isPresent()) {
             	System.out.println("orderOpt.isPresent()");
