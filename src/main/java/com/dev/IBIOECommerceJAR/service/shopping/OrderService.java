@@ -113,11 +113,16 @@ public class OrderService {
             Long orderId = null;
             try {
                 System.out.println("Parsing order_id: " + request.get("order_id"));
-                orderId = Long.valueOf((String) request.get("order_id"));
+                Object orderIdObj = request.get("order_id");
+                if (orderIdObj instanceof Number) {
+                    orderId = ((Number) orderIdObj).longValue();
+                } else if (orderIdObj instanceof String) {
+                    orderId = Long.valueOf((String) orderIdObj);
+                }
                 System.out.println("Parsed order_id: " + orderId);
             } catch (NumberFormatException e) {
                 System.out.println("NumberFormatException for order_id: " + request.get("order_id"));
-                errors.add(Map.of("order_id", (String) request.get("order_id"), "description", "order_id 오류"));
+                errors.add(Map.of("order_id", String.valueOf(request.get("order_id")), "description", "order_id 오류"));
                 continue;
             }
 
@@ -128,20 +133,21 @@ public class OrderService {
                 Order order = orderOpt.get();
                 if (order.getOrderSign() == 2) {
                     System.out.println("Order sign is 2 for order_id: " + orderId);
-                    errors.add(Map.of("order_id", (String) request.get("order_id"), "description", "입금대기 상태 에러"));
+                    errors.add(Map.of("order_id", String.valueOf(request.get("order_id")), "description", "입금대기 상태 에러"));
                 } else if (order.getOrderSign() == 0) {
                     System.out.println("Order sign is 0 for order_id: " + orderId);
                     updateOrderSign(orderId, 1);
                 }
             } else {
                 System.out.println("Order not found for order_id: " + orderId);
-                errors.add(Map.of("order_id", (String) request.get("order_id"), "description", "order_id 오류"));
+                errors.add(Map.of("order_id", String.valueOf(request.get("order_id")), "description", "order_id 오류"));
             }
         }
 
         System.out.println("Errors: " + errors);
         return errors;
     }
+
 
     public void updateOrderSign(Long orderId, int sign) {
         // 실제로 order의 sign을 업데이트하는 로직을 여기에 추가합니다.
