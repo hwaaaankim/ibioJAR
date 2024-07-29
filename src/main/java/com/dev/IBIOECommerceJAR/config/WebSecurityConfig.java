@@ -76,11 +76,11 @@ public class WebSecurityConfig {
             .headers(headers -> headers.frameOptions(options -> options.sameOrigin()))
             .authorizeHttpRequests(authorizeRequests -> 
                 authorizeRequests
-                    .requestMatchers(visitorsUrls).permitAll()
                     .requestMatchers(adminsUrls).hasAuthority("ROLE_ADMIN")
                     .requestMatchers(dealersUrls).hasAnyAuthority("ROLE_DEALER")
                     .requestMatchers(membersUrls).hasAnyAuthority("ROLE_MEMBER", "ROLE_DEALER")
                     .requestMatchers(shoppingUrls).hasAnyAuthority("ROLE_MEMBER", "ROLE_DEALER", "ROLE_ADMIN")
+                    .requestMatchers(visitorsUrls).permitAll()
                     .anyRequest().authenticated())
             .sessionManagement(sessionManagement -> 
                 sessionManagement.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
