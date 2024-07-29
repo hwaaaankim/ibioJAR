@@ -24,17 +24,7 @@ public class GlobalExceptionHandler {
         errorResponse.put("details", ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
-
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<Map<String, String>> handleException(Exception ex) {
-        Map<String, String> errorResponse = new HashMap<>();
-        errorResponse.put("return_code", "400");
-        errorResponse.put("error_type", ex.getClass().getSimpleName());
-        errorResponse.put("description", "잘못된 요청입니다.");
-        errorResponse.put("details", ex.getMessage());
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
+	
 }
 
 

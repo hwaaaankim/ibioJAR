@@ -1,14 +1,28 @@
 package com.dev.IBIOECommerceJAR.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dev.IBIOECommerceJAR.repository.product.ProductRepository;
+import com.dev.IBIOECommerceJAR.service.HtmlRenderer;
+import com.dev.IBIOECommerceJAR.service.product.ProductService;
+
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 
+	@Autowired
+	ProductRepository productRepository;
+	
+	@Autowired
+	ProductService productService;
+	
+	@Autowired
+	HtmlRenderer htmlRenderer;
+	
 	@GetMapping({"" , "/index"})
 	@ResponseBody
 	public String memberIndex() {

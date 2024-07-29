@@ -32,34 +32,34 @@
 					                <td class="text-right">총가격</td>
 					            </tr>
 					        </thead>
-					        <tbody id="cartItems">
-					            <tr th:each="product, iterStat : ${products}">
-					                <td class="text-center">
-					                    <a th:href="@{/productDetail/{id}(id=${product.id})}">
-					                        <img th:src="@{${product.productImagePath}}" width="70px" th:alt="${product.productTitle}" th:title="${product.productTitle}" class="img-thumbnail"/>
-					                    </a>
-					                </td>
-					                <td class="text-left">
-					                    <a th:href="@{/productDetail/{id}(id=${product.id})}" th:text="${product.productTitle}"></a>
-					                </td>
-					                <td class="text-left" th:text="${product.productCode}"></td>
-					                <td class="text-left" width="200px">
-					                    <div class="input-group btn-block quantity">
-					                        <input type="text" name="quantity" th:value="${quantities[product.id]}" size="1" class="form-control" th:id="'quantity-' + ${product.id}"/>
-					                        <span class="input-group-btn">
-					                            <button type="button" data-toggle="tooltip" title="Update" class="btn btn-primary" th:attr="onclick='updateQuantity(' + ${product.id} + ')'">
-					                                <i class="fa fa-clone"></i>
-					                            </button>
-					                            <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-danger" th:attr="onclick='removeProduct(' + ${product.id} + ')'">
-					                                <i class="fa fa-times-circle"></i>
-					                            </button>
-					                        </span>
-					                    </div>
-					                </td>
-					                <td class="text-right" th:text="${product.productPrice} + ' 원'" th:id="'price-' + ${product.id}" data-price="${product.productPrice}"></td>
-					                <td class="text-right" th:text="${product.productPrice * quantities[product.id]} + ' 원'" th:id="'total-' + ${product.id}"></td>
-					            </tr>
-					        </tbody>
+					         <tbody id="cartItems">
+				                <tr th:each="product, iterStat : ${products}">
+				                    <td class="text-center">
+				                        <a th:href="@{/productDetail/{id}(id=${product.id})}">
+				                            <img th:src="@{${product.productImagePath}}" width="70px" th:alt="${product.productTitle}" th:title="${product.productTitle}" class="img-thumbnail"/>
+				                        </a>
+				                    </td>
+				                    <td class="text-left">
+				                        <a th:href="@{/productDetail/{id}(id=${product.id})}" th:text="${product.productTitle}"></a>
+				                    </td>
+				                    <td class="text-left" th:text="${product.productCode}"></td>
+				                    <td class="text-left" width="200px">
+				                        <div class="input-group btn-block quantity">
+				                            <input type="text" name="quantity" th:value="${quantities[product.id]}" size="1" class="form-control" th:id="'quantity-' + ${product.id}"/>
+				                            <span class="input-group-btn">
+				                                <button type="button" data-toggle="tooltip" title="Update" class="btn btn-primary" th:attr="onclick='updateQuantity(' + ${product.id} + ', false)'">
+				                                    <i class="fa fa-clone"></i>
+				                                </button>
+				                                <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-danger" th:attr="onclick='confirmRemoveProduct(' + ${product.id} + ', false)'">
+				                                    <i class="fa fa-times-circle"></i>
+				                                </button>
+				                            </span>
+				                        </div>
+				                    </td>
+				                    <td class="text-right" th:text="${product.productPrice} + ' 원'" th:id="'price-' + ${product.id}" data-price="${product.productPrice}"></td>
+				                    <td class="text-right" th:text="${product.productPrice * quantities[product.id]} + ' 원'" th:id="'total-' + ${product.id}"></td>
+				                </tr>
+				            </tbody>
 					    </table>
 					</div>
 					<div class="row">
@@ -82,36 +82,9 @@
 				            </table>
 				        </div>
 				    </div>
-
-					<div class="panel-group" id="accordion">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a href="#collapse-coupon" class="accordion-toggle" data-toggle="collapse"
-										data-parent="#accordion" aria-expanded="true">쿠폰코드입력
-
-										<i class="fa fa-caret-down"></i>
-									</a>
-								</h4>
-							</div>
-							<div id="collapse-coupon" class="panel-collapse collapse in" aria-expanded="true">
-								<div class="panel-body">
-									<label class="col-sm-2 control-label" for="input-coupon">쿠폰번호</label>
-									<div class="input-group">
-										<input type="text" name="coupon" value="" placeholder="Enter your coupon here"
-											id="input-coupon" class="form-control">
-										<span class="input-group-btn"><input type="button" value="Apply Coupon"
-												id="button-coupon" data-loading-text="Loading..."
-												class="btn btn-primary"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
 					<div class="buttons">
-						<div class="pull-left"><a href="/index" class="btn btn-primary">Continue Shopping</a></div>
-						<div class="pull-right"><a href="/checkout" class="btn btn-primary">Checkout</a></div>
+						<div class="pull-left"><a href="/index" class="btn btn-primary">계속쇼핑하기</a></div>
+						<div class="pull-right"><a href="/member/checkout" id="checkoutBtn" class="btn btn-primary">결제하러가기</a></div>
 					</div>
 				</div>
 
