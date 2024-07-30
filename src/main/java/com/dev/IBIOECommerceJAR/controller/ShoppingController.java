@@ -97,9 +97,15 @@ public class ShoppingController {
 
     @PostMapping("/viewCart")
     public String viewCart(
-    		@RequestParam List<Long> ids, 
-    		@RequestParam List<Integer> quantities, 
-    		Model model) {
+            @RequestParam(required = false) List<Long> ids, 
+            @RequestParam(required = false) List<Integer> quantities, 
+            Model model) {
+
+        if (ids == null || ids.isEmpty() || quantities == null || quantities.isEmpty()) {
+            model.addAttribute("message", "장바구니에 제품이 하나도 없습니다.");
+            return "redirect:/index";
+        }
+
         List<Product> cartProducts = productService.findProductsByIds(ids);
         Map<Long, Integer> quantitiesMap = new HashMap<>();
         int totalPrice = 0;
@@ -127,19 +133,25 @@ public class ShoppingController {
 
     @RequestMapping(value = "/checkOut", method = {RequestMethod.POST, RequestMethod.GET})
     public String checkout(
-    		@RequestParam List<Long> ids, 
-    		@RequestParam List<Integer> quantities, 
-    		@AuthenticationPrincipal PrincipalDetails principalDetails,
-    		Model model) {
-        
-    	List<Product> cartProducts = productService.findProductsByIds(ids);
+            @RequestParam(required = false) List<Long> ids, 
+            @RequestParam(required = false) List<Integer> quantities, 
+            @AuthenticationPrincipal PrincipalDetails principalDetails,
+            Model model) {
+
+        if (ids == null || ids.isEmpty() || quantities == null || quantities.isEmpty()) {
+            model.addAttribute("message", "장바구니에 제품이 하나도 없습니다.");
+            return "redirect:/index";
+        }
+
+        List<Product> cartProducts = productService.findProductsByIds(ids);
         Map<Long, Integer> quantitiesMap = new HashMap<>();
         int totalPrice = 0;
+
         for (int i = 0; i < ids.size(); i++) {
             quantitiesMap.put(ids.get(i), quantities.get(i));
             totalPrice += cartProducts.get(i).getProductPrice() * quantities.get(i);
         }
-        
+
         int taxPrice = (int) (totalPrice * 0.1);
         int finalPrice = totalPrice + taxPrice;
 
@@ -151,7 +163,7 @@ public class ShoppingController {
         model.addAttribute("totalPrice", formattedTotalPrice);
         model.addAttribute("taxPrice", formattedTaxPrice);
         model.addAttribute("finalPrice", formattedFinalPrice);
-        
+
         model.addAttribute("user", principalDetails.getMember());
         model.addAttribute("products", cartProducts);
         model.addAttribute("quantities", quantitiesMap);
@@ -178,7 +190,7 @@ public class ShoppingController {
        
         buyerMessage = orderSummary;
         smsService.sendMessage(orderBuyer.getPhone(), "주문이 완료 되었습니다. 주문번호는 " + order.getOrderId() 
-        + "이며, 주문하신 내역은 " + buyerMessage + ", 총 결제 금액은 " + totalPrice + "입니다. 감사합니다.", "L");
+        + "이며, 주문하신 내역은 " + buyerMessage + ", 총 결제 금액은 " + totalPrice + ", 입금계좌는 [은행명 : 하나은행] [계좌번호 : 630010395746] [예금주명 : (주) 아이바이오사이언스] 입니다. 감사합니다.", "L");
         smsService.sendMessage("010-3894-3849", "결제 방식 계좌이체로 주문이 발생하였습니다.", "S");
         String msg = "주문이 완료 되었습니다. 감사합니다.";
 		StringBuilder sb = new StringBuilder();

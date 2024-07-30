@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.apache.commons.codec.EncoderException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -76,15 +77,13 @@ public class ApiController {
     }
 	
 	@PostMapping("/paymentChecks")
-    public ResponseEntity<Map<String, Object>> paymentChecks(@RequestBody PaymentCheckDTO requests) {
+    public ResponseEntity<Map<String, Object>> paymentChecks(@RequestBody PaymentCheckDTO requests) throws EncoderException {
         Map<String, Object> response = new HashMap<>();
         
         if (requests.getRequests() == null) {
             response.put("return_code", "400");
             response.put("description", "JSON format 오류");
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        }else {
-        	System.out.println(requests.getRequests().toString());
         }
 
         List<Map<String, String>> errors = orderService.checkAndUpdateOrders(requests.getRequests());

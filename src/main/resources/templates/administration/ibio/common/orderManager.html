@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="ko" data-layout="twocolumn" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none"
+	data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: headSrc">
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: headerMenu">
+
+		</header>
+
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: navMenu">
+		</div>
+
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                <h4 class="mb-sm-0">본사 매출 관리</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">본사 매출 관리</a></li>
+                                        <li class="breadcrumb-item active">본사 매출 관리</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    <div class="row">
+                        <div class="col-xxl-3 col-sm-6">
+                            <div class="card card-animate">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <p class="fw-semibold text-muted mb-0">사이트 총 주문 +매출액</p>
+                                            <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="234">0</span>k</h2>
+                                        </div>
+                                        <div>
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-info-subtle text-info rounded-circle fs-4">
+                                                    <i class="ri-ticket-2-line"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- end card body -->
+                            </div> <!-- end card-->
+                        </div>
+                        <!--end col-->
+                        <div class="col-xxl-3 col-sm-6">
+                            <div class="card card-animate">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <p class="fw-semibold text-muted mb-0">거래 완료 매출</p>
+                                            <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="234">0</span>k</h2>
+                                        </div>
+                                        <div>
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-warning-subtle text-warning rounded-circle fs-4">
+                                                    <i class="mdi mdi-timer-sand"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end col-->
+                        <div class="col-xxl-3 col-sm-6">
+                            <div class="card card-animate">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <p class="fw-semibold text-muted mb-0">거래 미완료 -매출</p>
+                                            <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="116.21">0</span>K</h2>
+                                        </div>
+                                        <div>
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-success-subtle text-success rounded-circle fs-4">
+                                                    <i class="ri-checkbox-circle-line"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end col-->
+                        <div class="col-xxl-3 col-sm-6">
+                            <div class="card card-animate">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <p class="fw-semibold text-muted mb-0">환불 매출</p>
+                                            <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="14.84">0</span>%</h2>
+                                        </div>
+                                        <div>
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-danger-subtle text-danger rounded-circle fs-4">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end row-->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card" id="tasksList">
+                                <div class="card-header border-0">
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="card-title mb-0 flex-grow-1">매출 리스트</h5>
+                                    </div>
+                                </div>
+                                <div class="card-body border border-dashed border-end-0 border-start-0">
+                                    <form>
+                                        <div class="row g-3">
+                                             <div class="col-xxl-3 col-sm-4">
+                                                <input 
+                                                type="date" 
+                                                class="form-control bg-light border-light">
+                                            </div>
+                                            <div class="col-xxl-3 col-sm-4">
+                                                <input 
+                                                type="date" 
+                                                class="form-control bg-light border-light">
+                                            </div>
+                                            <div class="col-xxl-3 col-sm-12">
+                                                <div class="search-box">
+                                                    <input 
+                                                    type="text" 
+                                                    class="form-control search bg-light border-light" 
+                                                    placeholder="검색어를 입력 하세요">
+                                                    <i class="ri-search-line search-icon"></i>
+                                                </div>
+                                            </div>
+                                           <div class="col-xxl-3 col-sm-4">
+                                                <div class="input-light">
+                                                    <select class="form-control">
+                                                        <option value="">== 10개씩 보기 ==</option>
+                                                        <option value="">== 30개씩 보기 ==</option>
+                                                        <option value="">== 50개씩 보기 ==</option>
+                                                        <option value="">== 100개씩 보기 ==</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+											
+                                            <div class="col-xxl-3 col-sm-4">
+                                                <div class="input-light">
+                                                    <select class="form-control">
+                                                        <option value="">상태</option>
+                                                        <option value="">All</option>
+                                                        <option value="">입금대기</option>
+                                                        <option value="">입금완료</option>
+                                                        <option value="">취소</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-3 col-sm-4">
+                                                <div class="input-light">
+                                                    <select class="form-control">
+                                                        <option value="">전체주문</option>
+                                                        <option value="">일반회원주문</option>
+                                                        <option value="">딜러회원주문</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-3 col-sm-4">
+                                                <div class="input-light">
+                                                    <select 
+                                                    class="form-control">
+                                                        <option value="">최근순</option>
+                                                        <option value="">거래가액순</option>
+                                                        <option value="">오래된순</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-1 col-sm-4">
+                                                <button type="button" class="btn btn-primary w-100" onclick="SearchData();"> <i class="ri-equalizer-fill me-1 align-bottom"></i>
+                                                  검색하기
+                                                </button>
+                                            </div>
+                                            <div class="col-xxl-1 col-sm-4">
+                                                <button type="button" class="btn btn-danger w-100" onclick="SearchData();"> <i class="ri-equalizer-fill me-1 align-bottom"></i>
+                                                  엑셀다운
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!--end card-body-->
+                                <div class="card-body">
+                                    <div class="table-responsive table-card mb-4">
+                                        <table class="table align-middle table-nowrap mb-0" id="tasksTable">
+                                            <thead class="table-light text-muted">
+                                                <tr>
+                                                    <th>주문ID</th>
+                                                    <th>고객명</th>
+                                                    <th>고객분류</th>
+                                                    <th>최종금액</th>
+                                                    <th>주문일시</th>
+                                                    <th>결제일시</th>
+                                                    <th>상태</th>
+                                                    <th>비고</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="list form-check-all">
+                                                <tr th:each="o:${order}">
+                                                    <td><a class="fw-medium link-primary" th:text="${o.orderId}">#VLZ501</a></td>
+                                                    <td><a href="" 
+		                                                    class="fw-medium link-primary"
+		                                                    th:text="${o.orderBuyer.name}">
+	                                                    </a>
+                                                    </td>
+                                                   <td th:text="${o.orderBuyerRole == 'ROLE_ADMIN' ? '테스트계정' : o.orderBuyerRole == 'ROLE_DEALER' ? '딜러회원' : o.orderBuyerRole == 'ROLE_MEMBER' ? '일반회원' : o.orderTotalPrice}"></td>
+                                                    <td th:text="${o.orderTotalPrice}"></td>
+                                                    <td th:text="${o.orderDate}"></td>
+                                                    <td th:text="${o.orderChangeDate}">
+                                                    </td>
+                                                    <td class="status" th:if="${o.orderSign == 1}"><span class="badge bg-secondary-subtle text-success text-uppercase">거래완료</span></td>
+                                                    <td class="status" th:if="${o.orderSign == 0}"><span class="badge bg-secondary-subtle text-danger text-uppercase">입금대기</span></td>
+                                                    <td class="status" th:if="${o.orderSign == 2}"><span class="badge bg-secondary-subtle text-primary text-uppercase">거래취소</span></td>
+                                                    <td class="due_date">
+														<div class="d-flex">
+                                                            <div class="flex-shrink-0 ms-4">
+                                                                <ul class="list-inline tasks-list-menu mb-0">
+                                                                    <li class="list-inline-item"><a href="#"><i class="ri-eye-fill align-bottom me-2 text-muted"></i></a></li>
+                                                                    <li class="list-inline-item">
+                                                                        <a class="remove-item-btn" data-bs-toggle="modal" href="#deleteOrder">
+                                                                            <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--end table-->
+                                        <div class="noresult" style="display: none">
+                                            <div class="text-center">
+                                                <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px"></lord-icon>
+                                                <h5 class="mt-2">조회 결과가 존재하지 않습니다.</h5>
+                                                <p class="text-muted mb-0">다시 조회 해 주시기 바랍니다.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end mt-2">
+                                        <div class="pagination-wrap hstack gap-2">
+                                            <nav aria-label="navigation">
+												<ul class="pagination justify-content-center">
+													<li class="page-item"
+														th:classappend="${1 == order.pageable.pageNumber+1} ? 'disabled'">
+														<a class="page-link" href="#"
+														th:href="@{/admin/orderManager(page=0,
+														size=${param.size})}"
+														tabindex="-1" aria-disabled="true">First</a>
+													</li>
+													<li class="page-item"
+														th:classappend="${1 == order.pageable.pageNumber+1} ? 'disabled'">
+														<a class="page-link" href="#"
+														th:href="@{/admin/orderManager(page=${order.pageable.pageNumber - 1}, 
+														size=${param.size})}"
+														tabindex="-1" aria-disabled="true">Previous</a>
+													</li>
+													<li class="page-item"
+														th:classappend="${i == order.pageable.pageNumber+1} ? 'disabled'"
+														th:each="i : ${#numbers.sequence(startPage, endPage)}">
+														<a	class="page-link" href="#" th:text=${i}
+														th:href="@{/admin/orderManager(page=${i-1}, 
+														size=${param.size})}">1</a>
+													</li>
+													<li class="page-item"
+														th:classappend="${order.totalPages == order.pageable.pageNumber + 1} ? 'disabled'">
+														<a class="page-link" href="#"
+														th:href="@{/admin/orderManager(page=${order.pageable.pageNumber + 1}, 
+														size=${param.size})}">Next</a>
+													</li>
+													<li class="page-item"
+														th:classappend="${order.totalPages == order.pageable.pageNumber + 1} ? 'disabled'">
+														<a class="page-link" href="#"
+														th:href="@{/admin/orderManager(page=${order.totalPages-1}, 
+														size=${param.size})}">Last</a>
+													</li>
+												</ul>
+											</nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade flip" id="deleteOrder" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body p-5 text-center">
+                                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px"></lord-icon>
+                                    <div class="mt-4 text-center">
+                                        <h4>해당 주문을 삭제 하시겠습니까?</h4>
+                                        <p class="text-muted fs-14 mb-4">삭제시 '취소 상태' 로 변경 됩니다.</p>
+                                        <div class="hstack gap-2 justify-content-center remove">
+                                            <button class="btn btn-link btn-ghost-success fw-medium text-decoration-none" id="deleteRecord-close" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</button>
+                                            <button class="btn btn-danger" id="delete-record">삭제하기</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<th:block th:replace="fragments/administration/common :: footerSrc"></th:block>
+		</div>
+
+	</div>
+	<th:block th:replace="fragments/administration/common :: themeSrc"></th:block>
+	<th:block th:replace="fragments/administration/common :: scriptSrc"></th:block>
+</body>
+
+</html>

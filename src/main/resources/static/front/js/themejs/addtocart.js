@@ -113,7 +113,7 @@ function updateCartDisplay() {
                     <td class="text-center" id="price-${productId}" data-price="${product.price}">${product.price.toLocaleString()} 원</td>
                     <td class="text-center" id="total-${productId}">${total.toLocaleString()} 원</td>
                     <td class="text-right">
-                        <a onclick="confirmRemoveProduct(${productId}, false);" class="fa fa-times fa-delete"></a>
+                        <a onclick="confirmRemoveProduct(${productId}, ${window.location.pathname === '/shopping/viewCart' || window.location.pathname === '/shopping/checkOut'});" class="fa fa-times fa-delete"></a>
                     </td>
                 </tr>
             `);
@@ -209,11 +209,14 @@ function updateQuantity(productId, isCheckoutPage) {
         document.getElementById('total-' + productId).innerText = (productPrice * newQuantity).toLocaleString() + ' 원';
         updateCartSummary();
 
-        // 서버로 데이터 전송
+        // 서버로 데이터 전송 (isCheckoutPage 또는 viewCart 페이지인 경우만)
         if (isCheckoutPage) {
             checkoutCart();
-        } else {
+        } else if (window.location.pathname === '/shopping/viewCart') {
             viewCart();
+        } else {
+            // 그냥 UI만 업데이트 (다른 페이지에서 호출된 경우)
+            updateCartDisplay();
         }
     }
 }
@@ -221,6 +224,34 @@ function updateQuantity(productId, isCheckoutPage) {
 function confirmRemoveProduct(productId, isCheckoutPage) {
     if (confirm('정말 삭제하시겠습니까?')) {
         removeProduct(productId, isCheckoutPage);
+    }
+}
+
+function checkoutCart(finalPrice) {
+    const cartItems = getCartItems();
+    const userId = getUserId();
+    
+    if (Object.keys(cartItems).length === 0) {
+        alert("장바구니에 제품이 하나도 없습니다.");
+        window.location.href = "/index";
+        return;
+    }
+
+    const form = $('<form>', { action: '/shopping/checkoutProcess', method: 'POST' });
+
+    Object.keys(cartItems).forEach(id => {
+        form.append($('<input>', { type: 'hidden', name: 'ids', value: id }));
+        form.append($('<input>', { type: 'hidden', name: 'quantities', value: cartItems[id].quantity }));
+    });
+
+    form.append($('<input>', { type: 'hidden', name: 'finalPrice', value: finalPrice }));
+
+    $('body').append(form);
+    form.submit();
+
+    // Clear cart items in localStorage
+    if (userId) {
+        localStorage.removeItem(`cartItems_${userId}`);
     }
 }
 
@@ -236,19 +267,25 @@ function removeProduct(productId, isCheckoutPage) {
         productRow.remove();
     }
 
-    // If cart is empty, show "비어있음" message
-    if (Object.keys(cartItems).length === 0) {
-        document.getElementById('nullCart').style.display = '';
-        document.getElementById('notNullCart').style.display = 'none';
-    }
-
     updateCartSummary();
 
-    // 서버로 데이터 전송
+    // If cart is empty, handle according to page context
+    if (Object.keys(cartItems).length === 0) {
+        if (isCheckoutPage || window.location.pathname === '/shopping/viewCart') {
+            alert("장바구니에 제품이 하나도 없습니다.");
+            window.location.href = "/index";
+            return;
+        }
+    }
+
+    // 서버로 데이터 전송 (isCheckoutPage 또는 viewCart 페이지인 경우만)
     if (isCheckoutPage) {
         checkoutCart();
-    } else {
+    } else if (window.location.pathname === '/shopping/viewCart') {
         viewCart();
+    } else {
+        // 그냥 UI만 업데이트 (다른 페이지에서 호출된 경우)
+        updateCartDisplay();
     }
 }
 
@@ -325,11 +362,12 @@ function confirmOrder() {
         productDetails.push(`${item.name} x${item.quantity}`);
     });
 
+    const taxPrice = totalPrice * 0.1;
+    const finalPrice = totalPrice + taxPrice;
     const productDetailsText = productDetails.join(', ');
-    const confirmMessage = `${productDetailsText}를 구매 하시겠습니까? 최종금액은 ${totalPrice.toLocaleString()}원 입니다.`;
+    const confirmMessage = `${productDetailsText}를 구매 하시겠습니까? 최종금액은 ${finalPrice.toLocaleString()}원 입니다.`;
 
     if (confirm(confirmMessage)) {
-        checkoutCart();
+        checkoutCart(finalPrice);
     }
 }
-
