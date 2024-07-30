@@ -1592,65 +1592,7 @@
       document.getElementById("checkout-elem") &&
         (document.getElementById("checkout-elem").style.display = "block"),
       F()),
-    document.getElementsByClassName("notification-check") &&
-      (H(),
-      Array.from(
-        document.querySelectorAll(".notification-check input")
-      ).forEach(function (t) {
-        t.addEventListener("change", function (e) {
-          e.target.closest(".notification-item").classList.toggle("active");
-          var t = document.querySelectorAll(
-            ".notification-check input:checked"
-          ).length;
-          e.target.closest(".notification-item").classList.contains("active"),
-            (document.getElementById("notification-actions").style.display =
-              0 < t ? "block" : "none"),
-            (document.getElementById("select-content").innerHTML = t);
-        }),
-          document
-            .getElementById("notificationDropdown")
-            .addEventListener("hide.bs.dropdown", function (e) {
-              (t.checked = !1),
-                document
-                  .querySelectorAll(".notification-item")
-                  .forEach(function (e) {
-                    e.classList.remove("active");
-                  }),
-                (document.getElementById("notification-actions").style.display =
-                  "");
-            });
-      }),
-      document
-        .getElementById("removeNotificationModal")
-        .addEventListener("show.bs.modal", function (e) {
-          document
-            .getElementById("delete-notification")
-            .addEventListener("click", function () {
-              Array.from(
-                document.querySelectorAll(".notification-item")
-              ).forEach(function (e) {
-                e.classList.contains("active") && e.remove();
-              }),
-                H(),
-                document.getElementById("NotificationModalbtn-close").click();
-            });
-        })),
-    [].slice
-      .call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-      .map(function (e) {
-        return new bootstrap.Tooltip(e);
-      }),
-    [].slice
-      .call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-      .map(function (e) {
-        return new bootstrap.Popover(e);
-      }),
-    document.getElementById("reset-layout") &&
-      document
-        .getElementById("reset-layout")
-        .addEventListener("click", function () {
-          sessionStorage.clear(), window.location.reload();
-        }),
+    
     (z = document.querySelectorAll("[data-toast]")),
     Array.from(z).forEach(function (a) {
       a.addEventListener("click", function () {
