@@ -37,6 +37,9 @@ public class Order {
 
     @Column(name="ORDER_DATE")
     private ZonedDateTime orderDate;
+    
+    @Column(name="ORDER_CHANGE_DATE")
+    private ZonedDateTime orderChangeDate;
 
     @Column(name="ORDER_TOTAL_PRICE")
     private String orderTotalPrice;
